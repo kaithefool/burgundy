@@ -19,12 +19,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routes
 app.use(
   '/uploads',
   express.static(path.join(__dirname, 'shared/uploads')),
   (req, res, next) => next(createError(404)),
 );
-
 app.use('/api', api);
 app.use('/', pages);
 
