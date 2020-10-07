@@ -1,0 +1,67 @@
+{
+  "name": "burgundy",
+  "version": "0.1.0",
+  "description": "web client",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kaithefool/burgundy.git"
+  },
+  "author": "Kai Lam <kai.chun.lam@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaithefool/burgundy/issues"
+  },
+  "homepage": "https://github.com/kaithefool/burgundy#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "axios": "^0.20.0",
+    "bootstrap": "^4.5.2",
+    "formik": "^2.1.7",
+    "js-cookie": "^2.2.1",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "qs": "^6.9.4",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@svgr/webpack": "^5.4.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^6.2.0",
+    "css-loader": "^4.3.0",
+    "cssnano": "^4.1.10",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.3",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "file-loader": "^6.1.0",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "mini-css-extract-plugin": "^0.11.3",
+    "node-sass": "^4.14.1",
+    "postcss-loader": "^4.0.3",
+    "postcss-preset-env": "^6.7.0",
+    "sass-loader": "^10.0.2",
+    "serve": "^11.3.2",
+    "style-loader": "^1.3.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}

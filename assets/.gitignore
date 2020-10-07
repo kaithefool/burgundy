@@ -18,5 +18,5 @@ node_modules/
 # Optional REPL history
 .node_repl_history
 
-# Shared folder between commits
-/shared/
+# Webpack cache
+cache/*

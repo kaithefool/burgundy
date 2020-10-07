@@ -1,14 +1,14 @@
 module.exports = {
-  "env": {
-    "node": true,
+  env: {
+    node: true,
   },
-  "extends": "airbnb-base",
-  "rules": {
+  extends: 'airbnb-base',
+  rules: {
     // enable development in windows
-    "linebreak-style": "off",
+    'linebreak-style': 'off',
     // misc
-    "class-methods-use-this": "off",
-    "import/prefer-default-export": "off",
-    "no-param-reassign": ["error", { "props": false }],
+    'class-methods-use-this': 'off',
+    'import/prefer-default-export': 'off',
+    'no-param-reassign': ['error', { props: false }],
   },
-}
+};
