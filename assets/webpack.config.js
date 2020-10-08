@@ -16,7 +16,9 @@ module.exports = () => ({
     path: resolve(__dirname, '../public', 'assets'),
   },
   resolve: {
-    '@': './src',
+    alias: {
+      '~': resolve(__dirname, './src/js'),
+    },
   },
   plugins: [
     new MiniCssExtractPlugin({
