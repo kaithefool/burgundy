@@ -1,11 +1,9 @@
-import { useState, useRef } from 'react';
-import axios from 'axios';
-import qs from 'qs';
+import { useState, useRef, useEffect } from 'react';
 
-import successParser from './successParser';
-import errorParser from './errorParser';
+import http from './http';
+import compoundHttp from './compoundHttp';
 
-function useHttpBase() {
+function useHttpBase(requests, opts) {
   const id = useRef(0);
   const fetched = useRef(undefined);
   const [res, setRes] = useState({
@@ -15,45 +13,40 @@ function useHttpBase() {
     progress: 0,
   });
 
-  const req = async (args) => {
-    let state;
+  const req = (r, o) => {
     const rId = id.current + 1;
 
     id.current = rId;
 
     // pending
-    setRes({ status: 'pending', payload: null, progress: 0 });
+    setRes({
+      status: 'pending',
+      payload: null,
+      code: null,
+      progress: 0,
+    });
 
-    try {
-      const r = await axios({
-        onUploadProgress(e) {
-          setRes({ ...res, progress: e.loaded / e.total });
-        },
-        paramsSerializer: (params) => (
-          qs.stringify(params)
-        ),
-        timeout: 2 * 60 * 1000,
-        ...args,
-      });
-
-      // success
-      state = successParser(r);
-
-      return state;
-    } catch (e) {
-      state = errorParser(e);
-    }
-
-    // only update state if this is the last request made
-    if (rId === id.current) {
-      fetched.current = state;
-      setRes(state);
-    }
-
-    return state;
+    return (
+      Array.isArray(r) ? compoundHttp : http
+    )(r, (state) => {
+      // only update state if this is the last request made
+      if (rId === id.current) {
+        if (state.status === 'success') {
+          fetched.current = state;
+        }
+        setRes({ ...res, ...state });
+      }
+    }, o);
   };
 
-  return [res, req, fetched];
+  useEffect(() => {
+    // shortcut to call req in init
+    if (requests) {
+      req(requests, opts);
+    }
+  }, []);
+
+  return { res, req, fetched };
 }
 
 export default useHttpBase;

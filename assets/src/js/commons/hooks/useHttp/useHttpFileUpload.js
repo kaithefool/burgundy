@@ -1,7 +1,7 @@
 import useHttpBase from './useHttpBase';
 
-export default () => {
-  const [res, req, fetched] = useHttpBase();
+function useHttpFileUpload() {
+  const { res, req, fetched } = useHttpBase();
 
   const onFile = (api = {}, file) => {
     const fd = new FormData();
@@ -15,8 +15,10 @@ export default () => {
       },
       data: fd,
       ...api,
-    });
+    }, { uploadProgress: true });
   };
 
-  return [res, onFile, fetched];
-};
+  return { res, req: onFile, fetched };
+}
+
+export default useHttpFileUpload;
