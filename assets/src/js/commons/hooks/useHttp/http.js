@@ -4,10 +4,12 @@ import qs from 'qs';
 import successParser from './successParser';
 import errorParser from './errorParser';
 
-function http(request, cb = () => {}, {
+function http(request, callback = () => {}, {
   uploadProgress = false,
   downloadProgress = false,
 } = {}) {
+  let destroyed = false;
+  const cb = (i) => !destroyed && callback(i);
   const opts = {
     paramsSerializer: (params) => (
       qs.stringify(params)
@@ -27,9 +29,14 @@ function http(request, cb = () => {}, {
     };
   }
 
-  return axios(opts)
-    .then((r) => cb(successParser(r)))
-    .catch((e) => cb(errorParser(e)));
+  return {
+    destroy() {
+      destroyed = true;
+    },
+    xhr: axios(opts)
+      .then((r) => cb(successParser(r)))
+      .catch((e) => cb(errorParser(e))),
+  };
 }
 
 export default http;

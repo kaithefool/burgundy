@@ -2,11 +2,13 @@ import http from './http';
 
 function compoundHttp(requests, cb, opts) {
   const states = [];
+  const xhrs = [];
   let ended = false;
 
   requests.forEach((r, i) => {
     states.push({});
-    http(r, (state) => {
+
+    const x = http(r, (state) => {
       if (ended) return;
 
       states[i] = state;
@@ -34,7 +36,16 @@ function compoundHttp(requests, cb, opts) {
         ended = true;
       }
     }, opts);
+
+    xhrs.push(x);
   });
+
+  return {
+    destroy() {
+      xhrs.forEach((x) => x.destroy());
+    },
+    xhr: xhrs,
+  };
 }
 
 export default compoundHttp;

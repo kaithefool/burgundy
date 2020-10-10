@@ -4,7 +4,7 @@ import http from './http';
 import compoundHttp from './compoundHttp';
 
 function useHttpBase(requests, opts) {
-  const id = useRef(0);
+  const xhr = useRef(undefined);
   const fetched = useRef(undefined);
   const [res, setRes] = useState({
     status: null,
@@ -14,9 +14,10 @@ function useHttpBase(requests, opts) {
   });
 
   const req = (r, o) => {
-    const rId = id.current + 1;
-
-    id.current = rId;
+    if (xhr.current) {
+      // detach all callback from perivous request
+      xhr.current.destroy();
+    }
 
     // pending
     setRes({
@@ -26,17 +27,16 @@ function useHttpBase(requests, opts) {
       progress: 0,
     });
 
-    return (
+    const x = (
       Array.isArray(r) ? compoundHttp : http
     )(r, (state) => {
-      // only update state if this is the last request made
-      if (rId === id.current) {
-        if (state.status === 'success') {
-          fetched.current = state;
-        }
-        setRes({ ...res, ...state });
+      if (state.status === 'success') {
+        fetched.current = state;
       }
+      setRes({ ...res, ...state });
     }, o);
+
+    xhr.current = x;
   };
 
   useEffect(() => {
@@ -44,6 +44,13 @@ function useHttpBase(requests, opts) {
     if (requests) {
       req(requests, opts);
     }
+
+    // disable callbacks to prevent memory leak
+    return () => {
+      if (xhr.current) {
+        xhr.current.destroy();
+      }
+    };
   }, []);
 
   return { res, req, fetched };
