@@ -1,0 +1,199 @@
+// primer
+html, body {
+  min-height: 100vh;
+}
+a {
+  cursor: pointer;
+}
+input, textarea {
+  &, &:focus {
+    outline: none !important;
+  }
+}
+// prevent nowrap to break flexbox grid
+.col {
+  min-width: 0;
+}
+
+// positioning
+.pos-abs-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.pos-abs-yc {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.pos-abs-cr {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 0;
+}
+.pos-abs-tr {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.pos-abs-br {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.pos-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+// overflow
+.overflow-y-hidden {
+  overflow-y: hidden !important;
+}
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}
+.overflow-scroll {
+  overflow: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+// aspect ratios
+@mixin aspect-ratio($w, $h) {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    padding-top: ($h / $w) * 100%;
+  }
+}
+.square {
+  @include aspect-ratio(1, 1);
+}
+.ratio-standard {
+  @include aspect-ratio(4, 3);
+}
+.ratio-wide {
+  @include aspect-ratio(16, 9);
+}
+.ratio-ultrawide {
+  @include aspect-ratio(21, 9);
+}
+
+// transition
+.tra-opacity {
+  transition: opacity .3s;
+}
+
+// opacity
+@for $i from 0 through 10 {
+  $name: opacity-#{$i};
+
+  .#{$name},
+  .hvr-#{$name}:hover,
+  .onhvr:hover .hvr-#{$name} {
+    opacity: 0.1 * $i;
+  }
+}
+
+// sizing
+.fill {
+  width: 100%;
+  height: 100%;
+}
+.pos-abs-fill {
+  @extend .fill;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.pos-abs-spill {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: calc(100% + 12px);
+  height: calc(100% + 12px);
+}
+@for $i from 1 through 9 {
+  $wName: vw-#{$i * 10};
+  $hName: vh-#{$i * 10};
+
+  .#{$wName} {
+    width: #{$i * 10}vw;
+  }
+  .min-#{$wName} {
+    min-width: #{$i * 10}vw;
+  }
+  .#{$hName} {
+    height: #{$i * 10}vh;
+  }
+  .min-#{$hName} {
+    min-height: #{$i * 10}vh;
+  }
+}
+
+// images
+.img-bg {
+  @extend .pos-abs-center;
+  height: auto;
+  width: auto;
+  min-width: 100%;
+  min-height: 100%;
+  background-position: center;
+
+  &.bg-pos-lc {
+    background-position: left center;
+  }
+  &.bg-pos-rc {
+    background-position: right center;
+  }
+}
+.img-bg-cover {
+  @extend .img-bg;
+  background-size: cover;
+}
+.img-bg-contain {
+  @extend .img-bg;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+// typography
+.nobreak {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.small-sm {
+  @include media-breakpoint-down(sm) {
+    font-size: 80%;
+  }
+}
+.smaller-xs {
+  @include media-breakpoint-down(xs) {
+    font-size: 60%;
+  }
+}
+
+// inputs
+.no-resize {
+  resize: none;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.form-control.minimal {
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+
+// borders
+.border-dashed {
+  border-style: dashed;
+}
