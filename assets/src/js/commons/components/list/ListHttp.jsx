@@ -4,11 +4,12 @@ import useHttp from '../../hooks/useHttp';
 import useComparable from '../../hooks/useComparable';
 import ListPagination from './ListPagination.jsx';
 import Pending from '../util/Pending.jsx';
+import Error from '../util/Error.jsx';
 
 const ListHttp = ({
   api,
   skip = 0,
-  limit = 20,
+  limit = 30,
   sort,
   filter,
   refresh,
@@ -59,6 +60,9 @@ const ListHttp = ({
       <div className="position-relative">
         {res.status === 'pending' && (
           <Pending />
+        )}
+        {res.status === 'error' && (
+          <Error res={res} />
         )}
         <div>
           {children({ fetched, fetch, query })}
