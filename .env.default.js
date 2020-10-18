@@ -9,6 +9,11 @@ module.exports = {
   PORT: 3000,
   SECRET: 'justreadtheinstructions',
   HTTPS: false,
+  DB: {
+    HOST: 'localhost',
+    USER: 'app',
+    DATABASE: 'burgundy',
+  },
   RESET_PWD: {
     MAX: '3',
     MAX_TTL: '1d',
