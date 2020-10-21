@@ -6,7 +6,7 @@ let k = 0;
 const Custom = ({
   label,
   type,
-  props,
+  ...props
 }) => {
   const id = useRef(() => { k += 1; return `custom-${k}`; });
 

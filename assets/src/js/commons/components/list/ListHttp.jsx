@@ -12,7 +12,7 @@ const ListHttp = ({
   limit = 30,
   sort,
   filter,
-  refresh,
+  refreshCount,
   children,
   onFetch = () => {},
 }) => {
@@ -40,7 +40,7 @@ const ListHttp = ({
   useEffect(() => {
     fetch({ skip: 0 }); // reset pagination
   }, [
-    refresh,
+    refreshCount,
     useComparable({ filter, api }),
   ]);
 
