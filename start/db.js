@@ -8,4 +8,5 @@ module.exports = mysql.createPool({
   host: DB.HOST,
   user: DB.USER,
   database: DB.DATABASE,
+  multipleStatements: true,
 });
