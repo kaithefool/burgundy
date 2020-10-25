@@ -13,6 +13,7 @@ module.exports = {
     HOST: 'localhost',
     USER: 'app',
     DATABASE: 'burgundy',
+    PASSWORD: 'Root1234',
   },
   RESET_PWD: {
     MAX: '3',
