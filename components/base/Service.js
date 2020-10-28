@@ -1,3 +1,5 @@
+const { castArray } = require('lodash');
+
 class Service {
   constructor(model) {
     this.model = model;
@@ -10,15 +12,29 @@ class Service {
     throw e;
   }
 
-  find() {}
+  find(filter) {
+    return this.model.find({ filter });
+  }
 
-  list() {}
+  async list() {
+    
+  }
 
-  create() {}
+  create(attrs, user) {
+    return this.model.insert(
+      user
+        ? castArray(attrs).map((a) => ({ ...a, createdby: user.id }))
+        : attrs,
+    );
+  }
 
-  patch() {}
+  patch(attrs, user) {
 
-  delete() {}
+  }
+
+  delete({ id }) {
+    return this.model.delete({ id });
+  }
 }
 
 export default Service;
