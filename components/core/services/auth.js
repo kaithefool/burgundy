@@ -1,2 +1,8 @@
 const Service = require('../../base/Service');
-const User = require('../models/User');
+const usersModel = require('../models/users');
+
+class AuthServ extends Service {
+
+}
+
+module.exports = new AuthServ(usersModel);

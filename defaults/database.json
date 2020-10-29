@@ -1,0 +1,10 @@
+{
+  "defaultEnv": "local",
+  "local": {
+    "driver": "mysql",
+    "host": "localhost",
+    "user": "root",
+    "database": "burgundy",
+    "multipleStatements": true
+  }
+}

@@ -1,23 +1,26 @@
 const { castArray } = require('lodash');
+const createError = require('http-errors');
 
 class Service {
   constructor(model) {
     this.model = model;
   }
 
-  throw(message, status = 400) {
-    const e = new Error(message);
-
-    e.status = status;
-    throw e;
+  throw(...args) {
+    throw createError(...args);
   }
 
   find(filter) {
     return this.model.find({ filter });
   }
 
-  async list() {
-    
+  async list(opts) {
+    const { filter } = opts;
+
+    const rows = await this.model.find(opts);
+    const total = await this.model.count(filter);
+
+    return { rows, total };
   }
 
   create(attrs, user) {
@@ -29,7 +32,11 @@ class Service {
   }
 
   patch(attrs, user) {
+    const { id, ...draft } = attrs;
 
+    if (user) draft.updatedby = user.id;
+
+    return this.model.update(draft, { id });
   }
 
   delete({ id }) {
