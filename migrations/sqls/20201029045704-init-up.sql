@@ -1,4 +1,13 @@
 CREATE TABLE users (
-  id VARCHAR(36)
+  id VARCHAR(36) DEFAULT (UUID()),
+  email VARCHAR(320) NOT NULL,
+  password VARCHAR(256),
+  role ENUM('admin', 'customer'),
+  last_logout TIMESTAMP,
+  active BOOLEAN DEFAULT 1,
 
-)
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (id)
+);
