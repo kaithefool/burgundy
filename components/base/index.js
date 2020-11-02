@@ -1,17 +1,17 @@
-import Authorizer from './Authorizer';
-import Model from './Model';
-import Parsers from './Parsers';
-import Responders from './Responders';
-import Routes from './Routes';
-import Service from './Service';
-import Validator from './Validator';
+const Model = require('./Model');
+const Routes = require('./Routes');
+const Service = require('./Service');
+const authorizer = require('./authorizer');
+const parsers = require('./parsers');
+const responders = require('./responders');
+const validator = require('./validator');
 
-export {
-  Authorizer,
+module.exports = {
   Model,
-  Parsers,
-  Responders,
   Routes,
   Service,
-  Validator,
+  authorizer,
+  parsers,
+  responders,
+  validator,
 };
