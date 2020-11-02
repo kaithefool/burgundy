@@ -27,7 +27,15 @@ CREATE TABLE registrants (
 CREATE TABLE pwd_resets (
   id VARCHAR(36),
   user VARCHAR(36),
+
+  expires_at TIMESTAMP,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
   PRIMARY KEY (id)
 );
+
+CREATE EVENT expire_pwd_resets
+ON SCHEDULE EVERY 1 MINUTE
+DO
+  DELETE FROM pwd_resets
+  WHERE NOW() > expires_at;
