@@ -1,5 +1,9 @@
 const { Router } = require('express');
-const { get, castArray, forEach } = require('lodash');
+const {
+  get,
+  castArray,
+  forEach,
+} = require('lodash');
 
 const authorizer = require('./authorizer');
 const validator = require('./validator');
@@ -80,8 +84,10 @@ class Routes {
 
   guards(serve) {
     const g = [];
-    const a = get(this, `authorizer.${serve}`);
-    const v = get(this, `validator.${serve}`);
+    const v = get(this, `validate.${serve}`);
+    const a = this.authorize instanceof Object
+      ? this.authorize[serve]
+      : this.authorize;
 
     if (a) g.push(authorizer(a));
     if (v) g.push(validator(v));

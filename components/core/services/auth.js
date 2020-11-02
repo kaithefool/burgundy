@@ -33,7 +33,7 @@ class AuthServ extends Service {
     if (!u.active) {
       this.throw(400, 'user inactivated');
     }
-    if (!await u.comparePwd(password)) {
+    if (!await usersModel.comparePwd(password, u.password)) {
       this.throw(400, 'invalid email or password');
     }
 

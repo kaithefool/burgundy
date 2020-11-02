@@ -11,3 +11,23 @@ CREATE TABLE users (
 
   PRIMARY KEY (id)
 );
+
+CREATE TABLE registrants (
+  id VARCHAR(36) DEFAULT (UUID()),
+  email VARCHAR(320) NOT NULL,
+  password VARCHAR(256),
+  role ENUM('admin', 'customer'),
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE pwd_resets (
+  id VARCHAR(36),
+  user VARCHAR(36),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (id)
+);

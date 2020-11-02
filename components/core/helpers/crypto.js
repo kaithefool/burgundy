@@ -1,4 +1,3 @@
-const bcrypt = require('bcryptjs');
 const password = require('password-hash-and-salt');
 
 module.exports = {
@@ -12,21 +11,13 @@ module.exports = {
     });
   },
 
-  async compare(str, hash) {
-    let pass = false;
+  compare(str, hash) {
+    return new Promise((resolve, reject) => {
+      password(str).verifyAgainst(hash, (err, verified) => {
+        if (err) return reject(err);
 
-    try {
-      pass = await new Promise((resolve, reject) => {
-        password(str).verifyAgainst(hash, (err, verified) => {
-          if (err) return reject(err);
-
-          return resolve(verified);
-        });
+        return resolve(verified);
       });
-    } catch (e) {
-      pass = await bcrypt.compare(str, hash);
-    }
-
-    return pass;
+    });
   },
 };

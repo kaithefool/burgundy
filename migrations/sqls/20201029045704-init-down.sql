@@ -1,1 +1,3 @@
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS registrants;
+DROP TABLE IF EXISTS pwd_resets;

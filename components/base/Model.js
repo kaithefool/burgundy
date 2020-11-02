@@ -8,6 +8,10 @@ class Model {
     this.tbl = tbl;
   }
 
+  setter(values) {
+    return values;
+  }
+
   select(fields) {
     if (!fields) return '*';
 
@@ -70,23 +74,27 @@ class Model {
     `);
   }
 
-  insert(values) {
+  async insert(values) {
     const { tbl, db } = this;
 
-    return db.query(`
+    const r = await db.query(`
       INSERT INTO ${tbl}
-      SET ${escape(values)}
+      SET ${escape(await this.setter(values))}
     `);
+
+    return r;
   }
 
-  update(values = {}, filter) {
+  async update(values = {}, filter) {
     const { tbl, db } = this;
 
-    return db.query(`
+    const r = await db.query(`
       UPDATE ${tbl}
-      SET ${escape(values)}
+      SET ${escape(await this.setter(values))}
       ${this.where(filter)}
     `);
+
+    return r;
   }
 
   delete(filter) {
