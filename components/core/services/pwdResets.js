@@ -14,7 +14,7 @@ const {
 class PwdResetServ extends Service {
   async create({ email }) {
     const [u] = await usersModel.find({
-      filter: { email },
+      filter: { email, active: 1 },
     });
 
     if (!u) this.throw(400, 'user not exists');
