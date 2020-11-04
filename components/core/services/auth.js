@@ -22,10 +22,7 @@ class AuthServ extends Service {
   }
 
   async basicStrag({ email, password }) {
-    const [u] = await usersModel.find({
-      filter: { email },
-      select: [...userProps, 'password'],
-    });
+    const [u] = await this.find({ email });
 
     if (!u) {
       this.throw(400, 'invalid email or password');
@@ -33,7 +30,7 @@ class AuthServ extends Service {
     if (!u.active) {
       this.throw(400, 'user inactivated');
     }
-    if (!await usersModel.comparePwd(password, u.password)) {
+    if (!await this.model.comparePwd(password, u.password)) {
       this.throw(400, 'invalid email or password');
     }
 
@@ -70,9 +67,9 @@ class AuthServ extends Service {
       this.throw(400, 'invalid token');
     }
 
-    const [u] = await usersModel.find({
-      filter: { id: payload.id, active: 1 },
-      select: userProps,
+    const [u] = await this.find({
+      id: payload.id,
+      active: 1,
     });
 
     if (!u) {
@@ -93,7 +90,7 @@ class AuthServ extends Service {
 
   async logout(attrs, user) {
     if (user) {
-      await usersModel.update(
+      await this.patch(
         { _id: user.id },
         { last_logout: new Date() },
       );

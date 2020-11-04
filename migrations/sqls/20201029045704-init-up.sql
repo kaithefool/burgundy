@@ -3,8 +3,10 @@ CREATE TABLE users (
   email VARCHAR(320) NOT NULL,
   password VARCHAR(256),
   role ENUM('admin', 'customer'),
+
   last_logout TIMESTAMP,
   active BOOLEAN DEFAULT 1,
+  reset_locked BOOLEAN DEFAULT 0,
 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -25,9 +27,9 @@ CREATE TABLE registrants (
 );
 
 CREATE TABLE pwd_resets (
-  id VARCHAR(36),
+  id VARCHAR(36) DEFAULT (UUID()),
   user VARCHAR(36),
-
+  active BOOLEAN DEFAULT 1,
   expires_at TIMESTAMP,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
