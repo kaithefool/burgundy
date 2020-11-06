@@ -1,7 +1,8 @@
-const { object, string } = require('yup');
+const { object } = require('yup');
 
 const { Routes } = require('../../base');
 const service = require('../services/users');
+const { email, password } = require('../validators');
 
 module.exports = new Routes({
   service,
@@ -11,11 +12,11 @@ module.exports = new Routes({
   },
   validate: {
     create: object({
-      email: string().required().lowercase(),
-      password: string().required(),
+      email: email().required(),
+      password: password().required(),
     }),
     patch: object({
-      email: string().required().lowercase(),
+      email: email().required(),
     }),
   },
 }, {

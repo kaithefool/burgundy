@@ -1,16 +1,16 @@
-const { object } = require('yup');
+const { object, string } = require('yup');
 
 const { Routes } = require('../../base');
 const service = require('../services/auth');
 const authCookies = require('../helpers/authCookies');
-const { email, password } = require('../validators');
+const { email } = require('../validators');
 
 module.exports = new Routes({
   service,
   validate: {
     authenticate: object({
       email: email().required(),
-      password: password().required(),
+      password: string().required(),
     }),
   },
 }, {

@@ -5,4 +5,5 @@ exports.email = () => string()
   .lowercase()
   .email();
 
-exports.password = () => string();
+exports.password = () => string()
+  .min(8);

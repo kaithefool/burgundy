@@ -10,9 +10,10 @@ CREATE TABLE users (
 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP,
 
-  UNIQUE KEY(email),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  UNIQUE KEY email (email, deleted_at)
 );
 
 CREATE TABLE registrants (
@@ -23,6 +24,7 @@ CREATE TABLE registrants (
 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP,
 
   PRIMARY KEY (id)
 );
@@ -34,7 +36,9 @@ CREATE TABLE pwd_resets (
   expires_at TIMESTAMP,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (user)
+    REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE EVENT expire_pwd_resets
@@ -42,3 +46,8 @@ ON SCHEDULE EVERY 1 MINUTE
 DO
   DELETE FROM pwd_resets
   WHERE NOW() > expires_at;
+
+CREATE TABLE translations (
+  locale VARCHAR(10),
+  translation VARCHAR(16383)
+);
