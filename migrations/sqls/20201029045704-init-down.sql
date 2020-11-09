@@ -1,4 +1,5 @@
-DROP TABLE IF EXISTS translations;
+DROP TABLE IF EXISTS files;
+DROP TABLE IF EXISTS i18n;
 DROP EVENT IF EXISTS expire_pwd_resets;
 DROP TABLE IF EXISTS pwd_resets;
 DROP TABLE IF EXISTS registrants;

@@ -17,8 +17,8 @@ class PwdResetServ extends Service {
       filter: { email, active: 1 },
     });
 
-    if (!u) this.throw(400, 'user not exists');
-    if (u.reset_locked) this.throw(400, 'max attempts reached');
+    if (!u) this.throw(400, 'pwdResets.userNotExists');
+    if (u.reset_locked) this.throw(400, 'pwdResets.maxAttemptsReached');
 
     const resets = this.find({ user: u.id });
 
@@ -30,7 +30,7 @@ class PwdResetServ extends Service {
       );
 
       // notify the client
-      this.throw(400, 'max attempts reached');
+      this.throw(400, 'pwdResets.maxAttemptsReached');
     }
 
     // deactivate previous reset keys
@@ -47,13 +47,13 @@ class PwdResetServ extends Service {
   async verify({ id }) {
     const [r] = await this.find({ id, active: 1 });
 
-    if (!r) this.throw(400, 'invalid key');
+    if (!r) this.throw(400, 'pwdResets.invalidKey');
   }
 
   async reset({ id, password }) {
     const [r] = await this.find({ id, active: 1 });
 
-    if (!r) this.throw(400, 'invalid key');
+    if (!r) this.throw(400, 'pwdResets.invalidKey');
 
     await usersModel.update(
       { id: r.user },

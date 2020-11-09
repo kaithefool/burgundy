@@ -13,7 +13,7 @@ CREATE TABLE users (
   deleted_at TIMESTAMP,
 
   PRIMARY KEY (id),
-  UNIQUE KEY email (email, deleted_at)
+  UNIQUE KEY unique_email (email, deleted_at)
 );
 
 CREATE TABLE registrants (
@@ -47,7 +47,27 @@ DO
   DELETE FROM pwd_resets
   WHERE NOW() > expires_at;
 
-CREATE TABLE translations (
+CREATE TABLE i18n (
   locale VARCHAR(10),
-  translation VARCHAR(16383)
+  path VARCHAR(200),
+  translation VARCHAR(5000),
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  UNIQUE KEY unique_locale_path (locale, path)
+);
+
+CREATE TABLE files (
+  id VARCHAR(36) DEFAULT (UUID()),
+  originalname VARCHAR(512),
+  mimetype VARCHAR(256),
+  filename VARCHAR(256) NOT NULL,
+  size INT,
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (id),
+  UNIQUE KEY unique_filename (filename)
 );
