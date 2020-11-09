@@ -59,15 +59,14 @@ CREATE TABLE i18n (
 );
 
 CREATE TABLE files (
-  id VARCHAR(36) DEFAULT (UUID()),
+  filename VARCHAR(256),
   originalname VARCHAR(512),
   mimetype VARCHAR(256),
-  filename VARCHAR(256) NOT NULL,
   size INT,
 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-  PRIMARY KEY (id),
+  PRIMARY KEY (filename),
   UNIQUE KEY unique_filename (filename)
 );
