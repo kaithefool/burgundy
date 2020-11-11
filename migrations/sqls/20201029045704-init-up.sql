@@ -59,14 +59,17 @@ CREATE TABLE i18n (
 );
 
 CREATE TABLE files (
-  filename VARCHAR(256),
+  path VARCHAR(256),
   originalname VARCHAR(512),
   mimetype VARCHAR(256),
   size INT,
 
+  ref_table VARCHAR(256),
+  ref_field VARCHAR(256),
+
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-  PRIMARY KEY (filename),
-  UNIQUE KEY unique_filename (filename)
+  PRIMARY KEY (path),
+  UNIQUE KEY unique_path (path)
 );
