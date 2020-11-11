@@ -18,9 +18,6 @@ class FileRoutes extends Routes {
       create: {
         method: 'post',
         parse: upload(this.uploadSettings),
-        response(req, res) {
-          return res.json(res.locals.out[0]);
-        },
       },
     };
   }
