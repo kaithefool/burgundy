@@ -2,13 +2,13 @@ const path = require('path');
 const multer = require('multer');
 const nanoid = require('nanoid');
 
-const { uploads } = process.env.fileStorage;
+const { uploads } = require('../../../start/env').fileStorage;
 
 const storage = multer.diskStorage({
   destination: uploads,
   filename(req, file, cb) {
     const ext = path.extname(file.originalname);
-    const name = nanoid();
+    const name = nanoid(21);
 
     cb(null, `${name}${ext}`);
   },

@@ -1,8 +1,8 @@
 const ms = require('ms');
 
 const {
-  env: { https, jwt: { accessTtl, refreshTtl } },
-} = process;
+  https, jwt: { accessTtl, refreshTtl },
+} = require('../../../start/env');
 
 const cookieOpts = {
   secure: https === '1',

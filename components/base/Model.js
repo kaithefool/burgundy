@@ -1,11 +1,31 @@
+const nanoid = require('nanoid');
 const dbConn = require('../../start/db');
 
 const { escape, escapeId } = dbConn;
 
 class Model {
-  constructor(tbl) {
+  constructor(tbl, opts = {}) {
     this.db = dbConn;
     this.tbl = tbl;
+    this.opts = opts;
+  }
+
+  set(values, withDefaults = false) {
+    const s = (v) => (
+      withDefaults
+        ? { ...this.defaults(), ...this.setter(v) }
+        : this.setter(v)
+    );
+
+    return Array.isArray()
+      ? Promise.all(values.map((v) => s(v)))
+      : s(values);
+  }
+
+  defaults() {
+    const { id = 'id' } = this.opts;
+
+    return id ? { [id]: nanoid(21) } : {};
   }
 
   setter(values) {
@@ -56,7 +76,7 @@ class Model {
     `);
   }
 
-  find({
+  async find({
     filter,
     skip,
     limit,
@@ -65,24 +85,27 @@ class Model {
   } = {}) {
     const { tbl, db } = this;
 
-    return db.query(`
+    const [r] = await db.query(`
       SELECT ${this.select(select)}
       FROM ${tbl}
       ${this.where(filter)}
       ${this.sort(sort)}
-      ${this.paginate({ skip, limit })}
+      ${this.paginate({ skip, limit })};
     `);
+
+    return r;
   }
 
   async insert(values) {
     const { tbl, db } = this;
+    const v = await this.set(values, true);
 
-    const r = await db.query(`
+    await db.query(`
       INSERT INTO ${tbl}
-      SET ${escape(await this.setter(values))}
+      SET ${escape(v)}
     `);
 
-    return r;
+    return v;
   }
 
   async update(values = {}, filter) {
@@ -90,7 +113,7 @@ class Model {
 
     const r = await db.query(`
       UPDATE ${tbl}
-      SET ${escape(await this.setter(values))}
+      SET ${escape(await this.set(values))}
       ${this.where(filter)}
     `);
 

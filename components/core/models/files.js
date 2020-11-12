@@ -1,9 +1,8 @@
 const fs = require('fs-extra');
 const path = require('path');
 
+const { uploads, trash } = require('../../../start/env').fileStorage;
 const Model = require('../../base/Model');
-
-const { uploads, trash } = process.env.fileStorage;
 
 const resolve = (p) => path.resolve(__dirname, '../../', p);
 
@@ -15,4 +14,4 @@ class File extends Model {
   }
 }
 
-module.exports = new File('files');
+module.exports = new File('files', { id: false });

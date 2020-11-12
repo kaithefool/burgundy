@@ -17,8 +17,10 @@ class Service {
   async list(opts) {
     const { filter } = opts;
 
-    const rows = await this.model.find(opts);
-    const total = await this.model.count(filter);
+    const [rows, total] = await Promise.all([
+      this.model.find(opts),
+      this.model.count(filter),
+    ]);
 
     return { rows, total };
   }
@@ -44,4 +46,4 @@ class Service {
   }
 }
 
-export default Service;
+module.exports = Service;

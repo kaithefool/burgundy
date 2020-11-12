@@ -5,8 +5,8 @@ const Service = require('../../base/Service');
 const usersModel = require('../models/users');
 
 const {
-  env: { secret, jwt: { accessTtl, refreshTtl } },
-} = process;
+  secret, jwt: { accessTtl, refreshTtl },
+} = require('../../../start/env');
 
 // props to store within the token
 const userProps = [

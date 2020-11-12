@@ -6,7 +6,7 @@ const logger = require('morgan');
 
 require('./start');
 
-const { api } = require('./components');
+const api = require('./components');
 const pages = require('./pages');
 
 const app = express();

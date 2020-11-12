@@ -1,5 +1,5 @@
 CREATE TABLE users (
-  id VARCHAR(36) DEFAULT (UUID()),
+  id CHAR(21),
   email VARCHAR(320) NOT NULL,
   password VARCHAR(256),
   role ENUM('admin', 'customer'),
@@ -17,7 +17,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE registrants (
-  id VARCHAR(36) DEFAULT (UUID()),
+  id CHAR(21),
   email VARCHAR(320) NOT NULL,
   password VARCHAR(256),
   role ENUM('admin', 'customer'),
@@ -30,7 +30,7 @@ CREATE TABLE registrants (
 );
 
 CREATE TABLE pwd_resets (
-  id VARCHAR(36) DEFAULT (UUID()),
+  id CHAR(21),
   user VARCHAR(36),
   active BOOLEAN DEFAULT 1,
   expires_at TIMESTAMP,
@@ -59,7 +59,7 @@ CREATE TABLE i18n (
 );
 
 CREATE TABLE files (
-  path VARCHAR(256),
+  path VARCHAR(30),
   originalname VARCHAR(512),
   mimetype VARCHAR(256),
   size INT,

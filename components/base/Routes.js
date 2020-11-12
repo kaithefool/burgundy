@@ -27,6 +27,7 @@ class Routes {
   constructor(props, routes, settings) {
     Object.assign(this, props);
     this.router = Router(settings);
+    this.routes = routes;
 
     // named routes
     this.parseNamedRoutes();

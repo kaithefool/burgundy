@@ -9,7 +9,7 @@ const {
     maxTimes,
     keyTtl,
   },
-} = process.env;
+} = require('../../../start/env');
 
 class PwdResetServ extends Service {
   async create({ email }) {

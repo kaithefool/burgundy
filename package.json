@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "pm2-dev ecosystem.config.js",
     "postinstall": "rsync -r --ignore-existing defaults/ shared"
   },
   "repository": {

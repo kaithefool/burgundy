@@ -8,9 +8,8 @@ const read = (p) => JSON.parse(
   ),
 );
 
-const config = {
-  ...read('env.json'),
-  db: read('database.json'),
-};
+let db = read('database.json');
 
-Object.assign(process.env, config);
+db = db[db.defaultEnv];
+
+module.exports = { ...read('env.json'), db };
