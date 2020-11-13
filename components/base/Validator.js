@@ -1,4 +1,5 @@
 const { castArray } = require('lodash');
+const createError = require('http-errors');
 
 module.exports = (rules) => async (req, res, next) => {
   try {
@@ -6,8 +7,7 @@ module.exports = (rules) => async (req, res, next) => {
 
     req.attrs = await schema.validate(req.attrs, opts);
   } catch (e) {
-    e.status = 400;
-    throw e;
+    throw createError(400, e);
   }
 
   return next();

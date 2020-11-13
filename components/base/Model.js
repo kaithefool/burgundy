@@ -1,4 +1,4 @@
-const nanoid = require('nanoid');
+const { nanoid } = require('nanoid');
 const dbConn = require('../../start/db');
 
 const { escape, escapeId } = dbConn;
@@ -10,16 +10,18 @@ class Model {
     this.opts = opts;
   }
 
-  set(values, withDefaults = false) {
-    const s = (v) => (
+  async set(values, withDefaults = false) {
+    const s = async (v) => (
       withDefaults
-        ? { ...this.defaults(), ...this.setter(v) }
+        ? { ...this.defaults(), ...await this.setter(v) }
         : this.setter(v)
     );
 
-    return Array.isArray()
+    const toSet = Array.isArray()
       ? Promise.all(values.map((v) => s(v)))
       : s(values);
+
+    return toSet;
   }
 
   defaults() {
@@ -67,13 +69,15 @@ class Model {
     return `LIMIT ${parseInt(limit, 10)} OFFSET ${parseInt(skip, 10)}`;
   }
 
-  count(filter) {
+  async count(filter) {
     const { db, tbl } = this;
 
-    return db.query(`
-      SELECT COUNT(*) FROM ${tbl}
+    const [[{ count }]] = await db.query(`
+      SELECT COUNT(*) AS count FROM ${tbl}
       ${this.where(filter)}
     `);
+
+    return count;
   }
 
   async find({
@@ -100,10 +104,12 @@ class Model {
     const { tbl, db } = this;
     const v = await this.set(values, true);
 
-    await db.query(`
-      INSERT INTO ${tbl}
-      SET ${escape(v)}
-    `);
+    // console.log(v, escape(v));
+
+    // await db.query(`
+    //   INSERT INTO ${tbl}
+    //   SET ${escape(v)}
+    // `);
 
     return v;
   }

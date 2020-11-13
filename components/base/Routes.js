@@ -61,10 +61,11 @@ class Routes {
 
   attrsFetcher(attrsPath = ['query', 'params', 'body', 'docs']) {
     return (req, res, next) => {
-      req.attrs = {
-        ...req.attrs,
+      req.attrs = Object.assign(
+        {},
+        req.attrs,
         ...castArray(attrsPath).map((p) => req[p]),
-      };
+      );
 
       next();
     };
@@ -111,11 +112,11 @@ class Routes {
       // parsers
       ...castArray(parse),
 
-      // service handler
-      this.handles(serve),
-
       // guards
       ...this.guards(serve),
+
+      // service handler
+      this.handles(serve),
 
       // responders
       ...castArray(response),

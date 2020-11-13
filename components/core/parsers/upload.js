@@ -1,6 +1,6 @@
 const path = require('path');
 const multer = require('multer');
-const nanoid = require('nanoid');
+const { nanoid } = require('nanoid');
 
 const { uploads } = require('../../../start/env').fileStorage;
 
