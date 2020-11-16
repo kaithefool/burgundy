@@ -78,7 +78,11 @@ class Routes {
       attrs,
       user,
     }, res, next) => {
-      res.locals.out = await service[serve](attrs, user);
+      try {
+        res.locals.out = await service[serve](attrs, user);
+      } catch (e) {
+        return next(e);
+      }
 
       return next();
     };

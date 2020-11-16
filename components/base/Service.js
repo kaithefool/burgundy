@@ -1,5 +1,5 @@
 const { castArray } = require('lodash');
-const createError = require('http-errors');
+const httpError = require('http-errors');
 
 class Service {
   constructor(model) {
@@ -7,7 +7,7 @@ class Service {
   }
 
   throw(...args) {
-    throw createError(...args);
+    throw httpError(...args);
   }
 
   find(filter) {

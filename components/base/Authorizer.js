@@ -1,4 +1,4 @@
-const createError = require('http-errors');
+const httpError = require('http-errors');
 const { castArray } = require('lodash');
 
 module.exports = (roles) => (req, res, next) => {
@@ -6,10 +6,10 @@ module.exports = (roles) => (req, res, next) => {
   const { role = 'guest' } = req.user || {};
 
   if (!rr.includes('guest') && role === 'guest') {
-    throw createError(401, 'unauthorized');
+    return next(httpError(401, 'unauthorized'));
   }
   if (!rr.includes(role)) {
-    throw createError(403, 'forbidden');
+    return next(httpError(403, 'forbidden'));
   }
 
   return next();

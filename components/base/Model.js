@@ -104,12 +104,12 @@ class Model {
     const { tbl, db } = this;
     const v = await this.set(values, true);
 
-    // console.log(v, escape(v));
+    console.log(v, escape(v));
 
-    // await db.query(`
-    //   INSERT INTO ${tbl}
-    //   SET ${escape(v)}
-    // `);
+    await db.query(`
+      INSERT INTO ${tbl}
+      SET ${escape(v)}
+    `);
 
     return v;
   }
