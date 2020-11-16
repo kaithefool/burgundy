@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise');
 
-const { db } = require('./env');
+const { db: { driver, ...db } } = require('./env');
 
 module.exports = mysql.createPool(db);

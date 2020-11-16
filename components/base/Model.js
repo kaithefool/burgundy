@@ -1,13 +1,16 @@
 const { nanoid } = require('nanoid');
+const { escape, escapeId } = require('mysql2');
 const dbConn = require('../../start/db');
-
-const { escape, escapeId } = dbConn;
 
 class Model {
   constructor(tbl, opts = {}) {
     this.db = dbConn;
     this.tbl = tbl;
-    this.opts = opts;
+    this.opts = {
+      softDelete: true,
+      id: 'id',
+      ...opts,
+    };
   }
 
   async set(values, withDefaults = false) {
@@ -25,7 +28,7 @@ class Model {
   }
 
   defaults() {
-    const { id = 'id' } = this.opts;
+    const { id } = this.opts;
 
     return id ? { [id]: nanoid(21) } : {};
   }
@@ -41,13 +44,17 @@ class Model {
   }
 
   where(filter, clause = true) {
-    if (!filter) return '';
+    const f = this.opts.softDelete
+      ? { ...filter, not_deleted: 1 }
+      : filter;
 
-    const q = Object.keys(filter).map((key) => (
-      escape({ [key]: filter[key] })
-    )).join(', ');
+    if (!f) return '';
 
-    return clause ? `ORDER BY ${q}` : q;
+    const q = Object.keys(f).map((key) => (
+      escape({ [key]: f[key] })
+    )).join(' AND ');
+
+    return clause ? `WHERE ${q}` : q;
   }
 
   sort(order, clause = true) {
@@ -63,7 +70,7 @@ class Model {
     return clause ? `ORDER BY ${q}` : q;
   }
 
-  paginate({ limit = 10, skip = 0 }) {
+  paginate(skip, limit) {
     if (skip === undefined || limit === undefined) return '';
 
     return `LIMIT ${parseInt(limit, 10)} OFFSET ${parseInt(skip, 10)}`;
@@ -94,7 +101,7 @@ class Model {
       FROM ${tbl}
       ${this.where(filter)}
       ${this.sort(sort)}
-      ${this.paginate({ skip, limit })};
+      ${this.paginate(skip, limit)};
     `);
 
     return r;
@@ -102,9 +109,8 @@ class Model {
 
   async insert(values) {
     const { tbl, db } = this;
-    const v = await this.set(values, true);
 
-    console.log(v, escape(v));
+    const v = await this.set(values, true);
 
     await db.query(`
       INSERT INTO ${tbl}
@@ -117,22 +123,34 @@ class Model {
   async update(values = {}, filter) {
     const { tbl, db } = this;
 
-    const r = await db.query(`
+    await db.query(`
       UPDATE ${tbl}
       SET ${escape(await this.set(values))}
       ${this.where(filter)}
     `);
-
-    return r;
   }
 
-  delete(filter) {
+  softDelete(filter) {
+    return this.update({
+      not_deleted: null,
+    }, filter);
+  }
+
+  hardDelete(filter) {
     const { tbl, db } = this;
 
     return db.query(`
       DELETE FROM ${tbl}
       ${this.where(filter)}
     `);
+  }
+
+  delete(...args) {
+    const { softDelete } = this.opts;
+
+    return softDelete
+      ? this.softDelete(...args)
+      : this.hardDelete(...args);
   }
 }
 

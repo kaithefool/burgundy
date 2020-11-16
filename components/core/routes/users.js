@@ -16,7 +16,8 @@ module.exports = new Routes({
       password: password().required(),
     }),
     patch: object({
-      email: email().required(),
+      email: email(),
+      password: password(),
     }),
   },
 }, {

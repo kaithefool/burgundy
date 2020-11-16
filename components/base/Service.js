@@ -25,12 +25,24 @@ class Service {
     return { rows, total };
   }
 
-  create(attrs, user) {
-    return this.model.insert(
-      user
-        ? castArray(attrs).map((a) => ({ ...a, createdby: user.id }))
-        : attrs,
-    );
+  async create(attrs, user) {
+    let created;
+
+    try {
+      created = await this.model.insert(
+        user
+          ? castArray(attrs).map((a) => ({ ...a, createdby: user.id }))
+          : attrs,
+      );
+    } catch (e) {
+      if (e.code === 'ER_DUP_ENTRY') {
+        this.throw(400, e.sqlMessage);
+      }
+
+      throw e;
+    }
+
+    return created;
   }
 
   patch(attrs, user) {

@@ -2,14 +2,13 @@ const authService = require('./services/auth');
 const authCookies = require('./helpers/authCookies');
 
 function authByHeader(req, res, next) {
-  const { header } = req;
+  const match = req.header('Authorization').match(/^Bearer (.*?)$/);
 
-  const [, accessTk] = header('Authorization')
-    .match(/^Bearer (.*?)$/);
+  if (match && match[1]) {
+    const user = authService.verifyToken(match[1]);
 
-  const user = authService.verify(accessTk);
-
-  if (user) req.user = user;
+    if (user) req.user = user;
+  }
 
   return next();
 }

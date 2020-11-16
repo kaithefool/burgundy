@@ -90,9 +90,9 @@ class AuthServ extends Service {
 
   async logout(attrs, user) {
     if (user) {
-      await this.patch(
-        { _id: user.id },
+      await this.model.update(
         { last_logout: new Date() },
+        { id: user.id },
       );
     }
   }

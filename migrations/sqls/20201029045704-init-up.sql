@@ -1,7 +1,7 @@
 CREATE TABLE users (
   id CHAR(21),
   email VARCHAR(320) NOT NULL,
-  password VARCHAR(256),
+  password VARCHAR(270),
   role ENUM('admin', 'customer'),
 
   last_logout TIMESTAMP,
@@ -10,21 +10,21 @@ CREATE TABLE users (
 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  deleted_at TIMESTAMP,
+  not_deleted BOOLEAN NULL DEFAULT 1,
 
   PRIMARY KEY (id),
-  UNIQUE KEY unique_email (email, deleted_at)
+  UNIQUE KEY unique_email (email, not_deleted)
 );
 
 CREATE TABLE registrants (
   id CHAR(21),
   email VARCHAR(320) NOT NULL,
-  password VARCHAR(256),
+  password VARCHAR(270),
   role ENUM('admin', 'customer'),
 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  deleted_at TIMESTAMP,
+  not_deleted BOOLEAN NULL DEFAULT 1,
 
   PRIMARY KEY (id)
 );
@@ -54,6 +54,7 @@ CREATE TABLE i18n (
 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  not_deleted BOOLEAN NULL DEFAULT 1,
 
   UNIQUE KEY unique_locale_path (locale, path)
 );
@@ -69,6 +70,7 @@ CREATE TABLE files (
 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  not_deleted BOOLEAN NULL DEFAULT 1,
 
   PRIMARY KEY (path),
   UNIQUE KEY unique_path (path)
