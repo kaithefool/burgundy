@@ -1,5 +1,17 @@
+const csurf = require('csurf');
+const httpError = require('http-errors');
+
 const authService = require('./services/auth');
 const authCookies = require('./helpers/authCookies');
+const { https } = require('../../start/env');
+
+const csrf = csurf({
+  cookie: {
+    secure: https,
+    httpOnly: true,
+    sameSite: 'strict',
+  },
+});
 
 function authByHeader(req, res, next) {
   const match = req.header('Authorization').match(/^Bearer (.*?)$/);
@@ -44,7 +56,17 @@ async function authByCookies(req, res, next) {
     }
   }
 
-  return next();
+  // csrf protection
+  return csrf(
+    req,
+    res,
+    (err) => {
+      if (!err) return next();
+      if (err.code !== 'EBADCSRFTOKEN') return next(err);
+
+      return next(httpError(400, 'auth.invalidCsrf'));
+    },
+  );
 }
 
 async function auth(req, res, next) {
