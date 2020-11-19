@@ -78,14 +78,20 @@ class AuthServ extends Service {
 
     // check if user has logged out
     // after the token was issued
-    if (u.last_logout > payload.iat) {
+    if (u.last_logout > new Date(payload.iat * 1000)) {
       this.throw(400, 'auth.loggedOut');
     }
 
     return {
-      user: u,
+      user: pick(u, userProps),
       ...this.signTokens(u),
     };
+  }
+
+  async refresh({ token }) {
+    const { access, refresh } = await this.renewTokens(token);
+
+    return { access, refresh };
   }
 
   async logout(attrs, user) {

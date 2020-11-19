@@ -7,6 +7,7 @@ const { email, password } = require('../validators');
 module.exports = new Routes({
   service,
   authorize: {
+    // list: 'admin',
     // patch: 'admin',
     // delete: 'admin',
   },

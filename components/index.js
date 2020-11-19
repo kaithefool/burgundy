@@ -1,12 +1,16 @@
-const routes = require('express').Router();
+const Router = require('express');
 
 const {
   routes: core,
-  middlewares: { auth },
+  middlewares: { authByHeader, authByCookies },
 } = require('./core');
 
-routes.use(auth);
+const api = Router();
+const components = Router();
 
-routes.use('/core', core);
+components.use('/core', core);
 
-module.exports = routes;
+api.use('/a', authByHeader, components);
+api.use('/', authByCookies, components);
+
+module.exports = api;

@@ -12,27 +12,35 @@ module.exports = new Routes({
       email: email().required(),
       password: string().required(),
     }),
+    refresh: object({
+      token: string().required(),
+    }),
   },
 }, {
   authenticate: {
     method: 'post',
-    response({ attrs }, res) {
+    response({ attrs, web }, res) {
       const { locals: { out } } = res;
 
-      if (attrs.web) {
+      if (web) {
         authCookies.set(res, out, attrs);
 
-        return res.json(out.app);
+        return res.end();
       }
 
       return res.json(out);
     },
   },
 
+  refresh: {
+    method: 'post',
+    path: '/refresh',
+  },
+
   logout: {
     path: '/logout',
-    response({ attrs }, res) {
-      if (attrs.web) {
+    response({ attrs, web }, res) {
+      if (web) {
         authCookies.clear(res);
       }
       if (attrs.redirect) {

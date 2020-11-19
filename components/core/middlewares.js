@@ -14,12 +14,18 @@ const csrf = csurf({
 });
 
 function authByHeader(req, res, next) {
-  const match = req.header('Authorization').match(/^Bearer (.*?)$/);
+  const header = req.header('Authorization');
 
-  if (match && match[1]) {
-    const user = authService.verifyToken(match[1]);
+  if (!header) return next();
 
-    if (user) req.user = user;
+  const match = header.match(/^Bearer (.*?)$/);
+
+  if (!match || !match[1]) return next();
+
+  try {
+    req.user = authService.verifyToken(match[1]);
+  } catch (e) {
+    return next(httpError(400, 'auth.invalidToken'));
   }
 
   return next();
@@ -28,6 +34,9 @@ function authByHeader(req, res, next) {
 async function authByCookies(req, res, next) {
   const { access, refresh } = authCookies.get(req);
   let user;
+
+  // set auth source
+  req.web = true;
 
   // check access token first
   if (access) {
@@ -69,18 +78,7 @@ async function authByCookies(req, res, next) {
   );
 }
 
-async function auth(req, res, next) {
-  const useHeader = Boolean(req.header('Authorization'));
-
-  if (useHeader) {
-    return authByHeader(req, res, next);
-  }
-
-  return authByCookies(req, res, next);
-}
-
 module.exports = {
-  auth,
   authByHeader,
   authByCookies,
 };
