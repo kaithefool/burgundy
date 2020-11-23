@@ -1,5 +1,5 @@
 const ms = require('ms');
-const moment = require('moment');
+const { DateTime } = require('luxon');
 
 const Service = require('../../base/Service');
 const { pwdResetsModel, usersModel } = require('../models');
@@ -10,6 +10,8 @@ const {
     keyTtl,
   },
 } = require('../../../start/env');
+
+const ttl = ms(keyTtl);
 
 class PwdResetServ extends Service {
   async create({ email }) {
@@ -38,7 +40,9 @@ class PwdResetServ extends Service {
 
     const { insertId } = await super.create({
       user: u.id,
-      expires_at: moment().add(ms(keyTtl), 'ms').toDate(),
+      expires_at: DateTime.local()
+        .plus({ millisecond: ttl })
+        .toJSDate(),
     });
 
     console.log('created pwd_reset: ', insertId);
