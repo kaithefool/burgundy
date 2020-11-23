@@ -45,6 +45,10 @@ class Service {
     return created;
   }
 
+  upsert(attrs) {
+    return this.model.upsert(attrs);
+  }
+
   patch(attrs, user) {
     const { id, ...draft } = attrs;
 

@@ -1,8 +1,7 @@
-const { set } = require('lodash');
 const { object, string } = require('yup');
 
 const { Routes } = require('../../base');
-const service = require('../services/auth');
+const service = require('../services/i18n');
 
 const schema = object({
   locale: string().max(10).required(),
@@ -12,32 +11,14 @@ const schema = object({
 
 module.exports = new Routes({
   service,
-  authorize: {
-    list: 'admin',
-    create: 'admin',
-    patch: 'admin',
-    delete: 'admin',
-  },
+  authorize: 'admin',
   validate: {
-    create: schema,
-    patch: schema,
+    upsert: schema,
   },
 }, {
-  find: {
-    path: '/:locale',
-    response: (req, res) => {
-      const { out } = res.locals;
-      const o = {};
-
-      out.forEach((t) => {
-        set(o, t.path, t.translation);
-      });
-
-      return res.json(o);
-    },
-  },
   list: true,
-  create: true,
-  patch: true,
+  upsert: {
+    method: 'put',
+  },
   delete: true,
 });

@@ -6,6 +6,7 @@
 
 const debug = require('debug')('burgundy:server');
 const http = require('http');
+const { env } = require('../start');
 const app = require('../app');
 
 /**
@@ -31,7 +32,7 @@ function normalizePort(val) {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(env.port || '3000');
 app.set('port', port);
 
 /**

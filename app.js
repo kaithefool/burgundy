@@ -3,13 +3,22 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const i18n = require('i18n');
 
-require('./start');
+const { env } = require('./start');
 
 const api = require('./components');
 const pages = require('./pages');
 
 const app = express();
+
+// locales
+i18n.configure({
+  locales: ['en', 'zh-hk'],
+  defaultLocale: 'en',
+  cookie: 'lang',
+  directory: path.join(__dirname, env.fileStorage.locales),
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'pages/views'));
@@ -20,11 +29,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(i18n.init);
 
 // routes
 app.use(
   '/uploads',
-  express.static(path.join(__dirname, 'shared/uploads')),
+  express.static(path.join(__dirname, env.fileStorage.uploads)),
   (req, res, next) => next(httpError(404)),
 );
 app.use('/api', api);

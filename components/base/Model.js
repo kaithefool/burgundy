@@ -120,6 +120,21 @@ class Model {
     return v;
   }
 
+  async upsert(values = {}) {
+    const { tbl, db } = this;
+
+    const v = await this.set(values);
+
+    await db.query(`
+      INSERT INTO ${tbl}
+      SET ${escape(v)}
+      ON DUPLICATE KEY UPDATE
+        ${escape(v)}
+    `);
+
+    return v;
+  }
+
   async update(values = {}, filter) {
     const { tbl, db } = this;
 

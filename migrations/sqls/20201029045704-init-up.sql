@@ -56,7 +56,7 @@ CREATE TABLE i18n (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   not_deleted BOOLEAN NULL DEFAULT 1,
 
-  UNIQUE KEY unique_locale_path (locale, path)
+  UNIQUE KEY unique_locale_path (locale, path, not_deleted)
 );
 
 CREATE TABLE files (
@@ -73,5 +73,5 @@ CREATE TABLE files (
   not_deleted BOOLEAN NULL DEFAULT 1,
 
   PRIMARY KEY (path),
-  UNIQUE KEY unique_path (path)
+  UNIQUE KEY unique_path (path, not_deleted)
 );
