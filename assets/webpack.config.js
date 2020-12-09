@@ -13,7 +13,7 @@ module.exports = () => ({
   },
   output: {
     filename: '[name].js',
-    path: resolve(__dirname, '../public', 'assets'),
+    path: resolve(__dirname, '../shared/public', 'assets'),
   },
   resolve: {
     alias: {

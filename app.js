@@ -28,20 +28,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'shared/public')));
 app.use(i18n.init);
 
-// routes
-app.use(
-  '/locales',
-  express.static(path.join(__dirname, env.fileStorage.locales)),
-  (req, res, next) => next(httpError(404)),
-);
-app.use(
-  '/uploads',
-  express.static(path.join(__dirname, env.fileStorage.uploads)),
-  (req, res, next) => next(httpError(404)),
-);
 app.use('/api', api);
 app.use('/', pages);
 
