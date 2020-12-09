@@ -33,6 +33,11 @@ app.use(i18n.init);
 
 // routes
 app.use(
+  '/locales',
+  express.static(path.join(__dirname, env.fileStorage.locales)),
+  (req, res, next) => next(httpError(404)),
+);
+app.use(
   '/uploads',
   express.static(path.join(__dirname, env.fileStorage.uploads)),
   (req, res, next) => next(httpError(404)),
