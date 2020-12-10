@@ -20,7 +20,7 @@ const BtnHttp = ({
       disabled={status === 'pending' || disabled}
       className={`
         ${className}
-        ${status === 'error' && 'btn-danger'}
+        ${status === 'error' ? 'btn-danger' : ''}
       `}
     >
       {i && (

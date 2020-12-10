@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import startCase from 'lodash/startCase';
 
+import Field from './Field.jsx';
+
 let k = 0;
 
-const Custom = ({
+const CustomGroup = ({
   label,
   type,
   ...props
@@ -12,7 +14,7 @@ const Custom = ({
 
   return (
     <div className={`custom-control custom-${type}`}>
-      <input
+      <Field
         id={id}
         type={type === 'switch' ? 'checkbox' : type}
         {...props}
@@ -24,4 +26,4 @@ const Custom = ({
   );
 };
 
-export default Custom;
+export default CustomGroup;

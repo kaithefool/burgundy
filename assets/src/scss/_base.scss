@@ -119,23 +119,6 @@ input, textarea {
   width: calc(100% + 12px);
   height: calc(100% + 12px);
 }
-@for $i from 1 through 9 {
-  $wName: vw-#{$i * 10};
-  $hName: vh-#{$i * 10};
-
-  .#{$wName} {
-    width: #{$i * 10}vw;
-  }
-  .min-#{$wName} {
-    min-width: #{$i * 10}vw;
-  }
-  .#{$hName} {
-    height: #{$i * 10}vh;
-  }
-  .min-#{$hName} {
-    min-height: #{$i * 10}vh;
-  }
-}
 
 // images
 .img-bg {
