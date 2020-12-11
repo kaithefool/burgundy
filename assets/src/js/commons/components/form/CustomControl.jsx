@@ -1,22 +1,24 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import startCase from 'lodash/startCase';
 
-import Field from './Field.jsx';
+import { Field } from 'formik';
 
 let k = 0;
 
-const CustomGroup = ({
+const CustomControl = ({
   label,
   type,
+  className = '',
   ...props
 }) => {
-  const id = useRef(() => { k += 1; return `custom-${k}`; });
+  const [id] = useState(() => { k += 1; return `custom-${k}`; });
 
   return (
     <div className={`custom-control custom-${type}`}>
       <Field
         id={id}
         type={type === 'switch' ? 'checkbox' : type}
+        className={`custom-control-input ${className}`}
         {...props}
       />
       <label htmlFor={id} className="custom-control-label">
@@ -26,4 +28,4 @@ const CustomGroup = ({
   );
 };
 
-export default CustomGroup;
+export default CustomControl;

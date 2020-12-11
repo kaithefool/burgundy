@@ -5,14 +5,16 @@ import {
   Route,
 } from 'react-router-dom';
 
+import { PageLogin } from './pages';
 
-
-const Auth = () => {
-  return (
-    <Router>
-
-    </Router>
-  );
-};
+const Auth = () => (
+  <Router>
+    <Switch>
+      <Route path="/auth/" exact>
+        <PageLogin />
+      </Route>
+    </Switch>
+  </Router>
+);
 
 export default Auth;

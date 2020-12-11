@@ -9,7 +9,7 @@ import useHttp from '~/commons/hooks/useHttp';
 import BtnHttp from '~/commons/components/btns/BtnHttp.jsx';
 import Alert from '~/commons/components/util/Alert.jsx';
 import FormGroup from '~/commons/components/form/FormGroup.jsx';
-import CustomGroup from '~/commons/components/form/CustomGroup.jsx';
+import CustomControl from '~/commons/components/form/CustomControl.jsx';
 
 const schema = object({
   email: string()
@@ -23,6 +23,7 @@ const schema = object({
 const defaults = {
   email: '',
   password: '',
+  presist: false,
 };
 
 const FormLogin = () => {
@@ -39,12 +40,14 @@ const FormLogin = () => {
       })}
     >
       <Form>
-        <div className="row">
+        <div className="row align-items-end">
           <div className="col">
             <h3>Login</h3>
           </div>
           <div className="col-auto">
-            <Link to="/auth/register">Sign up</Link>
+            <h6>
+              <Link to="/auth/register">Sign up</Link>
+            </h6>
           </div>
         </div>
 
@@ -55,7 +58,7 @@ const FormLogin = () => {
 
         <div className="row mb-3">
           <div className="col">
-            <CustomGroup
+            <CustomControl
               name="presist"
               type="checkbox"
               label="Remember me"
@@ -73,7 +76,7 @@ const FormLogin = () => {
           icon={faUnlock}
           type="submit"
           className="btn-primary btn-block"
-        ></BtnHttp>
+        >Login</BtnHttp>
       </Form>
     </Formik>
   );

@@ -16,6 +16,9 @@ routes.use(({ csrfToken }, res, next) => {
   return next();
 });
 
-routes.use('/', (req, res) => res.render('index'));
+routes.use(
+  ['/auth', '/auth/*'],
+  (req, res) => res.render('auth'),
+);
 
 module.exports = routes;

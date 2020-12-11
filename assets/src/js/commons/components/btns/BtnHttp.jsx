@@ -19,6 +19,7 @@ const BtnHttp = ({
       {...props}
       disabled={status === 'pending' || disabled}
       className={`
+        btn
         ${className}
         ${status === 'error' ? 'btn-danger' : ''}
       `}
@@ -30,6 +31,7 @@ const BtnHttp = ({
           pulse={res.status === 'pending'}
         />
       )}
+      {i && children && ' '}
       {children}
     </button>
   );
