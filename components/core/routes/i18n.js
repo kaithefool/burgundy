@@ -4,7 +4,8 @@ const { Routes } = require('../../base');
 const service = require('../services/i18n');
 
 const schema = object({
-  locale: string().max(10).required(),
+  lng: string().max(10).required(),
+  ns: string().max(25).required(),
   path: string().max(200).required(),
   translation: string().max(5000).required(),
 });

@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const { groupBy } = require('lodash');
+const { groupBy, forEach } = require('lodash');
 
 const Service = require('../../base/Service');
 const model = require('../models/i18n');
@@ -10,41 +10,44 @@ class I18nServ extends Service {
   constructor(...args) {
     super(...args);
 
-    this.allToJSONFile();
+    this.exportAll();
   }
 
-  async toJSONFile(locale, rows) {
-    const rr = rows || await this.find({ locale });
+  async toJSONFile(lng, ns, rows) {
+    const rr = rows || await this.find({ lng, ns });
 
     const obj = this.model.toObj(rr);
-    const filename = `${locale}.json`;
 
     await fs.outputJSON(
       path.resolve(
         __dirname,
         '../../../',
         env.fileStorage.locales,
-        filename,
+        lng,
+        `${ns}.json`,
       ),
       obj,
     );
   }
 
-  async allToJSONFile() {
-    const locales = groupBy(await this.find(), 'locale');
+  async exportAll() {
+    const p = [];
+    const locales = groupBy(await this.find(), 'lng');
 
-    await Promise.all(
-      Object
-        .keys(locales)
-        .map((l) => this.toJSONFile(l, locales[l])),
-    );
+    forEach(locales, (tt, lng) => (
+      forEach(groupBy(tt, 'ns'), (t, ns) => (
+        p.push(this.toJSONFile(lng, ns, t))
+      ))
+    ));
+
+    await Promise.all(p);
   }
 
   async upsert(attrs, user) {
-    const { locale } = attrs;
+    const { lng, ns } = attrs;
     const v = await super.upsert(attrs, user);
 
-    await this.toJSONFile(locale);
+    await this.toJSONFile(lng, ns);
 
     return v;
   }

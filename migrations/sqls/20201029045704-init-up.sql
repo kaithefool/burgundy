@@ -48,7 +48,8 @@ DO
   WHERE NOW() > expires_at;
 
 CREATE TABLE i18n (
-  locale VARCHAR(10),
+  lng VARCHAR(10),
+  ns VARCHAR(25),
   path VARCHAR(200),
   translation VARCHAR(5000),
 
@@ -56,7 +57,7 @@ CREATE TABLE i18n (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   not_deleted BOOLEAN NULL DEFAULT 1,
 
-  UNIQUE KEY unique_locale_path (locale, path, not_deleted)
+  UNIQUE KEY unique_locale_path (lng, ns, path, not_deleted)
 );
 
 CREATE TABLE files (

@@ -3,22 +3,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const i18n = require('i18n');
 
-const { env } = require('./start');
-
+const i18n = require('./start/i18n');
 const api = require('./components');
 const pages = require('./pages');
 
 const app = express();
-
-// locales
-i18n.configure({
-  locales: ['en', 'zh-hk'],
-  defaultLocale: 'en',
-  cookie: 'lang',
-  directory: path.join(__dirname, env.fileStorage.locales),
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'pages/views'));
@@ -29,8 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'shared/public')));
-app.use(i18n.init);
 
+app.use(i18n);
 app.use('/api', api);
 app.use('/', pages);
 
