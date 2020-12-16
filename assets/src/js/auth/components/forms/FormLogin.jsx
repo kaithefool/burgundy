@@ -1,5 +1,6 @@
 import React from 'react';
 import { object, string } from 'yup';
+import { useTranslation } from 'react-i18next';
 
 import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
@@ -28,6 +29,7 @@ const defaults = {
 
 const FormLogin = () => {
   const { res, req } = useHttp();
+  const { t } = useTranslation();
 
   return (
     <Formik
@@ -76,7 +78,9 @@ const FormLogin = () => {
           icon={faUnlock}
           type="submit"
           className="btn-primary btn-block"
-        >Login</BtnHttp>
+        >
+          {t('auth.login')}
+        </BtnHttp>
       </Form>
     </Formik>
   );

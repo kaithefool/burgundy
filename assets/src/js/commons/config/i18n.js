@@ -8,13 +8,15 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-    lng: 'en',
-
-    // keySeparator: false, // we do not use keys in form messages.welcome
-
+    lowerCaseLng: true,
+    supportedLngs: ['en', 'zh-hant'],
+    fallbackLng: 'en',
+    ns: ['common'],
+    defaultNS: 'common',
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
+    react: { useSuspense: false },
   });
 
 export default i18n;

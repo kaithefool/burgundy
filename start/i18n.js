@@ -11,8 +11,13 @@ i18next
   .use(middleware.LanguageDetector)
   .use(FilesystemBackend)
   .init({
-    lng: ['en', 'zh-hant'],
+    lowerCaseLng: true,
+    supportedLngs: ['en', 'zh-hant'],
+    fallbackLng: 'en',
     defaultNS: 'common',
+    detection: {
+      // caches: ['cookie'],
+    },
     backend: {
       loadPath: `${storage}/{{lng}}/{{ns}}.json`,
     },
