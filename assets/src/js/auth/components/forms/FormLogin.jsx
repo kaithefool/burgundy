@@ -44,11 +44,13 @@ const FormLogin = () => {
       <Form>
         <div className="row align-items-end">
           <div className="col">
-            <h3>Login</h3>
+            <h3>{t('auth.login')}</h3>
           </div>
           <div className="col-auto">
             <h6>
-              <Link to="/auth/register">Sign up</Link>
+              <Link to="/auth/register">
+                {t('auth.register')}
+              </Link>
             </h6>
           </div>
         </div>
@@ -60,15 +62,11 @@ const FormLogin = () => {
 
         <div className="row mb-3">
           <div className="col">
-            <CustomControl
-              name="presist"
-              type="checkbox"
-              label="Remember me"
-            />
+            <CustomControl name="presist" type="checkbox" />
           </div>
           <div className="col-auto">
             <Link to="/auth/pwd-recovery">
-              Forgot password?
+              {t('auth.pwdRecovery')}
             </Link>
           </div>
         </div>

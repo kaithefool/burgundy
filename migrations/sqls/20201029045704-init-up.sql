@@ -47,19 +47,6 @@ DO
   DELETE FROM pwd_resets
   WHERE NOW() > expires_at;
 
-CREATE TABLE i18n (
-  lng VARCHAR(10),
-  ns VARCHAR(25),
-  path VARCHAR(200),
-  translation VARCHAR(5000),
-
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  not_deleted BOOLEAN NULL DEFAULT 1,
-
-  UNIQUE KEY unique_locale_path (lng, ns, path, not_deleted)
-);
-
 CREATE TABLE files (
   path VARCHAR(30),
   originalname VARCHAR(512),
@@ -75,4 +62,32 @@ CREATE TABLE files (
 
   PRIMARY KEY (path),
   UNIQUE KEY unique_path (path, not_deleted)
+);
+
+CREATE TABLE i18n (
+  lng VARCHAR(10),
+  ns VARCHAR(25),
+  path VARCHAR(200),
+  translation VARCHAR(5000),
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  not_deleted BOOLEAN NULL DEFAULT 1,
+
+  UNIQUE KEY unique_i18n (lng, ns, path, not_deleted)
+);
+
+CREATE TABLE pages (
+  lng VARCHAR(10),
+  path VARCHAR(200),
+  type ENUM('meta', 'page'),
+  title VARCHAR(200),
+  description VARCHAR(500),
+  cover VARCHAR(300),
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  not_deleted BOOLEAN NULL DEFAULT 1,
+
+  UNIQUE KEY unique_lng_path (lng, path, not_deleted)
 );

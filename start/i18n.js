@@ -16,7 +16,7 @@ i18next
     fallbackLng: 'en',
     defaultNS: 'common',
     detection: {
-      // caches: ['cookie'],
+      caches: ['cookie'],
     },
     backend: {
       loadPath: `${storage}/{{lng}}/{{ns}}.json`,

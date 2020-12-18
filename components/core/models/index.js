@@ -1,11 +1,9 @@
 const files = require('./files');
-const i18n = require('./i18n');
 const pwdResets = require('./pwdResets');
 const users = require('./users');
 
 module.exports = {
   files,
-  i18n,
   pwdResets,
   users,
 };

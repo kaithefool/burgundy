@@ -10,7 +10,7 @@ import { PageLogin } from './pages';
 const Auth = () => (
   <Router>
     <Switch>
-      <Route path="/auth/" exact>
+      <Route path="/auth" exact>
         <PageLogin />
       </Route>
     </Switch>
