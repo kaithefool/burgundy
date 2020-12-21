@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
@@ -8,10 +8,18 @@ const Alert = ({
   theme = 'danger',
   sticky = false,
   children,
-  onClose,
+  closable = true,
   res,
 }) => {
-  const show = res ? res.status === 'error' : true;
+  const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    if (res?.status === 'error') {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  }, [res?.status]);
 
   if (!show) return '';
 
@@ -31,12 +39,12 @@ const Alert = ({
           {children}
         </div>
         {/* Close button */}
-        {onClose && (
+        {closable && (
           <div className="col-auto">
             <button
               type="button"
               className="close"
-              onClick={onClose}
+              onClick={() => setShow(false)}
             >
               <small><FA icon={faTimes} /></small>
             </button>

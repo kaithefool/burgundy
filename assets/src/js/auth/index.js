@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import '../../scss/main.scss';
-import '~/commons/config/i18n';
+import '~/commons/config';
 
 import Auth from './components/Auth.jsx';
 

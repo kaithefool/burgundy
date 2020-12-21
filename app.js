@@ -38,9 +38,14 @@ app.use((err, req, res, next) => {
 
   if (status === 500) console.error(err);
 
-  // render the error page
+  // render the error
   res.status(status);
-  res.render('error');
+
+  if (res.isApi) {
+    return res.send(err.message);
+  }
+
+  return res.render('error');
 });
 
 module.exports = app;

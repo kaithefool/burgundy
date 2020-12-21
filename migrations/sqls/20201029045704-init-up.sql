@@ -74,20 +74,35 @@ CREATE TABLE i18n (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   not_deleted BOOLEAN NULL DEFAULT 1,
 
-  UNIQUE KEY unique_i18n (lng, ns, path, not_deleted)
+  UNIQUE KEY (lng, ns, path, not_deleted)
 );
 
 CREATE TABLE pages (
+  id CHAR(21),
   lng VARCHAR(10),
   path VARCHAR(200),
   type ENUM('meta', 'page'),
+
   title VARCHAR(200),
   description VARCHAR(500),
   cover VARCHAR(300),
+  grid JSON,
 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   not_deleted BOOLEAN NULL DEFAULT 1,
 
-  UNIQUE KEY unique_lng_path (lng, path, not_deleted)
+  PRIMARY KEY (id),
+  UNIQUE KEY (lng, path, not_deleted)
+);
+
+CREATE TABLE page_cells (
+  id CHAR(21),
+  page CHAR(21),
+  meta VARCHAR(5000),
+  content MEDIUMTEXT,
+
+  PRIMARY KEY (id),
+  INDEX (page),
+  FULLTEXT (meta)
 );

@@ -9,7 +9,7 @@ module.exports = () => ({
   entry: {
     auth: './src/js/auth/index.js',
     // app: './src/js/app/index.js',
-    // admin: './src/js/admin/index.js',
+    admin: './src/js/admin/index.js',
   },
   output: {
     filename: '[name].js',

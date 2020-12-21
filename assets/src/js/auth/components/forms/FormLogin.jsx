@@ -31,6 +31,10 @@ const FormLogin = () => {
   const { res, req } = useHttp();
   const { t } = useTranslation();
 
+  if (res.status === 'success') {
+    window.location.reload();
+  }
+
   return (
     <Formik
       validationSchema={schema}
