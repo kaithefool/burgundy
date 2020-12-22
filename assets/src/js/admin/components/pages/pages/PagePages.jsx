@@ -1,5 +1,7 @@
 import React from 'react';
 
-const PagePages = () => <div>h1</div>;
+const PagePages = () => (
+  <div></div>
+);
 
 export default PagePages;
