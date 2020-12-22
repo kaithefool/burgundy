@@ -2,17 +2,16 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
 } from 'react-router-dom';
 
-import { PageLogin } from './pages';
+import {
+  RouteAuth,
+} from './routes';
 
 const Auth = () => (
   <Router>
     <Switch>
-      <Route path="/auth" exact>
-        <PageLogin />
-      </Route>
+      <RouteAuth path="/auth" />
     </Switch>
   </Router>
 );
