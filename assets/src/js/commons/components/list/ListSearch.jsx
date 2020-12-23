@@ -31,6 +31,7 @@ const ListSearch = ({
 
   return (
     <div className="input-group">
+      {/* Select search by */}
       {Array.isArray(opts) && (
         <div className="input-group-prepend">
           <select
@@ -56,6 +57,7 @@ const ListSearch = ({
           </select>
         </div>
       )}
+      {/* Search input */}
       {current.options ? (
         <select
           className="custom-select"

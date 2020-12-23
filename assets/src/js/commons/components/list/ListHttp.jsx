@@ -46,7 +46,7 @@ const ListHttp = ({
 
   return (
     <div>
-      <div className="form-row mb-3">
+      <div className="mb-3">
         <ListPagination
           {...{
             className: 'col-auto',
@@ -55,7 +55,6 @@ const ListHttp = ({
             onChange: fetch,
           }}
         />
-        <div className="col"></div>
       </div>
       <div className="position-relative">
         {res.status === 'pending' && (
