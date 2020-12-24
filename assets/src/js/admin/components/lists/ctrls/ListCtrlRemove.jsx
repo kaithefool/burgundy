@@ -10,25 +10,38 @@ const ListCtrlRemove = ({
   confirm = true,
   api,
   selected = [],
+  refresh,
 }) => {
   const { req, res } = useHttp();
 
-  const remove = () => req({
-    url: api,
-    method: 'delete',
-    data: { _id: selected.map((s) => s._id) },
-  });
+  const remove = async () => {
+    await req({
+      url: api,
+      method: 'delete',
+      data: { _id: selected.map((s) => s._id) },
+    });
+    refresh();
+  };
 
   return (
     <>
       {confirm && (
-        <ModalConfirm>
-          Are you sure?
+        <ModalConfirm
+          onConfirm={remove}
+        >
+          Are you sure to delete?
         </ModalConfirm>
       )}
       <BtnHttp
         res={res}
         className="btn btn-primary"
+        onClick={() => {
+          if (confirm) {
+
+          } else {
+            remove();
+          }
+        }}
       >
         <FA icon={faTrash} fixedWidth />
       </BtnHttp>

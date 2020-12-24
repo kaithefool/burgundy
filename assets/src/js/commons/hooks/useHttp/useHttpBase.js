@@ -42,6 +42,8 @@ function useHttpBase(requests, opts) {
     }, o);
 
     xhr.current = x;
+
+    return x.xhr;
   };
 
   useEffect(() => {

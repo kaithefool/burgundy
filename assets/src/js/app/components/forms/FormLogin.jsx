@@ -31,19 +31,18 @@ const FormLogin = () => {
   const { res, req } = useHttp();
   const { t } = useTranslation();
 
-  if (res.status === 'success') {
-    window.location.reload();
-  }
-
   return (
     <Formik
       validationSchema={schema}
       initialValues={defaults}
-      onSubmit={(values) => req({
-        method: 'post',
-        url: '/api/core/auth',
-        data: values,
-      })}
+      onSubmit={async (values) => {
+        await req({
+          method: 'post',
+          url: '/api/core/auth',
+          data: values,
+        });
+        window.location.reload();
+      }}
     >
       <Form>
         <div className="row align-items-end">

@@ -11,11 +11,13 @@ const ListResouce = ({
   searchPlaceholder,
   children,
   ctrls,
+  selectable = false,
   ...props
 }) => {
   const { api } = props;
   const [refreshCount, setRefreshCount] = useState(0);
   const [search, setSearch] = useState({});
+  const [selected, setSelected] = useState();
 
   const refresh = () => setRefreshCount(refreshCount + 1);
 
@@ -30,7 +32,9 @@ const ListResouce = ({
         />
       )}
       <ListCtrls
-        {...{ api, refresh, ctrls }}
+        {...{
+          api, refresh, ctrls, selected,
+        }}
       >
         {children({ refresh })}
       </ListCtrls>
@@ -40,6 +44,7 @@ const ListResouce = ({
           ...filter,
           ...search,
         }}
+        onSelect={selectable ? setSelected : null}
       />
     </>
   );
