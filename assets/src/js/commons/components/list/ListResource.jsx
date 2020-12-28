@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import ListHttpTable from '~/commons/components/list/ListHttpTable.jsx';
-import ListSearch from '~/commons/components/list/ListSearch.jsx';
+import ListHttpTable from './ListHttpTable.jsx';
+import ListSearch from './ListSearch.jsx';
 import ListCtrls from './ctrls/ListCtrls.jsx';
 
 const ListResouce = ({
@@ -20,6 +20,7 @@ const ListResouce = ({
   const [selected, setSelected] = useState();
 
   const refresh = () => setRefreshCount(refreshCount + 1);
+  const f = { ...filter, ...search };
 
   return (
     <>
@@ -33,17 +34,14 @@ const ListResouce = ({
       )}
       <ListCtrls
         {...{
-          api, refresh, ctrls, selected,
+          api, refresh, ctrls, selected, filter: f,
         }}
       >
         {children({ refresh })}
       </ListCtrls>
       <ListHttpTable
         {...props}
-        filter={{
-          ...filter,
-          ...search,
-        }}
+        filter={f}
         onSelect={selectable ? setSelected : null}
       />
     </>
