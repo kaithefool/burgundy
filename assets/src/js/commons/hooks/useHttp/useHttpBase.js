@@ -11,7 +11,7 @@ function useHttpBase(requests, opts) {
     payload: null,
     code: null, // http status code
     progress: 0,
-    count: 0, // count of success responses
+    count: 0, // number of responses
   });
 
   const req = (r, o) => {
@@ -34,9 +34,9 @@ function useHttpBase(requests, opts) {
     )(r, (state) => {
       const draft = { ...res, ...state };
 
+      draft.count = res.count + 1;
       if (state.status === 'success') {
         fetched.current = state;
-        draft.count = res.count + 1;
       }
       setRes(draft);
     }, o);
