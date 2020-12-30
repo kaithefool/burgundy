@@ -8,7 +8,9 @@ const AlertStacker = ({
   const [stack, setStack] = useState([]);
 
   return (
-    <AlertCtx.Provider value={{}}>
+    <AlertCtx.Provider value={{
+      stack,
+    }}>
       {children}
     </AlertCtx.Provider>
   );

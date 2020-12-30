@@ -8,35 +8,49 @@ function http(request, callback = () => {}, {
   uploadProgress = false,
   downloadProgress = false,
 } = {}) {
-  let destroyed = false;
-  const cb = (i) => !destroyed && callback(i);
+  let cancel;
   const opts = {
     paramsSerializer: (params) => (
       qs.stringify(params)
     ),
     timeout: 30 * 1000,
+    cancelToken: new axios.CancelToken((c) => {
+      cancel = c;
+    }),
     ...request,
   };
 
+  // progress
   if (uploadProgress) {
     opts.onUploadProgress = (e) => {
-      cb({ progress: e.loaded / e.total });
+      callback({ progress: e.loaded / e.total });
     };
   }
   if (downloadProgress) {
     opts.onDownloadProgress = (e) => {
-      cb({ progress: e.loaded / e.total });
+      callback({ progress: e.loaded / e.total });
     };
   }
 
-  return {
-    destroy() {
-      destroyed = true;
-    },
-    xhr: axios(opts)
-      .then((r) => cb(successParser(r)))
-      .catch((e) => cb(errorParser(e))),
-  };
+  const promise = (async () => {
+    try {
+      const r = axios(opts);
+
+      callback(successParser(r));
+
+      return r;
+    } catch (e) {
+      if (!axios.isCancel(e)) {
+        callback(errorParser(e));
+      }
+      throw e;
+    }
+  })();
+
+  // expose cancel fn
+  promise.cancel = cancel;
+
+  return promise;
 }
 
 export default http;

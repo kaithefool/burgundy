@@ -11,13 +11,12 @@ function useHttpBase(requests, opts) {
     payload: null,
     code: null, // http status code
     progress: 0,
-    count: 0, // number of responses
   });
 
   const req = (r, o) => {
     if (xhr.current) {
       // detach all callback from perivous request
-      xhr.current.destroy();
+      xhr.current.cancel();
     }
 
     // pending
@@ -34,7 +33,6 @@ function useHttpBase(requests, opts) {
     )(r, (state) => {
       const draft = { ...res, ...state };
 
-      draft.count = res.count + 1;
       if (state.status === 'success') {
         fetched.current = state;
       }
@@ -43,7 +41,7 @@ function useHttpBase(requests, opts) {
 
     xhr.current = x;
 
-    return x.xhr;
+    return x;
   };
 
   useEffect(() => {
@@ -55,7 +53,7 @@ function useHttpBase(requests, opts) {
     // disable callbacks to prevent memory leak
     return () => {
       if (xhr.current) {
-        xhr.current.destroy();
+        xhr.current.cancel();
       }
     };
   }, []);

@@ -3,14 +3,13 @@ import http from './http';
 function compoundHttp(requests, cb, opts) {
   const states = [];
   const xhrs = [];
-  let ended = false;
+
+  const cancel = () => xhrs.forEach((x) => x.cancel());
 
   requests.forEach((r, i) => {
     states.push({});
 
     const x = http(r, (state) => {
-      if (ended) return;
-
       states[i] = state;
 
       // sum the total progress
@@ -24,7 +23,7 @@ function compoundHttp(requests, cb, opts) {
       // error
       if (state.status === 'error') {
         cb(state);
-        ended = true;
+        cancel();
       }
       // when all requests succeed
       if (states.every((s) => s.status === 'success')) {
@@ -33,19 +32,18 @@ function compoundHttp(requests, cb, opts) {
           ...states,
           { payload: states.map((s) => s.payload) },
         ));
-        ended = true;
       }
     }, opts);
 
     xhrs.push(x);
   });
 
-  return {
-    destroy() {
-      xhrs.forEach((x) => x.destroy());
-    },
-    xhr: xhrs,
-  };
+  const promise = Promise.all(xhrs);
+
+  // expose cancel fn
+  promise.cancel = cancel;
+
+  return promise;
 }
 
 export default compoundHttp;
