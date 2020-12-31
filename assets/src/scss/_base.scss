@@ -22,32 +22,6 @@ input, textarea {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.pos-abs-yc {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-.pos-abs-cr {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  right: 0;
-}
-.pos-abs-tr {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.pos-abs-br {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-.pos-sticky {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
 
 // overflow
 .overflow-y-hidden {
@@ -60,29 +34,6 @@ input, textarea {
   overflow: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-}
-
-// aspect ratios
-@mixin aspect-ratio($w, $h) {
-  position: relative;
-
-  &:after {
-    content: '';
-    display: block;
-    padding-top: ($h / $w) * 100%;
-  }
-}
-.square {
-  @include aspect-ratio(1, 1);
-}
-.ratio-standard {
-  @include aspect-ratio(4, 3);
-}
-.ratio-wide {
-  @include aspect-ratio(16, 9);
-}
-.ratio-ultrawide {
-  @include aspect-ratio(21, 9);
 }
 
 // transition

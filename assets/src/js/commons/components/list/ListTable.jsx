@@ -8,8 +8,6 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 
-import Form from 'react-bootstrap/Form';
-
 const ListTable = ({
   className = '',
   cols = [],
@@ -36,15 +34,17 @@ const ListTable = ({
         <tr>
           {selected && (
             <th scope="col">
-              <Form.Check
-                custom
-                type="checkbox"
-                onChange={(v) => {
-                  if (v) onSelect(range(rows.length));
-                  else onSelect([]);
-                }}
-                value={rows.length && selected.length === rows.length}
-              />
+              <div className="form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  onChange={(v) => {
+                    if (v) onSelect(range(rows.length));
+                    else onSelect([]);
+                  }}
+                  value={rows.length && selected.length === rows.length}
+                />
+              </div>
             </th>
           )}
           {cols.map((col) => (
@@ -84,14 +84,17 @@ const ListTable = ({
           >
             {selected && (
               <td>
-                <Form.Check
-                  custom
-                  onChange={(v) => {
-                    if (v) onSelect([...selected, i]);
-                    else onSelect(without(selected, i));
-                  }}
-                  value={selected.includes(i)}
-                />
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    onChange={(v) => {
+                      if (v) onSelect([...selected, i]);
+                      else onSelect(without(selected, i));
+                    }}
+                    value={selected.includes(i)}
+                  />
+                </div>
               </td>
             )}
             {cols.map(({ key, getter }) => {

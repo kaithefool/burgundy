@@ -15,7 +15,7 @@ function useHttpBase(requests, opts) {
 
   const req = (r, o) => {
     if (xhr.current) {
-      // detach all callback from perivous request
+      // detach all callback from previous request
       xhr.current.cancel();
     }
 
