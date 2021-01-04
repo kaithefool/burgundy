@@ -17,7 +17,7 @@ const ListCtrlRemove = ({
 
   const remove = async () => {
     await req({
-      url: api,
+      ...api,
       method: 'delete',
       data: { _id: selected.map((s) => s._id) },
     });
@@ -35,7 +35,7 @@ const ListCtrlRemove = ({
           Are you sure to delete?
         </ModalConfirm>
       )}
-      {selected.length && (
+      {selected.length > 0 && (
         <BtnHttp
           res={res}
           className="btn btn-primary"

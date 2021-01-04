@@ -17,23 +17,25 @@ const defaults = {
 };
 
 const ListCtrls = ({
-  ctrls,
-  children,
+  ctrls = {},
   ...props
-}) => (
-  <div className="pb-3">
-    {Object
-      .keys(ctrls)
-      .map(
-        (k) => defaults[k]({
-          ...props,
-          key: k,
-          opts: ctrls[k],
-        }),
-      )
-    }
-    {children}
-  </div>
-);
+}) => {
+  const keys = Object.keys(ctrls);
+
+  if (!keys.length) return '';
+
+  return (
+    <div className="pb-3">
+      {keys.map(
+        (k) => <span key={k}>
+          {defaults[k]({
+            ...props,
+            opts: ctrls[k],
+          })}
+        </span>,
+      )}
+    </div>
+  );
+};
 
 export default ListCtrls;

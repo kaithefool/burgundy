@@ -4,12 +4,11 @@ import ListHttpTable from './ListHttpTable.jsx';
 import ListSearch from './ListSearch.jsx';
 import ListCtrls from './ctrls/ListCtrls.jsx';
 
-const ListResouce = ({
+const ListResource = ({
   filter = {},
   searchable,
   searchDebouc,
   searchPlaceholder,
-  children,
   ctrls,
   selectable = false,
   ...props
@@ -36,11 +35,10 @@ const ListResouce = ({
         {...{
           api, refresh, ctrls, selected, filter: f,
         }}
-      >
-        {children({ refresh })}
-      </ListCtrls>
+      />
       <ListHttpTable
         {...props}
+        refreshCount={refreshCount}
         filter={f}
         onSelect={selectable ? setSelected : null}
       />
@@ -48,4 +46,4 @@ const ListResouce = ({
   );
 };
 
-export default ListResouce;
+export default ListResource;

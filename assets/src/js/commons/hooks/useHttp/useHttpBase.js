@@ -58,7 +58,7 @@ function useHttpBase(requests, opts) {
     };
   }, []);
 
-  return { res, req, fetched };
+  return { res, req, fetched: fetched.current };
 }
 
 export default useHttpBase;

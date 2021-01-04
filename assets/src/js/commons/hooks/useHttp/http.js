@@ -34,7 +34,7 @@ function http(request, callback = () => {}, {
 
   const promise = (async () => {
     try {
-      const r = axios(opts);
+      const r = await axios(opts);
 
       callback(successParser(r));
 

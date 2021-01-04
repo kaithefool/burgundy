@@ -23,7 +23,6 @@ const ListSearch = ({
       return onSearch(f);
     },
     deboucT,
-    { leading: true },
   ), []);
   const current = Array.isArray(opts)
     ? opts.find((s) => (s.value || s) === searchBy)
@@ -33,10 +32,10 @@ const ListSearch = ({
     <div className="input-group">
       {/* Select search by */}
       {Array.isArray(opts) && (
-        <div className="input-group-prepend">
+        <div>
           <select
             name="searchBy"
-            className="custom-select"
+            className="form-select"
             value={searchBy}
             onChange={(e) => {
               const { value } = e.target;
@@ -51,7 +50,7 @@ const ListSearch = ({
                 key={by.value || by}
                 value={by.value || by}
               >
-                {by.label || by.value}
+                {by.label || by.value || by}
               </option>
             ))}
           </select>
@@ -60,7 +59,7 @@ const ListSearch = ({
       {/* Search input */}
       {current.options ? (
         <select
-          className="custom-select"
+          className="form-select"
           value={search}
           onChange={(e) => {
             const { value } = e.target;

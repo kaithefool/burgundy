@@ -17,7 +17,7 @@ const ListCtrlPatch = ({
 
   const patch = async () => {
     await req({
-      url: api,
+      ...api,
       method: 'patch',
       data: {
         _id: selected.map((s) => s._id),

@@ -20,13 +20,11 @@ const ListTable = ({
 }) => {
   const sortBy = Object.keys(sort)[0];
   const sortDir = sort[sortBy];
-  const classes = ['table'];
+  const classes = ['table', className];
 
   if (onRowClick) {
     classes.push('table-hover');
   }
-
-  classes.push(className);
 
   return (
     <table className={classes.join(' ')}>
@@ -38,11 +36,11 @@ const ListTable = ({
                 <input
                   type="checkbox"
                   className="form-check-input"
-                  onChange={(v) => {
-                    if (v) onSelect(range(rows.length));
+                  onChange={({ target: { checked } }) => {
+                    if (checked) onSelect(range(rows.length));
                     else onSelect([]);
                   }}
-                  value={rows.length && selected.length === rows.length}
+                  checked={rows.length && selected.length === rows.length}
                 />
               </div>
             </th>
@@ -63,7 +61,7 @@ const ListTable = ({
             >
               {col.children || startCase(col.key)}
               {col.sortable && col.key === sortBy && (
-                <span className="ml-2">
+                <span className="ms-1">
                   <FA
                     icon={sortDir === 1 ? faAngleUp : faAngleDown}
                   />
@@ -88,23 +86,23 @@ const ListTable = ({
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    onChange={(v) => {
-                      if (v) onSelect([...selected, i]);
+                    onChange={({ target: { checked } }) => {
+                      if (checked) onSelect([...selected, i]);
                       else onSelect(without(selected, i));
                     }}
-                    value={selected.includes(i)}
+                    checked={selected.includes(i)}
                   />
                 </div>
               </td>
             )}
             {cols.map(({ key, getter }) => {
-              let data = get(row, key);
+              let value = get(row, key);
 
-              if (getter) data = getter(data, row);
+              if (getter) value = getter(value, row);
 
               return (
                 <td key={key}>
-                  {data}
+                  {value}
                 </td>
               );
             })}

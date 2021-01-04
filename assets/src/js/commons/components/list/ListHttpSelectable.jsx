@@ -29,7 +29,7 @@ const ListHttpSelectable = ({
           onSelect: onSelect ? (s) => {
             setSelected(s);
             onSelect(s.map((i) => (
-              fetched.rows[i]
+              fetched.payload.rows[i]
             )));
           } : undefined,
         });

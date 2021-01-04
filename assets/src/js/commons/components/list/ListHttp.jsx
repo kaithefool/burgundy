@@ -51,7 +51,7 @@ const ListHttp = ({
           {...{
             className: 'col-auto',
             ...query,
-            total: fetched.total,
+            total: fetched?.total,
             onChange: fetch,
           }}
         />
