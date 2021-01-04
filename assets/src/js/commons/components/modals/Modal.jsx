@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import BModal from 'bootstrap/js/dist/modal';
 
 const Modal = ({
@@ -10,32 +10,31 @@ const Modal = ({
 }) => {
   const elRef = useRef();
   const instRef = useRef();
-  const showRef = useRef(show);
-
-  showRef.current = show;
-
-  const hideHandler = (e) => {
-    if (showRef.current) {
+  const hideHandler = useCallback((e) => {
+    if (show) {
       e.preventDefault();
       onHide();
     }
-  };
+  }, [show]);
 
   useEffect(() => {
     instRef.current = new BModal(elRef.current, opts);
-    elRef.current
-      .addEventListener('hide.bs.modal', hideHandler);
 
-    // clean up
     return () => instRef.current.dispose();
   }, []);
 
   useEffect(() => {
+    elRef.current
+      .addEventListener('hide.bs.modal', hideHandler);
+
     if (show) {
       instRef.current.show();
     } else {
       instRef.current.hide();
     }
+
+    return () => elRef.current
+      .removeEventListener('hide.bs.modal', hideHandler);
   }, [show]);
 
   return (
