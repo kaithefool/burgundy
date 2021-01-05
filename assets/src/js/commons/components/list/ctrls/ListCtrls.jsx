@@ -18,6 +18,7 @@ const defaults = {
 
 const ListCtrls = ({
   ctrls = {},
+  className = '',
   ...props
 }) => {
   const keys = Object.keys(ctrls);
@@ -25,7 +26,7 @@ const ListCtrls = ({
   if (!keys.length) return '';
 
   return (
-    <div className="pb-3">
+    <div className={className}>
       {keys.map(
         (k) => <span key={k}>
           {defaults[k]({

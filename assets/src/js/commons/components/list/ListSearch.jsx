@@ -1,6 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import debounce from 'lodash/debounce';
 
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+
 const ListSearch = ({
   opts,
   onSearch = () => {},
@@ -30,31 +33,32 @@ const ListSearch = ({
 
   return (
     <div className="input-group">
+      <span className="input-group-text">
+        <FA icon={faSearch} />
+      </span>
       {/* Select search by */}
       {Array.isArray(opts) && (
-        <div>
-          <select
-            name="searchBy"
-            className="form-select"
-            value={searchBy}
-            onChange={(e) => {
-              const { value } = e.target;
+        <select
+          name="searchBy"
+          className="form-select flex-auto"
+          value={searchBy}
+          onChange={(e) => {
+            const { value } = e.target;
 
-              setSearch('');
-              debouncedSearch('', value);
-              setSearchBy(value);
-            }}
-          >
-            {opts.map((by) => (
-              <option
-                key={by.value || by}
-                value={by.value || by}
-              >
-                {by.label || by.value || by}
-              </option>
-            ))}
-          </select>
-        </div>
+            setSearch('');
+            debouncedSearch('', value);
+            setSearchBy(value);
+          }}
+        >
+          {opts.map((by) => (
+            <option
+              key={by.value || by}
+              value={by.value || by}
+            >
+              {by.label || by.value || by}
+            </option>
+          ))}
+        </select>
       )}
       {/* Search input */}
       {current.options ? (

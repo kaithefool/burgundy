@@ -11,6 +11,7 @@ const ListCtrlRemove = ({
   api,
   selected = [],
   refresh,
+  className = 'btn btn-link',
 }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const { req, res } = useHttp();
@@ -38,7 +39,7 @@ const ListCtrlRemove = ({
       {selected.length > 0 && (
         <BtnHttp
           res={res}
-          className="btn btn-primary"
+          className={className}
           onClick={() => {
             if (confirm) {
               setShowConfirm(true);

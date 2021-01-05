@@ -12,6 +12,7 @@ const ListCtrlPatch = ({
   api,
   refresh,
   selected = [],
+  className = 'btn btn-link',
 }) => {
   const { req, res } = useHttp();
 
@@ -30,7 +31,7 @@ const ListCtrlPatch = ({
   return (
     <BtnHttp
       res={res}
-      className="btn btn-primary"
+      className={className}
       onClick={patch}
     >
       <FA icon={icon} fixedWidth />

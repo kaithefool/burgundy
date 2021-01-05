@@ -46,16 +46,14 @@ const ListHttp = ({
 
   return (
     <div>
-      <div className="mb-3">
-        <ListPagination
-          {...{
-            className: 'col-auto',
-            ...query,
-            total: fetched?.total,
-            onChange: fetch,
-          }}
-        />
-      </div>
+      <ListPagination
+        {...{
+          className: 'mb-3',
+          ...query,
+          total: fetched?.total,
+          onChange: fetch,
+        }}
+      />
       <div className="position-relative">
         {res.status === 'pending' && (
           <Pending />

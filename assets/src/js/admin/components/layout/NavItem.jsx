@@ -22,7 +22,7 @@ const NavListItem = ({
         {...props}
         {...(to ? { activeClassName } : {})}
       >
-        <span className="mr-3">
+        <span className="me-3">
           <FA icon={icon} fixedWidth size="lg" />
         </span>
         {label}

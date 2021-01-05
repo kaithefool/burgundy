@@ -15,12 +15,10 @@ input, textarea {
   min-width: 0;
 }
 
-// positioning
-.pos-abs-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+// grid
+.flex-auto {
+  flex: 0 0 auto !important;
+  width: auto !important;
 }
 
 // overflow
@@ -73,7 +71,10 @@ input, textarea {
 
 // images
 .img-bg {
-  @extend .pos-abs-center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   height: auto;
   width: auto;
   min-width: 100%;
@@ -97,37 +98,10 @@ input, textarea {
   background-repeat: no-repeat;
 }
 
-
-// typography
-.nobreak {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.small-sm {
-  @include media-breakpoint-down(sm) {
-    font-size: 80%;
-  }
-}
-.smaller-xs {
-  @include media-breakpoint-down(xs) {
-    font-size: 60%;
-  }
-}
-
 // inputs
 .no-resize {
   resize: none;
 }
 .cursor-pointer {
   cursor: pointer;
-}
-.form-control.minimal {
-  border-width: 0;
-  border-bottom-width: 1px;
-}
-
-// borders
-.border-dashed {
-  border-style: dashed;
 }
