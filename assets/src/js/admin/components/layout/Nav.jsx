@@ -1,24 +1,38 @@
 import React, { useState } from 'react';
 
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import {
+  faChevronLeft,
+} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import {
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons/faChevronRight';
+
 import NavItem from './NavItem.jsx';
 import links from './links';
 
 const Nav = ({
   className,
 }) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   return (
     <nav className={`
-      main-nav pr-0 py-5 ${className}
+      d-flex vh-100 ${className}
       ${expanded ? 'expanded' : ''}
     `}>
-      <div className="nav flex-column pl-3">
+      <button
+        className="btn btn-sm btn-outline-primary position-absolute"
+        onClick={() => setExpanded(!expanded)}
+      >
+        <FA icon={expanded ? faChevronLeft : faChevronRight} />
+      </button>
+      <div className="nav align-self-center flex-column">
         {links.map((l, i) => (
-          <NavItem key={i} {...l}>
+          <NavItem key={i} expanded={expanded} {...l}>
             {l.links && (
               l.links.map((ll, ii) => (
-                <NavItem key={ii} {...ll} />
+                <NavItem key={ii} expanded={expanded} {...ll} />
               ))
             )}
           </NavItem>

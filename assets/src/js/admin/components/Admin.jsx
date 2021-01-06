@@ -11,8 +11,8 @@ import {
 } from './routes';
 
 const Auth = () => (
-  <div className="container-fluid h-100">
-    <div className="row h-100">
+  <div className="container-fluid">
+    <div className="row">
       <Router>
         <Nav className="col-auto" />
         <div className="col">

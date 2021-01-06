@@ -9,6 +9,7 @@ const NavListItem = ({
   label,
   children,
   links,
+  expanded,
   ...props
 }) => {
   const { to } = props;
@@ -22,13 +23,13 @@ const NavListItem = ({
         {...props}
         {...(to ? { activeClassName } : {})}
       >
-        <span className="me-3">
-          <FA icon={icon} fixedWidth size="lg" />
-        </span>
-        {label}
+        <FA icon={icon} fixedWidth size="lg" />
+        {expanded && (
+          <span className="mx-3">{label}</span>
+        )}
       </Link>
       {children && (
-        <div className={`ml-3 nav ${match ? '' : 'd-none'}`}>
+        <div className={`ms-3 nav ${match ? '' : 'd-none'}`}>
           {children}
         </div>
       )}
