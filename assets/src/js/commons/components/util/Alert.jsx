@@ -28,7 +28,7 @@ const Alert = ({
       className={`alert alert-${theme} ${sticky ? 'position-sticky' : ''}`}
       style={sticky ? { top: '15px' } : {}}
     >
-      <div className="form-row">
+      <div className="row">
         {/* Icon */}
         <div className="col-auto">
           <FA icon={faExclamationCircle} />

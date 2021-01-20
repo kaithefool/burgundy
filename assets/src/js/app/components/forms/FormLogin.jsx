@@ -8,7 +8,7 @@ import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
 
 import useHttp from '~/commons/hooks/useHttp';
 import BtnHttp from '~/commons/components/btns/BtnHttp.jsx';
-import Alert from '~/commons/components/util/Alert.jsx';
+import Toast from '~/commons/components/util/Toast.jsx';
 import FormField from '~/commons/components/form/FormField.jsx';
 
 const schema = object({
@@ -57,7 +57,7 @@ const FormLogin = () => {
           </div>
         </div>
 
-        <Alert res={res} />
+        <Toast res={res} />
 
         <FormField name="email" />
         <FormField name="password" type="password" />
