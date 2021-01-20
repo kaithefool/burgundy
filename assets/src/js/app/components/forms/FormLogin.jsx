@@ -64,7 +64,7 @@ const FormLogin = () => {
 
         <div className="row mb-3">
           <div className="col">
-            <FormField name="presist" type="checkbox" />
+            <FormField name="presist" type="switch" />
           </div>
           <div className="col-auto">
             <Link to="/auth/pwd-recovery">

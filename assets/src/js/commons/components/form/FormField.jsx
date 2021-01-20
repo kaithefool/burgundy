@@ -22,15 +22,6 @@ const FormField = ({
   const isFormCheck = ['checkbox', 'radio', 'switch'].includes(type);
   const isAffirmed = affirm && touched && !error;
 
-  const t = type === 'switch' ? 'checkbox' : type;
-
-  const c = [
-    isFormCheck ? 'form-check-input' : 'form-control',
-    type === 'switch' && 'form-switch',
-    touched && error && 'is-invalid',
-    isAffirmed && 'is-valid',
-  ].filter((s) => s).join(' ');
-
   const l = label !== null && (
     <label
       htmlFor={id.current}
@@ -41,11 +32,19 @@ const FormField = ({
   );
 
   return (
-    <div className={`${className} ${isFormCheck ? 'form-check' : ''}`}>
+    <div className={`
+      ${className}
+      ${isFormCheck ? 'form-check' : ''}
+      ${type === 'switch' ? 'form-switch' : ''}
+    `}>
       {!isFormCheck && l}
       <Field
-        className={c}
-        type={t}
+        className={`
+          ${isFormCheck ? 'form-check-input' : 'form-control'}
+          ${touched && error ? 'is-invalid' : ''}
+          ${isAffirmed ? 'is-valid' : ''}
+        `}
+        type={type === 'switch' ? 'checkbox' : type}
         {...props}
       />
       {isFormCheck && l}
