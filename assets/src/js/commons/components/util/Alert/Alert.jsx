@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
 
 const Alert = ({
   theme = 'danger',
-  sticky = false,
   children,
-  closable = true,
+  dismissible = true,
   res,
 }) => {
   const [show, setShow] = useState(true);
@@ -24,11 +22,8 @@ const Alert = ({
   if (!show) return '';
 
   return (
-    <div
-      className={`alert alert-${theme} ${sticky ? 'position-sticky' : ''}`}
-      style={sticky ? { top: '15px' } : {}}
-    >
-      <div className="row">
+    <div className={`alert alert-${theme}`}>
+      <div className="row gx-3">
         {/* Icon */}
         <div className="col-auto">
           <FA icon={faExclamationCircle} />
@@ -39,16 +34,12 @@ const Alert = ({
           {children}
         </div>
         {/* Close button */}
-        {closable && (
-          <div className="col-auto">
-            <button
-              type="button"
-              className="close"
-              onClick={() => setShow(false)}
-            >
-              <small><FA icon={faTimes} /></small>
-            </button>
-          </div>
+        {dismissible && (
+          <button
+            type="button"
+            className="btn-close"
+            onClick={() => setShow(false)}
+          ></button>
         )}
       </div>
     </div>
