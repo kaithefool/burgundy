@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons/faCheckCircle';
 
 const Alert = ({
-  theme = 'danger',
+  theme = 'warning',
+  icon,
   children,
   dismissible = true,
-  res,
 }) => {
   const [show, setShow] = useState(true);
+  let i = icon;
 
-  useEffect(() => {
-    if (res?.status === 'error') {
-      setShow(true);
-    } else {
-      setShow(false);
-    }
-  }, [res?.status]);
+  if (!i && i !== null) {
+    i = theme === 'success' ? faCheckCircle : faExclamationCircle;
+  }
 
   if (!show) return '';
 
@@ -25,12 +23,13 @@ const Alert = ({
     <div className={`alert alert-${theme}`}>
       <div className="row gx-3">
         {/* Icon */}
-        <div className="col-auto">
-          <FA icon={faExclamationCircle} />
-        </div>
+        {i && (
+          <div className="col-auto">
+            <FA icon={i} />
+          </div>
+        )}
         {/* Message */}
         <div className="col text-break">
-          {res?.payload}
           {children}
         </div>
         {/* Close button */}
