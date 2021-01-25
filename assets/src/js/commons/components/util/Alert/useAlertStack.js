@@ -4,24 +4,34 @@ import AlertCtx from './AlertCtx';
 
 function useAlertStack(res, {
   onError = true,
-  onSuccess = true,
+  onSuccess = false,
 } = {}) {
-  const { pushAlert } = useContext(AlertCtx);
+  const ctx = useContext(AlertCtx);
 
   useEffect(() => {
-    if (res?.status === 'error') {
-      pushAlert({
+    if (onError && res?.status === 'error') {
+      ctx.pushAlert({
         theme: 'danger',
         children: res.payload,
+        ...(
+          typeof onError === 'function'
+            ? onError(res?.payload, res) : {}
+        ),
       });
     }
-    if (res?.status === 'success') {
-      pushAlert({
+    if (onSuccess && res?.status === 'success') {
+      ctx.pushAlert({
         theme: 'success',
         children: res.payload,
+        ...(
+          typeof onSuccess === 'function'
+            ? onSuccess(res?.payload, res) : {}
+        ),
       });
     }
   }, [res?.status]);
+
+  return ctx;
 }
 
 export default useAlertStack;

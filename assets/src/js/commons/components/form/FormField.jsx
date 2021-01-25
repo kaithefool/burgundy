@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import {
   Field,
   useField,
@@ -18,13 +18,13 @@ const FormField = ({
 }) => {
   const { name } = props;
   const [, { error, touched }] = useField(name);
-  const id = useRef(() => { k += 1; return `form-field-${k}`; });
+  const [id] = useState(() => { k += 1; return `form-field-${k}`; });
   const isFormCheck = ['checkbox', 'radio', 'switch'].includes(type);
   const isAffirmed = affirm && touched && !error;
 
   const l = label !== null && (
     <label
-      htmlFor={id.current}
+      htmlFor={id}
       className={isFormCheck ? 'form-check-label' : 'form-label'}
     >
       {label || startCase(name)}
@@ -39,6 +39,7 @@ const FormField = ({
     `}>
       {!isFormCheck && l}
       <Field
+        id={id}
         className={`
           ${isFormCheck ? 'form-check-input' : 'form-control'}
           ${touched && error ? 'is-invalid' : ''}

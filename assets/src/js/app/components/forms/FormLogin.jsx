@@ -8,7 +8,7 @@ import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
 
 import useHttp from '~/commons/hooks/useHttp';
 import BtnHttp from '~/commons/components/btns/BtnHttp.jsx';
-import Alert from '~/commons/components/util/Alert.jsx';
+import { Alert } from '~/commons/components/util/Alert';
 import FormField from '~/commons/components/form/FormField.jsx';
 
 const schema = object({

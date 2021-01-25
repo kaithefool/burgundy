@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import AlertCtx from './AlertCtx';
 
+let k = 0;
+
 const AlertStacker = ({
   children,
   max = 3,
@@ -9,7 +11,8 @@ const AlertStacker = ({
   const [stack, setStack] = useState([]);
 
   const pushAlert = (a) => {
-    setStack([...stack.slice(-max), a]);
+    k += 1;
+    setStack([...stack, { ...a, key: k += 1 }].slice(-max));
   };
 
   return (
@@ -21,3 +24,5 @@ const AlertStacker = ({
     </AlertCtx.Provider>
   );
 };
+
+export default AlertStacker;

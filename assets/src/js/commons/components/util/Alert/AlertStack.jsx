@@ -1,17 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import AlertCtx from './AlertCtx';
-import Alert from './Alert.jsx';
+import AlertMsg from './AlertMsg.jsx';
+import useAlertStack from './useAlertStack';
 
 const AlertStack = ({
+  res,
+  onSuccess,
+  onError,
   className,
 }) => {
-  const { stack } = useContext(AlertCtx);
+  const { stack } = useAlertStack(res, { onSuccess, onError });
 
   return (
     <div className={className}>
-      {stack.map((a, i) => (
-        <Alert key={i} {...a}></Alert>
+      {stack.map((a) => (
+        <AlertMsg key={a.key} {...a}></AlertMsg>
       ))}
     </div>
   );
