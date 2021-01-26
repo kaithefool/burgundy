@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Field,
   useField,
@@ -6,7 +6,7 @@ import {
 } from 'formik';
 import startCase from 'lodash/startCase';
 
-let k = 0;
+import useUniqKey from '../../hooks/useUniqKey';
 
 const FormField = ({
   label,
@@ -18,7 +18,7 @@ const FormField = ({
 }) => {
   const { name } = props;
   const [, { error, touched }] = useField(name);
-  const [id] = useState(() => { k += 1; return `form-field-${k}`; });
+  const id = useUniqKey('form-field-');
   const isFormCheck = ['checkbox', 'radio', 'switch'].includes(type);
   const isAffirmed = affirm && touched && !error;
 
