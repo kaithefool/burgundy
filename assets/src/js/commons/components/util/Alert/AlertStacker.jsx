@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 
 import AlertCtx from './AlertCtx';
-
-let k = 0;
+import useUniqKey from '../../../hooks/useUniqKey';
 
 const AlertStacker = ({
   children,
   max = 3,
 }) => {
   const [stack, setStack] = useState([]);
+  const [, newKey] = useUniqKey();
 
   const pushAlert = (a) => {
-    k += 1;
-    setStack([...stack, { ...a, key: k += 1 }].slice(-max));
+    setStack([...stack, { ...a, key: newKey() }].slice(-max));
   };
 
   return (

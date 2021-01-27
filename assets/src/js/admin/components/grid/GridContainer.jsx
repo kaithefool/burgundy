@@ -5,14 +5,23 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import GridRow from './GridRow.jsx';
 
-const GridContainer = () => {
-  const [rows, setRows] = useState([]);
-  const [focused, focus] = useState({ row: null, cell: null });
+const GridContainer = ({
+  initValue = [],
+  onChange = () => {},
+}) => {
+  const [rows, setRows] = useState(initValue);
+  const [focused, focus] = useState(null);
 
-  const insertRow = (position = rows.length) => {
+  const insert = (position = rows.length) => {
     setRows(
       [...rows].splice(position, 0, {}),
     );
+  };
+  const remove = (position) => {
+    setRows([...rows].splice(position, 1));
+  };
+  const move = (key, position) => {
+
   };
 
   return (
@@ -21,12 +30,12 @@ const GridContainer = () => {
         <GridRow
           {...r}
           key={i}
-          focused={i === focused.row}
-          onFocus={(cell) => focus({ row: i, cell })}
+          focused={i === focused}
+          onFocus={() => focus(i)}
         />
       ))}
       <div
-        onClick={() => insertRow()}
+        onClick={() => insert()}
       >
         <FA icon={faPlus} />
       </div>
