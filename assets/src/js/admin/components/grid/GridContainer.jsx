@@ -4,24 +4,42 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import GridRow from './GridRow.jsx';
+import useUniqKey from '~/commons/hooks/useUniqKey';
 
 const GridContainer = ({
   initValue = [],
   onChange = () => {},
 }) => {
+  const [, newKey] = useUniqKey();
   const [rows, setRows] = useState(initValue);
   const [focused, focus] = useState(null);
 
+  const update = (draft) => {
+    const d = draft.map(({ tmpId, ...r }) => r);
+
+    setRows(d);
+    onChange(d);
+  };
   const insert = (position = rows.length) => {
-    setRows(
-      [...rows].splice(position, 0, {}),
-    );
+    const d = [...rows].splice(position, 0, { tmpId: newKey() });
+
+    update(d);
   };
   const remove = (position) => {
-    setRows([...rows].splice(position, 1));
-  };
-  const move = (key, position) => {
+    const d = [...rows].splice(position, 1);
 
+    update(d);
+  };
+  const move = (from, to) => {
+    const d = [...rows];
+
+    d.splice(to, 0, d.splice(from, 1));
+    update(d);
+  };
+  const change = (i, chg) => {
+    const d = [...rows].splice(i, 1, chg);
+
+    update(d);
   };
 
   return (
@@ -29,9 +47,15 @@ const GridContainer = ({
       {rows.map((r, i) => (
         <GridRow
           {...r}
-          key={i}
+          key={r.tmpId}
+          position={i}
           focused={i === focused}
+
           onFocus={() => focus(i)}
+          onInsert={(incr) => insert(i + incr)}
+          onRemove={() => remove(i)}
+          onMove={(incr) => move(i, i + incr)}
+          onChange={(chg) => change(i, chg)}
         />
       ))}
       <div

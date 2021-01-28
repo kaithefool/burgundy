@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import GridCell from './GridCell.jsx';
+import useUniqKey from '~/commons/hooks/useUniqKey';
 
 const GridRow = ({
   stretch = false,
@@ -9,7 +10,13 @@ const GridRow = ({
 
   focused,
   onFocus = () => {},
+  onChange = () => {},
 }) => {
+  const [focusedCell, focusCell] = useState(null);
+
+  useEffect(() => {
+    if (!focused) focusCell(null);
+  }, [focused]);
 
   return (
     <div className="row">
@@ -24,7 +31,17 @@ const GridRow = ({
             <GridCell
               {...c}
               key={i}
-              focused={focused === i}
+              focused={focusedCell === i}
+
+              onFocus={() => {
+                focusCell(i);
+                onFocus();
+              }}
+              onChange={(chg) => {
+                const d = [...cells].splice(i, 1, chg);
+
+                onChange(d);
+              }}
             />
           ))}
         </div>
