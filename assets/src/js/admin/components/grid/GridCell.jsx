@@ -4,6 +4,7 @@ const GridCell = ({
   width,
 
   onFocus = () => {},
+  onChange = () => {},
 }) => {
 
   return (

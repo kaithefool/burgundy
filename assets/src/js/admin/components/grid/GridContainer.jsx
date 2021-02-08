@@ -15,19 +15,25 @@ const GridContainer = ({
   const [focused, focus] = useState(null);
 
   const update = (draft) => {
-    const d = draft.map(({ tmpId, ...r }) => r);
+    // omit tmpIds
+    const d = draft.map(({ tmpId, ...r }) => ({
+      ...r,
+      cells: r.cells.map(({ tmpId: t, ...c }) => c),
+    }));
 
-    setRows(d);
+    setRows(draft);
     onChange(d);
   };
   const insert = (position = rows.length) => {
-    const d = [...rows].splice(position, 0, { tmpId: newKey() });
+    const d = [...rows];
 
+    d.splice(position, 0, { tmpId: newKey() });
     update(d);
   };
   const remove = (position) => {
-    const d = [...rows].splice(position, 1);
+    const d = [...rows];
 
+    d.splice(position, 1);
     update(d);
   };
   const move = (from, to) => {
@@ -37,8 +43,9 @@ const GridContainer = ({
     update(d);
   };
   const change = (i, chg) => {
-    const d = [...rows].splice(i, 1, chg);
+    const d = [...rows];
 
+    d.splice(i, 1, chg);
     update(d);
   };
 
