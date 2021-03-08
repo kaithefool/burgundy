@@ -3,12 +3,14 @@ import qs from 'qs';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
 
+import useList from '../useList';
+
 const ListCtrlExport = ({
   api,
-  filter,
   opts: href,
   className = 'btn btn-link',
 }) => {
+  const { filter } = useList();
   const query = Object.keys(filter).length
     ? `?${qs.stringify({ filter })}`
     : '';

@@ -1,26 +1,38 @@
 import React from 'react';
 
-import ListResource from '~/commons/components/list/ListResource.jsx';
+import List from '~/commons/components/list';
+import Page from '../../layout/Page.jsx';
 
 const PageUsers = () => (
-  <div>
-    <h1>Users</h1>
-    <ListResource
+  <Page
+    header={{ title: 'Users' }}
+  >
+    <List
       api={{ url: '/api/core/users' }}
       selectable={true}
-      searchable={[
-        'email',
-      ]}
-      ctrls={{
-        create: true,
-        refresh: true,
-        remove: true,
-      }}
-      cols={[
-        { key: 'email', sortable: true },
-      ]}
-    />
-  </div>
+    >
+      <div className="row">
+        <div className="col">
+          <List.Search
+            opts={['email']}
+          />
+        </div>
+        <div className="col">
+          <List.Pagination />
+        </div>
+      </div>
+      <div>
+        <List.Ctrl.Create />
+        <List.Ctrl.Refresh />
+        <List.Ctrl.Remove />
+      </div>
+      <List.Table
+        cols={[
+          { key: 'email', sortable: true },
+        ]}
+      />
+    </List>
+  </Page>
 );
 
 export default PageUsers;

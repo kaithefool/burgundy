@@ -1,13 +1,16 @@
 import React from 'react';
 
-const ListPagination = (props) => {
+import useList from './useList';
+
+const ListPagination = ({
+  className,
+}) => {
   const {
-    skip,
-    limit,
-    total,
-    onChange = () => {},
-    className,
-  } = props;
+    query: { skip, limit },
+    fetched,
+    fetch,
+  } = useList();
+  const total = fetched?.payload?.total || 0;
   const pg = {
     total: Math.ceil(total / limit) || 0,
     current: skip / limit + 1,
@@ -19,7 +22,7 @@ const ListPagination = (props) => {
 
   const to = (page) => {
     if (page > 0 && page <= pg.total) {
-      onChange({ skip: limit * (page - 1) });
+      fetch({ skip: limit * (page - 1) });
     }
   };
 

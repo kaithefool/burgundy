@@ -5,14 +5,14 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import useHttp from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp.jsx';
 import ModalConfirm from '../../modals/ModalConfirm.jsx';
+import useList from '../useList';
 
 const ListCtrlRemove = ({
   opts: { confirm = true } = {},
   api,
-  selected = [],
-  refresh,
   className = 'btn btn-link',
 }) => {
+  const { refresh, selected } = useList;
   const [showConfirm, setShowConfirm] = useState(false);
   const { req, res } = useHttp();
 

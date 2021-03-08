@@ -4,12 +4,14 @@ import debounce from 'lodash/debounce';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 
+import useList from './useList';
+
 const ListSearch = ({
   opts,
-  onSearch = () => {},
   debounce: deboucT = 1500,
   placeholder = '',
 }) => {
+  const { fetch, filter } = useList();
   const [search, setSearch] = useState('');
   const [searchBy, setSearchBy] = useState(
     Array.isArray(opts)
@@ -18,12 +20,12 @@ const ListSearch = ({
   );
   const debouncedSearch = useCallback(debounce(
     (str, by) => {
-      const f = { search: str };
+      const { search: s, ...f } = filter;
 
-      if (!str) return onSearch({});
-      if (by) f.searchBy = by;
+      if (by) f.search = { [by]: str };
+      else if (str) f.search = str;
 
-      return onSearch(f);
+      fetch(f);
     },
     deboucT,
   ), []);

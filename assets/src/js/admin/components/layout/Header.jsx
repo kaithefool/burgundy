@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const Header = ({
   title,
   breadcrumb,
-  sticky = true,
 }) => (
   <header>
     {breadcrumb && (

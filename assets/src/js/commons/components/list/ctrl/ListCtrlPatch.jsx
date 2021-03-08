@@ -3,6 +3,7 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
 import useHttp from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp.jsx';
+import useList from '../useList';
 
 const ListCtrlPatch = ({
   opts: {
@@ -10,11 +11,10 @@ const ListCtrlPatch = ({
     attrs,
   } = {},
   api,
-  refresh,
-  selected = [],
   className = 'btn btn-link',
 }) => {
   const { req, res } = useHttp();
+  const { refresh, selected } = useList();
 
   const patch = async () => {
     await req({

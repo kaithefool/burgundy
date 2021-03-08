@@ -8,16 +8,20 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 
+import useList from './useList';
+
 const ListTable = ({
   className = '',
   cols = [],
-  rows = [],
   onRowClick,
-  selected,
-  onSelect = () => {},
-  sort = {},
-  onSort = () => {},
 }) => {
+  const {
+    rows,
+    selected,
+    select,
+    fetch,
+    query: { sort = {} },
+  } = useList();
   const sortBy = Object.keys(sort)[0];
   const sortDir = sort[sortBy];
   const classes = ['table', className];
@@ -37,8 +41,8 @@ const ListTable = ({
                   type="checkbox"
                   className="form-check-input"
                   onChange={({ target: { checked } }) => {
-                    if (checked) onSelect(range(rows.length));
-                    else onSelect([]);
+                    if (checked) select(range(rows.length));
+                    else select([]);
                   }}
                   checked={rows.length && selected.length === rows.length}
                 />
@@ -51,10 +55,12 @@ const ListTable = ({
               className={col.sortable ? 'cursor-pointer' : ''}
               onClick={() => {
                 if (col.sortable) {
-                  onSort({
-                    [col.key]: sortBy === col.key
-                      ? -(sortDir)
-                      : -1,
+                  fetch({
+                    sort: {
+                      [col.key]: sortBy === col.key
+                        ? -(sortDir)
+                        : -1,
+                    },
                   });
                 }
               }}
@@ -87,8 +93,8 @@ const ListTable = ({
                     type="checkbox"
                     className="form-check-input"
                     onChange={({ target: { checked } }) => {
-                      if (checked) onSelect([...selected, i]);
-                      else onSelect(without(selected, i));
+                      if (checked) select([...selected, i]);
+                      else select(without(selected, i));
                     }}
                     checked={selected.includes(i)}
                   />
