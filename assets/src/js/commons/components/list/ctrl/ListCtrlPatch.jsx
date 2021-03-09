@@ -6,27 +6,29 @@ import BtnHttp from '../../btns/BtnHttp.jsx';
 import useList from '../useList';
 
 const ListCtrlPatch = ({
-  opts: {
-    icon,
-    attrs,
-  } = {},
-  api,
+  icon,
+  api: apiOpts,
+  updates,
   className = 'btn btn-link',
 }) => {
-  const { req, res } = useHttp();
-  const { refresh, selected } = useList();
+  const { res, req } = useHttp();
+  const { api, refresh, selected } = useList();
 
   const patch = async () => {
     await req({
-      ...api,
       method: 'patch',
       data: {
-        _id: selected.map((s) => s._id),
-        ...attrs,
+        id: selected.map((s) => s.id),
+        ...updates,
       },
+      ...api,
+      ...apiOpts,
     });
+
     refresh();
   };
+
+  if (!selected.length) return '';
 
   return (
     <BtnHttp

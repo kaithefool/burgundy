@@ -8,19 +8,20 @@ import ModalConfirm from '../../modals/ModalConfirm.jsx';
 import useList from '../useList';
 
 const ListCtrlRemove = ({
-  opts: { confirm = true } = {},
-  api,
+  api: apiOpts,
+  confirm = 'Are you sure to delete?',
   className = 'btn btn-link',
 }) => {
-  const { refresh, selected } = useList;
-  const [showConfirm, setShowConfirm] = useState(false);
+  const { api, refresh, selected } = useList;
+  const [confirmModal, setConfirmModal] = useState(false);
   const { req, res } = useHttp();
 
   const remove = async () => {
     await req({
-      ...api,
       method: 'delete',
       data: { _id: selected.map((s) => s._id) },
+      ...api,
+      ...apiOpts,
     });
     refresh();
   };
@@ -29,11 +30,11 @@ const ListCtrlRemove = ({
     <>
       {confirm && (
         <ModalConfirm
-          show={showConfirm}
+          show={confirmModal}
           onConfirm={remove}
-          onHide={() => setShowConfirm(false)}
+          onHide={() => setConfirmModal(false)}
         >
-          Are you sure to delete?
+          {confirm}
         </ModalConfirm>
       )}
       {selected.length > 0 && (
@@ -42,7 +43,7 @@ const ListCtrlRemove = ({
           className={className}
           onClick={() => {
             if (confirm) {
-              setShowConfirm(true);
+              setConfirmModal(true);
             } else {
               remove();
             }

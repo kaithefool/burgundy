@@ -2,14 +2,37 @@ import React from 'react';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 
+import { useHttpFileUpload } from '../../../hooks/useHttp';
+import BtnHttp from '../../btns/BtnHttp.jsx';
+import useList from '../useList';
+import FileClick from '../../file/FileClick.jsx';
+
 const ListCtrlImport = ({
+  api: apiOpts,
   className = 'btn btn-link',
-}) => (
-  <button
-    className={className}
-  >
-    <FA icon={faUpload} fixedWidth />
-  </button>
-);
+  ...props
+}) => {
+  const { res, req } = useHttpFileUpload();
+  const { api, refresh } = useList();
+
+  const upload = async (files) => {
+    await req({
+      ...api,
+      ...apiOpts,
+    }, files[0]);
+
+    refresh();
+  };
+
+  return (
+    <BtnHttp
+      res={res}
+      className={className}
+    >
+      <FA icon={faUpload} fixedWidth />
+      <FileClick onFile={upload} {...props} />
+    </BtnHttp>
+  );
+};
 
 export default ListCtrlImport;

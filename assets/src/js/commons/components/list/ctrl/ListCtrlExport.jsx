@@ -6,15 +6,16 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
 import useList from '../useList';
 
 const ListCtrlExport = ({
-  api,
-  opts: href,
+  href,
   className = 'btn btn-link',
 }) => {
-  const { filter } = useList();
+  const { filter, api } = useList();
   const query = Object.keys(filter).length
     ? `?${qs.stringify({ filter })}`
     : '';
-  const path = typeof href === 'string' ? href : `${api}/export`;
+  const path = typeof href === 'string'
+    ? href
+    : `${api.url}/export`;
 
   return (
     <a

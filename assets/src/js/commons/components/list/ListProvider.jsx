@@ -44,6 +44,7 @@ const ListProvider = ({
 
   return (
     <ListContext.Provider value={{
+      api,
       query,
       filter,
       selected: selectable ? selected.map((i) => (
