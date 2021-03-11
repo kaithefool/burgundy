@@ -11,11 +11,15 @@ const AlertProvider = ({
   const push = (a) => {
     setStack([stack].concat([a]).slice(-limit));
   };
+  const remove = (index) => {
+    setStack([...stack].splice(index, 1));
+  };
 
   const value = {
     stack,
 
     push,
+    remove,
   };
 
   return (
@@ -24,3 +28,5 @@ const AlertProvider = ({
     </AlertContext.Provider>
   );
 };
+
+export default AlertProvider;

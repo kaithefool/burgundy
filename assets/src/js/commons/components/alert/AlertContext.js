@@ -4,4 +4,5 @@ export default React.createContext({
   stack: [],
 
   push: () => {},
+  remove: () => {},
 });

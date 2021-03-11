@@ -1,10 +1,11 @@
 import React from 'react';
 import { faSave } from '@fortawesome/free-regular-svg-icons/faSave';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { useFormikContext } from 'formik';
 
 import BtnHttp from '../btns/BtnHttp.jsx';
 
-const FormHttpSaveBtn = ({
+const FormBtnSubmit = ({
   res,
   children,
   icon = faSave,
@@ -18,7 +19,7 @@ const FormHttpSaveBtn = ({
     <BtnHttp
       res={res}
       type="submit"
-      icon={icon}
+      icon={saved ? faCheck : icon}
       disabled={!dirty || (onlyValid && !isValid)}
       {...props}
     >
@@ -27,4 +28,4 @@ const FormHttpSaveBtn = ({
   );
 };
 
-export default FormHttpSaveBtn;
+export default FormBtnSubmit;
