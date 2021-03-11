@@ -34,7 +34,7 @@ const ListPagination = ({
         className={`page-item${prev ? '' : ' disabled'}`}
         onClick={() => to(pg.current - 1)}
       >
-        <a href="#" className="page-link">&lt;</a>
+        <a className="page-link">&lt;</a>
       </div>
       <div className="page-item disabled">
         <a className="page-link">
@@ -45,7 +45,7 @@ const ListPagination = ({
         className={`page-item${next ? '' : ' disabled'}`}
         onClick={() => to(pg.current + 1)}
       >
-        <a href="#" className="page-link">&gt;</a>
+        <a className="page-link">&gt;</a>
       </div>
     </div>
   );

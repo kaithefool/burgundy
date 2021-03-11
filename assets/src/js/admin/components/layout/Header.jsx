@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import path from '~/commons/helpers/path';
+
 const Header = ({
   title,
   breadcrumb,
@@ -9,9 +11,9 @@ const Header = ({
     {breadcrumb && (
       <nav>
         <div className="breadcrumb">
-          {breadcrumb.map((b, i) => (
+          {breadcrumb.map(({ to, ...b }, i) => (
             <div key={i} className="breadcrumb-item">
-              <Link {...b} />
+              <Link to={path.resolve(to)} {...b} />
             </div>
           ))}
         </div>

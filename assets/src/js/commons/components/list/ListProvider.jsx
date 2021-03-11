@@ -42,22 +42,24 @@ const ListProvider = ({
     refresh();
   }, [useComparable({ baseFilter, api })]);
 
-  return (
-    <ListContext.Provider value={{
-      api,
-      query,
-      filter,
-      selected: selectable ? selected.map((i) => (
-        fetched.payload.rows[i]
-      )) : null,
-      rows: fetched?.payload?.rows || [],
-      res,
+  const value = {
+    api,
+    query,
+    filter,
+    selected: selectable ? selected.map((i) => (
+      fetched.payload.rows[i]
+    )) : null,
+    rows: fetched?.payload?.rows || [],
+    res,
 
-      fetch,
-      refresh,
-      select,
-    }}>
-      {children}
+    fetch,
+    refresh,
+    select,
+  };
+
+  return (
+    <ListContext.Provider value={value}>
+      {typeof children === 'function' ? children(value) : children}
     </ListContext.Provider>
   );
 };

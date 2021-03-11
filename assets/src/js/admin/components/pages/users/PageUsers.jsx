@@ -15,37 +15,47 @@ const PageUsers = () => (
       api={{ url: '/api/core/users' }}
       selectable={true}
     >
-      <div className="row">
-        <div className="col">
-          <List.Search
-            opts={['email']}
-          />
-        </div>
-        <div className="col">
-          <List.Pagination />
-        </div>
-      </div>
-      <div>
-        <List.Ctrl.Create />
-        <List.Ctrl.Refresh />
-        <List.Ctrl.Patch
-          icon={faUnlock}
-          updates={{ active: true }}
-        />
-        <List.Ctrl.Patch
-          icon={faLock}
-          updates={{ active: false }}
-        />
-        <List.Ctrl.Remove />
-        <List.Ctrl.Export />
-      </div>
-      <List.Status />
-      <List.Table
-        cols={[
-          { key: 'email', sortable: true },
-        ]}
-        onRowClick={({ _id }) => history.push(_id)}
-      />
+      {({ selected }) => {
+        const hasSelectedActive = Boolean(selected.find((r) => r.active));
+        const hasSelectedInactive = Boolean(selected.find((r) => !r.active));
+
+        return (
+          <>
+            <div className="row">
+              <div className="col">
+                <List.Search />
+              </div>
+              <List.Pagination className="col-auto" />
+            </div>
+            <div>
+              <List.Ctrl.Create />
+              <List.Ctrl.Refresh />
+              {hasSelectedInactive && (
+                <List.Ctrl.Patch
+                  icon={faUnlock}
+                  updates={{ active: true }}
+                />
+              )}
+              {hasSelectedActive && (
+                <List.Ctrl.Patch
+                  icon={faLock}
+                  updates={{ active: false }}
+                />
+              )}
+              <List.Ctrl.Remove />
+              <List.Ctrl.Export />
+            </div>
+            <List.Status>
+              <List.Table
+                cols={[
+                  { key: 'email', sortable: true },
+                ]}
+                onRowClick={({ id }) => history.push(id)}
+              />
+            </List.Status>
+          </>
+        );
+      }}
     </List>
   </Page>
 );
