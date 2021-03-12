@@ -5,4 +5,5 @@ export default React.createContext({
 
   push: () => {},
   remove: () => {},
+  purge: () => {},
 });

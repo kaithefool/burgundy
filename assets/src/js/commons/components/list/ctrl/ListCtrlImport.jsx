@@ -6,6 +6,7 @@ import { useHttpFileUpload } from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp.jsx';
 import useList from '../useList';
 import FileClick from '../../file/FileClick.jsx';
+import useAlert from '../../alert/useAlert';
 
 const ListCtrlImport = ({
   api: apiOpts,
@@ -14,6 +15,10 @@ const ListCtrlImport = ({
 }) => {
   const { res, req } = useHttpFileUpload();
   const { api, refresh } = useList();
+
+  useAlert(res, {
+    success: () => ({ children: 'Imported' }),
+  });
 
   const upload = async (files) => {
     await req({

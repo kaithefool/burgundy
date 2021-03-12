@@ -1,25 +1,33 @@
 import React, { useState } from 'react';
 
 import AlertContext from './AlertContext';
+import useUniqKey from '../../hooks/useUniqKey';
 
 const AlertProvider = ({
   children,
   limit = 3,
 }) => {
   const [stack, setStack] = useState([]);
+  const [, newKey] = useUniqKey();
 
-  const push = (a) => {
-    setStack([stack].concat([a]).slice(-limit));
+  const push = (draft = [], ...alerts) => {
+    const aa = alerts.map((a) => ({ ...a, key: newKey() }));
+
+    setStack(draft.concat(aa).slice(-limit));
   };
-  const remove = (index) => {
-    setStack([...stack].splice(index, 1));
+  const remove = (key) => {
+    setStack(stack.filter((s) => s.key !== key));
+  };
+  const purge = (a) => {
+    push(stack.filter((s) => !s.dirty), a);
   };
 
   const value = {
     stack,
 
-    push,
+    push: (...a) => push([...stack], ...a),
     remove,
+    purge,
   };
 
   return (

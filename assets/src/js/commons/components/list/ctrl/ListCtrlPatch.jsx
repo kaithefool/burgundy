@@ -4,6 +4,7 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import useHttp from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp.jsx';
 import useList from '../useList';
+import useAlert from '../../alert/useAlert';
 
 const ListCtrlPatch = ({
   icon,
@@ -13,6 +14,8 @@ const ListCtrlPatch = ({
 }) => {
   const { res, req } = useHttp();
   const { api, refresh, selected } = useList();
+
+  useAlert(res);
 
   const patch = async () => {
     await req({

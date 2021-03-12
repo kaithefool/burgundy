@@ -6,6 +6,7 @@ import useHttp from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp.jsx';
 import ModalConfirm from '../../modals/ModalConfirm.jsx';
 import useList from '../useList';
+import useAlert from '../../alert/useAlert';
 
 const ListCtrlRemove = ({
   api: apiOpts,
@@ -15,6 +16,8 @@ const ListCtrlRemove = ({
   const { api, refresh, selected } = useList;
   const [confirmModal, setConfirmModal] = useState(false);
   const { req, res } = useHttp();
+
+  useAlert(res, { success: { children: 'Removed' } });
 
   const remove = async () => {
     await req({
