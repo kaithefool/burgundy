@@ -77,7 +77,7 @@ CREATE TABLE i18n (
   UNIQUE KEY (lng, ns, path, not_deleted)
 );
 
-CREATE TABLE pages (
+CREATE TABLE views (
   id CHAR(21),
   lng VARCHAR(10),
   path VARCHAR(200),
@@ -96,13 +96,13 @@ CREATE TABLE pages (
   UNIQUE KEY (lng, path, not_deleted)
 );
 
-CREATE TABLE page_cells (
+CREATE TABLE view_cells (
   id CHAR(21),
-  page CHAR(21),
+  view CHAR(21),
   meta VARCHAR(5000),
   content MEDIUMTEXT,
 
   PRIMARY KEY (id),
-  INDEX (page),
+  INDEX (view),
   FULLTEXT (meta)
 );

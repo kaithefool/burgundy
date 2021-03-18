@@ -1,7 +1,7 @@
 const i18n = require('./i18n');
-const pages = require('./pages');
+const views = require('./views');
 
 module.exports = {
   i18n,
-  pages,
+  views,
 };

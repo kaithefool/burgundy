@@ -1,11 +1,10 @@
 import React from 'react';
-import { Formik, Form as FormikForm } from 'formik';
+import { Formik, Form } from 'formik';
 
 import FormHttpContext from './FormHttpContext';
 import form from '../../helpers/form';
 import useHttp from '../../hooks/useHttp';
-
-import FormAlert from './FormAlert.jsx';
+import { useAlert } from '../alert';
 
 const FormProvider = ({
   stored,
@@ -17,12 +16,19 @@ const FormProvider = ({
   ...props
 }) => {
   const formHttp = useHttp();
+  const { res, req } = formHttp;
+  const { push: pushAlert } = useAlert(res);
+
   const submitHandler = onSubmit || (
-    (values, { req }) => req({
-      method: 'post',
-      data: values,
-      ...api,
-    })
+    async (values, actions) => {
+      await req({
+        method: 'post',
+        data: values,
+        ...api,
+      });
+
+      actions.resetForm({ values });
+    }
   );
 
   return (
@@ -30,20 +36,16 @@ const FormProvider = ({
       <Formik
         validationSchema={schema}
         initialValues={form.initValues(defaults, stored)}
-        onSubmit={async (values, actions) => {
-          await submitHandler(values, formHttp, actions);
-          actions.resetForm({ values });
-        }}
+        onSubmit={submitHandler}
         {...props}
       >
         {(p) => (
-          <FormikForm>
-            <FormAlert />
+          <Form>
             {typeof children === 'function'
               ? children({ ...p, ...formHttp })
               : children
             }
-          </FormikForm>
+          </Form>
         )}
       </Formik>
     </FormHttpContext.Provider>

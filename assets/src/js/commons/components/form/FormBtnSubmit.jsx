@@ -13,7 +13,7 @@ const FormBtnSubmit = ({
   ...props
 }) => {
   const { res } = useFormHttp();
-  const { dirty, isValid } = useFormikContext();
+  const { dirty, isValid, isSubmitting } = useFormikContext();
   const saved = !dirty && res.status === 'success';
 
   return (
@@ -21,7 +21,7 @@ const FormBtnSubmit = ({
       res={res}
       type="submit"
       icon={saved ? faCheck : icon}
-      disabled={!dirty || (onlyValid && !isValid)}
+      disabled={!dirty || (onlyValid && !isValid) || isSubmitting}
       {...props}
     >
       {children || (saved ? 'Saved' : 'Save')}

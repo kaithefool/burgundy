@@ -6,7 +6,6 @@ import {
 
 import Nav from './layout/Nav.jsx';
 import {
-  RoutePages,
   RouteUsers,
 } from './routes';
 
@@ -17,7 +16,6 @@ const Auth = () => (
         <Nav className="col-auto" />
         <div className="col">
           <Switch>
-            <RoutePages path="/admin/pages" />
             <RouteUsers path="/admin/users" />
           </Switch>
         </div>

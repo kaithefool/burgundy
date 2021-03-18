@@ -2,7 +2,7 @@ import React from 'react';
 import { object, string } from 'yup';
 
 import Page from '../../layout/Page.jsx';
-import Fetchable from '~/commons/components/util/Fetchable.jsx';
+import Resource from '../../layout/Resource.jsx';
 import Form from '~/commons/components/form';
 
 const PageUser = ({ match }) => {
@@ -17,10 +17,16 @@ const PageUser = ({ match }) => {
         title: 'User',
       }}
     >
-      <Fetchable req={{ url: `/api/users/${id}` }}>
+      <Resource
+        id={id}
+        api={{ url: '/api/users' }
+      }>
         {(user) => (
           <Form
-            api={{ url: `/api/users/${id}`, method: 'patch' }}
+            api={{
+              url: `/api/users/${user ? id : ''}`,
+              method: user ? 'patch' : 'post',
+            }}
             stored={user}
             default={{ email: '' }}
             schema={object({
@@ -31,7 +37,7 @@ const PageUser = ({ match }) => {
             <Form.Field name="email" />
           </Form>
         )}
-      </Fetchable>
+      </Resource>
     </Page>
   );
 };
