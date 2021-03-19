@@ -13,6 +13,7 @@ const FormProvider = ({
   children,
   api,
   onSubmit,
+  onSubmitted = () => {},
   ...props
 }) => {
   const formHttp = useHttp();
@@ -28,6 +29,7 @@ const FormProvider = ({
       });
 
       actions.resetForm({ values });
+      onSubmitted();
     }
   );
 

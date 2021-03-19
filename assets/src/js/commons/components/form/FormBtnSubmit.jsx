@@ -9,7 +9,7 @@ import useFormHttp from './useFormHttp';
 const FormBtnSubmit = ({
   children,
   icon = faSave,
-  onlyValid = false,
+  onlyValid = true,
   ...props
 }) => {
   const { res } = useFormHttp();
