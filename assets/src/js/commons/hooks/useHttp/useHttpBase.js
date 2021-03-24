@@ -13,11 +13,15 @@ function useHttpBase(requests, opts) {
     progress: 0,
   });
 
-  const req = (r, o) => {
+  const cancel = () => {
     if (xhr.current) {
-      // detach all callback from previous request
       xhr.current.cancel();
     }
+  };
+
+  const req = (r, o) => {
+    // detach all callback from previous request
+    cancel();
 
     // pending
     setRes({
@@ -52,13 +56,16 @@ function useHttpBase(requests, opts) {
 
     // disable callbacks to prevent memory leak
     return () => {
-      if (xhr.current) {
-        xhr.current.cancel();
-      }
+      cancel();
     };
   }, []);
 
-  return { res, req, fetched: fetched.current };
+  return {
+    res,
+    req,
+    fetched: fetched.current,
+    cancel,
+  };
 }
 
 export default useHttpBase;

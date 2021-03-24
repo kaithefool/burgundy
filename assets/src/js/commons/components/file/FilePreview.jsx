@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import useFile from './useFile';
+
 function isPreviewable(mime) {
   return [
     'image/gif',
@@ -10,8 +12,8 @@ function isPreviewable(mime) {
 
 const FilePreview = ({
   className = 'img-bg',
-  file,
 }) => {
+  const { file } = useFile();
   const [display, setDisplay] = useState(null);
 
   useEffect(() => {

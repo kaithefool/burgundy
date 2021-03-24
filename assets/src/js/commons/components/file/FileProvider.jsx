@@ -1,40 +1,62 @@
 import React, { useEffect } from 'react';
 
-import { useHttpFileUpload } from '../../hooks/useHttp';
+import { useHttpFileUpload, useHttp } from '../../hooks/useHttp';
+import FileContext from './FileContext';
 
 const FileProvider = ({
   api,
   value,
+  suspended = false,
   onChange = () => {},
   children,
 }) => {
-  const http = useHttpFileUpload();
-  const { res, req } = http;
+  const uploadHttp = useHttpFileUpload();
+  const removeHttp = useHttp();
 
   const remove = () => {
     // remove file request
+    if (value && !(value instanceof File)) {
+      removeHttp.req({
+        ...api,
+        method: 'delete',
+      });
+    }
+
     // halt upload process
+    uploadHttp.cancel();
+
+    onChange();
   };
 
   useEffect(() => {
-    if (value instanceof File) {
-      req(api, value);
+    if (value instanceof File && !suspended) {
+      uploadHttp.req(api, value);
     }
   }, [
+    suspended,
     value instanceof File,
     value?.name,
     value?.lastModified,
   ]);
 
   useEffect(() => {
-    if (res?.status === 'success') {
-      onChange(res.payload);
+    if (uploadHttp.res?.status === 'success') {
+      onChange(uploadHttp.res.payload);
     }
-  }, [res?.status]);
+  }, [uploadHttp.res?.status]);
 
-  return <>
-    {children({ file: value, remove, ...http })}
-  </>;
+  const values = {
+    file: value,
+    uploadHttp,
+    removeHttp,
+    remove,
+  };
+
+  return (
+    <FileContext.Provider values={values}>
+      {typeof children === 'function' ? children(value) : children}
+    </FileContext.Provider>
+  );
 };
 
 export default FileProvider;

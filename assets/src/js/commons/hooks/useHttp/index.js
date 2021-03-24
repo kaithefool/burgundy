@@ -1,6 +1,9 @@
 import useHttpBase from './useHttpBase';
 import useHttpFileUpload from './useHttpFileUpload';
 
-export { useHttpFileUpload };
+export {
+  useHttpBase as useHttp,
+  useHttpFileUpload,
+};
 
 export default useHttpBase;
