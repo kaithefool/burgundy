@@ -6,6 +6,8 @@ import FormHttpContext from './FormHttpContext';
 import FormProvider from './FormProvider.jsx';
 import useFormHttp from './useFormHttp';
 
+import Alert from '../alert';
+
 export {
   FormBtnSubmit,
   FormField,
@@ -14,7 +16,14 @@ export {
   useFormHttp,
 };
 
-const Form = (props) => <FormProvider {...props} />;
+const Form = ({
+  alert = {},
+  ...props
+}) => (
+  alert
+    ? <Alert {...alert}><FormProvider {...props} /></Alert>
+    : <FormProvider {...props} />
+);
 
 Form.BtnSubmit = FormBtnSubmit;
 Form.Field = FormField;

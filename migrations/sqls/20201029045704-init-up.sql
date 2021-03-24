@@ -49,8 +49,8 @@ DO
 
 CREATE TABLE files (
   path VARCHAR(30),
-  originalname VARCHAR(512),
-  mimetype VARCHAR(256),
+  name VARCHAR(512),
+  mime VARCHAR(256),
   size INT,
 
   ref_table VARCHAR(256),

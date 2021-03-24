@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faFileUpload } from '@fortawesome/free-solid-svg-icons/faFileUpload';
+import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
 
 const FileDrop = ({
   children,
   className,
-  onDrop = () => {},
+  onFile = () => {},
 }) => {
   const [backdrop, setBackdrop] = useState(false);
   // account for dragging between parent and children
@@ -31,14 +31,17 @@ const FileDrop = ({
 
         const { files } = e.dataTransfer;
 
-        onDrop(files);
+        onFile(files);
       }}
     >
       {children}
       {backdrop && (
         <div className="file-drop">
-          <div className="pos-abs-center text-white display-4">
-            <FA icon={faFileUpload} />
+          <div className={`
+            text-white display-4
+            position-absolute top-50 start-50 translate-middle
+          `}>
+            <FA icon={faCloudUploadAlt} />
           </div>
         </div>
       )}
