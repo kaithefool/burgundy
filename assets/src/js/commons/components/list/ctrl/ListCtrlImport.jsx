@@ -5,7 +5,7 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 import { useHttpFileUpload } from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp.jsx';
 import useList from '../useList';
-import FileClick from '../../file/FileClick.jsx';
+import FileClick from '../../files/FilesClick.jsx';
 import useAlert from '../../alert/useAlert';
 
 const ListCtrlImport = ({

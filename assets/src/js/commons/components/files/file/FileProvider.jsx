@@ -5,7 +5,7 @@ import FileContext from './FileContext';
 
 const FileProvider = ({
   api,
-  value,
+  file,
   suspended = false,
   onChange = () => {},
   children,
@@ -15,7 +15,8 @@ const FileProvider = ({
 
   const remove = () => {
     // remove file request
-    if (value && !(value instanceof File)) {
+    // How to determind if this is an unsaved edit?
+    if (file && !(file instanceof File)) {
       removeHttp.req({
         ...api,
         method: 'delete',
@@ -29,14 +30,14 @@ const FileProvider = ({
   };
 
   useEffect(() => {
-    if (value instanceof File && !suspended) {
-      uploadHttp.req(api, value);
+    if (file instanceof File && !suspended) {
+      uploadHttp.req(api, file);
     }
   }, [
     suspended,
-    value instanceof File,
-    value?.name,
-    value?.lastModified,
+    file instanceof File,
+    file?.name,
+    file?.lastModified,
   ]);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const FileProvider = ({
   }, [uploadHttp.res?.status]);
 
   const values = {
-    file: value,
+    file,
     uploadHttp,
     removeHttp,
     remove,
@@ -54,7 +55,7 @@ const FileProvider = ({
 
   return (
     <FileContext.Provider values={values}>
-      {typeof children === 'function' ? children(value) : children}
+      {typeof children === 'function' ? children(values) : children}
     </FileContext.Provider>
   );
 };

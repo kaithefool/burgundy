@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
 
-const FileDrop = ({
+const FilesDrop = ({
   children,
   className,
   onFile = () => {},
@@ -49,4 +49,4 @@ const FileDrop = ({
   );
 };
 
-export default FileDrop;
+export default FilesDrop;

@@ -1,17 +1,24 @@
-import FileClick from './FileClick.jsx';
+import React from 'react';
+
 import FileContext from './FileContext';
-import FileDrop from './FileDrop.jsx';
 import FilePreview from './FilePreview.jsx';
 import FileProvider from './FileProvider.jsx';
 import FileStatus from './FileStatus.jsx';
 import useFile from './useFile';
 
 export {
-  FileClick,
   FileContext,
-  FileDrop,
   FilePreview,
   FileProvider,
   FileStatus,
   useFile,
 };
+
+const File = (props) => <FileProvider {...props} />;
+
+File.Context = FileContext;
+File.Preview = FilePreview;
+File.Provider = FileProvider;
+File.Status = FileStatus;
+
+export default File;

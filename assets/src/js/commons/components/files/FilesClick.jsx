@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
-const FileClick = ({
-  className,
+const FilesClick = ({
+  className = 'py-3 text-center',
   onFile = () => {},
   children,
   ...props
@@ -18,7 +18,11 @@ const FileClick = ({
         }
       }}
     >
-      {children}
+      {children || (
+        <h6>
+          Drag &amp; Drop your files or <u>Browse</u>
+        </h6>
+      )}
       <div className="position-relative opacity-0 overflow-hidden">
         <input
           ref={input}
@@ -33,4 +37,4 @@ const FileClick = ({
   );
 };
 
-export default FileClick;
+export default FilesClick;

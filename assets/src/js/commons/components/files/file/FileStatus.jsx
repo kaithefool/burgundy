@@ -1,8 +1,8 @@
 import React from 'react';
 
 import useFile from './useFile';
-import Pending from '../util/Pending.jsx';
-import Error from '../util/Error.jsx';
+import Pending from '../../util/Pending.jsx';
+import Error from '../../util/Error.jsx';
 
 const FileStatus = () => {
   const {
