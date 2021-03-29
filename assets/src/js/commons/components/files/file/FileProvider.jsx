@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useHttpFileUpload, useHttp } from '../../hooks/useHttp';
+import { useHttpFileUpload, useHttp } from '../../../hooks/useHttp';
 import FileContext from './FileContext';
 
 const FileProvider = ({
