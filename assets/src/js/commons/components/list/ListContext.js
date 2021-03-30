@@ -4,7 +4,9 @@ export default React.createContext({
   api: { url: '' },
   query: { skip: 0, limit: 0, sort: undefined },
   filter: {},
-  selected: null,
+  selectable: false,
+  selected: [],
+  selectedIndex: [],
   rows: [],
   res: {},
 

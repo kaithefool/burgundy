@@ -8,7 +8,7 @@ import useList from './useList';
 
 const ListSearch = ({
   opts,
-  debounce: deboucT = 1500,
+  debounce: deboucT = 750,
   placeholder = '',
 }) => {
   const { fetch, filter } = useList();
@@ -29,9 +29,6 @@ const ListSearch = ({
     },
     deboucT,
   ), []);
-  const current = Array.isArray(opts)
-    ? opts.find((s) => (s.value || s) === searchBy)
-    : opts;
 
   return (
     <div className="input-group">
@@ -63,39 +60,18 @@ const ListSearch = ({
         </select>
       )}
       {/* Search input */}
-      {current.options ? (
-        <select
-          className="form-select"
-          value={search}
-          onChange={(e) => {
-            const { value } = e.target;
+      <input
+        type="text"
+        className="form-control"
+        placeholder={placeholder}
+        value={search}
+        onChange={(e) => {
+          const { value } = e.target;
 
-            setSearch(value);
-            debouncedSearch(value, searchBy);
-          }}
-        >
-          <option value="">Show All</option>
-          {current.options.map((o) => (
-            <option
-              key={o.value}
-              value={o.value}
-            >{o.label || o.value}</option>
-          ))}
-        </select>
-      ) : (
-        <input
-          type="text"
-          className="form-control"
-          placeholder={placeholder}
-          value={search}
-          onChange={(e) => {
-            const { value } = e.target;
-
-            setSearch(value);
-            debouncedSearch(value, searchBy);
-          }}
-        />
-      )}
+          setSearch(value);
+          debouncedSearch(value, searchBy);
+        }}
+      />
     </div>
   );
 };

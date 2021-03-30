@@ -15,7 +15,7 @@ const defaultNamedRoutes = {
     response: (req, res) => {
       const { out } = res.locals;
 
-      return out ? res.json(out) : res.status(404).end();
+      return out ? res.json(out[0]) : res.status(404).end();
     },
   },
   create: { method: 'post' },

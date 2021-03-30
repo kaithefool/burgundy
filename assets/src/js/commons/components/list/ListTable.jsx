@@ -17,7 +17,8 @@ const ListTable = ({
 }) => {
   const {
     rows,
-    selected,
+    selectable,
+    selectedIndex,
     select,
     fetch,
     query: { sort = {} },
@@ -34,7 +35,7 @@ const ListTable = ({
     <table className={classes.join(' ')}>
       <thead>
         <tr>
-          {selected && (
+          {selectable && (
             <th scope="col">
               <div className="form-check">
                 <input
@@ -44,7 +45,7 @@ const ListTable = ({
                     if (checked) select(range(rows.length));
                     else select([]);
                   }}
-                  checked={rows.length && selected.length === rows.length}
+                  checked={rows.length && selectedIndex.length === rows.length}
                 />
               </div>
             </th>
@@ -86,17 +87,18 @@ const ListTable = ({
               if (onRowClick) onRowClick(row, i);
             }}
           >
-            {selected && (
+            {selectable && (
               <td>
                 <div className="form-check">
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    onChange={({ target: { checked } }) => {
-                      if (checked) select([...selected, i]);
-                      else select(without(selected, i));
+                    onClick={(evt) => evt.stopPropagation()}
+                    onChange={(evt) => {
+                      if (evt.target.checked) select([...selectedIndex, i]);
+                      else select(without(selectedIndex, i));
                     }}
-                    checked={selected.includes(i)}
+                    checked={selectedIndex.includes(i)}
                   />
                 </div>
               </td>

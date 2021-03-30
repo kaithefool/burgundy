@@ -6,6 +6,7 @@ import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
 
 import List from '~/commons/components/list';
 import Page from '../../layout/Page.jsx';
+import path from '~/commons/helpers/path';
 
 const PageUsers = () => {
   const history = useHistory();
@@ -53,7 +54,9 @@ const PageUsers = () => {
                   cols={[
                     { key: 'email', sortable: true },
                   ]}
-                  onRowClick={({ id }) => history.push(id)}
+                  onRowClick={({ id }) => {
+                    history.push(path.resolve(id));
+                  }}
                 />
               </List.Status>
             </>

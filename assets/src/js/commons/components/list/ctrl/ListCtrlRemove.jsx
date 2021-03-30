@@ -13,7 +13,7 @@ const ListCtrlRemove = ({
   confirm = 'Are you sure to delete?',
   className = 'btn btn-link',
 }) => {
-  const { api, refresh, selected } = useList;
+  const { api, refresh, selected } = useList();
   const [confirmModal, setConfirmModal] = useState(false);
   const { req, res } = useHttp();
 

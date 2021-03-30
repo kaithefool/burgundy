@@ -9,7 +9,7 @@ const ListStatus = ({
   empty = 'No record found',
   ...props
 }) => {
-  const { res, fetched } = useList();
+  const { res, rows } = useList();
 
   return (
     <div {...props}>
@@ -19,7 +19,7 @@ const ListStatus = ({
       {res.status === 'error' && (
         <Error res={res} />
       )}
-      {fetched?.rows?.length ? children : empty}
+      {rows.length ? children : empty}
     </div>
   );
 };

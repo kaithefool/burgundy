@@ -7,8 +7,8 @@ import useHttp from '../../hooks/useHttp';
 import FormAlerts from './FormAlerts.jsx';
 
 const FormProvider = ({
-  stored,
-  defaults,
+  stored = {},
+  defaults = {},
   schema,
   children,
   api,

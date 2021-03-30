@@ -14,14 +14,14 @@ const Fetchable = ({
   const r = req ? res : resProp;
   const { status } = r;
 
-  if (status === 'pending') {
-    return <Pending res={r} progress={progress} />;
-  }
   if (status === 'error') {
     return <Error res={r} />;
   }
+  if (status === 'success') {
+    return children(r.payload);
+  }
 
-  return children(r);
+  return <Pending res={r} progress={progress} />;
 };
 
 export default Fetchable;

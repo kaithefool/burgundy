@@ -18,6 +18,8 @@ const ListProvider = ({
 
   const filter = { ...baseFilter, ...listFilter };
 
+  const rows = fetched?.payload?.rows || [];
+
   const fetch = ({ filter: newF, ...q }) => {
     const newQ = { ...q, ...query };
 
@@ -46,10 +48,10 @@ const ListProvider = ({
     api,
     query,
     filter,
-    selected: selectable ? selected.map((i) => (
-      fetched.payload.rows[i]
-    )) : null,
-    rows: fetched?.payload?.rows || [],
+    selectable,
+    selected: selectable ? selected.map((i) => rows[i]) : [],
+    selectedIndex: selected,
+    rows,
     res,
 
     fetch,

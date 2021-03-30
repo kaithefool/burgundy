@@ -19,7 +19,7 @@ const PageUser = ({ match }) => {
     >
       <Resource
         id={id}
-        api={{ url: '/api/users' }
+        api={{ url: '/api/core/users' }
       }>
         {(user) => (
           <Form
@@ -28,7 +28,7 @@ const PageUser = ({ match }) => {
               method: user ? 'patch' : 'post',
             }}
             stored={user}
-            default={{ email: '' }}
+            defaults={{ email: '' }}
             schema={object({
               email: string().email().required(),
             })}

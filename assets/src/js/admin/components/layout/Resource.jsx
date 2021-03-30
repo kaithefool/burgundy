@@ -14,7 +14,7 @@ const Resource = ({
   return (
     <Fetchable req={{
       ...api,
-      url: `${api.url}/$${id}`,
+      url: `${api.url}/${id}`,
     }}>
       {(doc) => children(doc)}
     </Fetchable>

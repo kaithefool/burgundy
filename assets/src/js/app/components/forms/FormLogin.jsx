@@ -46,7 +46,7 @@ const FormLogin = () => {
       <Form.Field name="email" />
       <Form.Field name="password" type="password" />
 
-      <div className="row mb-3">
+      <div className="row">
         <div className="col">
           <Form.Field name="presist" type="switch" />
         </div>
