@@ -14,9 +14,13 @@ export {
   useAlert,
 };
 
-const Alert = ({ children, ...props }) => (
-  <AlertProvider {...props}>
-    <AlertStack />
+const Alert = ({
+  children,
+  limit,
+  ...props
+}) => (
+  <AlertProvider limit={limit}>
+    <AlertStack {...props} />
     {children}
   </AlertProvider>
 );

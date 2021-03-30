@@ -12,6 +12,7 @@ const FormLogin = () => {
 
   return (
     <Form
+      alert={{ fullWidth: true }}
       schema={object({
         email: string()
           .trim()

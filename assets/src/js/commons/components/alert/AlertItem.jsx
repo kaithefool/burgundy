@@ -16,6 +16,7 @@ const defaultIcon = (theme) => ({
 })[theme];
 
 const AlertItem = ({
+  className = '',
   id,
   theme,
   icon,
@@ -32,14 +33,14 @@ const AlertItem = ({
   return (
     <div
       className={`
-        toast show
+        toast show ${className}
         ${theme ? `bg-${theme} text-white border-0` : ''}
       `}
     >
       <div className="d-flex align-items-center">
         {ic && (
           <div className="ms-3">
-            <FA icon={ic} />
+            <FA icon={ic} size="lg" />
           </div>
         )}
         <div className="toast-body">
