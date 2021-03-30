@@ -39,18 +39,19 @@ const FilesProvider = ({
     update([...files].splice(args));
   };
 
-  const values = {
+  const value = {
     api,
     accept,
     maxSize,
     files,
     push,
+    update,
     change,
   };
 
   return (
-    <FilesContext.Provider values={values}>
-      {typeof children === 'function' ? children(values) : children}
+    <FilesContext.Provider value={value}>
+      {typeof children === 'function' ? children(value) : children}
     </FilesContext.Provider>
   );
 };

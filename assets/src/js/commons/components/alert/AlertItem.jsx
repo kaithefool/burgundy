@@ -8,22 +8,22 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons/faCheckCircle';
 import useTimeout from '../../hooks/useTimeout';
 import useAlert from './useAlert';
 
-const defaultIcon = () => ({
+const defaultIcon = (theme) => ({
   danger: faExclamationCircle,
   warning: faExclamationCircle,
   info: faInfoCircle,
   success: faCheckCircle,
-});
+})[theme];
 
 const AlertItem = ({
-  key,
+  id,
   theme,
   icon,
   children,
   expires,
 }) => {
   const { remove } = useAlert();
-  const rm = () => remove(key);
+  const rm = () => remove(id);
   const ic = icon !== false && !icon
     ? defaultIcon(theme) : icon;
 
@@ -32,13 +32,13 @@ const AlertItem = ({
   return (
     <div
       className={`
-        toast
+        toast show
         ${theme ? `bg-${theme} text-white border-0` : ''}
       `}
     >
       <div className="d-flex align-items-center">
         {ic && (
-          <div>
+          <div className="ms-3">
             <FA icon={ic} />
           </div>
         )}
@@ -48,8 +48,8 @@ const AlertItem = ({
         <button
           type="button"
           className={`
-            btn-close${theme ? '-white' : ''}
-            mx-auto m-auto
+            btn-close ${theme ? 'btn-close-white' : ''}
+            m-auto me-2
           `}
           onClick={rm}
         />

@@ -1,7 +1,7 @@
 import pick from 'lodash/pick';
 import mimer from 'mimer';
 
-import util from './path';
+import util from './util';
 
 const dateRegex = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/;
 
@@ -13,7 +13,7 @@ const toMimes = (accept) => (
 );
 
 export default {
-  initFormValues(defaults, stored = {}) {
+  initValues(defaults, stored = {}) {
     // parse data into formik friendly format
     const values = util.recursiveMap(
       { ...defaults, ...stored },

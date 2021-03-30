@@ -6,5 +6,6 @@ export default React.createContext({
   maxSize: undefined,
   files: [],
   push: () => {},
+  update: () => {},
   change: () => {},
 });

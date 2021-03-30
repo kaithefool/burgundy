@@ -11,12 +11,12 @@ const AlertProvider = ({
   const [, newKey] = useUniqKey();
 
   const push = (draft = [], ...alerts) => {
-    const aa = alerts.map((a) => ({ ...a, key: newKey() }));
+    const aa = alerts.map((a) => ({ ...a, id: newKey() }));
 
     setStack(draft.concat(aa).slice(-limit));
   };
-  const remove = (key) => {
-    setStack(stack.filter((s) => s.key !== key));
+  const remove = (id) => {
+    setStack(stack.filter((s) => s.id !== id));
   };
   const purge = (a) => {
     push(stack.filter((s) => !s.dirty), a);

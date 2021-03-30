@@ -2,34 +2,33 @@ import { useContext, useEffect } from 'react';
 
 import AlertContext from './AlertContext';
 
-function useAlert(httpRes, {
+function useAlert(http, {
   error = true,
   success = true,
 } = {}) {
   const ctx = useContext(AlertContext);
   const { push, purge } = ctx;
+  const httpStatus = http?.res?.status;
 
   useEffect(() => {
-    if (httpRes) {
-      const { status } = httpRes;
-
-      if (error && status === 'error') {
+    if (httpStatus) {
+      if (error && httpStatus === 'error') {
         push({
           dirty: true,
           theme: 'danger',
-          children: httpRes.payload,
-          ...(typeof error === 'function' ? error(httpRes) : {}),
+          children: http.res.payload,
+          ...(typeof error === 'function' ? error(http.res) : {}),
         });
       }
-      if (success && status === 'success') {
+      if (success && httpStatus === 'success') {
         purge({
           theme: 'success',
           children: 'Done',
-          ...(typeof success === 'function' ? success(httpRes) : {}),
+          ...(typeof success === 'function' ? success(http.res) : {}),
         });
       }
     }
-  }, [httpRes?.status]);
+  }, [httpStatus]);
 
   return ctx;
 }
