@@ -1,4 +1,5 @@
 const routes = require('express').Router();
+const version = require('git-tag-version')();
 
 const {
   middlewares: { authByCookies },
@@ -9,6 +10,7 @@ routes.use(authByCookies);
 
 // env variables for frontend
 routes.use(({ csrfToken }, res, next) => {
+  res.locals.version = version;
   res.locals.env = {
     csrf: csrfToken ? csrfToken() : null,
   };
