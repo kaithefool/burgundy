@@ -10,6 +10,7 @@ const FormBtnSubmit = ({
   children,
   icon = faSave,
   onlyValid = true,
+  className = 'btn-primary',
   ...props
 }) => {
   const { res } = useFormHttp();
@@ -21,6 +22,7 @@ const FormBtnSubmit = ({
       res={res}
       type="submit"
       icon={saved ? faCheck : icon}
+      className={className}
       disabled={!dirty || (onlyValid && !isValid) || isSubmitting}
       {...props}
     >

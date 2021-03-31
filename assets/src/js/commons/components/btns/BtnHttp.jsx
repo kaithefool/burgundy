@@ -8,7 +8,7 @@ const BtnHttp = ({
   res,
   children,
   disabled,
-  className,
+  className = '',
   ...props
 }) => {
   const { status } = res;

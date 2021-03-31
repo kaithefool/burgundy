@@ -6,7 +6,7 @@ const Page = ({
   header,
   children,
 }) => (
-  <div className="d-flex flex-column">
+  <div>
     {header && (
       <Header {...header} />
     )}

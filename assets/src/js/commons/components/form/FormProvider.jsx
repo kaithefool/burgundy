@@ -12,6 +12,7 @@ const FormProvider = ({
   schema,
   children,
   api,
+  beforeSubmit = (v) => v,
   onSubmit,
   onSubmitted = () => {},
   ...props
@@ -21,14 +22,18 @@ const FormProvider = ({
 
   const submitHandler = onSubmit || (
     async (values, actions) => {
-      await req({
+      const data = beforeSubmit(values, actions);
+
+      if (data === false) return;
+
+      const r = await req({
         method: 'post',
-        data: values,
+        data,
         ...api,
       });
 
       actions.resetForm({ values });
-      onSubmitted();
+      onSubmitted(r);
     }
   );
 
