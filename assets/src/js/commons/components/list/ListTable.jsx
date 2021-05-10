@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import startCase from 'lodash/startCase';
 import range from 'lodash/range';
 import without from 'lodash/without';
@@ -26,6 +26,7 @@ const ListTable = ({
   const sortBy = Object.keys(sort)[0];
   const sortDir = sort[sortBy];
   const classes = ['table', className];
+  const [focused, setFocused] = useState(null);
 
   if (onRowClick) {
     classes.push('table-hover');

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import find from 'lodash/find';
 
 import ListContext from './ListContext';
 import useHttp from '../../hooks/useHttp';
@@ -15,6 +16,7 @@ const ListProvider = ({
   const [query, setQuery] = useState(initQuery);
   const [listFilter, setFilter] = useState({});
   const [selected, setSelected] = useState([]);
+  const [stages, setStaged] = useState([]);
 
   const filter = { ...baseFilter, ...listFilter };
 
@@ -40,6 +42,31 @@ const ListProvider = ({
 
   const select = (s) => setSelected(s);
 
+  const findStaged = (id) => {
+    const match = typeof id === 'object'
+      ? id : { id };
+
+    return find(stages, match);
+  };
+
+  const stage = (id, changes = {}) => {
+    const staged = findStaged(id);
+    const s = [...stages];
+
+    if (staged) {
+      // clear staged
+      if (!changes || !Object.keys(changes).length) {
+        s.splice(s.indexOf(staged), 1);
+      } else {
+        s.splice(s.indexOf(staged), 1, changes);
+      }
+    } else {
+      s.push(changes);
+    }
+
+    setStaged(s);
+  };
+
   useEffect(() => {
     refresh();
   }, [useComparable({ baseFilter, api })]);
@@ -53,10 +80,13 @@ const ListProvider = ({
     selectedIndex: selected,
     rows,
     res,
+    stages,
 
     fetch,
     refresh,
     select,
+    stage,
+    findStaged,
   };
 
   return (

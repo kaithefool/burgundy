@@ -9,8 +9,11 @@ export default React.createContext({
   selectedIndex: [],
   rows: [],
   res: {},
+  staged: [],
 
   fetch: () => {},
   refresh: () => {},
   select: () => {},
+  stage: () => {},
+  findStaged: () => {},
 });
