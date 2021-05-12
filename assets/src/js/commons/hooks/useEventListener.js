@@ -4,15 +4,22 @@ export default function useEventListener(
   target,
   eventType,
   cb,
-  deps,
+  deps = [],
 ) {
-  const handler = useCallback(cb, deps);
+  const handler = useCallback(cb, [
+    Boolean(cb),
+    ...deps,
+  ]);
 
   useEffect(() => {
-    target.addEventListener(eventType, handler);
+    if (handler) {
+      target.addEventListener(eventType, handler);
+    }
 
     return () => {
-      target.removeEventListener(eventType, handler);
+      if (handler) {
+        target.removeEventListener(eventType, handler);
+      }
     };
-  }, [cb]);
+  }, [handler]);
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import startCase from 'lodash/startCase';
 import range from 'lodash/range';
 import without from 'lodash/without';
@@ -9,11 +10,13 @@ import { faAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 
 import useList from './useList';
+import useEventListener from '../../hooks/useEventListener';
 
 const ListTable = ({
   className = '',
   cols = [],
   onRowClick,
+  editable = false,
 }) => {
   const {
     rows,
@@ -26,7 +29,27 @@ const ListTable = ({
   const sortBy = Object.keys(sort)[0];
   const sortDir = sort[sortBy];
   const classes = ['table', className];
-  const [focused, setFocused] = useState(null);
+  // [x, y]
+  const [focused, setFocused] = useState([null, null]);
+
+  useEventListener(window, 'keydown', editable && ((e) => {
+    switch (e.keyCode) {
+      case 37: // left
+        setFocused();
+        break;
+      case 38: // up
+        setFocused();
+        break;
+      case 39: // right
+        setFocused();
+        break;
+      case 40: // down
+        setFocused();
+        break;
+      default:
+        // do nothing
+    }
+  }), []);
 
   if (onRowClick) {
     classes.push('table-hover');
