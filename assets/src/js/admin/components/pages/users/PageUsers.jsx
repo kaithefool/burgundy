@@ -52,7 +52,7 @@ const PageUsers = () => {
               <List.Status>
                 <List.Table
                   cols={[
-                    { key: 'email', sortable: true },
+                    { key: 'email', sortable: true, editable: true },
                   ]}
                   onRowClick={({ id }) => {
                     // history.push(path.resolve(id));

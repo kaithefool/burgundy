@@ -50,7 +50,7 @@ const ListTable = ({
         if (x < c - 1) setFocused([x + 1, y]);
         break;
       case 40: // down
-        if (y < r - 1) setFocused(x, y + 1);
+        if (y < r - 1) setFocused([x, y + 1]);
         break;
       default:
         // do nothing
@@ -139,6 +139,7 @@ const ListTable = ({
                 row={row}
                 col={col}
                 focused={focused[0] === c && focused[1] === r}
+                onFocus={() => setFocused([c, r])}
               />
             ))}
           </tr>

@@ -23,30 +23,35 @@ const ListTableCell = ({
   if (getter) value = getter(value, row);
 
   // shortcuts
-  useEventListener(
-    window,
-    'keydown',
-    focused && ((e) => {
-      switch (e.keyCode) {
-        case 13: // enter
-
-          break;
-        case 27: // escape
-
-          break;
-        default:
-          // do nothing
-      }
-    }, []),
-  );
+  // useEventListener(
+  //   window,
+  //   'keydown',
+  //   focused && ((e) => {
+  //     switch (e.keyCode) {
+  //       case 13: // enter
+  //
+  //         break;
+  //       case 27: // escape
+  //
+  //         break;
+  //       default:
+  //         // do nothing
+  //     }
+  //   }, []),
+  // );
 
   return (
-    <td>
+    <td
+      className={focused ? 'outline-primary' : ''}
+      onClick={() => {
+        if (editable) onFocus();
+      }}
+    >
       {editable ? (
         <div
-          value={draft}
           onChange={() => setDraft()}
-        />
+          contentEditable
+        ></div>
       ) : (
         value
       )}
