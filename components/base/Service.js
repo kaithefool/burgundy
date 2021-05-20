@@ -31,7 +31,7 @@ class Service {
     try {
       created = await this.model.insert(
         user
-          ? castArray(attrs).map((a) => ({ ...a, createdby: user.id }))
+          ? castArray(attrs).map((a) => ({ ...a, created_by: user.id }))
           : attrs,
       );
     } catch (e) {
@@ -52,7 +52,7 @@ class Service {
   patch(attrs, user) {
     const { id, ...draft } = attrs;
 
-    if (user) draft.updatedby = user.id;
+    if (user) draft.updated_by = user.id;
 
     return this.model.update(draft, { id });
   }

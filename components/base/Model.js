@@ -1,5 +1,7 @@
 const { nanoid } = require('nanoid');
 const { escape, escapeId } = require('mysql2');
+const { castArray } = require('lodash');
+
 const dbConn = require('../../start/db');
 
 class Model {
@@ -20,8 +22,8 @@ class Model {
         : this.setter(v)
     );
 
-    const toSet = Array.isArray()
-      ? Promise.all(values.map((v) => s(v)))
+    const toSet = Array.isArray(values)
+      ? await Promise.all(values.map((v) => s(v)))
       : s(values);
 
     return toSet;
@@ -110,11 +112,13 @@ class Model {
   async insert(values) {
     const { tbl, db } = this;
 
-    const v = await this.set(values, true);
+    const v = await this.set(castArray(values), true);
+    const cols = Object.keys(v[0]);
+    const rows = v.map((r) => Object.values(r));
 
     await db.query(`
-      INSERT INTO ${tbl}
-      SET ${escape(v)}
+      INSERT INTO ${tbl} (${escapeId(cols)})
+      VALUES ${escape(rows)}
     `);
 
     return v;

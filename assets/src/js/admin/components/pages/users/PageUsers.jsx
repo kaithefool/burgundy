@@ -55,7 +55,7 @@ const PageUsers = () => {
                     { key: 'email', sortable: true },
                   ]}
                   onRowClick={({ id }) => {
-                    history.push(path.resolve(id));
+                    // history.push(path.resolve(id));
                   }}
                 />
               </List.Status>

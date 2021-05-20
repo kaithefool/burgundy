@@ -17,14 +17,33 @@ const ListTableCell = ({
 }) => {
   const { stage, findStaged } = useList();
   const [draft, setDraft] = useState('');
+
   let value = get(row, key);
 
   if (getter) value = getter(value, row);
 
+  // shortcuts
+  useEventListener(
+    window,
+    'keydown',
+    focused && ((e) => {
+      switch (e.keyCode) {
+        case 13: // enter
+
+          break;
+        case 27: // escape
+
+          break;
+        default:
+          // do nothing
+      }
+    }, []),
+  );
+
   return (
     <td>
       {editable ? (
-        <textarea
+        <div
           value={draft}
           onChange={() => setDraft()}
         />

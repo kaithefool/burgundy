@@ -26,14 +26,17 @@ const PageUser = ({ match }) => {
         >
           <Form
             api={{
-              url: `/api/users/${user ? id : ''}`,
+              url: `/api/core/users/${user ? id : ''}`,
               method: user ? 'patch' : 'post',
             }}
             stored={user}
-            defaults={{ email: '', role: '' }}
+            defaults={{ email: '', role: '', password: '' }}
             schema={object({
               email: string().email().required(),
               role: string().required(),
+              password: (
+                user ? string() : string().required()
+              ).min(8),
             })}
             beforeSubmit={({ password, ...values }) => ({
               ...values, ...(password && { password }),
@@ -49,6 +52,10 @@ const PageUser = ({ match }) => {
               <option value="admin">Admin</option>
               <option value="customer">Customer</option>
             </Form.Field>
+            <Form.Field
+              name="password"
+              type="password"
+            />
           </Form>
         </Page>
       )}

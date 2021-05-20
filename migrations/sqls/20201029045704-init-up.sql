@@ -12,6 +12,9 @@ CREATE TABLE users (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   not_deleted BOOLEAN NULL DEFAULT 1,
 
+  created_by CHAR(21),
+  updated_by CHAR(21),
+
   PRIMARY KEY (id),
   UNIQUE KEY unique_email (email, not_deleted)
 );
