@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import get from 'lodash/get';
 
 import useList from './useList';
 import useEventListener from '../../hooks/useEventListener';
+
+import GrowingTextarea from '../inputs/GrowingTextarea.jsx';
 
 const ListTableCell = ({
   row,
@@ -16,11 +18,11 @@ const ListTableCell = ({
   onFocus = () => {},
 }) => {
   const { stage, findStaged } = useList();
-  const [draft, setDraft] = useState('');
-
   let value = get(row, key);
 
   if (getter) value = getter(value, row);
+
+  const [draft, setDraft] = useState(value);
 
   // shortcuts
   // useEventListener(
@@ -47,11 +49,11 @@ const ListTableCell = ({
         if (editable) onFocus();
       }}
     >
-      {editable ? (
-        <div
-          onChange={() => setDraft()}
-          contentEditable
-        ></div>
+      {editable && focused ? (
+        <GrowingTextarea
+          onChange={(e) => setDraft(e.target.value)}
+          value={draft}
+        />
       ) : (
         value
       )}
