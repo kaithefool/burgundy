@@ -8,6 +8,7 @@ function pxToNum(px) {
 
 const GrowingTextarea = ({
   maxRows,
+  autoFocus,
   ...props
 }) => {
   const elRef = useRef();
@@ -42,9 +43,14 @@ const GrowingTextarea = ({
     el.style.height = `${h}px`;
   };
 
+  // resize on changes
   useEventListener(window, 'resize', () => resize());
-
   useEffect(() => resize());
+
+  // auto focus
+  useEffect(() => {
+    if (autoFocus) elRef.current.focus();
+  }, []);
 
   return (
     <textarea

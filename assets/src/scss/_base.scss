@@ -98,6 +98,9 @@ input, textarea {
 .cursor-default {
   cursor: default !important;
 }
+.caret-none {
+  caret-color: transparent;
+}
 
 // outline
 @each $theme, $color in $theme-colors {

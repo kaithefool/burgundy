@@ -9,7 +9,6 @@ import { faAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 
 import useList from './useList';
-import useEventListener from '../../hooks/useEventListener';
 
 import ListTableCell from './ListTableCell.jsx';
 
@@ -29,33 +28,8 @@ const ListTable = ({
   const sortBy = Object.keys(sort)[0];
   const sortDir = sort[sortBy];
   const classes = ['table', className];
-  const editable = Boolean(cols.find((c) => c.editable));
-  // [x, y]
+  // [col, row]
   const [focused, setFocused] = useState([null, null]);
-
-  // keyboard shortcuts
-  useEventListener(window, 'keydown', editable && ((e) => {
-    const r = rows.length;
-    const c = cols.length;
-    const [x, y] = focused;
-
-    switch (e.keyCode) {
-      case 37: // left
-        if (x) setFocused([x - 1, y]);
-        break;
-      case 38: // up
-        if (y) setFocused([x, y - 1]);
-        break;
-      case 39: // right
-        if (x < c - 1) setFocused([x + 1, y]);
-        break;
-      case 40: // down
-        if (y < r - 1) setFocused([x, y + 1]);
-        break;
-      default:
-        // do nothing
-    }
-  }), [rows.length, cols.length, focused[0], focused[1]]);
 
   if (onRowClick) {
     classes.push('table-hover');
@@ -139,7 +113,17 @@ const ListTable = ({
                 row={row}
                 col={col}
                 focused={focused[0] === c && focused[1] === r}
-                onFocus={() => setFocused([c, r])}
+                onFocus={([x, y]) => {
+                  const f = [c + x, r + y];
+
+                  // if the focused target is within range
+                  if (
+                    f[0] >= 0 && f[0] < cols.length
+                    && f[1] >= 0 && f[1] < rows.length
+                  ) {
+                    setFocused(f);
+                  }
+                }}
               />
             ))}
           </tr>

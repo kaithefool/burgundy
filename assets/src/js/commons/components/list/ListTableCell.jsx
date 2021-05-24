@@ -18,6 +18,7 @@ const ListTableCell = ({
   onFocus = () => {},
 }) => {
   const { stage, findStaged } = useList();
+  const [caret, setCaret] = useState(false);
   let value = get(row, key);
 
   if (getter) value = getter(value, row);
@@ -25,33 +26,58 @@ const ListTableCell = ({
   const [draft, setDraft] = useState(value);
 
   // shortcuts
-  // useEventListener(
-  //   window,
-  //   'keydown',
-  //   focused && ((e) => {
-  //     switch (e.keyCode) {
-  //       case 13: // enter
-  //
-  //         break;
-  //       case 27: // escape
-  //
-  //         break;
-  //       default:
-  //         // do nothing
-  //     }
-  //   }, []),
-  // );
+  const onKeydown = (e) => {
+    if (caret) {
+      // with caret
+      switch (e.keyCode) {
+        case 27: // escape
+          setCaret(false);
+          break;
+        default:
+          // do nothing
+      }
+    } else {
+      // fast editing mode (without caret)
+      switch (e.keyCode) {
+        case 37: // left
+          onFocus([-1, 0]);
+          break;
+        case 38: // up
+          onFocus([0, -1]);
+          break;
+        case 39: // right
+          onFocus([1, 0]);
+          break;
+        case 40: // down
+          onFocus([0, 1]);
+          break;
+        case 13: // enter
+          break;
+        default:
+          e.target.value = '';
+      }
+    }
+  };
 
   return (
     <td
       className={focused ? 'outline-primary' : ''}
       onClick={() => {
-        if (editable) onFocus();
+        if (editable) onFocus([0, 0]);
       }}
     >
       {editable && focused ? (
         <GrowingTextarea
-          onChange={(e) => setDraft(e.target.value)}
+          className={caret ? '' : 'caret-none'}
+          autoFocus
+          onKeyDown={onKeydown}
+          onBlur={() => {
+            setCaret(false);
+          }}
+          onChange={(e) => {
+            setCaret(true);
+            setDraft(e.target.value);
+          }}
           value={draft}
         />
       ) : (
