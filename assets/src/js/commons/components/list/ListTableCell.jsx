@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import get from 'lodash/get';
 
 import useList from './useList';
-import useEventListener from '../../hooks/useEventListener';
 
 import GrowingTextarea from '../inputs/GrowingTextarea.jsx';
 

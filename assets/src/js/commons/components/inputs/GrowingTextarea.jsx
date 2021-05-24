@@ -49,7 +49,13 @@ const GrowingTextarea = ({
 
   // auto focus
   useEffect(() => {
-    if (autoFocus) elRef.current.focus();
+    if (autoFocus) {
+      const el = elRef.current;
+      const l = el.value.length;
+
+      el.focus();
+      el.setSelectionRange(l, l);
+    }
   }, []);
 
   return (
