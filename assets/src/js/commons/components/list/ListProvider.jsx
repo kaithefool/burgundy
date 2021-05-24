@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import find from 'lodash/find';
+import get from 'lodash/get';
 
 import ListContext from './ListContext';
 import useHttp from '../../hooks/useHttp';
@@ -16,7 +16,7 @@ const ListProvider = ({
   const [query, setQuery] = useState(initQuery);
   const [listFilter, setFilter] = useState({});
   const [selected, setSelected] = useState([]);
-  const [stages, setStaged] = useState([]);
+  const [staged, setStaged] = useState({});
 
   const filter = { ...baseFilter, ...listFilter };
 
@@ -42,26 +42,23 @@ const ListProvider = ({
 
   const select = (s) => setSelected(s);
 
-  const findStaged = (id) => {
-    const match = typeof id === 'object'
-      ? id : { id };
-
-    return find(stages, match);
-  };
-
   const stage = (id, changes = {}) => {
-    const staged = findStaged(id);
-    const s = [...stages];
+    const s = { ...staged };
+    const t = staged[id];
+    const r = rows.find((r0) => r0.id === id);
+    const c = { ...t, ...changes };
 
-    if (staged) {
-      // clear staged
-      if (!changes || !Object.keys(changes).length) {
-        s.splice(s.indexOf(staged), 1);
-      } else {
-        s.splice(s.indexOf(staged), 1, changes);
-      }
+    // diff with stored
+    Object.keys(c).forEach((k) => {
+      if (c[k] === get(r, k)) delete c[k];
+    });
+
+    // update staged list
+    if (!c || !Object.keys(c).length) {
+      // clear
+      delete s[id];
     } else {
-      s.push(changes);
+      s[id] = c;
     }
 
     setStaged(s);
@@ -80,13 +77,12 @@ const ListProvider = ({
     selectedIndex: selected,
     rows,
     res,
-    stages,
+    staged,
 
     fetch,
     refresh,
     select,
     stage,
-    findStaged,
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import get from 'lodash/get';
 
 import useList from './useList';
@@ -9,20 +9,21 @@ const ListTableCell = ({
   row,
   col: {
     key,
-    getter,
-    setter,
+    getter = (v) => v,
+    setter = (v) => v,
     editable = false,
   },
   focused = false,
   onFocus = () => {},
 }) => {
-  const { stage, findStaged } = useList();
+  const { stage, staged } = useList();
   const [caret, setCaret] = useState(false);
-  let value = get(row, key);
+  const stored = get(row, key);
+  let value = stored;
 
-  if (getter) value = getter(value, row);
-
-  const [draft, setDraft] = useState(value);
+  if (editable) {
+    value = get(staged[row.id], key, value);
+  }
 
   // shortcuts
   const onKeydown = (e) => {
@@ -74,10 +75,12 @@ const ListTableCell = ({
             setCaret(false);
           }}
           onChange={(e) => {
+            const v = e.target.value;
+
             setCaret(true);
-            setDraft(e.target.value);
+            stage(row.id, { [key]: setter(v, row) });
           }}
-          value={draft}
+          value={getter(value, row)}
         />
       ) : (
         value

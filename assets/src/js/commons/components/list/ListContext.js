@@ -15,5 +15,4 @@ export default React.createContext({
   refresh: () => {},
   select: () => {},
   stage: () => {},
-  findStaged: () => {},
 });
