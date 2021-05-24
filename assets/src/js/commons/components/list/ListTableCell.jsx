@@ -52,6 +52,8 @@ const ListTableCell = ({
           onFocus([0, 1]);
           break;
         case 13: // enter
+          e.preventDefault();
+          setCaret(true);
           break;
         default:
           e.target.value = '';
@@ -63,7 +65,13 @@ const ListTableCell = ({
     <td
       className={focused ? 'outline-primary' : ''}
       onClick={() => {
-        if (editable) onFocus([0, 0]);
+        if (editable) {
+          if (!focused) {
+            onFocus([0, 0]);
+          } else {
+            setCaret(true);
+          }
+        }
       }}
     >
       {editable && focused ? (
