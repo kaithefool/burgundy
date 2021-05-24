@@ -12,7 +12,7 @@ module.exports = {
     instances: 1,
     autorestart: true,
     max_memory_restart: '1G',
-    ignore_watch: ['assets', 'shared'],
+    ignore_watch: ['assets', 'shared', 'node_modules'],
     env: {
       NODE_ENV: 'development',
     },
