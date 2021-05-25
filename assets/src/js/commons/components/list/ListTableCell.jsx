@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import get from 'lodash/get';
 
 import useList from './useList';
@@ -20,44 +20,50 @@ const ListTableCell = ({
   const [caret, setCaret] = useState(false);
   const stored = get(row, key);
   let value = stored;
+  const prevDraft = useRef(value);
 
   if (editable) {
     value = get(staged[row.id], key, value);
   }
 
+  // store for escape button
+  useEffect(() => {
+    if (editable && focused) {
+      prevDraft.current = value;
+    }
+  }, [focused]);
+
   // shortcuts
   const onKeydown = (e) => {
-    if (caret) {
-      // with caret
-      switch (e.keyCode) {
-        case 27: // escape
-          setCaret(false);
-          break;
-        default:
-          // do nothing
+    const k = e.keyCode;
+
+    if (caret) { // with caret (non fast editing mode)
+      if (k === 27) { // escape
+        setCaret(false);
+        // revert to prev draft
+        stage(row.id, { [key]: prevDraft.current });
       }
+    } else if (k === 13) { // enter
+      e.preventDefault();
+      setCaret(true);
+    } else if (k === 37) { // left
+      onFocus([-1, 0]);
+    } else if (k === 38) { // up
+      onFocus([0, -1]);
+    } else if (k === 39 || k === 9) { // right or tab
+      onFocus([1, 0]);
+    } else if (k === 40) { // down
+      onFocus([0, 1]);
+    } else if (
+      k === 9 // tab
+      || (k >= 16 && k <= 20) // modifiers
+      || (k >= 91 && k <= 95) // os
+      || (k >= 112 && k <= 151) // f keys and locks
+      || k === 224 // command key (firefox)
+    ) {
+      // do nothing
     } else {
-      // fast editing mode (without caret)
-      switch (e.keyCode) {
-        case 37: // left
-          onFocus([-1, 0]);
-          break;
-        case 38: // up
-          onFocus([0, -1]);
-          break;
-        case 39: // right
-          onFocus([1, 0]);
-          break;
-        case 40: // down
-          onFocus([0, 1]);
-          break;
-        case 13: // enter
-          e.preventDefault();
-          setCaret(true);
-          break;
-        default:
-          e.target.value = '';
-      }
+      e.target.value = '';
     }
   };
 
