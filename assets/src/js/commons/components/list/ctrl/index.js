@@ -4,6 +4,7 @@ import ListCtrlImport from './ListCtrlImport.jsx';
 import ListCtrlPatch from './ListCtrlPatch.jsx';
 import ListCtrlRefresh from './ListCtrlRefresh.jsx';
 import ListCtrlRemove from './ListCtrlRemove.jsx';
+import ListCtrlSave from './ListCtrlSave.jsx';
 
 export {
   ListCtrlCreate,
@@ -12,6 +13,7 @@ export {
   ListCtrlPatch,
   ListCtrlRefresh,
   ListCtrlRemove,
+  ListCtrlSave,
 };
 
 export default {
@@ -21,4 +23,5 @@ export default {
   Patch: ListCtrlPatch,
   Refresh: ListCtrlRefresh,
   Remove: ListCtrlRemove,
+  Save: ListCtrlSave,
 };
