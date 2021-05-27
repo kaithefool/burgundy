@@ -40,6 +40,7 @@ const PageUsers = () => {
                     updates={{ active: true }}
                   />
                 )}
+                <List.Ctrl.Save />
                 {hasSelectedActive && (
                   <List.Ctrl.Patch
                     icon={faLock}

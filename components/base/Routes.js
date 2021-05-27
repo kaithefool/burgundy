@@ -20,6 +20,7 @@ const defaultNamedRoutes = {
   },
   create: { method: 'post' },
   patch: { method: 'patch', path: '/:id' },
+  batchPatch: {},
   delete: { method: 'delete', path: '/:id' },
 };
 
@@ -64,7 +65,11 @@ class Routes {
       req.attrs = Object.assign(
         {},
         req.attrs,
-        ...castArray(attrsPath).map((p) => req[p]),
+        ...castArray(attrsPath).map((p) => {
+          const a = req[p];
+
+          return Array.isArray(a) ? { data: a } : a;
+        }),
       );
 
       next();

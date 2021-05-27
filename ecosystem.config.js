@@ -1,6 +1,6 @@
 const postDeploy = [
   'ln -sf ../shared .',
-  'npm i && npm run build',
+  'npm i',
   'pm2 startOrRestart ecosystem.config.js --env prod',
 ].join(' && ');
 
