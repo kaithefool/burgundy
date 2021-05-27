@@ -1,11 +1,7 @@
-FROM node:14-alpine
-
-# Create app directory
-WORKDIR /usr/src/app
+FROM node:16-alpine
+WORKDIR /app
 
 # Bundle app source
-COPY . .
-
-EXPOSE 3000
+COPY [ "assets/package.json", "server/package.json" ]
 
 CMD node bin/www
