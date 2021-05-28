@@ -11,10 +11,6 @@
     "type": "git",
     "url": "git+ssh://git@github.com/kaithefool/burgundy.git"
   },
-  "engines": {
-    "node": "~14.13.0",
-    "npm": "~6.14.8"
-  },
   "author": "Kai Lam <kai.chun.lam@gmail.com>",
   "license": "ISC",
   "bugs": {

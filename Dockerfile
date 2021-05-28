@@ -3,5 +3,7 @@ WORKDIR /app
 
 # Bundle app source
 COPY [ "assets/package.json", "server/package.json" ]
+RUN cd assets && npm i
+RUN cd server && npm i
 
-CMD node bin/www
+CMD node server/bin/www
