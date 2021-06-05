@@ -1,6 +1,7 @@
 FROM node:16-alpine as base
 WORKDIR /app
 
+RUN npm i -g db-migrate@^0.11.12 db-migrate-mysql@^2.1.2
 COPY server/package*.json  ./server/
 
 FROM base as dev

@@ -18,7 +18,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'shared/public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(i18n);
 app.use('/api', api);
