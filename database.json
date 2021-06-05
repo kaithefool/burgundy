@@ -1,6 +1,6 @@
 {
-  "defaultEnv": "local",
-  "local": {
+  "defaultEnv": "common",
+  "common": {
     "driver": "mysql",
     "host": { "ENV": "DB_HOST" },
     "user": { "ENV": "DB_USER" },

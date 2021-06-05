@@ -3,11 +3,14 @@ const httpError = require('http-errors');
 
 const authService = require('./services/auth');
 const authCookies = require('./helpers/authCookies');
-const { https } = require('../../start/env');
+
+const {
+  HTTPS,
+} = process.env;
 
 const csrf = csurf({
   cookie: {
-    secure: https,
+    secure: HTTPS === '1',
     httpOnly: true,
     sameSite: 'strict',
   },

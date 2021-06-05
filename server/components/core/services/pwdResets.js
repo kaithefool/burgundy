@@ -5,13 +5,11 @@ const Service = require('../../base/Service');
 const { pwdResetsModel, usersModel } = require('../models');
 
 const {
-  resetPwd: {
-    maxTimes,
-    keyTtl,
-  },
-} = require('../../../start/env');
+  RESET_PWD_MAX_TIMES,
+  RESET_PWD_KEY_TTL,
+} = process.env;
 
-const ttl = ms(keyTtl);
+const ttl = ms(RESET_PWD_KEY_TTL);
 
 class PwdResetServ extends Service {
   async create({ email }) {
@@ -24,7 +22,7 @@ class PwdResetServ extends Service {
 
     const resets = this.find({ user: u.id });
 
-    if (resets.length >= maxTimes) {
+    if (resets.length >= RESET_PWD_MAX_TIMES) {
       // prevent further reset emails
       await usersModel.update(
         { id: u.id },

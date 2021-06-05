@@ -1,11 +1,13 @@
 const ms = require('ms');
 
 const {
-  https, jwt: { accessTtl, refreshTtl },
-} = require('../../../start/env');
+  HTTPS,
+  JWT_ACCESS_TTL,
+  JWT_REFRESH_TTL,
+} = process.env;
 
 const cookieOpts = {
-  secure: https === '1',
+  secure: HTTPS === '1',
 };
 
 module.exports = {
@@ -26,7 +28,7 @@ module.exports = {
       httpOnly: true,
       sameSite: 'strict',
       ...(persist ? {
-        maxAge: ms(accessTtl),
+        maxAge: ms(JWT_ACCESS_TTL),
       } : {}),
     });
     res.cookie('refresh.id', refresh, {
@@ -34,7 +36,7 @@ module.exports = {
       httpOnly: true,
       sameSite: 'strict',
       ...(persist ? {
-        maxAge: ms(refreshTtl),
+        maxAge: ms(JWT_REFRESH_TTL),
       } : {}),
     });
   },

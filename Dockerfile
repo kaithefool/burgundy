@@ -7,8 +7,8 @@ FROM base as dev
 RUN npm i -g nodemon
 RUN cd server && \
   if [ -f package.lock.json ]; \
-    then npm ci; \
-    else npm i; \
+    then npm i; \
+    else npm ci; \
   fi
 CMD nodemon server/bin/www
 

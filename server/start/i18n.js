@@ -5,7 +5,9 @@ const FilesystemBackend = require('i18next-fs-backend');
 
 const { fileStorage } = require('./env');
 
-const storage = path.resolve(__dirname, '../', fileStorage.locales);
+const { FILE_STORAGE_LOCALES } = process.env;
+
+const storage = path.resolve(__dirname, '../../', FILE_STORAGE_LOCALES);
 
 i18next
   .use(middleware.LanguageDetector)

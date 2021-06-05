@@ -5,8 +5,8 @@
 logs
 *.log
 
-# Editor
-.vscode
+# Database
+db/
 
 # Shared folder between commits
 /shared/
