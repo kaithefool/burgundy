@@ -2,7 +2,11 @@
   "name": "burgundy",
   "version": "0.1.0",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "start": "run-p start-server start-assets",
+    "start-server": "nodemon bin/www",
+    "start-assets": "cd ../assets && npm start"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/kaithefool/burgundy.git"
@@ -39,6 +43,8 @@
   "devDependencies": {
     "eslint": "^6.7.0",
     "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2"
+    "eslint-plugin-import": "^2.20.2",
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5"
   }
 }

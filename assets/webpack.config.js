@@ -1,7 +1,6 @@
 const { resolve } = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = () => ({
   devtool: 'source-map',
@@ -27,13 +26,6 @@ module.exports = () => ({
       patterns: [
         { from: './src/img', to: 'img' },
       ],
-    }),
-    new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      cacheFolder: resolve(__dirname, './cache'),
-      pngquant: {
-        quality: '95-100',
-      },
     }),
   ],
   optimization: {
@@ -86,10 +78,6 @@ module.exports = () => ({
             },
           },
         ],
-      },
-      {
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
       },
     ],
   },
