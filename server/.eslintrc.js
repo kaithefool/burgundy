@@ -4,11 +4,14 @@ module.exports = {
   },
   extends: 'airbnb-base',
   rules: {
-    // enable development in windows
+    // enable dev in windows
     'linebreak-style': 'off',
     // misc
     'class-methods-use-this': 'off',
     'import/prefer-default-export': 'off',
     'no-param-reassign': ['error', { props: false }],
+    // enable dev without node_modules
+    // for docker
+    'import/no-unresolved': 'off',
   },
 };
