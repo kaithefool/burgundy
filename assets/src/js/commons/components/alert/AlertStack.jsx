@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AlertItem from './AlertItem.jsx';
+import AlertItem from './AlertItem';
 import useAlert from './useAlert';
 
 const AlertStack = ({

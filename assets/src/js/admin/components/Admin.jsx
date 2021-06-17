@@ -4,7 +4,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import Nav from './layout/Nav.jsx';
+import Nav from './layout/Nav';
 import {
   RouteUsers,
 } from './routes';

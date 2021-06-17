@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   parser: 'babel-eslint',
   env: {
@@ -14,6 +16,14 @@ module.exports = {
     },
   },
   settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['~', path.resolve(__dirname, './src/js')],
+        ],
+        extensions: ['.js', '.jsx'],
+      },
+    },
     react: {
       version: '16.13',
     },
@@ -22,11 +32,12 @@ module.exports = {
     // enable development in windows
     'linebreak-style': 'off',
     // enable dev without node_modules
-    // for docker
+    // for docker containers
     'import/no-unresolved': 'off',
     // misc
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
     'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };

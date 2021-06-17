@@ -8,7 +8,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 
-import NavItem from './NavItem.jsx';
+import NavItem from './NavItem';
 import links from './links';
 
 const Nav = ({

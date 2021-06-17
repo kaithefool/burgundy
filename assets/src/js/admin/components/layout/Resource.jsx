@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Fetchable from '~/commons/components/util/Fetchable.jsx';
+import Fetchable from '~/commons/components/util/Fetchable';
 
 const Resource = ({
   id,

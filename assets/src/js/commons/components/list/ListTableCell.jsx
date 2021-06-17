@@ -3,7 +3,7 @@ import get from 'lodash/get';
 
 import useList from './useList';
 
-import GrowingTextarea from '../inputs/GrowingTextarea.jsx';
+import GrowingTextarea from '../inputs/GrowingTextarea';
 
 const ListTableCell = ({
   row,

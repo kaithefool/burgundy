@@ -10,7 +10,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 
 import useList from './useList';
 
-import ListTableCell from './ListTableCell.jsx';
+import ListTableCell from './ListTableCell';
 
 const ListTable = ({
   className = '',

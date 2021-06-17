@@ -4,8 +4,8 @@ import {
   Route,
 } from 'react-router-dom';
 
-import PageUsers from '../pages/users/PageUsers.jsx';
-import PageUser from '../pages/users/PageUser.jsx';
+import PageUsers from '../pages/users/PageUsers';
+import PageUser from '../pages/users/PageUser';
 
 const RoutePages = ({ path, ...props }) => (
   <Route path={path} {...props}>

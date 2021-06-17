@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import FormHttpContext from './FormHttpContext';
 import form from '../../helpers/form';
 import useHttp from '../../hooks/useHttp';
-import FormAlerts from './FormAlerts.jsx';
+import FormAlerts from './FormAlerts';
 
 const FormProvider = ({
   stored = {},

@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
 import useHttp from '../../../hooks/useHttp';
-import BtnHttp from '../../btns/BtnHttp.jsx';
+import BtnHttp from '../../btns/BtnHttp';
 import useList from '../useList';
 import useAlert from '../../alert/useAlert';
 

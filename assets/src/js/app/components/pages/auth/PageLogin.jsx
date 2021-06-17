@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Centered from '~/commons/components/layout/Centered.jsx';
-import FormLogin from '../../forms/FormLogin.jsx';
+import Centered from '~/commons/components/layout/Centered';
+import FormLogin from '../../forms/FormLogin';
 
 const PageLogin = () => (
   <Centered>

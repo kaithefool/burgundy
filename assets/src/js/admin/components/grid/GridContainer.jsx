@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
-import GridRow from './GridRow.jsx';
+import GridRow from './GridRow';
 import useUniqKey from '~/commons/hooks/useUniqKey';
 
 const GridContainer = ({

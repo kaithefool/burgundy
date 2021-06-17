@@ -1,10 +1,10 @@
-import ListCtrlCreate from './ListCtrlCreate.jsx';
-import ListCtrlExport from './ListCtrlExport.jsx';
-import ListCtrlImport from './ListCtrlImport.jsx';
-import ListCtrlPatch from './ListCtrlPatch.jsx';
-import ListCtrlRefresh from './ListCtrlRefresh.jsx';
-import ListCtrlRemove from './ListCtrlRemove.jsx';
-import ListCtrlSave from './ListCtrlSave.jsx';
+import ListCtrlCreate from './ListCtrlCreate';
+import ListCtrlExport from './ListCtrlExport';
+import ListCtrlImport from './ListCtrlImport';
+import ListCtrlPatch from './ListCtrlPatch';
+import ListCtrlRefresh from './ListCtrlRefresh';
+import ListCtrlRemove from './ListCtrlRemove';
+import ListCtrlSave from './ListCtrlSave';
 
 export {
   ListCtrlCreate,

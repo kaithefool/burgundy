@@ -1,8 +1,8 @@
 import React from 'react';
 
 import useList from './useList';
-import Pending from '../util/Pending.jsx';
-import Error from '../util/Error.jsx';
+import Pending from '../util/Pending';
+import Error from '../util/Error';
 
 const ListStatus = ({
   children,

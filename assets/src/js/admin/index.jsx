@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom';
 import '../../scss/main.scss';
 import '~/commons/config';
 
-import App from './components/App.jsx';
+import Admin from './components/Admin';
 
 ReactDOM.render(
-  <App />,
+  <Admin />,
   document.getElementById('root'),
 );

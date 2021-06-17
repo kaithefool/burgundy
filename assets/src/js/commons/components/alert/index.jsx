@@ -1,9 +1,9 @@
 import React from 'react';
 
 import AlertContext from './AlertContext';
-import AlertItem from './AlertItem.jsx';
-import AlertProvider from './AlertProvider.jsx';
-import AlertStack from './AlertStack.jsx';
+import AlertItem from './AlertItem';
+import AlertProvider from './AlertProvider';
+import AlertStack from './AlertStack';
 import useAlert from './useAlert';
 
 export {

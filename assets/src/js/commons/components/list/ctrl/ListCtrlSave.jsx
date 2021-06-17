@@ -3,7 +3,7 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faSave } from '@fortawesome/free-solid-svg-icons/faSave';
 
 import useHttp from '../../../hooks/useHttp';
-import BtnHttp from '../../btns/BtnHttp.jsx';
+import BtnHttp from '../../btns/BtnHttp';
 import useList from '../useList';
 import useAlert from '../../alert/useAlert';
 

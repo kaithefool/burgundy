@@ -1,4 +1,4 @@
-import RouteUsers from './RouteUsers.jsx';
+import RouteUsers from './RouteUsers';
 
 export {
   RouteUsers,

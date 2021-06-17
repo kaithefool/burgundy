@@ -1,11 +1,11 @@
 import React from 'react';
 
 import ListContext from './ListContext';
-import ListPagination from './ListPagination.jsx';
-import ListProvider from './ListProvider.jsx';
-import ListSearch from './ListSearch.jsx';
-import ListStatus from './ListStatus.jsx';
-import ListTable from './ListTable.jsx';
+import ListPagination from './ListPagination';
+import ListProvider from './ListProvider';
+import ListSearch from './ListSearch';
+import ListStatus from './ListStatus';
+import ListTable from './ListTable';
 import ctrl from './ctrl';
 import useList from './useList';
 

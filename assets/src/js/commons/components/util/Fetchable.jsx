@@ -1,8 +1,8 @@
 import React from 'react';
 
 import useHttp from '~/commons/hooks/useHttp';
-import Pending from './Pending.jsx';
-import Error from './Error.jsx';
+import Pending from './Pending';
+import Error from './Error';
 
 const Fetchable = ({
   progress,

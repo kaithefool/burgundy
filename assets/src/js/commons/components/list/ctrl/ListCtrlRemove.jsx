@@ -3,8 +3,8 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
 import useHttp from '../../../hooks/useHttp';
-import BtnHttp from '../../btns/BtnHttp.jsx';
-import ModalConfirm from '../../modals/ModalConfirm.jsx';
+import BtnHttp from '../../btns/BtnHttp';
+import ModalConfirm from '../../modals/ModalConfirm';
 import useList from '../useList';
 import useAlert from '../../alert/useAlert';
 

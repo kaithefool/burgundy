@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import GridCell from './GridCell.jsx';
+import GridCell from './GridCell';
 import useUniqKey from '~/commons/hooks/useUniqKey';
 
 const GridRow = ({

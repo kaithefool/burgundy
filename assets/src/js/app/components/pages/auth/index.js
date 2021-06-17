@@ -1,8 +1,8 @@
-import PageLogin from './PageLogin.jsx';
-import PagePwdReset from './PagePwdReset.jsx';
-import PagePwdResetReq from './PagePwdResetReq.jsx';
-import PageRegister from './PageRegister.jsx';
-import PageVerifyUser from './PageVerifyUser.jsx';
+import PageLogin from './PageLogin';
+import PagePwdReset from './PagePwdReset';
+import PagePwdResetReq from './PagePwdResetReq';
+import PageRegister from './PageRegister';
+import PageVerifyUser from './PageVerifyUser';
 
 export {
   PageLogin,

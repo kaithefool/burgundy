@@ -2,8 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { object, string } from 'yup';
 
-import Page from '../../layout/Page.jsx';
-import Resource from '../../layout/Resource.jsx';
+import Page from '../../layout/Page';
+import Resource from '../../layout/Resource';
 import Form from '~/commons/components/form';
 
 const PageUser = ({ match }) => {

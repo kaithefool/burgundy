@@ -5,7 +5,7 @@ import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
 
 import List from '~/commons/components/list';
-import Page from '../../layout/Page.jsx';
+import Page from '../../layout/Page';
 import path from '~/commons/helpers/path';
 
 const PageUsers = () => {

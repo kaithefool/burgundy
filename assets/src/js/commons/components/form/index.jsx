@@ -1,9 +1,9 @@
 import React from 'react';
 
-import FormBtnSubmit from './FormBtnSubmit.jsx';
-import FormField from './FormField.jsx';
+import FormBtnSubmit from './FormBtnSubmit';
+import FormField from './FormField';
 import FormHttpContext from './FormHttpContext';
-import FormProvider from './FormProvider.jsx';
+import FormProvider from './FormProvider';
 import useFormHttp from './useFormHttp';
 
 import Alert from '../alert';

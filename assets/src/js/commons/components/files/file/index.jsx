@@ -1,9 +1,9 @@
 import React from 'react';
 
 import FileContext from './FileContext';
-import FilePreview from './FilePreview.jsx';
-import FileProvider from './FileProvider.jsx';
-import FileStatus from './FileStatus.jsx';
+import FilePreview from './FilePreview';
+import FileProvider from './FileProvider';
+import FileStatus from './FileStatus';
 import useFile from './useFile';
 
 export {
