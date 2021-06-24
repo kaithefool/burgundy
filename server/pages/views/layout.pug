@@ -1,8 +1,8 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href=`/assets/commons.css?v=${version}`)
-    script(src=`/assets/commons.js?v=${version}`)
+    link(rel='stylesheet', href=`/assets/commons.css?v=${assetsVer}`)
+    script(src=`/assets/commons.js?v=${assetsVer}`)
     script#env(type='application/json')!= JSON.stringify(env)
     block head
   body

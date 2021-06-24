@@ -4,7 +4,7 @@
   "description": "web client",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack --watch --mode=development",
+    "dev": "webpack --watch --mode=development",
     "build": "webpack --mode=production"
   },
   "repository": {

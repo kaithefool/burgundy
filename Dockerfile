@@ -1,11 +1,10 @@
 FROM node:14-alpine as base
 WORKDIR /app
 
-RUN npm i -g db-migrate@^0.11.12 db-migrate-mysql@^2.1.2
-
 FROM base as dev
 COPY server/package*.json  ./server/
 COPY assets/package*.json  ./assets/
+COPY package.json ./
 RUN cd /app/server && \
   if [ -f package.lock.json ]; \
     then npm ci; \
@@ -16,7 +15,9 @@ RUN cd /app/assets && \
     then npm ci; \
     else npm i; \
   fi
-CMD cd /app/server && npm start
+RUN npm i --only=prod;
+RUN npx db-migrate up
+CMD npm start
 
 FROM base as prd
 COPY . /app
