@@ -14,6 +14,7 @@ module.exports = () => ({
     path: resolve(__dirname, '../public', 'assets'),
   },
   resolve: {
+    extensions: ['.js', '.jsx'],
     alias: {
       '~': resolve(__dirname, './src/js'),
     },

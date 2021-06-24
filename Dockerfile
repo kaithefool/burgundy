@@ -15,8 +15,7 @@ RUN cd /app/assets && \
     then npm ci; \
     else npm i; \
   fi
-RUN npm i --only=prod;
-RUN npx db-migrate up
+RUN npm i --only=prod
 CMD npm start
 
 FROM base as prd

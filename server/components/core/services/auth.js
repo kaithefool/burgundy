@@ -7,6 +7,7 @@ const usersModel = require('../models/users');
 const {
   JWT_ACCESS_TTL,
   JWT_REFRESH_TTL,
+  SECRET,
 } = process.env;
 
 // props to store within the token
@@ -44,19 +45,19 @@ class AuthServ extends Service {
     return {
       access: jwt.sign(
         props,
-        secret,
+        SECRET,
         { expiresIn: JWT_ACCESS_TTL },
       ),
       refresh: jwt.sign(
         { id: user.id },
-        secret,
+        SECRET,
         { expiresIn: JWT_REFRESH_TTL },
       ),
     };
   }
 
   verifyToken(token) {
-    return jwt.verify(token, secret);
+    return jwt.verify(token, SECRET);
   }
 
   async renewTokens(refreshTk) {
