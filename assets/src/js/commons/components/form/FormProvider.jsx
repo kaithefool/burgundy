@@ -48,9 +48,10 @@ const FormProvider = ({
         {(p) => (
           <Form>
             <FormAlerts />
-            {typeof children === 'function'
-              ? children({ ...p, ...formHttp })
-              : children
+            {
+              typeof children === 'function'
+                ? children({ ...p, ...formHttp })
+                : children
             }
           </Form>
         )}
