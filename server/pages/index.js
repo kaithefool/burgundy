@@ -20,6 +20,10 @@ routes.use(({ csrfToken }, res, next) => {
   return next();
 });
 
+routes.get('/logout', (req, res) => (
+  res.redirect('/api/core/auth/logout?web=1&redirect=1')
+));
+
 routes.use(
   ['/admin', '/admin/*'],
   ({ user }, res) => {

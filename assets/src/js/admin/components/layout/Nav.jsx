@@ -17,22 +17,25 @@ const Nav = ({
   const [expanded, setExpanded] = useState(true);
 
   return (
-    <nav className={`
-      d-flex vh-100 ${className}
-      ${expanded ? 'expanded' : ''}
-    `}>
+    <nav
+      className={`
+        d-flex vh-100 ${className}
+        ${expanded ? 'expanded' : ''}
+      `}
+    >
       <button
-        className="btn btn-sm btn-outline-primary position-absolute"
+        type="button"
+        className="btn btn-sm btn-link position-absolute"
         onClick={() => setExpanded(!expanded)}
       >
         <FA icon={expanded ? faChevronLeft : faChevronRight} />
       </button>
       <div className="nav align-self-center flex-column">
-        {links.map((l, i) => (
-          <NavItem key={i} expanded={expanded} {...l}>
+        {links.map((l) => (
+          <NavItem key={l.label} expanded={expanded} {...l}>
             {l.links && (
-              l.links.map((ll, ii) => (
-                <NavItem key={ii} expanded={expanded} {...ll} />
+              l.links.map((ll) => (
+                <NavItem key={ll.label} expanded={expanded} {...ll} />
               ))
             )}
           </NavItem>

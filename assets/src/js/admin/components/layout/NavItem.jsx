@@ -13,7 +13,9 @@ const NavListItem = ({
   ...props
 }) => {
   const { to } = props;
-  const Link = to ? NavLink : (p) => <a {...p} />;
+  const Link = to
+    ? NavLink
+    : ({ children: c, ...p }) => <a {...p}>{c}</a>;
   const match = useRouteMatch(to);
 
   return (
@@ -23,7 +25,7 @@ const NavListItem = ({
         {...props}
         {...(to ? { activeClassName } : {})}
       >
-        <FA icon={icon} fixedWidth size="lg" />
+        <FA icon={icon} fixedWidth />
         {expanded && (
           <span className="mx-3">{label}</span>
         )}
