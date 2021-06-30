@@ -7,6 +7,7 @@ export default [
     label: 'Users',
     to: '/admin/users',
   },
+  { divider: true },
   {
     icon: faPowerOff,
     label: 'Logout',

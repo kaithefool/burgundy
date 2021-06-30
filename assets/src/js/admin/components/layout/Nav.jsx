@@ -20,26 +20,30 @@ const Nav = ({
     <nav
       className={`
         d-flex vh-100 ${className}
-        ${expanded ? 'expanded' : ''}
+        bg-primary text-white
       `}
     >
       <button
         type="button"
-        className="btn btn-sm btn-link position-absolute"
+        className="btn btn-sm btn-link link-light"
         onClick={() => setExpanded(!expanded)}
       >
         <FA icon={expanded ? faChevronLeft : faChevronRight} />
       </button>
       <div className="nav align-self-center flex-column">
-        {links.map((l) => (
-          <NavItem key={l.label} expanded={expanded} {...l}>
-            {l.links && (
-              l.links.map((ll) => (
-                <NavItem key={ll.label} expanded={expanded} {...ll} />
-              ))
-            )}
-          </NavItem>
-        ))}
+        {links.map((l) => {
+          if (l.divider) return <hr />;
+
+          return (
+            <NavItem key={l.label} expanded={expanded} {...l}>
+              {l.links && (
+                l.links.map((ll) => (
+                  <NavItem key={ll.label} expanded={expanded} {...ll} />
+                ))
+              )}
+            </NavItem>
+          );
+        })}
       </div>
     </nav>
   );
