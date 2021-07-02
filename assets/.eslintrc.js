@@ -39,5 +39,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/no-array-index-key': 'off',
   },
 };
