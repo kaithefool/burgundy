@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import {
@@ -14,28 +14,36 @@ import links from './links';
 const Nav = ({
   className,
 }) => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <nav className={`
-      d-flex vh-100 ${className}
-      ${expanded ? 'expanded' : ''}
-    `}>
-      <button
-        className="btn btn-sm btn-outline-primary position-absolute"
+    <nav
+      className={`
+        d-flex vh-100 ${className}
+        bg-primary text-white
+      `}
+    >
+      {/* <button
+        type="button"
+        className="btn btn-sm btn-link link-light"
         onClick={() => setExpanded(!expanded)}
       >
         <FA icon={expanded ? faChevronLeft : faChevronRight} />
-      </button>
+      </button> */}
       <div className="nav align-self-center flex-column">
-        {links.map((l, i) => (
-          <NavItem key={i} expanded={expanded} {...l}>
-            {l.links && (
-              l.links.map((ll, ii) => (
-                <NavItem key={ii} expanded={expanded} {...ll} />
-              ))
-            )}
-          </NavItem>
+        {links.map((g, i) => (
+          <Fragment key={i}>
+            {!!i && <hr />}
+            {g.map((l) => (
+              <NavItem key={l.label} expanded={expanded} {...l}>
+                {l.links && (
+                  l.links.map((ll, ii) => (
+                    <NavItem key={ii} expanded={expanded} {...ll} />
+                  ))
+                )}
+              </NavItem>
+            ))}
+          </Fragment>
         ))}
       </div>
     </nav>
