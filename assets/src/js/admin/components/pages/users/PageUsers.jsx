@@ -17,7 +17,7 @@ const PageUsers = () => {
     >
       <List
         api={{ url: '/api/core/users' }}
-        selectable={true}
+        selectable
       >
         {({ selected }) => {
           const hasSelectedActive = Boolean(selected.find((r) => r.active));
