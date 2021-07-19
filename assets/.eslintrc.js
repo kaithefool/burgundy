@@ -31,14 +31,29 @@ module.exports = {
   rules: {
     // enable development in windows
     'linebreak-style': 'off',
+
     // enable dev without node_modules
     // for docker containers
     'import/no-unresolved': 'off',
-    // misc
+
+    // methods that could use 'this' when overwritten
     'class-methods-use-this': 'off',
-    'no-param-reassign': 'off',
+
+    // leaving room to expand more exports
+    'import/prefer-default-export': 'warn',
+
+    // no type checking
     'react/prop-types': 'off',
+
+    // hoc components
     'react/jsx-props-no-spreading': 'off',
+
+    // it's okay to use index if the array is constant
     'react/no-array-index-key': 'off',
+
+    // ARIA: TBC...
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
   },
 };
