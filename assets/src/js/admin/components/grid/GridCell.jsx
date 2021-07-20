@@ -5,16 +5,13 @@ const GridCell = ({
 
   onFocus = () => {},
   onChange = () => {},
-}) => {
-
-  return (
-    <div
-      className={`
+}) => (
+  <div
+    className={`
         ${width ? `col-sm-${width * 4}` : 'col'}
       `}
-      onClick={() => onFocus()}
-    ></div>
-  );
-};
+    onClick={() => onFocus()}
+  />
+);
 
 export default GridCell;

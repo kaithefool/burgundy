@@ -13,8 +13,8 @@ const PageUser = ({ match }) => {
   return (
     <Resource
       id={id}
-      api={{ url: '/api/core/users' }
-    }>
+      api={{ url: '/api/core/users' }}
+    >
       {(user) => (
         <Page
           header={{

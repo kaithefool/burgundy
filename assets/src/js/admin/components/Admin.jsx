@@ -5,9 +5,7 @@ import {
 } from 'react-router-dom';
 
 import Nav from './layout/Nav';
-import {
-  RouteUsers,
-} from './routes';
+import { Routes } from './routes';
 
 const Auth = () => (
   <div className="container-fluid">
@@ -15,9 +13,7 @@ const Auth = () => (
       <Router>
         <Nav className="col-auto" />
         <div className="col">
-          <Switch>
-            <RouteUsers path="/admin/users" />
-          </Switch>
+          <Routes />
         </div>
       </Router>
     </div>
