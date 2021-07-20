@@ -2,7 +2,7 @@ import React from 'react';
 
 import Fetchable from '~/commons/components/util/Fetchable';
 
-const Resource = ({
+const Doc = ({
   id,
   api,
   children,
@@ -12,13 +12,15 @@ const Resource = ({
   }
 
   return (
-    <Fetchable req={{
-      ...api,
-      url: `${api.url}/${id}`,
-    }}>
+    <Fetchable
+      req={{
+        ...api,
+        url: `${api.url}/${id}`,
+      }}
+    >
       {(doc) => children(doc)}
     </Fetchable>
   );
 };
 
-export default Resource;
+export default Doc;

@@ -13,6 +13,7 @@ const RouteResource = ({
 }) => (
   <Route path={path} {...props}>
     <Switch>
+      {children}
       {List && (
         <Route
           exact
@@ -26,7 +27,6 @@ const RouteResource = ({
           component={Doc}
         />
       )}
-      {children}
     </Switch>
   </Route>
 );

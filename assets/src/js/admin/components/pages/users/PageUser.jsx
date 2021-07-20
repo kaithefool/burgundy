@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { object, string } from 'yup';
 
 import Page from '../../layout/Page';
-import Resource from '../../layout/Resource';
+import Doc from '../../layout/Doc';
 import Form from '~/commons/components/form';
 
 const PageUser = ({ match }) => {
@@ -11,7 +11,7 @@ const PageUser = ({ match }) => {
   const history = useHistory();
 
   return (
-    <Resource
+    <Doc
       id={id}
       api={{ url: '/api/core/users' }}
     >
@@ -59,7 +59,7 @@ const PageUser = ({ match }) => {
           </Form>
         </Page>
       )}
-    </Resource>
+    </Doc>
   );
 };
 

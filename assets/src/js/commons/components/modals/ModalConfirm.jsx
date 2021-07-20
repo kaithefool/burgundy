@@ -17,6 +17,7 @@ const ModalConfirm = ({
         <div className="form-row">
           <div className="col">
             <button
+              type="button"
               className="btn btn-outline-primary"
               onClick={onHide}
             >
@@ -25,6 +26,7 @@ const ModalConfirm = ({
           </div>
           <div className="col">
             <button
+              type="button"
               className="btn btn-primary"
               onClick={() => {
                 onConfirm();
