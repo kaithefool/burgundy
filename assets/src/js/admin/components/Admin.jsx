@@ -1,13 +1,12 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
 } from 'react-router-dom';
 
 import Nav from './layout/Nav';
-import { Routes } from './routes';
+import Routes from './routes';
 
-const Auth = () => (
+const Admin = () => (
   <div className="container-fluid">
     <div className="row">
       <Router>
@@ -20,4 +19,4 @@ const Auth = () => (
   </div>
 );
 
-export default Auth;
+export default Admin;
