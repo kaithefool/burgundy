@@ -6,6 +6,8 @@ const service = require('../services/<%= file %>');
 
 module.exports = new Routes({
   service,
+  authorize: {},
+  validate: {},
 }, {
   list: true,
   find: true,
