@@ -2,16 +2,19 @@ const Router = require('express');
 const httpError = require('http-errors');
 
 const {
-  routes: core,
-  middlewares: { authByHeader, authByCookies },
-} = require('./core');
-const { routes: site } = require('./site');
+  authByHeader,
+  authByCookies,
+} = require('./core/middlewares');
+
+const site = require('./site/routes');
+const core = require('./core/routes');
 
 const api = Router();
 const components = Router();
 
-components.use('/core', core);
+// component routes
 components.use('/site', site);
+components.use('/core', core);
 
 // catch 404 and forward to error handler
 components.use((req, res, next) => next(httpError(404)));
