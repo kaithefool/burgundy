@@ -1,5 +1,5 @@
 ---
-to: assets/src/js/components/pages/<%= n.plural.camel %>/Page<%= n.singular.pascal %>.jsx
+to: assets/src/js/admin/components/pages/<%= n.plural.camel %>/Page<%= n.singular.pascal %>.jsx
 ---
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -9,7 +9,7 @@ import Page from '../../layout/Page';
 import Doc from '../../layout/Doc';
 import Form from '~/commons/components/form';
 
-const Page<%= model %> = ({ match }) => {
+const Page<%= n.singular.pascal %> = ({ match }) => {
   const { id } = match.params;
   const history = useHistory();
 
@@ -49,4 +49,4 @@ const Page<%= model %> = ({ match }) => {
   );
 };
 
-export default Page<%= model %>;
+export default Page<%= n.singular.pascal %>;
