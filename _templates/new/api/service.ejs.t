@@ -1,10 +1,10 @@
 ---
-to: server/components/<%= ns %>/services/<%= file %>.js
+to: server/components/<%= ns %>/services/<%= n.plural.camel %>.js
 ---
 const Service = require('../../base/Service');
-const model = require('../models/<%= file %>');
+const model = require('../models/<%= n.plural.camel %>');
 
-class <%= model %>Serv extends Service {
+class <%= n.singular.pascal %>Serv extends Service {
 }
 
-module.exports = new <%= model %>Serv(model);
+module.exports = new <%= n.singular.pascal %>Serv(model);

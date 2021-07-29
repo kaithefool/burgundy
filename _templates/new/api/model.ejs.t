@@ -1,9 +1,9 @@
 ---
-to: server/components/<%= ns %>/models/<%= file %>.js
+to: server/components/<%= ns %>/models/<%= n.plural.camel %>.js
 ---
 const Model = require('../../base/Model');
 
-class <%= model %> extends Model {
+class <%= n.singular.pascal %> extends Model {
 }
 
-module.exports = new <%= model %>('<%= tbl %>');
+module.exports = new <%= n.singular.pascal %>('<%= n.plural.snake %>');

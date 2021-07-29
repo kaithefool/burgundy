@@ -1,8 +1,8 @@
 ---
-to: server/components/<%= ns %>/routes/<%= file %>.js
+to: server/components/<%= ns %>/routes/<%= n.plural.camel %>.js
 ---
 const { Routes } = require('../../base');
-const service = require('../services/<%= file %>');
+const service = require('../services/<%= n.plural.camel %>');
 
 module.exports = new Routes({
   service,

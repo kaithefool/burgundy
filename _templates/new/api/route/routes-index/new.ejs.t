@@ -4,8 +4,8 @@ unless_exists: true
 ---
 const routes = require('express').Router();
 
-const <%= file %> = require('./<%= file %>');
+const <%= n.plural.camel %> = require('./<%= n.plural.camel %>');
 
-routes.use('/<%= tbl %>', <%= file %>);
+routes.use('/<%= n.plural.path %>', <%= n.plural.camel %>);
 
 module.exports = routes;

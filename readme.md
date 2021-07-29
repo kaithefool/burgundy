@@ -13,3 +13,8 @@ docker exec -it burgundy_server_1 sh
 - Code generator to generate resource models, apis and admin UI
 - Editable table cells
 - i18n
+
+### To decide
+- Support sql or nosql db? Or both?
+
+### Code generator
