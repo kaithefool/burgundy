@@ -10,6 +10,8 @@ module.exports = class Model {
     return this.schema.model;
   }
 
+  aggregate() {}
+
   find() {}
 
   count() {}
