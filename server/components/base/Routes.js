@@ -11,7 +11,7 @@ const validator = require('./validator');
 const defaultNamedRoutes = {
   list: {},
   find: {
-    path: '/:id',
+    path: '/:_id',
     response: (req, res) => {
       const { out } = res.locals;
 
@@ -19,9 +19,9 @@ const defaultNamedRoutes = {
     },
   },
   create: { method: 'post' },
-  patch: { method: 'patch', path: '/:id' },
+  patch: { method: 'patch', path: '/:_id' },
   batchPatch: {},
-  delete: { method: 'delete', path: '/:id' },
+  delete: { method: 'delete', path: '/:_id' },
 };
 
 class Routes {

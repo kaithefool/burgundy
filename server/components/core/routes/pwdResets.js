@@ -11,10 +11,10 @@ module.exports = new Routes({
       email: email().required(),
     }),
     verify: object({
-      id: string().required(),
+      _id: string().required(),
     }),
     reset: object({
-      id: string().required(),
+      _id: string().required(),
       password: password().required(),
     }),
   },

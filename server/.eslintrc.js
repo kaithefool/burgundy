@@ -16,5 +16,8 @@ module.exports = {
 
     // leaving room to expand more exports
     'import/prefer-default-export': 'warn',
+
+    // mongodb
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
   },
 };

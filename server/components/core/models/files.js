@@ -18,4 +18,4 @@ class File extends Model {
   }
 }
 
-module.exports = new File('files', { id: false });
+module.exports = new File('files');

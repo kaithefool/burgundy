@@ -7,7 +7,7 @@
  */
 exports.bindDoc = (key, service, {
   fn = 'find',
-  prop = 'id',
+  prop = '_id',
 } = {}) => (
   async (req, res, next) => {
     const {

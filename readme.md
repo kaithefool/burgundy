@@ -6,6 +6,10 @@ docker-compose up
 docker exec -it burgundy_server_1 sh
 ```
 
+### In process
+- Switching to mongodb
+  - update server/package.json
+
 ### Todos
 - Grid html editor
 - ListTable tabs to categorize columns
@@ -13,8 +17,5 @@ docker exec -it burgundy_server_1 sh
 - Code generator to generate resource models, apis and admin UI
 - Editable table cells
 - i18n
-
-### To decide
-- Support sql or nosql db? Or both?
 
 ### Code generator

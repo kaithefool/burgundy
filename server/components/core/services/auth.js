@@ -12,7 +12,7 @@ const {
 
 // props to store within the token
 const userProps = [
-  'id',
+  '_id',
   'role',
 ];
 
@@ -49,7 +49,7 @@ class AuthServ extends Service {
         { expiresIn: JWT_ACCESS_TTL },
       ),
       refresh: jwt.sign(
-        { id: user.id },
+        { _id: user._id },
         SECRET,
         { expiresIn: JWT_REFRESH_TTL },
       ),
@@ -70,7 +70,7 @@ class AuthServ extends Service {
     }
 
     const [u] = await this.find({
-      id: payload.id,
+      _id: payload._id,
       active: 1,
     });
 
@@ -100,7 +100,7 @@ class AuthServ extends Service {
     if (user) {
       await this.model.update(
         { last_logout: new Date() },
-        { id: user.id },
+        { _id: user._id },
       );
     }
   }
