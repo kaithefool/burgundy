@@ -17,4 +17,20 @@ class User extends Model {
   }
 }
 
-module.exports = new User('users');
+module.exports = new User('User', {
+  // authentication
+  lastLogin: Date,
+  lastLogout: Date,
+  resetLocked: Boolean,
+  active: { type: Boolean, default: true },
+
+  // essentials
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    select: false,
+  },
+});

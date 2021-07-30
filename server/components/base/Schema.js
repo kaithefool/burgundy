@@ -131,16 +131,4 @@ module.exports = class Schema {
     this.schema.virtual(prop).get(fn);
     this.enableVirtuals();
   }
-
-  setter(prop, fn, onlyWhenModified = true) {
-    this.schema.pre('save', async function preSave(next) {
-      if (!this.isModified(prop) && onlyWhenModified) return next();
-
-      const [value] = await Promise.all([fn.call(this, this)]);
-
-      this[prop] = value;
-
-      return next();
-    });
-  }
 };

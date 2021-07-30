@@ -10,17 +10,72 @@ module.exports = class Model {
     return this.schema.model;
   }
 
-  aggregate() {}
+  setter(v) {
+    return v;
+  }
 
-  find() {}
+  // use setter to parse inputs
+  // before create and update
+  async parse(docs, action) {
+    const values = await Promise.all(
+      docs.map((d) => this.setter(d, action)),
+    );
 
-  count() {}
+    return values;
+  }
 
-  insert() {}
+  aggregate(...args) {
+    return this.model.aggregate(...args);
+  }
 
-  upsert() {}
+  find({
+    filter = {},
+    sort,
+    skip = 0,
+    limit = 10,
+    select,
+  }) {
+    const q = this.model.find(filter);
 
-  update() {}
+    if (sort) q.sort(sort);
+    if (skip) q.skip(skip);
+    if (limit) q.limit(limit);
+    if (select) q.select(select);
 
-  delete() {}
+    return q;
+  }
+
+  count(filter) {
+    return this.model.countDocuments(filter);
+  }
+
+  async create(docs) {
+    const created = await this.model.create(
+      await this.parse(docs, 'create'),
+    );
+
+    return created;
+  }
+
+  async update(filter, docs, opts) {
+    const updated = await this.model.update(
+      filter,
+      await this.parse(docs, 'update'),
+      opts,
+    );
+
+    return updated;
+  }
+
+  delete(filter, by, softDelete = true) {
+    const { model } = this;
+
+    // soft delete
+    if (softDelete && model.softDelete) {
+      return model.softDelete(filter, by);
+    }
+
+    // hard delete
+    return model.deleteMany(filter);
+  }
 };
