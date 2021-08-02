@@ -4,8 +4,8 @@ const {
 } = require('../../assets/package.json');
 
 const {
-  middlewares: { authByCookies },
-} = require('../components/core');
+  authByCookies,
+} = require('../components/core/middlewares');
 
 // authentication middleware
 routes.use(authByCookies);

@@ -25,7 +25,7 @@ module.exports = class Schema {
     indexes,
     hasMany,
     ...opts
-  }) {
+  } = {}) {
     const schema = new m.Schema(paths, opts);
     const { methods, statics } = schema;
 
@@ -49,12 +49,12 @@ module.exports = class Schema {
   }
 
   get model() {
-    const { name, schema, model } = this;
-    const mm = model || m.model(name, schema);
+    const { name, schema, mm } = this;
+    this.mm = mm || m.model(name, schema);
 
-    mm.syncIndexes();
+    this.mm.syncIndexes();
 
-    return mm;
+    return this.mm;
   }
 
   enableVirtuals() {
@@ -64,7 +64,7 @@ module.exports = class Schema {
     s.set('toObject', { virtuals: true });
   }
 
-  unique(paths = {}, sparse) {
+  unique(paths = {}, sparse = false) {
     this.index({
       ...paths,
       ...(this.schema.path('deletedBy') && { deletedAt: 1 }),
