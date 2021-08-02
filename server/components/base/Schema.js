@@ -19,7 +19,13 @@ module.exports = class Schema {
     return ref ? { type, ref } : { type };
   }
 
-  constructor(name, paths, opts) {
+  constructor(name, paths, {
+    timestamps,
+    uniques,
+    indexes,
+    hasMany,
+    ...opts
+  }) {
     const schema = new m.Schema(paths, opts);
     const { methods, statics } = schema;
 
@@ -31,6 +37,11 @@ module.exports = class Schema {
       methods,
       statics,
     });
+
+    if (timestamps) this.timestamps(timestamps);
+    if (uniques) _.castArray(uniques).forEach((u) => this.unique(u));
+    if (indexes) _.castArray(indexes).forEach((i) => this.index(i));
+    if (hasMany) _.castArray(hasMany).forEach((h) => this.hasMany(h));
   }
 
   onConnected(fn) {
@@ -38,14 +49,12 @@ module.exports = class Schema {
   }
 
   get model() {
-    if (this.modelInst) return this.modelInst;
+    const { name, schema, model } = this;
+    const mm = model || m.model(name, schema);
 
-    const { name, schema } = this;
-    const model = m.model(name, schema);
+    mm.syncIndexes();
 
-    this.modelInst = model;
-
-    return model;
+    return mm;
   }
 
   enableVirtuals() {
@@ -56,12 +65,9 @@ module.exports = class Schema {
   }
 
   unique(paths = {}, sparse) {
-    this.schema.index({
+    this.index({
       ...paths,
-      ...(this.schema.path('deletedBy')
-        ? { deletedAt: 1 }
-        : {}
-      ),
+      ...(this.schema.path('deletedBy') && { deletedAt: 1 }),
     }, { unique: true, sparse });
   }
 

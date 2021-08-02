@@ -1,13 +1,11 @@
 const Schema = require('./Schema');
 
-module.exports = class Model {
+class Model {
   constructor(s, ...args) {
     this.schema = typeof s === 'string'
       ? new Schema(s, ...args) : s;
-  }
 
-  get model() {
-    return this.schema.model;
+    this.model = this.schema.model();
   }
 
   setter(v) {
@@ -78,4 +76,8 @@ module.exports = class Model {
     // hard delete
     return model.deleteMany(filter);
   }
-};
+}
+
+Model.Schema = Schema;
+
+module.exports = Model;

@@ -24,7 +24,7 @@ class AuthServ extends Service {
   }
 
   async basicStrag({ email, password }) {
-    const [u] = await this.find({ email });
+    const [u] = await this.find({ filter: { email } });
 
     if (!u) {
       this.throw(400, 'auth.invalidCredentials');
@@ -70,8 +70,10 @@ class AuthServ extends Service {
     }
 
     const [u] = await this.find({
-      _id: payload._id,
-      active: 1,
+      filter: {
+        _id: payload._id,
+        active: 1,
+      },
     });
 
     if (!u) {

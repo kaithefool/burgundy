@@ -23,6 +23,7 @@ if (env.MONGO_SSH_PASSWORD) {
 
 function connect() {
   db = mongoose.connect(env.MONGO_URI, {
+    autoIndex: false,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

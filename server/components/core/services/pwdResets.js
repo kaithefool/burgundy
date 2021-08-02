@@ -2,7 +2,9 @@ const ms = require('ms');
 const { DateTime } = require('luxon');
 
 const Service = require('../../base/Service');
-const { pwdResetsModel, usersModel } = require('../models');
+
+const pwdResetsModel = require('../models/pwdResets');
+const usersModel = require('../models/users');
 
 const {
   RESET_PWD_MAX_TIMES,

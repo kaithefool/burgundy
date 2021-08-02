@@ -1,8 +1,23 @@
+const { nanoid } = require('nanoid');
+const ms = require('ms');
+
 const Model = require('../../base/Model');
 
-class PwdReset extends Model {
-}
+const { Schema } = Model;
+const {
+  RESET_PWD_KEY_TTL,
+} = process.env;
 
-module.exports = new PwdReset('pwd_resets', {
-  softDelete: false,
+module.exports = new Model('pwdReset', {
+  verifyKey: {
+    type: String,
+    index: true,
+    default: nanoid,
+  },
+  user: Schema.ref('User'),
+  createdAt: {
+    type: Date,
+    expires: ms(RESET_PWD_KEY_TTL),
+    default: Date.now,
+  },
 });
