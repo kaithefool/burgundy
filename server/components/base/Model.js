@@ -15,9 +15,11 @@ class Model {
   // use setter to parse inputs
   // before create and update
   async parse(docs, action) {
-    const values = await Promise.all(
-      docs.map((d) => this.setter(d, action)),
-    );
+    const values = Array.isArray(docs)
+      ? await Promise.all(
+        docs.map((d) => this.setter(d, action)),
+      )
+      : await this.setter(docs, action);
 
     return values;
   }

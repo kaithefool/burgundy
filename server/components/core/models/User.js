@@ -13,10 +13,10 @@ class User extends Model {
         type: String,
         select: false,
       },
-      roles: [{
+      role: {
         type: String,
         enum: ['admin', 'client'],
-      }],
+      },
       ...paths,
     }, opts);
   }

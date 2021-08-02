@@ -20,6 +20,12 @@ class AuthServ extends Service {
   async authenticate(cred) {
     const u = await this.basicStrag(cred);
 
+    // record login time
+    await this.model.update(
+      { _id: u._id },
+      { lastLogin: new Date() },
+    );
+
     return this.signTokens(u);
   }
 
@@ -82,7 +88,7 @@ class AuthServ extends Service {
 
     // check if user has logged out
     // after the token was issued
-    if (u.last_logout > new Date(payload.iat * 1000)) {
+    if (u.lastLogout > new Date(payload.iat * 1000)) {
       this.throw(400, 'auth.loggedOut');
     }
 
@@ -101,7 +107,7 @@ class AuthServ extends Service {
   async logout(attrs, user) {
     if (user) {
       await this.model.update(
-        { last_logout: new Date() },
+        { lastLogout: new Date() },
         { _id: user._id },
       );
     }
