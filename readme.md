@@ -19,3 +19,8 @@ docker exec -it burgundy_server_1 sh
 - i18n
 
 ### Code generator
+
+
+### Remove packages
+luxon
+mysql

@@ -1,34 +1,28 @@
-const ms = require('ms');
-const { DateTime } = require('luxon');
-
+const mail = require('../../../lib/mail');
 const Service = require('../../base/Service');
-
 const pwdResetsModel = require('../models/pwdResets');
 const usersModel = require('../models/users');
 
 const {
   RESET_PWD_MAX_TIMES,
-  RESET_PWD_KEY_TTL,
 } = process.env;
-
-const ttl = ms(RESET_PWD_KEY_TTL);
 
 class PwdResetServ extends Service {
   async create({ email }) {
     const [u] = await usersModel.find({
-      filter: { email, active: 1 },
+      filter: { email, active: 1, deletedAt: null },
     });
 
     if (!u) this.throw(400, 'pwdResets.userNotExists');
     if (u.reset_locked) this.throw(400, 'pwdResets.maxAttemptsReached');
 
-    const resets = this.find({ user: u.id });
+    const resets = this.find({ filter: { user: u.id } });
 
     if (resets.length >= RESET_PWD_MAX_TIMES) {
       // prevent further reset emails
       await usersModel.update(
         { id: u.id },
-        { reset_locked: 1 },
+        { resetLocked: true },
       );
 
       // notify the client
@@ -36,29 +30,38 @@ class PwdResetServ extends Service {
     }
 
     // deactivate previous reset keys
-    await this.patch({ user: u.id }, { active: 0 });
+    await this.delete({ user: u.id });
 
-    const { insertId } = await super.create({
+    const [{ verifyKey }] = await super.create({
       user: u.id,
-      expires_at: DateTime.local()
-        .plus({ millisecond: ttl })
-        .toJSDate(),
     });
 
-    console.log('created pwd_reset: ', insertId);
+    // send email
+    mail.send({
+      template: 'pwdReset',
+      message: { to: u.email },
+      locals: {
+        verifyKey,
+        user: u,
+      },
+    });
   }
 
-  async verify({ id }) {
-    const [r] = await this.find({ id, active: 1 });
+  async verify({ verifyKey }, returnDoc = false) {
+    const [r] = await this.find({
+      filter: { verifyKey, active: 1 },
+    });
 
     if (!r) this.throw(400, 'pwdResets.invalidKey');
+    if (returnDoc) return r;
+
+    return null;
   }
 
-  async reset({ id, password }) {
-    const [r] = await this.find({ id, active: 1 });
+  async reset({ verifyKey, password }) {
+    const r = await this.verify({ verifyKey }, true);
 
-    if (!r) this.throw(400, 'pwdResets.invalidKey');
-
+    // make changes to user
     await usersModel.update(
       { id: r.user },
       { password },
