@@ -20,7 +20,6 @@ const defaultNamedRoutes = {
   },
   create: { method: 'post' },
   patch: { method: 'patch', path: '/:_id' },
-  batchPatch: {},
   delete: { method: 'delete', path: '/:_id' },
 };
 

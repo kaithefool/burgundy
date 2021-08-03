@@ -1,9 +1,9 @@
 const fs = require('fs-extra');
 const path = require('path');
-const { groupBy, forEach } = require('lodash');
+const _ = require('lodash');
 
 const Service = require('../../base/Service');
-const model = require('../models/i18n');
+const model = require('../models/i18ns');
 const env = require('../../../start/env');
 
 class I18nServ extends Service {
@@ -13,8 +13,8 @@ class I18nServ extends Service {
     this.exportAll();
   }
 
-  async toJSONFile(lng, ns, rows) {
-    const rr = rows || await this.find({ lng, ns });
+  async toJSONFile(lang, ns, rows) {
+    const rr = rows || await this.find({ lang, ns });
 
     const obj = this.model.toObj(rr);
 
@@ -23,7 +23,7 @@ class I18nServ extends Service {
         __dirname,
         '../../../',
         env.fileStorage.locales,
-        lng,
+        lang,
         `${ns}.json`,
       ),
       obj,
@@ -32,11 +32,11 @@ class I18nServ extends Service {
 
   async exportAll() {
     const p = [];
-    const locales = groupBy(await this.find(), 'lng');
+    const locales = _.groupBy(await this.find(), 'lang');
 
-    forEach(locales, (tt, lng) => (
-      forEach(groupBy(tt, 'ns'), (t, ns) => (
-        p.push(this.toJSONFile(lng, ns, t))
+    _.forEach(locales, (tt, lang) => (
+      _.forEach(_.groupBy(tt, 'ns'), (t, ns) => (
+        p.push(this.toJSONFile(lang, ns, t))
       ))
     ));
 
@@ -44,10 +44,10 @@ class I18nServ extends Service {
   }
 
   async upsert(attrs, user) {
-    const { lng, ns } = attrs;
+    const { lang, ns } = attrs;
     const v = await super.upsert(attrs, user);
 
-    await this.toJSONFile(lng, ns);
+    await this.toJSONFile(lang, ns);
 
     return v;
   }

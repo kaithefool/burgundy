@@ -7,8 +7,8 @@ docker exec -it burgundy_server_1 sh
 ```
 
 ### In process
-- Switching to mongodb
-  - update server/package.json
+- Catch duplicates error on create and update
+- Record createdBy, updatedBy and deletedBy in Model or Service
 
 ### Todos
 - Grid html editor
@@ -17,10 +17,3 @@ docker exec -it burgundy_server_1 sh
 - Code generator to generate resource models, apis and admin UI
 - Editable table cells
 - i18n
-
-### Code generator
-
-
-### Remove packages
-luxon
-mysql

@@ -13,7 +13,7 @@ i18next
   .init({
     lowerCaseLng: true,
     supportedLngs: LANG.split(','),
-    fallbackLng: 'en',
+    fallbackLng: LANG.split(',')[0],
     defaultNS: 'common',
     detection: {
       caches: ['cookie'],

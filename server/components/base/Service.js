@@ -35,8 +35,8 @@ class Service {
           : attrs,
       );
     } catch (e) {
-      if (e.code === 'ER_DUP_ENTRY') {
-        this.throw(400, e.sqlMessage);
+      if (e.name === 'MongoError' && e.code === 11000) {
+        this.throw(400, 'err.duplicates');
       }
 
       throw e;
@@ -57,7 +57,7 @@ class Service {
     return this.model.update(draft, { _id });
   }
 
-  delete({ _id }) {
+  delete({ _id }, user) {
     return this.model.delete({ _id });
   }
 }
