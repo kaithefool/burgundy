@@ -5,6 +5,7 @@ services:
     volumes:
       - ./.db:/data/db
   server:
+    platform: linux/amd64
     build:
       context: ./
       target: dev
