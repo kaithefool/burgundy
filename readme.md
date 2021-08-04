@@ -11,6 +11,8 @@ docker exec -it burgundy_server_1 sh
 - Record createdBy, updatedBy and deletedBy in Model or Service
 
 ### Todos
+- Update image and packages to use node:16-alpine
+  - dart-sass
 - Grid html editor
 - ListTable tabs to categorize columns
 - Base nav styles
