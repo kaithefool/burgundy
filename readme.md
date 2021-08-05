@@ -7,7 +7,7 @@ docker exec -it burgundy_server_1 sh
 ```
 
 ### In process
-- Update all services and models according changes from the parent classes
+- Update all services and models according to the changes from their parents
 
 ### Todos
 - Update image and packages to use node:16-alpine
