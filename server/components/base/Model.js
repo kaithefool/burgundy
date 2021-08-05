@@ -14,12 +14,22 @@ class Model {
 
   // use setter to parse inputs
   // before create and update
-  async parse(docs, action) {
+  async parse(docs, userId, action) {
+    // insert timestamp by
+    const setter = userId
+      ? async (...args) => {
+        const d = await this.setter(...args);
+
+        d[`${action}dBy`] = userId;
+
+        return d;
+      } : this.setter;
+
     const values = Array.isArray(docs)
       ? await Promise.all(
-        docs.map((d) => this.setter(d, action)),
+        docs.map((d) => setter(d, action)),
       )
-      : await this.setter(docs, action);
+      : await setter(docs, action);
 
     return values;
   }
@@ -49,30 +59,30 @@ class Model {
     return this.model.countDocuments(filter);
   }
 
-  async create(docs) {
+  async create(docs, { _id: userId } = {}) {
     const created = await this.model.create(
-      await this.parse(docs, 'create'),
+      await this.parse(docs, userId, 'create'),
     );
 
     return created;
   }
 
-  async update(filter, docs, opts) {
+  async update(filter, docs, { _id: userId } = {}, opts) {
     const updated = await this.model.update(
       filter,
-      await this.parse(docs, 'update'),
+      await this.parse(docs, userId, 'update'),
       opts,
     );
 
     return updated;
   }
 
-  delete(filter, by, softDelete = true) {
+  delete(filter, { _id: userId } = {}, softDelete = true) {
     const { model } = this;
 
     // soft delete
     if (softDelete && model.softDelete) {
-      return model.softDelete(filter, by);
+      return model.softDelete(filter, userId);
     }
 
     // hard delete

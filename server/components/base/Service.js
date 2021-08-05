@@ -1,4 +1,3 @@
-const { castArray } = require('lodash');
 const httpError = require('http-errors');
 
 class Service {
@@ -10,15 +9,43 @@ class Service {
     throw httpError(...args);
   }
 
-  find(filter) {
-    return this.model.find({ filter });
+  catch(err) {
+    if (err.name === 'MongoError' && err.code === 11000) {
+      this.throw(400, 'err.duplicates');
+    }
+
+    throw err;
   }
 
-  async list(opts) {
-    const { filter } = opts;
+  async try(fn) {
+    let data;
+
+    try {
+      data = await fn();
+    } catch (e) {
+      this.catch(e);
+    }
+
+    return data;
+  }
+
+  match(filter) {
+    return filter;
+  }
+
+  find(filter, user) {
+    return this.model.find({
+      filter: this.match(filter, user),
+    });
+  }
+
+  async list(opts, user) {
+    let { filter } = opts;
+
+    filter = this.match(filter, user);
 
     const [rows, total] = await Promise.all([
-      this.model.find(opts),
+      this.model.find({ ...opts, filter }),
       this.model.count(filter),
     ]);
 
@@ -26,39 +53,26 @@ class Service {
   }
 
   async create(attrs, user) {
-    let created;
-
-    try {
-      created = await this.model.insert(
-        user
-          ? castArray(attrs).map((a) => ({ ...a, created_by: user._id }))
-          : attrs,
-      );
-    } catch (e) {
-      if (e.name === 'MongoError' && e.code === 11000) {
-        this.throw(400, 'err.duplicates');
-      }
-
-      throw e;
-    }
-
-    return created;
+    return this.try(
+      () => this.model.create(attrs, user),
+    );
   }
 
-  upsert(attrs) {
-    return this.model.upsert(attrs);
-  }
-
-  patch(attrs, user) {
-    const { _id, ...draft } = attrs;
-
-    if (user) draft.updated_by = user._id;
-
-    return this.model.update(draft, { _id });
+  async patch({ _id, ...attrs }, user) {
+    return this.try(
+      () => this.model.update(
+        this.match({ _id }, user),
+        attrs,
+        user,
+      ),
+    );
   }
 
   delete({ _id }, user) {
-    return this.model.delete({ _id });
+    return this.model.delete(
+      this.match({ _id }, user),
+      user,
+    );
   }
 }
 

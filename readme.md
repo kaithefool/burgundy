@@ -7,8 +7,7 @@ docker exec -it burgundy_server_1 sh
 ```
 
 ### In process
-- Catch duplicates error on create and update
-- Record createdBy, updatedBy and deletedBy in Model or Service
+- Update all services and models according changes from the parent classes
 
 ### Todos
 - Update image and packages to use node:16-alpine
