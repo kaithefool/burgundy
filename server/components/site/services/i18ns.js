@@ -7,12 +7,6 @@ const model = require('../models/i18ns');
 const env = require('../../../start/env');
 
 class I18nServ extends Service {
-  constructor(...args) {
-    super(...args);
-
-    this.exportAll();
-  }
-
   async toJSONFile(lang, ns, rows) {
     const rr = rows || await this.find({ lang, ns });
 

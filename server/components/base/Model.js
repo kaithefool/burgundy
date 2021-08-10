@@ -5,7 +5,7 @@ class Model {
     this.schema = typeof s === 'string'
       ? new Schema(s, ...args) : s;
 
-    this.model = this.schema.model();
+    this.model = this.schema.model;
   }
 
   setter(v) {
