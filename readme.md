@@ -6,6 +6,9 @@ docker-compose up
 docker exec -it burgundy_server_1 sh
 ```
 
+- Generate the first admin user
+./server/bin/genadmin [username@domain.com] [password]
+
 ### In process
 
 
@@ -18,4 +21,3 @@ docker exec -it burgundy_server_1 sh
 - Code generator to generate resource models, apis and admin UI
 - Editable table cells
 - i18n
-- Command to create the first admin user
