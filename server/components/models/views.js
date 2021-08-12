@@ -1,4 +1,4 @@
-const Model = require('../../base/Model');
+const Model = require('../base/Model');
 
 class View extends Model {
 }

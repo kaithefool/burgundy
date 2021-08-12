@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const Model = require('../../base/Model');
+const Model = require('../base/Model');
 
 const {
   FILE_STORAGE_UPLOADS,

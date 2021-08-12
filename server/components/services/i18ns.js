@@ -2,9 +2,9 @@ const fs = require('fs-extra');
 const path = require('path');
 const _ = require('lodash');
 
-const Service = require('../../base/Service');
+const Service = require('../base/Service');
 const model = require('../models/i18ns');
-const env = require('../../../start/env');
+const env = require('../../start/env');
 
 class I18nServ extends Service {
   async toJSONFile(lang, ns, rows) {

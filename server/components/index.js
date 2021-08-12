@@ -4,17 +4,11 @@ const httpError = require('http-errors');
 const {
   authByHeader,
   authByCookies,
-} = require('./core/middlewares');
+} = require('./middlewares');
 
-const site = require('./site/routes');
-const core = require('./core/routes');
+const components = require('./routes');
 
 const api = Router();
-const components = Router();
-
-// component routes
-components.use('/site', site);
-components.use('/core', core);
 
 // catch 404 and forward to error handler
 components.use((req, res, next) => next(httpError(404)));

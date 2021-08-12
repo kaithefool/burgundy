@@ -1,4 +1,4 @@
-const Model = require('../../base/Model');
+const Model = require('../base/Model');
 const crypto = require('../helpers/crypto');
 
 class User extends Model {

@@ -1,6 +1,6 @@
 const { object } = require('yup');
 
-const { Routes } = require('../../base');
+const { Routes } = require('../base');
 const service = require('../services/users');
 const { email, password } = require('../validators');
 

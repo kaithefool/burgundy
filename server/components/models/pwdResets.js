@@ -1,7 +1,7 @@
 const { nanoid } = require('nanoid');
 const ms = require('ms');
 
-const Model = require('../../base/Model');
+const Model = require('../base/Model');
 
 const { Schema } = Model;
 const {
