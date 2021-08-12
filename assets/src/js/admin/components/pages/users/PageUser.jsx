@@ -13,7 +13,7 @@ const PageUser = ({ match }) => {
   return (
     <Doc
       id={id}
-      api={{ url: '/api/core/users' }}
+      api={{ url: '/api/users' }}
     >
       {(user) => (
         <Page
@@ -26,7 +26,7 @@ const PageUser = ({ match }) => {
         >
           <Form
             api={{
-              url: `/api/core/users/${user ? id : ''}`,
+              url: `/api/users/${user ? id : ''}`,
               method: user ? 'patch' : 'post',
             }}
             stored={user}

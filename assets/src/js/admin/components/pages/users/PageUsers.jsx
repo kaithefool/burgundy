@@ -16,7 +16,7 @@ const PageUsers = () => {
       header={{ title: 'Users' }}
     >
       <List
-        api={{ url: '/api/core/users' }}
+        api={{ url: '/api/users' }}
         selectable
       >
         {({ selected }) => {

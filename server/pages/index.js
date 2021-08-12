@@ -5,7 +5,7 @@ const {
 
 const {
   authByCookies,
-} = require('../components/core/middlewares');
+} = require('../components/middlewares');
 
 // authentication middleware
 routes.use(authByCookies);
@@ -21,7 +21,7 @@ routes.use(({ csrfToken }, res, next) => {
 });
 
 routes.get('/logout', (req, res) => (
-  res.redirect('/api/core/auth/logout?web=1&redirect=1')
+  res.redirect('/api/auth/logout?web=1&redirect=1')
 ));
 
 routes.use(

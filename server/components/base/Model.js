@@ -12,6 +12,17 @@ class Model {
     return v;
   }
 
+  matcher(filter) {
+    if (this.model.softDelete) {
+      return {
+        ...filter,
+        deletedAt: null,
+      };
+    }
+
+    return filter;
+  }
+
   // use setter to parse inputs
   // before create and update
   async parse(docs, userId, action) {
@@ -45,7 +56,7 @@ class Model {
     limit = 10,
     select,
   }) {
-    const q = this.model.find(filter);
+    const q = this.model.find(this.matcher(filter));
 
     if (sort) q.sort(sort);
     if (skip) q.skip(skip);
@@ -56,7 +67,7 @@ class Model {
   }
 
   count(filter) {
-    return this.model.countDocuments(filter);
+    return this.model.countDocuments(this.matcher(filter));
   }
 
   async create(docs, { _id: userId } = {}) {
@@ -69,7 +80,7 @@ class Model {
 
   async update(filter, docs, { _id: userId } = {}, opts) {
     const updated = await this.model.update(
-      filter,
+      this.matcher(filter),
       await this.parse(docs, userId, 'update'),
       opts,
     );
@@ -82,11 +93,11 @@ class Model {
 
     // soft delete
     if (softDelete && model.softDelete) {
-      return model.softDelete(filter, userId);
+      return model.softDelete(this.matcher(filter), userId);
     }
 
     // hard delete
-    return model.deleteMany(filter);
+    return model.deleteMany(this.matcher(filter));
   }
 }
 

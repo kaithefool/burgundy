@@ -19,14 +19,24 @@ module.exports = class Schema {
     return ref ? { type, ref } : { type };
   }
 
+  static onConnected(fn) {
+    m.connection.on('connected', fn);
+  }
+
   constructor(name, paths, {
     timestamps,
     uniques,
     indexes,
     hasMany,
+    toJSON = { virtuals: true },
+    toObject = { virtuals: true },
     ...opts
   } = {}) {
-    const schema = new m.Schema(paths, opts);
+    const schema = new m.Schema(paths, {
+      toJSON,
+      toObject,
+      ...opts,
+    });
     const { methods, statics } = schema;
 
     Object.assign(this, {
@@ -44,10 +54,6 @@ module.exports = class Schema {
     if (hasMany) _.castArray(hasMany).forEach((h) => this.hasMany(h));
   }
 
-  onConnected(fn) {
-    m.connection.on('connected', fn);
-  }
-
   get model() {
     const { name, schema, mm } = this;
     this.mm = mm || m.model(name, schema);
@@ -55,13 +61,6 @@ module.exports = class Schema {
     this.mm.syncIndexes();
 
     return this.mm;
-  }
-
-  enableVirtuals() {
-    const { schema: s } = this;
-
-    s.set('toJSON', { virtuals: true });
-    s.set('toObject', { virtuals: true });
   }
 
   unique(paths = {}, sparse = false) {
@@ -85,8 +84,6 @@ module.exports = class Schema {
         ? 'parent'
         : _.camelCase(this.name),
     });
-
-    this.enableVirtuals();
   }
 
   softDelete() {
@@ -118,7 +115,11 @@ module.exports = class Schema {
     });
 
     if (deleted) {
-      s.path('deletedAt', { type: Date, default: null });
+      s.path('deletedAt', {
+        type: Date,
+        default: null,
+        select: false,
+      });
       this.softDelete();
     }
 
@@ -135,6 +136,5 @@ module.exports = class Schema {
 
   getter(prop, fn) {
     this.schema.virtual(prop).get(fn);
-    this.enableVirtuals();
   }
 };

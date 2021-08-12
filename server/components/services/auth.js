@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { pick } = require('lodash');
 
-const Service = require('../../base/Service');
+const Service = require('../base/Service');
 const usersModel = require('../models/users');
 
 const {
@@ -30,7 +30,10 @@ class AuthServ extends Service {
   }
 
   async basicStrag({ email, password }) {
-    const [u] = await this.find({ filter: { email } });
+    const [u] = await this.find({
+      filter: { email },
+      select: '+password',
+    });
 
     if (!u) {
       this.throw(400, 'auth.invalidCredentials');

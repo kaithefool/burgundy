@@ -13,9 +13,9 @@ const defaultNamedRoutes = {
   find: {
     path: '/:_id',
     response: (req, res) => {
-      const { out } = res.locals;
+      const { out: [o] = [] } = res.locals;
 
-      return out ? res.json(out[0]) : res.status(404).end();
+      return o ? res.json(o) : res.status(404).end();
     },
   },
   create: { method: 'post' },

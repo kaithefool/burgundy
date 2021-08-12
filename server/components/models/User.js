@@ -18,7 +18,15 @@ class User extends Model {
         enum: ['admin', 'client'],
       },
       ...paths,
-    }, opts);
+    }, {
+      ...opts,
+      toJSON: {
+        virtuals: true,
+        transform: ({
+          _doc: { password, ...v },
+        }) => v,
+      },
+    });
   }
 
   comparePwd(pwd, hash) {

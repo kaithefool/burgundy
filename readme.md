@@ -7,7 +7,7 @@ docker exec -it burgundy_server_1 sh
 ```
 
 ### In process
-- Update all services and models according to the changes from their parents
+
 
 ### Todos
 - Update image and packages to use node:16-alpine
@@ -18,3 +18,4 @@ docker exec -it burgundy_server_1 sh
 - Code generator to generate resource models, apis and admin UI
 - Editable table cells
 - i18n
+- Command to create the first admin user

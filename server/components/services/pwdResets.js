@@ -1,5 +1,5 @@
-const mail = require('../../../lib/mail');
-const Service = require('../../base/Service');
+const mail = require('../../lib/mail');
+const Service = require('../base/Service');
 const pwdResetsModel = require('../models/pwdResets');
 const usersModel = require('../models/users');
 

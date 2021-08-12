@@ -27,7 +27,7 @@ const FormLogin = () => {
         password: '',
         presist: false,
       }}
-      api={{ url: '/api/core/auth' }}
+      api={{ url: '/api/auth' }}
       onSubmitted={() => window.location.reload()}
     >
       <div className="row align-items-end">

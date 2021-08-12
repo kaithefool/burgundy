@@ -17,7 +17,7 @@ module.exports = (key, service, {
     } = req;
 
     const found = await service[fn]({
-      [prop]: params[key],
+      filter: { [prop]: params[key] },
     }, user);
 
     if (!found) return res.status(404).end();
