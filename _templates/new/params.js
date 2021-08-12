@@ -3,10 +3,9 @@ const c = require('change-case');
 
 module.exports = ({ args }) => {
   const { name } = args;
-  const [ns, resource] = name.split('/');
   
-  const singular = s.singularize(resource);
-  const plural = resource;
+  const singular = s.singularize(name);
+  const plural = name;
   const n = {
     singular: {
       snake: c.snake(singular),
@@ -26,7 +25,6 @@ module.exports = ({ args }) => {
 
   return {
     ...args,
-    ns,
     n,
   };
 };

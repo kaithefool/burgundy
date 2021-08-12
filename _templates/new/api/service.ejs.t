@@ -1,7 +1,7 @@
 ---
 to: server/components/<%= ns %>/services/<%= n.plural.camel %>.js
 ---
-const Service = require('../../base/Service');
+const Service = require('../base/Service');
 const model = require('../models/<%= n.plural.camel %>');
 
 class <%= n.singular.pascal %>Serv extends Service {
