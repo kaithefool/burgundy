@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+require('../start');
+const users = require('../components/services/users');
+
+const [, ,
+  email = 'admin@d.com',
+  password = '123$5^7*(0',
+] = process.argv;
+
+(async () => {
+  await users.create({
+    email, password, role: 'admin',
+  });
+
+  console.log(
+    'Created admin user: ',
+    `[email: ${email}, password: ${password}]`,
+  );
+
+  process.exit();
+})();

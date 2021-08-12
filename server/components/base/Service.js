@@ -33,9 +33,10 @@ class Service {
     return filter;
   }
 
-  find(filter, user) {
+  find(filter, user, opts) {
     return this.model.find({
       filter: this.match(filter, user),
+      ...opts,
     });
   }
 

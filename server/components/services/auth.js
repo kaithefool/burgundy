@@ -21,9 +21,8 @@ class AuthServ extends Service {
     const u = await this.basicStrag(cred);
 
     // record login time
-    await this.model.update(
-      { _id: u._id },
-      { lastLogin: new Date() },
+    await this.patch(
+      { _id: u._id, lastLogin: new Date() },
     );
 
     return this.signTokens(u);
@@ -31,9 +30,8 @@ class AuthServ extends Service {
 
   async basicStrag({ email, password }) {
     const [u] = await this.find({
-      filter: { email },
-      select: '+password',
-    });
+      email,
+    }, null, { select: '+password' });
 
     if (!u) {
       this.throw(400, 'auth.invalidCredentials');
@@ -79,10 +77,8 @@ class AuthServ extends Service {
     }
 
     const [u] = await this.find({
-      filter: {
-        _id: payload._id,
-        active: 1,
-      },
+      _id: payload._id,
+      active: 1,
     });
 
     if (!u) {
@@ -109,9 +105,8 @@ class AuthServ extends Service {
 
   async logout(attrs, user) {
     if (user) {
-      await this.model.update(
-        { lastLogout: new Date() },
-        { _id: user._id },
+      await this.patch(
+        { _id: user._id, lastLogout: new Date() },
       );
     }
   }
