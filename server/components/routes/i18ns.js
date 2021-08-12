@@ -18,8 +18,6 @@ module.exports = new Routes({
   },
 }, {
   list: true,
-  upsert: {
-    method: 'put',
-  },
+  create: true,
   delete: true,
 });

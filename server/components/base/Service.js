@@ -58,14 +58,19 @@ class Service {
     );
   }
 
-  async patch({ _id, ...attrs }, user) {
+  async patchBy(filter, attrs, user, opts) {
     return this.try(
       () => this.model.update(
-        this.match({ _id }, user),
+        this.match(filter, user),
         attrs,
         user,
+        opts,
       ),
     );
+  }
+
+  async patch({ _id, ...attrs }, user) {
+    return this.patchBy({ _id }, attrs, user);
   }
 
   delete({ _id }, user) {

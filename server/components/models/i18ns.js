@@ -4,6 +4,7 @@ const { LANG } = process.env;
 
 module.exports = new Model('I18n', {
   path: { type: String, required: true },
+  ns: String,
   lang: {
     type: String,
     required: true,

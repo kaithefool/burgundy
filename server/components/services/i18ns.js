@@ -4,23 +4,34 @@ const _ = require('lodash');
 
 const Service = require('../base/Service');
 const model = require('../models/i18ns');
-const env = require('../../start/env');
+
+const { FILE_STORAGE_LOCALES } = process.env;
 
 class I18nServ extends Service {
-  async toJSONFile(lang, ns, rows) {
-    const rr = rows || await this.find({ lang, ns });
+  constructor(...args) {
+    super(...args);
+    this.exportAll();
+  }
 
-    const obj = this.model.toObj(rr);
+  async export(lang, ns, rows) {
+    const rr = rows || await this.find({
+      filter: { lang, ns },
+    });
+    const o = {};
+
+    rr.forEach((r) => {
+      _.set(o, r.path, r.translation);
+    });
 
     await fs.outputJSON(
       path.resolve(
         __dirname,
         '../../../',
-        env.fileStorage.locales,
+        FILE_STORAGE_LOCALES,
         lang,
         `${ns}.json`,
       ),
-      obj,
+      o,
     );
   }
 
@@ -30,18 +41,23 @@ class I18nServ extends Service {
 
     _.forEach(locales, (tt, lang) => (
       _.forEach(_.groupBy(tt, 'ns'), (t, ns) => (
-        p.push(this.toJSONFile(lang, ns, t))
+        p.push(this.export(lang, ns, t))
       ))
     ));
 
     await Promise.all(p);
   }
 
-  async upsert(attrs, user) {
+  async create(attrs, user) {
     const { lang, ns } = attrs;
-    const v = await super.upsert(attrs, user);
+    const v = await super.patchBy(
+      { lang, ns },
+      attrs,
+      user,
+      { upsert: true },
+    );
 
-    await this.toJSONFile(lang, ns);
+    await this.export(lang, ns);
 
     return v;
   }
