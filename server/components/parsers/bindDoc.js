@@ -5,7 +5,7 @@
  * @param  {Object} options
  * @return {Function}           middleware
  */
-exports.bindDoc = (key, service, {
+module.exports = (key, service, {
   fn = 'find',
   prop = '_id',
 } = {}) => (

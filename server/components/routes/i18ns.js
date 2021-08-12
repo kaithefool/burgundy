@@ -1,7 +1,7 @@
 const { object, string } = require('yup');
 
 const { Routes } = require('../base');
-const service = require('../site/services/i18ns');
+const service = require('../services/i18ns');
 
 const schema = object({
   lang: string().max(10).required(),

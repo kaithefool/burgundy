@@ -1,7 +1,7 @@
 const { object, string } = require('yup');
 
 const { Routes } = require('../base');
-const service = require('../core/services/pwdResets');
+const service = require('../services/pwdResets');
 const { email, password } = require('../validators');
 
 module.exports = new Routes({

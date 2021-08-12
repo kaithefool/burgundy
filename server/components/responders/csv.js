@@ -20,7 +20,7 @@ function csvHeader(mapping) {
   ));
 }
 
-exports.csv = (opts) => (req, res) => {
+module.exports = (opts) => (req, res) => {
   const { out } = res.locals;
   const BOM = String.fromCharCode(0xFEFF);
   const stringifier = csv(); // csv stringifier

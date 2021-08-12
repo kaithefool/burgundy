@@ -1,5 +1,5 @@
 const { Routes } = require('../base');
-const service = require('../core/services/files');
+const service = require('../services/files');
 
 module.exports = new Routes({
   service,

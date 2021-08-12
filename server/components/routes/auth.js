@@ -1,7 +1,7 @@
 const { object, string } = require('yup');
 
 const { Routes } = require('../base');
-const service = require('../core/services/auth');
+const service = require('../services/auth');
 const authCookies = require('../helpers/authCookies');
 const { email } = require('../validators');
 
