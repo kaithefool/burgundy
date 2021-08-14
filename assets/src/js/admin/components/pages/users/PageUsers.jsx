@@ -53,10 +53,10 @@ const PageUsers = () => {
               <List.Status>
                 <List.Table
                   cols={[
-                    { key: 'email', sortable: true, editable: true },
+                    { key: 'email', sortable: true },
                   ]}
-                  onRowClick={({ id }) => {
-                    // history.push(path.resolve(id));
+                  onRowClick={({ _id }) => {
+                    history.push(path.resolve(_id));
                   }}
                 />
               </List.Status>

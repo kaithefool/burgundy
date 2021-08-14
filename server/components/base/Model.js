@@ -59,8 +59,8 @@ class Model {
     const q = this.model.find(this.matcher(filter));
 
     if (sort) q.sort(sort);
-    if (skip) q.skip(skip);
-    if (limit) q.limit(limit);
+    if (skip) q.skip(parseInt(skip, 10));
+    if (limit) q.limit(parseInt(limit, 10));
     if (select) q.select(select);
 
     return q;
