@@ -23,13 +23,13 @@ const Nav = ({
         bg-primary text-white
       `}
     >
-      {/* <button
+      <button
         type="button"
-        className="btn btn-sm btn-link link-light"
+        className="btn btn-sm btn-primary rounded-circle position-absolute"
         onClick={() => setExpanded(!expanded)}
       >
         <FA icon={expanded ? faChevronLeft : faChevronRight} />
-      </button> */}
+      </button>
       <div className="nav align-self-center flex-column">
         {links.map((g, i) => (
           <Fragment key={i}>
