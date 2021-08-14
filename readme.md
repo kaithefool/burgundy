@@ -7,7 +7,7 @@ docker exec -it burgundy_server_1 sh
 ```
 
 - Generate the first admin user
-./server/bin/genadmin [username@domain.com] [password]
+./server/bin/gen-admin [username@domain.com] [password]
 
 ### In process
 
