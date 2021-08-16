@@ -1,7 +1,7 @@
 ---
-to: server/components/<%= ns %>/routes/<%= n.plural.camel %>.js
+to: server/components/routes/<%= n.plural.camel %>.js
 ---
-const { Routes } = require('../../base');
+const { Routes } = require('../base');
 const service = require('../services/<%= n.plural.camel %>');
 
 module.exports = new Routes({
