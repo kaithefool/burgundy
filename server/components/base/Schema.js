@@ -87,7 +87,7 @@ module.exports = class Schema {
   }
 
   softDelete() {
-    this.schema.statics.softDelete = function softDelete(_ids, by) {
+    this.schema.statics.softDelete = function softDelete(filter, by) {
       const { schema } = this;
       const mark = { deletedAt: new Date() };
 
@@ -95,10 +95,10 @@ module.exports = class Schema {
         mark.deletedBy = by;
       }
 
-      return this.updateMany({ _id: _ids }, mark);
+      return this.updateMany(filter, mark);
     };
     this.schema.methods.softDelete = function softDelete(by) {
-      this.constructor.softDelete(this._id, by);
+      this.constructor.softDelete({ _id: this._id }, by);
     };
   }
 
