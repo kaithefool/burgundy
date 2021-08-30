@@ -5,7 +5,7 @@ const {
 
 const {
   authByCookies,
-} = require('../components/middlewares');
+} = require('../api/middlewares');
 
 // authentication middleware
 routes.use(authByCookies);

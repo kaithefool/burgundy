@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 require('../start');
-const users = require('../components/services/users');
+const users = require('../api/services/users');
 
 const [, ,
   email = 'admin@d.com',

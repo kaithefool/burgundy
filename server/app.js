@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const i18n = require('./start/i18n');
-const api = require('./components');
+const api = require('./api');
 const pages = require('./pages');
 
 const app = express();

@@ -14,7 +14,7 @@ docker exec -it burgundy_server_1 sh
 
 ### Todos
 - Update image and packages to use node:16-alpine
-  - dart-sass
+  - dart-sass? node-sass/libsass seems to be faster
 - Grid html editor
 - ListTable tabs to categorize columns
 - Base nav styles
