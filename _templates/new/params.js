@@ -13,6 +13,7 @@ module.exports = ({ args }) => {
       camel: c.camel(singular),
       path: c.path(singular),
       title: c.title(singular),
+      param: c.param(singular),
     },
     plural: {
       snake: c.snake(plural),
@@ -20,6 +21,7 @@ module.exports = ({ args }) => {
       camel: c.camel(plural),
       path: c.path(plural),
       title: c.title(plural),
+      param: c.param(plural),
     },
   };
 
