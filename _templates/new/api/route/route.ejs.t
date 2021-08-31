@@ -1,5 +1,5 @@
 ---
-to: server/components/routes/<%= n.plural.camel %>.js
+to: server/api/routes/<%= n.plural.camel %>.js
 ---
 const { Routes } = require('../base');
 const service = require('../services/<%= n.plural.camel %>');

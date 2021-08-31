@@ -18,5 +18,11 @@ docker exec -it burgundy_server_1 sh
 - Grid html editor
 - ListTable tabs to categorize columns
 - Base nav styles
-- Editable table cells
+- Table
+  - Editable table cells
+  - Remember filter settings for back button?
+  - Make table rows into links (for right click new tab)
+- Access Logs
+  - Parser or middleware?
+  - Capped collection
 - i18n

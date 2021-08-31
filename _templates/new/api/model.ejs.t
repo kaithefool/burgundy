@@ -1,5 +1,5 @@
 ---
-to: server/components/models/<%= n.plural.camel %>.js
+to: server/api/models/<%= n.plural.camel %>.js
 ---
 const Model = require('../base/Model');
 
