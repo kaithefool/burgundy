@@ -22,7 +22,7 @@ docker exec -it burgundy_server_1 sh
   - Editable table cells
   - Remember filter settings for back button?
   - Make table rows into links (for right click new tab)
-- Access Logs
-  - Parser or middleware?
-  - Capped collection
 - i18n
+- Files
+  - Purge temp files
+- Deploy script
