@@ -1,12 +1,9 @@
 const Router = require('express');
 const httpError = require('http-errors');
 
-const {
-  authByHeader,
-  authByCookies,
-} = require('./middlewares');
-
 const routes = require('./routes');
+const authByHeader = require('./parsers/authByHeader');
+const authByCookies = require('./parsers/authByCookies');
 
 const api = Router();
 

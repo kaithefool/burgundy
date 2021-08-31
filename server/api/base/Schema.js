@@ -1,5 +1,6 @@
 const m = require('mongoose');
 const _ = require('lodash');
+const ms = require('ms');
 
 const { LANG } = process.env;
 const { ObjectId } = m.Schema.Types;
@@ -17,6 +18,16 @@ module.exports = class Schema {
     const type = ObjectId;
 
     return ref ? { type, ref } : { type };
+  }
+
+  static fromNow(duration) {
+    return () => {
+      const d = new Date();
+
+      d.setTime(d.getTime() + ms(duration));
+
+      return d;
+    };
   }
 
   static onConnected(fn) {
