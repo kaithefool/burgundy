@@ -25,4 +25,5 @@ docker exec -it burgundy_server_1 sh
 - i18n
 - Files
   - Purge temp files
-- Deploy script
+- Deploy script (PM2?)
+- Import csv template

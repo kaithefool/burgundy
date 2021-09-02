@@ -24,12 +24,13 @@ module.exports = (opts) => (req, res) => {
   const { out } = res.locals;
   const BOM = String.fromCharCode(0xFEFF);
   const stringifier = csv(); // csv stringifier
+  const { filename = 'export.csv' } = opts;
   let { mapping } = opts;
 
   if (typeof mapping === 'function') mapping = mapping(out, req);
 
   // setup http headers
-  res.attachment('export.csv');
+  res.attachment(filename);
 
   // indicate the file is encoded in utf-8
   res.write(BOM);

@@ -1,58 +1,34 @@
 const _ = require('lodash');
 const multer = require('multer');
-const shortid = require('shortid');
-const path = require('path');
 const csv = require('csv-parse');
 
-const { fuzzyKey } = require('../helpers');
+const fuzzyKey = (obj, key, {
+  caseInsensitive = true,
+  trim = true,
+  singleSpace = false,
+  wordsOnly = true,
+  ignoreSpace = true,
+} = {}) => {
+  // match exact first
+  if (!(key instanceof RegExp) && obj[key] !== undefined) {
+    return key;
+  }
 
-const { FILE_STORAGE_TMP } = process.env;
+  const match = Object.keys(obj).find((k) => {
+    let ke = k;
 
-const storage = multer.diskStorage({
-  destination: `../${FILE_STORAGE_TMP}`,
-  filename(req, file, cb) {
-    const ext = path.extname(file.originalname);
-    const name = shortid.generate();
+    if (caseInsensitive) ke = ke.toLowerCase();
+    if (trim) ke = ke.trim();
+    if (singleSpace) ke = ke.replace(/ +(?= )/g, '');
+    if (wordsOnly) ke = ke.replace(/[^ \w]/g, '');
+    if (ignoreSpace) ke = ke.replace(' ', '');
 
-    cb(null, `${name}${ext}`);
-  },
-});
+    if (key instanceof RegExp) return key.test(ke);
 
-function parseFile({
-  originalname,
-  filename,
-  mimetype,
-  size,
-}) {
-  return {
-    originalname,
-    filename,
-    mimetype,
-    size,
-  };
-}
-
-exports.upload = (component, settings = {}) => {
-  if (!component) throw new Error('Missing parameter: component');
-
-  const { field = 'file' } = settings;
-  const upload = multer({
-    storage,
-    ..._.omit(settings, 'field'),
+    return key === ke;
   });
 
-  return [
-    upload.single(field),
-    async (req, res, next) => {
-      req.attrs = {
-        ...req.attrs,
-        ...parseFile(req.file),
-        component,
-      };
-
-      return next();
-    },
-  ];
+  return match;
 };
 
 const fuzzyMap = (rows = [], cols) => {
@@ -88,20 +64,22 @@ const fuzzyMap = (rows = [], cols) => {
 };
 
 module.exports = ({
-  uploadSettings = {},
+  uploadSettings: {
+    field = 'file',
+    ...uploadSettings
+  } = {},
   parserSettings = {},
   mapping,
 } = {}) => {
-  const { field = 'file' } = uploadSettings;
   const upload = multer({
     storage: multer.memoryStorage(),
-    ..._.omit(uploadSettings, 'field'),
+    ...uploadSettings,
   });
 
   return [
     upload.single(field),
     (req, res, next) => {
-      const input = req.file.buffer.toString();
+      const input = req[field].buffer.toString();
 
       csv(input, {
         columns: true,
