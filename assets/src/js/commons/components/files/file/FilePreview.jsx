@@ -15,20 +15,21 @@ const FilePreview = ({
 }) => {
   const { file } = useFile();
   const [display, setDisplay] = useState(null);
+  const previewable = isPreviewable(file?.type);
 
   useEffect(() => {
-    if (isPreviewable(file?.mime)) {
+    if (previewable) {
       if (file instanceof File) {
         setDisplay(URL.createObjectURL(file));
       } else {
-        setDisplay(file.url);
+        setDisplay(`/uploads/${file.path}`);
       }
     } else {
       setDisplay(null);
     }
   }, [
     file instanceof File,
-    isPreviewable(file?.mime),
+    previewable,
     file?.name,
     file?.lastModified,
   ]);
@@ -37,7 +38,7 @@ const FilePreview = ({
     <div
       className={className}
       style={{ backgroundImage: `url('${display}')` }}
-    ></div>
+    />
   );
 };
 

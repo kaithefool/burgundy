@@ -20,6 +20,15 @@ module.exports = class Schema {
     return ref ? { type, ref } : { type };
   }
 
+  static file() {
+    return {
+      path: { type: String, required: true },
+      name: { type: String, required: true },
+      type: { type: String, required: true },
+      size: Number,
+    };
+  }
+
   static fromNow(duration) {
     return () => {
       const d = new Date();

@@ -22,8 +22,8 @@ function parseUpload({
 }) {
   return {
     path: filename,
-    originalname,
-    mimetype,
+    name: originalname,
+    type: mimetype,
     size,
   };
 }

@@ -6,7 +6,7 @@ import Error from '../../util/Error';
 
 const FileStatus = () => {
   const {
-    uploadHttp: { res },
+    http: { res },
   } = useFile();
   const { progress, status } = res;
 
