@@ -8,7 +8,7 @@ import form from '../../../helpers/form';
 const FolderProvider = ({
   api,
   initValue = [],
-  multiple = false,
+  multiple = false, // Boolean or max no. of files
   onChange = () => {},
   reorderable = false,
   accept,
@@ -18,7 +18,7 @@ const FolderProvider = ({
   const [files, setFiles] = useState(initValue);
 
   const push = (fs) => {
-    const err = form.validateFolder(fs, { accept, maxSize });
+    const err = form.validateFiles(fs, { accept, maxSize });
 
     if (multiple) {
       setFiles(files.concat(fs).slice(0, Number(multiple)));
@@ -32,11 +32,8 @@ const FolderProvider = ({
     onChange(draft.filter((d) => d && !(d instanceof File)));
   };
 
-  const change = (index, value) => {
-    const args = [index, value];
-
-    if (value) args.push(value);
-    update([...files].splice(args));
+  const replace = (index, value) => {
+    update([...files].splice(index, 1, value));
   };
 
   const value = {
@@ -46,7 +43,7 @@ const FolderProvider = ({
     files,
     push,
     update,
-    change,
+    replace,
   };
 
   return (

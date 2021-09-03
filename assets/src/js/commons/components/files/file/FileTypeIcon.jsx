@@ -62,7 +62,7 @@ const mimes = [
 ];
 
 const mimeToIcon = (mime) => {
-  const [type] = mime.split(',');
+  const [type] = mime.split('/');
 
   // media icons
   const media = {
