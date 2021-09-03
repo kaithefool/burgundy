@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import File from './file';
+import File from '../file';
 
-import FilesContext from './FilesContext';
-import form from '../../helpers/form';
+import FolderContext from './FolderContext';
+import form from '../../../helpers/form';
 
-const FilesProvider = ({
+const FolderProvider = ({
   api,
   initValue = [],
   multiple = false,
@@ -18,7 +18,7 @@ const FilesProvider = ({
   const [files, setFiles] = useState(initValue);
 
   const push = (fs) => {
-    const err = form.validateFiles(fs, { accept, maxSize });
+    const err = form.validateFolder(fs, { accept, maxSize });
 
     if (multiple) {
       setFiles(files.concat(fs).slice(0, Number(multiple)));
@@ -50,10 +50,10 @@ const FilesProvider = ({
   };
 
   return (
-    <FilesContext.Provider value={value}>
+    <FolderContext.Provider value={value}>
       {typeof children === 'function' ? children(value) : children}
-    </FilesContext.Provider>
+    </FolderContext.Provider>
   );
 };
 
-export default FilesProvider;
+export default FolderProvider;

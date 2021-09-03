@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
 
-import useFiles from './useFiles';
+import useFolder from './useFolder';
 
-const FilesClick = ({
+const FolderClick = ({
   className = 'py-3 text-center',
   children,
   ...props
 }) => {
   const input = useRef();
-  const { push, accept } = useFiles();
+  const { push, accept } = useFolder();
 
   return (
     <div
@@ -22,7 +22,9 @@ const FilesClick = ({
     >
       {children || (
         <h6>
-          Drag &amp; Drop your files or <u>Browse</u>
+          Drag &amp; Drop your files or
+          {' '}
+          <u>Browse</u>
         </h6>
       )}
       <div className="position-relative opacity-0 overflow-hidden">
@@ -40,4 +42,4 @@ const FilesClick = ({
   );
 };
 
-export default FilesClick;
+export default FolderClick;

@@ -36,7 +36,8 @@ const FormField = ({
       ${className}
       ${isFormCheck ? 'form-check' : ''}
       ${type === 'switch' ? 'form-switch' : ''}
-    `}>
+    `}
+    >
       {!isFormCheck && l}
       <Field
         id={id}

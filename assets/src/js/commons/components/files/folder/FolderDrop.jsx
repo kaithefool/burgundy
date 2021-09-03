@@ -3,13 +3,13 @@ import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
 
-import useFiles from './useFiles';
+import useFolder from './useFolder';
 
-const FilesDrop = ({
+const FolderDrop = ({
   children,
   className,
 }) => {
-  const { push } = useFiles();
+  const { push } = useFolder();
   const [backdrop, setBackdrop] = useState(false);
   // account for dragging between parent and children
   const dragIn = useRef(0);
@@ -42,7 +42,8 @@ const FilesDrop = ({
           <div className={`
             text-white display-4
             position-absolute top-50 start-50 translate-middle
-          `}>
+          `}
+          >
             <FA icon={faCloudUploadAlt} />
           </div>
         </div>
@@ -51,4 +52,4 @@ const FilesDrop = ({
   );
 };
 
-export default FilesDrop;
+export default FolderDrop;
