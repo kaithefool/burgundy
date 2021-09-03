@@ -10,7 +10,6 @@ const FolderProvider = ({
   initValue = [],
   multiple = false, // Boolean or max no. of files
   onChange = () => {},
-  reorderable = false,
   accept,
   maxSize,
   children,
