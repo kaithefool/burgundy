@@ -30,8 +30,7 @@ const FilePreview = ({
   }, [
     file instanceof File,
     previewable,
-    file?.name,
-    file?.lastModified,
+    file?.path || file?.key,
   ]);
 
   return display && (

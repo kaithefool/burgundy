@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 
 import { useHttpFileUpload } from '../../../hooks/useHttp';
 import FileContext from './FileContext';
+import useFolder from '../folder/useFolder';
 
 const FileProvider = ({
-  api,
   file,
   onChange = () => {},
   children,
 }) => {
+  const { api } = useFolder();
   const http = useHttpFileUpload();
 
   // halt upload process
@@ -24,8 +25,7 @@ const FileProvider = ({
     }
   }, [
     file instanceof File,
-    file?.name,
-    file?.lastModified,
+    file?.path || file?.key,
   ]);
 
   useEffect(() => {
