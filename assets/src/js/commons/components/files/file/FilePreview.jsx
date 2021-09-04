@@ -37,7 +37,7 @@ const FilePreview = ({
     <div
       className={className}
       style={{ backgroundImage: `url('${display}')` }}
-    ></div>
+    />
   );
 };
 

@@ -30,9 +30,8 @@ function parseUpload({
 
 exports.upload = ({
   field = 'file',
-  ref,
   settings = {},
-}) => {
+} = {}) => {
   const upload = multer({
     storage,
     ...settings,
@@ -44,7 +43,6 @@ exports.upload = ({
       req.attrs = {
         ...req.attrs,
         ...parseUpload(req.file),
-        ...ref,
       };
 
       return next();

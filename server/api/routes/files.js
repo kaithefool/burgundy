@@ -1,5 +1,6 @@
 const { Routes } = require('../base');
 const service = require('../services/files');
+const upload = require('../parsers/upload');
 
 module.exports = new Routes({
   service,
@@ -7,7 +8,10 @@ module.exports = new Routes({
 }, {
   list: true,
   find: true,
-  create: true,
+  create: {
+    method: 'post',
+    parse: upload(),
+  },
   patch: true,
   delete: true,
 });

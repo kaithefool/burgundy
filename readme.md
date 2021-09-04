@@ -23,7 +23,8 @@ docker exec -it burgundy_server_1 sh
   - Remember filter settings for back button?
   - Make table rows into links (for right click new tab)
 - i18n
-- Files
-  - Purge temp files
+- Purge files
+  - Temp
+  - Unlinked
 - Deploy script (PM2?)
 - Import csv template

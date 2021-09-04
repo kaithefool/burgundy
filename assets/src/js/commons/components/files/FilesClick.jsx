@@ -12,6 +12,7 @@ const FilesClick = ({
 
   return (
     <div
+      role="button"
       className={className}
       onClick={(e) => {
         if (e.target !== input.current) {
@@ -22,7 +23,9 @@ const FilesClick = ({
     >
       {children || (
         <h6>
-          Drag &amp; Drop your files or <u>Browse</u>
+          Drag &amp; Drop your files or
+          {' '}
+          <u>Browse</u>
         </h6>
       )}
       <div className="position-relative opacity-0 overflow-hidden">
