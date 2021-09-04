@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 
-import File from './file';
+import File from '../file';
 
-import FilesContext from './FilesContext';
-import form from '../../helpers/form';
+import FolderContext from './FolderContext';
+import form from '../../../helpers/form';
 
-const FilesProvider = ({
+const FolderProvider = ({
   api,
   initValue = [],
-  multiple = false,
+  multiple = false, // Boolean or max no. of files
   onChange = () => {},
-  reorderable = false,
   accept,
   maxSize,
   children,
@@ -32,11 +31,8 @@ const FilesProvider = ({
     onChange(draft.filter((d) => d && !(d instanceof File)));
   };
 
-  const change = (index, value) => {
-    const args = [index, value];
-
-    if (value) args.push(value);
-    update([...files].splice(args));
+  const replace = (index, value) => {
+    update([...files].splice(index, 1, value));
   };
 
   const value = {
@@ -46,14 +42,14 @@ const FilesProvider = ({
     files,
     push,
     update,
-    change,
+    replace,
   };
 
   return (
-    <FilesContext.Provider value={value}>
+    <FolderContext.Provider value={value}>
       {typeof children === 'function' ? children(value) : children}
-    </FilesContext.Provider>
+    </FolderContext.Provider>
   );
 };
 
-export default FilesProvider;
+export default FolderProvider;

@@ -3,14 +3,16 @@ import React from 'react';
 import FileContext from './FileContext';
 import FilePreview from './FilePreview';
 import FileProvider from './FileProvider';
-import FileStatus from './FileStatus';
+import FileStatusIcon from './FileStatusIcon';
+import FileTypeIcon from './FileTypeIcon';
 import useFile from './useFile';
 
 export {
   FileContext,
   FilePreview,
   FileProvider,
-  FileStatus,
+  FileStatusIcon,
+  FileTypeIcon,
   useFile,
 };
 
@@ -19,6 +21,7 @@ const File = (props) => <FileProvider {...props} />;
 File.Context = FileContext;
 File.Preview = FilePreview;
 File.Provider = FileProvider;
-File.Status = FileStatus;
+File.StatusIcon = FileStatusIcon;
+File.TypeIcon = FileTypeIcon;
 
 export default File;

@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
+import { faFan } from '@fortawesome/free-solid-svg-icons/faFan';
 
 const Pending = ({
   progress = null,
 }) => (
   <div className="">
-    <FA icon={faSpinner} fixedWidth pulse />
+    <FA icon={faFan} fixedWidth spin />
     {progress !== null && (
       `${Math.round(progress * 100)}%`
     )}

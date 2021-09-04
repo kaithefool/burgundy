@@ -1,56 +1,43 @@
 import React, { useEffect } from 'react';
 
-import useHttp, { useHttpFileUpload } from '../../../hooks/useHttp';
+import { useHttpFileUpload } from '../../../hooks/useHttp';
 import FileContext from './FileContext';
 
 const FileProvider = ({
   api,
   file,
-  suspended = false,
   onChange = () => {},
   children,
 }) => {
-  const uploadHttp = useHttpFileUpload();
-  const removeHttp = useHttp();
+  const http = useHttpFileUpload();
 
-  const remove = () => {
-    // remove file request
-    // How to determind if this is an unsaved edit?
-    if (file && !(file instanceof File)) {
-      removeHttp.req({
-        ...api,
-        method: 'delete',
-      });
+  // halt upload process
+  const cancel = () => {
+    if (http?.status === 'pending') {
+      http.cancel();
     }
-
-    // halt upload process
-    uploadHttp.cancel();
-
-    onChange();
   };
 
   useEffect(() => {
-    if (file instanceof File && !suspended) {
-      uploadHttp.req(api, file);
+    if (file instanceof File) {
+      http.req(api, file);
     }
   }, [
-    suspended,
     file instanceof File,
     file?.name,
     file?.lastModified,
   ]);
 
   useEffect(() => {
-    if (uploadHttp.res?.status === 'success') {
-      onChange(uploadHttp.res.payload);
+    if (http.res?.status === 'success') {
+      onChange(http.res.payload);
     }
-  }, [uploadHttp.res?.status]);
+  }, [http.res?.status]);
 
   const values = {
     file,
-    uploadHttp,
-    removeHttp,
-    remove,
+    http,
+    cancel,
   };
 
   return (

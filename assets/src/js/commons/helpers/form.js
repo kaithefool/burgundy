@@ -37,7 +37,7 @@ export default {
 
   toMimes,
 
-  validateFiles(filesList, {
+  validateFolder(filesList, {
     accept,
     maxSize,
   } = {}) {
