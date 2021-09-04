@@ -17,7 +17,22 @@ const FilesList = ({
           <File
             key={f.path || f.key}
           >
-            <File.TypeIcon />
+            <div className="col">
+              <div className="row">
+                <div className="col-auto">
+                  <File.TypeIcon />
+                </div>
+                <div className="col">
+                  <div className="text-truncate">
+                    <File.Name />
+                  </div>
+                  <File.Size />
+                </div>
+                <div className="col">
+                  <File.StatusIcon />
+                </div>
+              </div>
+            </div>
           </File>
         ))}
       </Folder.Drop>

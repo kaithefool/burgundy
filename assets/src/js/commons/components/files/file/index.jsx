@@ -5,6 +5,7 @@ import FilePreview from './FilePreview';
 import FileProvider from './FileProvider';
 import FileStatusIcon from './FileStatusIcon';
 import FileTypeIcon from './FileTypeIcon';
+import FileName from './FileName';
 import useFile from './useFile';
 
 export {
@@ -13,6 +14,7 @@ export {
   FileProvider,
   FileStatusIcon,
   FileTypeIcon,
+  FileName,
   useFile,
 };
 
@@ -23,5 +25,6 @@ File.Preview = FilePreview;
 File.Provider = FileProvider;
 File.StatusIcon = FileStatusIcon;
 File.TypeIcon = FileTypeIcon;
+File.Name = FileName;
 
 export default File;
