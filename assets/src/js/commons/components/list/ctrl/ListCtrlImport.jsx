@@ -4,8 +4,8 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 
 import { useHttpFileUpload } from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp';
+import Fils from '../../fils';
 import useList from '../useList';
-import FileClick from '../../files/FolderClick';
 import useAlert from '../../alert/useAlert';
 
 const ListCtrlImport = ({
@@ -35,7 +35,7 @@ const ListCtrlImport = ({
       className={className}
     >
       <FA icon={faUpload} fixedWidth />
-      <FileClick onFile={upload} {...props} />
+      <Fils onChange={upload} {...props} />
     </BtnHttp>
   );
 };

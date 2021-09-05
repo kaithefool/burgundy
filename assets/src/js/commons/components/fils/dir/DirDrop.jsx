@@ -3,13 +3,13 @@ import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
 
-import useFolder from './useFolder';
+import useDir from './useDir';
 
-const FolderDrop = ({
+const DirDrop = ({
   children,
-  className,
+  className = '',
 }) => {
-  const { push } = useFolder();
+  const { push } = useDir();
   const [backdrop, setBackdrop] = useState(false);
   // account for dragging between parent and children
   const dragIn = useRef(0);
@@ -52,4 +52,4 @@ const FolderDrop = ({
   );
 };
 
-export default FolderDrop;
+export default DirDrop;

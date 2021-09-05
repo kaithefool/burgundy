@@ -14,7 +14,7 @@ import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
 import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
 
-import useFile from './useFile';
+import useFil from './useFil';
 
 const mimes = [
   {
@@ -81,10 +81,10 @@ const mimeToIcon = (mime) => {
   return faFile;
 };
 
-const FileTypeIcon = (props) => {
-  const { file } = useFile();
+const FilTypeIcon = (props) => {
+  const { file } = useFil();
 
   return <FA icon={mimeToIcon(file.type)} {...props} />;
 };
 
-export default FileTypeIcon;
+export default FilTypeIcon;

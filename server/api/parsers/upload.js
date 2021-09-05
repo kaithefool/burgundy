@@ -28,7 +28,7 @@ function parseUpload({
   };
 }
 
-exports.upload = ({
+module.exports = ({
   field = 'file',
   settings = {},
 } = {}) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import useFile from './useFile';
+import useFil from './useFil';
 
 function isPreviewable(mime) {
   return [
@@ -10,10 +10,10 @@ function isPreviewable(mime) {
   ].includes(mime);
 }
 
-const FilePreview = ({
+const FilPreview = ({
   className = 'img-bg',
 }) => {
-  const { file } = useFile();
+  const { file } = useFil();
   const [display, setDisplay] = useState(null);
   const previewable = isPreviewable(file?.type);
 
@@ -41,4 +41,4 @@ const FilePreview = ({
   );
 };
 
-export default FilePreview;
+export default FilPreview;

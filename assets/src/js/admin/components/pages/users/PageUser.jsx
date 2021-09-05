@@ -5,6 +5,7 @@ import { object, string } from 'yup';
 import Page from '../../layout/Page';
 import Doc from '../../layout/Doc';
 import Form from '~/commons/components/form';
+import FilsList from '~/commons/components/fils/FilsList';
 
 const PageUser = ({ match }) => {
   const { id } = match.params;
@@ -55,6 +56,9 @@ const PageUser = ({ match }) => {
             <Form.Field
               name="password"
               type="password"
+            />
+            <FilsList
+              api={{ url: '/api/files' }}
             />
           </Form>
         </Page>

@@ -5,13 +5,13 @@ import { faFan } from '@fortawesome/free-solid-svg-icons/faFan';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons/faCheckCircle';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
 
-import useFile from './useFile';
+import useFil from './useFil';
 
-const FileStatusIcon = ({
+const FilStatusIcon = ({
   className,
   ...props
 }) => {
-  const { http } = useFile();
+  const { http } = useFil();
   const { progress, status } = http.res;
 
   if (!status) return '';
@@ -42,4 +42,4 @@ const FileStatusIcon = ({
   );
 };
 
-export default FileStatusIcon;
+export default FilStatusIcon;

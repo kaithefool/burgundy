@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 
 import { useHttpFileUpload } from '../../../hooks/useHttp';
-import FileContext from './FileContext';
-import useFolder from '../folder/useFolder';
+import FilContext from './FilContext';
+import useDir from '../dir/useDir';
 
-const FileProvider = ({
+const FilProvider = ({
   file,
   onChange = () => {},
+
   children,
 }) => {
-  const { api } = useFolder();
+  const { api } = useDir();
   const http = useHttpFileUpload();
 
   // halt upload process
@@ -41,10 +42,10 @@ const FileProvider = ({
   };
 
   return (
-    <FileContext.Provider values={values}>
+    <FilContext.Provider values={values}>
       {typeof children === 'function' ? children(values) : children}
-    </FileContext.Provider>
+    </FilContext.Provider>
   );
 };
 
-export default FileProvider;
+export default FilProvider;

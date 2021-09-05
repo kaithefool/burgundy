@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 
-import File from '../file';
-
-import FolderContext from './FolderContext';
+import DirContext from './DirContext';
 import form from '../../../helpers/form';
 
-const FolderProvider = ({
+const DirProvider = ({
   api,
   initValue = [],
   multiple = false, // Boolean or max no. of files
@@ -14,20 +12,20 @@ const FolderProvider = ({
   maxSize,
   children,
 }) => {
-  const [files, setFiles] = useState(initValue);
+  const [files, setFils] = useState(initValue);
 
   const push = (fs) => {
-    const err = form.validateFiles(fs, { accept, maxSize });
+    const err = form.validateFils(fs, { accept, maxSize });
 
     if (multiple) {
-      setFiles(files.concat(fs).slice(0, Number(multiple)));
+      setFils(files.concat(fs).slice(0, Number(multiple)));
     } else {
-      setFiles([fs[0]]);
+      setFils([fs[0]]);
     }
   };
 
   const update = (draft = []) => {
-    setFiles(draft);
+    setFils(draft);
     onChange(draft.filter((d) => d && !(d instanceof File)));
   };
 
@@ -46,10 +44,10 @@ const FolderProvider = ({
   };
 
   return (
-    <FolderContext.Provider value={value}>
+    <DirContext.Provider value={value}>
       {typeof children === 'function' ? children(value) : children}
-    </FolderContext.Provider>
+    </DirContext.Provider>
   );
 };
 
-export default FolderProvider;
+export default DirProvider;

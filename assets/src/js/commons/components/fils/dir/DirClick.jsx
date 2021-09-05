@@ -1,18 +1,17 @@
 import React, { useRef } from 'react';
 
-import useFolder from './useFolder';
+import useDir from './useDir';
 
-const FolderClick = ({
-  className = 'py-3 text-center',
+const DirClick = ({
+  className = '',
   children,
   ...props
 }) => {
   const input = useRef();
-  const { push, accept } = useFolder();
+  const { push, accept } = useDir();
 
   return (
     <div
-      role="button"
       className={className}
       onClick={(e) => {
         if (e.target !== input.current) {
@@ -21,13 +20,7 @@ const FolderClick = ({
         }
       }}
     >
-      {children || (
-        <h6>
-          Drag &amp; Drop your files or
-          {' '}
-          <u>Browse</u>
-        </h6>
-      )}
+      {children}
       <div className="position-relative opacity-0 overflow-hidden">
         <input
           ref={input}
@@ -43,4 +36,4 @@ const FolderClick = ({
   );
 };
 
-export default FolderClick;
+export default DirClick;
