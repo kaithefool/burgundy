@@ -3,11 +3,11 @@ import React from 'react';
 import Fetchable from '~/commons/components/util/Fetchable';
 
 const Doc = ({
-  id,
+  _id,
   api,
   children,
 }) => {
-  if (id === 'new') {
+  if (_id === 'new') {
     return children();
   }
 
@@ -15,7 +15,7 @@ const Doc = ({
     <Fetchable
       req={{
         ...api,
-        url: `${api.url}/${id}`,
+        url: `${api.url}/${_id}`,
       }}
     >
       {(doc) => children(doc)}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import mimer from 'mimer';
 import { nanoid } from 'nanoid';
+import Modal from 'react-bootstrap/Modal';
 
 import DirContext from './DirContext';
 
@@ -11,16 +12,17 @@ const toMimes = (accept) => (
     .map((a) => (a.includes('/') ? a : mimer(a)))
 );
 
-const validateFiles = (filesList, {
+const validateFiles = (files, {
   accept,
   maxSize,
 } = {}) => {
-  const files = Array.from(filesList);
+  // only validate new uploads
+  const toCheck = files.filter((f) => f instanceof File);
 
   // check the files' size
   if (
     maxSize
-    && files.find((f) => f.size > maxSize)
+    && toCheck.find((f) => f.size > maxSize)
   ) {
     return 'maxSize';
   }
@@ -28,7 +30,7 @@ const validateFiles = (filesList, {
   if (accept) {
     const mimes = toMimes(accept);
 
-    if (!files.find((f) => mimes.includes(f.type))) {
+    if (!toCheck.find((f) => mimes.includes(f.type))) {
       return 'accept';
     }
   }
@@ -36,14 +38,14 @@ const validateFiles = (filesList, {
   return null;
 };
 
-const assignFileKeys = (filesList) => {
-  const files = Array.from(filesList);
-
+const parseFiles = (files) => {
   files.forEach((f) => {
-    if (!f.path && !f.key) {
+    if (!f.key) {
       f.key = nanoid();
     }
   });
+
+  return files;
 };
 
 const DirProvider = ({
@@ -55,29 +57,36 @@ const DirProvider = ({
   maxSize,
   children,
 }) => {
-  const [files, setFiles] = useState(initValue);
+  const [showErr, setShowErr] = useState(false);
+  const [files, setFiles] = useState(parseFiles(initValue));
 
-  const push = (fs) => {
+  const update = (draft) => {
+    const fs = parseFiles(draft);
     const err = validateFiles(fs, { accept, maxSize });
 
-    assignFileKeys(fs);
+    if (!err) {
+      setFiles(fs);
+      onChange(fs.filter((f) => !(f instanceof File)));
+    }
+  };
 
+  const push = (fileList) => {
+    const fs = Array.from(fileList);
     let draft = [fs[0]];
 
     if (multiple) {
       draft = files.concat(fs).slice(0, Number(multiple));
     }
 
-    setFiles(draft);
+    update(draft);
   };
 
-  const update = (draft = []) => {
-    setFiles(draft);
-    onChange(draft.filter((d) => d && !(d instanceof File)));
+  const replace = (index, file) => {
+    update([...files].splice(index, 1, file));
   };
 
-  const replace = (index, value) => {
-    update([...files].splice(index, 1, value));
+  const remove = (index) => {
+    update([...files].splice(index, 1));
   };
 
   const value = {
@@ -87,11 +96,31 @@ const DirProvider = ({
     files,
     push,
     replace,
+    remove,
   };
 
   return (
     <DirContext.Provider value={value}>
-      {typeof children === 'function' ? children(value) : children}
+      <>
+        <Modal show={showErr} onHide={setShowErr(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Error</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Invalid files
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={setShowErr(false)}
+            >
+              OK
+            </button>
+          </Modal.Footer>
+        </Modal>
+        {typeof children === 'function' ? children(value) : children}
+      </>
     </DirContext.Provider>
   );
 };

@@ -42,6 +42,9 @@ module.exports = {
     // leaving room to expand more exports
     'import/prefer-default-export': 'warn',
 
+    // for DOM and Web API
+    'no-param-reassign': ['error', { props: false }],
+
     // mongodb
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
 

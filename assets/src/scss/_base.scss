@@ -73,16 +73,6 @@ input, textarea {
   min-width: 100%;
   min-height: 100%;
   background-position: center;
-
-  &.bg-pos-lc {
-    background-position: left center;
-  }
-  &.bg-pos-rc {
-    background-position: right center;
-  }
-}
-.img-bg-cover {
-  @extend .img-bg;
   background-size: cover;
 }
 .img-bg-contain {
