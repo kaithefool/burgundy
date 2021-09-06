@@ -6,6 +6,7 @@ import FilProvider from './FilProvider';
 import FilStatusIcon from './FilStatusIcon';
 import FilTypeIcon from './FilTypeIcon';
 import FilName from './FilName';
+import FilSize from './FilSize';
 import useFil from './useFil';
 
 export {
@@ -15,6 +16,7 @@ export {
   FilStatusIcon,
   FilTypeIcon,
   FilName,
+  FilSize,
   useFil,
 };
 
@@ -26,5 +28,8 @@ Fil.Provider = FilProvider;
 Fil.StatusIcon = FilStatusIcon;
 Fil.TypeIcon = FilTypeIcon;
 Fil.Name = FilName;
+Fil.Size = FilSize;
+
+console.log(Fil);
 
 export default Fil;

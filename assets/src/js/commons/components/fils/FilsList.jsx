@@ -10,7 +10,7 @@ const FilsList = ({
   <Dir
     {...props}
   >
-    {({ files }) => (
+    {({ files, replace }) => (
       <Dir.Drop>
         <Dir.Click>
           <h6 className="text-center">
@@ -19,13 +19,15 @@ const FilsList = ({
             <u>Browse</u>
           </h6>
         </Dir.Click>
-        {files.map((f) => (
+        {files.map((f, i) => (
           <Fil
             key={f.path || f.key}
+            file={f}
+            onChange={(v) => replace(i, v)}
           >
             <div className="col">
               <div className="row">
-                <div className="col-auto">
+                <div className="col-auto position-relative">
                   <Fil.TypeIcon />
                   <div className="position-absolute w-100 h-100">
                     <Fil.Preview />

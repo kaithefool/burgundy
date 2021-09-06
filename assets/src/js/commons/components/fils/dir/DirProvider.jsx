@@ -1,7 +1,50 @@
 import React, { useState } from 'react';
+import mimer from 'mimer';
+import { nanoid } from 'nanoid';
 
 import DirContext from './DirContext';
-import form from '../../../helpers/form';
+
+const toMimes = (accept) => (
+  accept
+    .split(',')
+    .map((a) => a.trim())
+    .map((a) => (a.includes('/') ? a : mimer(a)))
+);
+
+const validateFiles = (filesList, {
+  accept,
+  maxSize,
+} = {}) => {
+  const files = Array.from(filesList);
+
+  // check the files' size
+  if (
+    maxSize
+    && files.find((f) => f.size > maxSize)
+  ) {
+    return 'maxSize';
+  }
+  // check acceptable files' types
+  if (accept) {
+    const mimes = toMimes(accept);
+
+    if (!files.find((f) => mimes.includes(f.type))) {
+      return 'accept';
+    }
+  }
+
+  return null;
+};
+
+const assignFileKeys = (filesList) => {
+  const files = Array.from(filesList);
+
+  files.forEach((f) => {
+    if (!f.path && !f.key) {
+      f.key = nanoid();
+    }
+  });
+};
 
 const DirProvider = ({
   api,
@@ -12,20 +55,24 @@ const DirProvider = ({
   maxSize,
   children,
 }) => {
-  const [files, setFils] = useState(initValue);
+  const [files, setFiles] = useState(initValue);
 
   const push = (fs) => {
-    const err = form.validateFils(fs, { accept, maxSize });
+    const err = validateFiles(fs, { accept, maxSize });
+
+    assignFileKeys(fs);
+
+    let draft = [fs[0]];
 
     if (multiple) {
-      setFils(files.concat(fs).slice(0, Number(multiple)));
-    } else {
-      setFils([fs[0]]);
+      draft = files.concat(fs).slice(0, Number(multiple));
     }
+
+    setFiles(draft);
   };
 
   const update = (draft = []) => {
-    setFils(draft);
+    setFiles(draft);
     onChange(draft.filter((d) => d && !(d instanceof File)));
   };
 
@@ -39,7 +86,6 @@ const DirProvider = ({
     maxSize,
     files,
     push,
-    update,
     replace,
   };
 

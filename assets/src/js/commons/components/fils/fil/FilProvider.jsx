@@ -7,7 +7,6 @@ import useDir from '../dir/useDir';
 const FilProvider = ({
   file,
   onChange = () => {},
-
   children,
 }) => {
   const { api } = useDir();
@@ -35,15 +34,15 @@ const FilProvider = ({
     }
   }, [http.res?.status]);
 
-  const values = {
+  const value = {
     file,
     http,
     cancel,
   };
 
   return (
-    <FilContext.Provider values={values}>
-      {typeof children === 'function' ? children(values) : children}
+    <FilContext.Provider value={value}>
+      {typeof children === 'function' ? children(value) : children}
     </FilContext.Provider>
   );
 };

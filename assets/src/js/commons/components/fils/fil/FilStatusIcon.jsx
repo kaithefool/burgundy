@@ -35,7 +35,7 @@ const FilStatusIcon = ({
         {...icon}
         {...props}
       />
-      {progress !== null && (
+      {progress === 'pending' && (
         <span>{`${Math.round(progress * 100)}%`}</span>
       )}
     </>
