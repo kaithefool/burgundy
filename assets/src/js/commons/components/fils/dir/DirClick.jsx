@@ -8,7 +8,7 @@ const DirClick = ({
   ...props
 }) => {
   const input = useRef();
-  const { push, accept } = useDir();
+  const { push, accept, multiple } = useDir();
 
   return (
     <div
@@ -28,6 +28,7 @@ const DirClick = ({
           onChange={(e) => push(e.target.files)}
           className="position-absolute"
           autoComplete="off"
+          {...multiple && { multiple: true }}
           {...accept && { accept }}
           {...props}
         />

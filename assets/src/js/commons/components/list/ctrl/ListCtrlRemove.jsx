@@ -22,7 +22,7 @@ const ListCtrlRemove = ({
   const remove = async () => {
     await req({
       method: 'delete',
-      data: { id: selected.map((s) => s.id) },
+      data: { _id: selected.map((s) => s._id) },
       ...api,
       ...apiOpts,
     });

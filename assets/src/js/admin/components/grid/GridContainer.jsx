@@ -4,13 +4,12 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import GridRow from './GridRow';
-import useUniqKey from '~/commons/hooks/useUniqKey';
+import { newKey } from '~/commons/hooks/useUniqKey';
 
 const GridContainer = ({
   initValue = [],
   onChange = () => {},
 }) => {
-  const [, newKey] = useUniqKey();
   const [rows, setRows] = useState(initValue);
   const [focused, focus] = useState(null);
 

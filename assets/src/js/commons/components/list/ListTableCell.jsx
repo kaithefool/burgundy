@@ -23,7 +23,7 @@ const ListTableCell = ({
   const prevDraft = useRef(value);
 
   if (editable) {
-    value = get(staged[row.id], key, value);
+    value = get(staged[row._id], key, value);
   }
 
   // store for escape button
@@ -41,7 +41,7 @@ const ListTableCell = ({
       if (k === 27) { // escape
         setCaret(false);
         // revert to prev draft
-        stage(row.id, { [key]: prevDraft.current });
+        stage(row._id, { [key]: prevDraft.current });
       }
     } else if (k === 13) { // enter
       e.preventDefault();
@@ -92,7 +92,7 @@ const ListTableCell = ({
             const v = e.target.value;
 
             setCaret(true);
-            stage(row.id, { [key]: setter(v, row) });
+            stage(row._id, { [key]: setter(v, row) });
           }}
           value={getter(value, row)}
         />

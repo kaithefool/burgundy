@@ -5,6 +5,7 @@ import FormField from './FormField';
 import FormHttpContext from './FormHttpContext';
 import FormProvider from './FormProvider';
 import useFormHttp from './useFormHttp';
+import helpers from './helpers';
 
 import Alert from '../alert';
 
@@ -14,6 +15,7 @@ export {
   FormHttpContext,
   FormProvider,
   useFormHttp,
+  helpers,
 };
 
 const Form = ({

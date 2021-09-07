@@ -25,22 +25,26 @@ const FilsList = ({
             file={f}
             onChange={(v) => replace(i, v)}
           >
-            <div className="col">
-              <div className="row">
-                <div className="col-auto position-relative">
-                  <Fil.TypeIcon />
-                  <div className="position-absolute w-100 h-100">
-                    <Fil.Preview />
+            <div className="col card">
+              <div className="card-body">
+                <div className="row align-items-center">
+                  <div className="col-auto">
+                    <div className="position-relative">
+                      {/* <div className="position-absolute w-100 h-100">
+                        <Fil.Preview />
+                      </div> */}
+                      <Fil.TypeIcon size="2x" />
+                    </div>
                   </div>
-                </div>
-                <div className="col">
-                  <div className="text-truncate">
-                    <Fil.Name />
+                  <div className="col">
+                    <div className="text-truncate">
+                      <Fil.Name />
+                    </div>
+                    <small><Fil.Size /></small>
                   </div>
-                  <Fil.Size />
-                </div>
-                <div className="col-auto">
-                  <Fil.StatusIcon />
+                  <div className="col-auto">
+                    <Fil.StatusIcon size="2x" />
+                  </div>
                 </div>
               </div>
             </div>

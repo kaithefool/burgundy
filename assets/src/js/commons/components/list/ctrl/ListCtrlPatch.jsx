@@ -21,7 +21,7 @@ const ListCtrlPatch = ({
     await req({
       method: 'patch',
       data: {
-        id: selected.map((s) => s.id),
+        _id: selected.map((s) => s._id),
         ...updates,
       },
       ...api,

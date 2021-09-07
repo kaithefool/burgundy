@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import GridCell from './GridCell';
-import useUniqKey from '~/commons/hooks/useUniqKey';
+import { newKey } from '~/commons/hooks/useUniqKey';
 
 const GridRow = ({
   stretch = false,
@@ -12,7 +12,6 @@ const GridRow = ({
   onFocus = () => {},
   onChange = () => {},
 }) => {
-  const [, newKey] = useUniqKey();
   const [focusedCell, focusCell] = useState(null);
 
   useEffect(() => {
@@ -52,13 +51,13 @@ const GridRow = ({
       <div className="col">
         <div className={`
           row ${reverse ? 'flex-row-reverse' : ''}
-        `}>
+        `}
+        >
           {cells.map((c, i) => (
             <GridCell
               {...c}
-              key={c.id || c.tmpId}
+              key={c._id || c.tmpId}
               focused={focusedCell === i}
-
               onFocus={() => {
                 focusCell(i);
                 onFocus();

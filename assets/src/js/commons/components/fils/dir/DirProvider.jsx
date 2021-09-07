@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import mimer from 'mimer';
-import { nanoid } from 'nanoid';
 import Modal from 'react-bootstrap/Modal';
 
 import DirContext from './DirContext';
+import { newKey } from '../../../hooks/useUniqKey';
 
 const toMimes = (accept) => (
   accept
@@ -24,14 +24,14 @@ const validateFiles = (files, {
     maxSize
     && toCheck.find((f) => f.size > maxSize)
   ) {
-    return 'maxSize';
+    return 'err.file.maxSize';
   }
   // check acceptable files' types
   if (accept) {
     const mimes = toMimes(accept);
 
     if (!toCheck.find((f) => mimes.includes(f.type))) {
-      return 'accept';
+      return 'err.file.accept';
     }
   }
 
@@ -41,7 +41,7 @@ const validateFiles = (files, {
 const parseFiles = (files) => {
   files.forEach((f) => {
     if (!f.key) {
-      f.key = nanoid();
+      f.key = newKey();
     }
   });
 
@@ -57,16 +57,18 @@ const DirProvider = ({
   maxSize,
   children,
 }) => {
-  const [showErr, setShowErr] = useState(false);
+  const [err, setErr] = useState(false);
   const [files, setFiles] = useState(parseFiles(initValue));
 
   const update = (draft) => {
-    const fs = parseFiles(draft);
-    const err = validateFiles(fs, { accept, maxSize });
+    const e = validateFiles(draft, { accept, maxSize });
 
-    if (!err) {
-      setFiles(fs);
-      onChange(fs.filter((f) => !(f instanceof File)));
+    if (e) {
+      setErr(e);
+    } else {
+      parseFiles(draft);
+      setFiles(draft);
+      onChange(draft.filter((f) => !(f instanceof File)));
     }
   };
 
@@ -93,6 +95,7 @@ const DirProvider = ({
     api,
     accept,
     maxSize,
+    multiple,
     files,
     push,
     replace,
@@ -102,18 +105,18 @@ const DirProvider = ({
   return (
     <DirContext.Provider value={value}>
       <>
-        <Modal show={showErr} onHide={setShowErr(false)}>
+        <Modal show={err} onHide={() => setErr(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Error</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Invalid files
+            {err}
           </Modal.Body>
           <Modal.Footer>
             <button
               type="button"
               className="btn btn-danger"
-              onClick={setShowErr(false)}
+              onClick={() => setErr(false)}
             >
               OK
             </button>

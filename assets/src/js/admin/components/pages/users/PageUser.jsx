@@ -8,12 +8,12 @@ import Form from '~/commons/components/form';
 import FilsList from '~/commons/components/fils/FilsList';
 
 const PageUser = ({ match }) => {
-  const { id } = match.params;
+  const { _id } = match.params;
   const history = useHistory();
 
   return (
     <Doc
-      id={id}
+      _id={_id}
       api={{ url: '/api/users' }}
     >
       {(user) => (
@@ -27,7 +27,7 @@ const PageUser = ({ match }) => {
         >
           <Form
             api={{
-              url: `/api/users/${user ? id : ''}`,
+              url: `/api/users/${user ? _id : ''}`,
               method: user ? 'patch' : 'post',
             }}
             stored={user}
@@ -43,7 +43,7 @@ const PageUser = ({ match }) => {
               ...values, ...(password && { password }),
             })}
             onSubmitted={({ payload }) => {
-              if (!user) history.push(payload.id);
+              if (!user) history.push(payload._id);
             }}
           >
             <Form.BtnSubmit />
@@ -59,6 +59,7 @@ const PageUser = ({ match }) => {
             />
             <FilsList
               api={{ url: '/api/files' }}
+              multiple={3}
             />
           </Form>
         </Page>

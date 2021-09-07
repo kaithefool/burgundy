@@ -18,7 +18,7 @@ const FormField = ({
 }) => {
   const { name } = props;
   const [, { error, touched }] = useField(name);
-  const [id] = useUniqKey('form-field-');
+  const [id] = useUniqKey();
   const isFormCheck = ['checkbox', 'radio', 'switch'].includes(type);
   const isAffirmed = affirm && touched && !error;
 

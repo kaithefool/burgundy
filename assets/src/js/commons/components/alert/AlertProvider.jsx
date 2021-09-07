@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
 import AlertContext from './AlertContext';
-import useUniqKey from '../../hooks/useUniqKey';
+import { newKey } from '~/commons/hooks/useUniqKey';
 
 const AlertProvider = ({
   children,
   limit = 3,
 }) => {
   const [stack, setStack] = useState([]);
-  const [, newKey] = useUniqKey();
 
   const push = (draft = [], ...alerts) => {
     const aa = alerts.map((a) => ({ ...a, id: newKey() }));

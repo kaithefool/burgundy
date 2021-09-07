@@ -42,10 +42,10 @@ const ListProvider = ({
 
   const select = (s) => setSelected(s);
 
-  const stage = (id, changes = {}) => {
+  const stage = (_id, changes = {}) => {
     const s = { ...staged };
-    const t = staged[id];
-    const r = rows.find((r0) => r0.id === id);
+    const t = staged[_id];
+    const r = rows.find((r0) => r0._id === _id);
     const c = { ...t, ...changes };
 
     // diff with stored
@@ -56,9 +56,9 @@ const ListProvider = ({
     // update staged list
     if (!c || !Object.keys(c).length) {
       // clear
-      delete s[id];
+      delete s[_id];
     } else {
-      s[id] = c;
+      s[_id] = c;
     }
 
     setStaged(s);

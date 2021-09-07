@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 
-let k = 0;
+const newKey = (prefix = 't-') => `${prefix}${nanoid()}`;
 
-export default function useUniqKey(prefix = '') {
-  const newKey = () => { k += 1; return `${prefix}${k}`; };
-  const [key] = useState(newKey);
+export { newKey };
+
+export default function useUniqKey(prefix) {
+  const [key] = useState(() => newKey(prefix));
 
   return [key, newKey];
 }

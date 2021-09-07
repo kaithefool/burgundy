@@ -30,6 +30,4 @@ Fil.TypeIcon = FilTypeIcon;
 Fil.Name = FilName;
 Fil.Size = FilSize;
 
-console.log(Fil);
-
 export default Fil;
