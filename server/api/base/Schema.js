@@ -2,7 +2,7 @@ const m = require('mongoose');
 const _ = require('lodash');
 const ms = require('ms');
 
-const { LANG } = process.env;
+const { LANG, MONGO_SYNC_INDEX } = process.env;
 const { ObjectId } = m.Schema.Types;
 
 module.exports = class Schema {
@@ -78,7 +78,9 @@ module.exports = class Schema {
     const { name, schema, mm } = this;
     this.mm = mm || m.model(name, schema);
 
-    this.mm.syncIndexes();
+    if (Number(MONGO_SYNC_INDEX)) {
+      this.mm.syncIndexes();
+    }
 
     return this.mm;
   }
