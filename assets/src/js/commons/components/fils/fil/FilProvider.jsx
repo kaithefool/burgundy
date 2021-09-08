@@ -25,12 +25,15 @@ const FilProvider = ({
     }
   }, [
     file instanceof File,
-    file?.path || file?.key,
+    file.key,
   ]);
 
   useEffect(() => {
     if (http.res?.status === 'success') {
-      onChange(http.res.payload);
+      onChange({
+        ...http.res.payload,
+        key: file.key, // keep the same key
+      });
     }
   }, [http.res?.status]);
 

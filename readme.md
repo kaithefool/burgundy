@@ -3,7 +3,7 @@
 ### Getting Start
 ```shell
 docker-compose up
-docker exec -it burgundy_server_1 sh
+npm run sh
 ```
 
 - Generate the first admin user
@@ -23,6 +23,13 @@ docker exec -it burgundy_server_1 sh
   - Remember filter settings for back button?
   - Make table rows into links (for right click new tab)
 - i18n
+  - response
+    - status
+    - success
+    - error
+  - form
+    - button
+    - label
 - Purge files
   - Temp
   - Unlinked

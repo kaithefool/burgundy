@@ -4,8 +4,14 @@ const { nanoid } = require('nanoid');
 
 const { FILE_STORAGE_UPLOADS } = process.env;
 
+const destination = path.resolve(
+  __dirname,
+  '../../../',
+  FILE_STORAGE_UPLOADS,
+);
+
 const storage = multer.diskStorage({
-  destination: path.resolve(__dirname, '../../', FILE_STORAGE_UPLOADS),
+  destination,
   filename(req, file, cb) {
     const ext = path.extname(file.originalname);
     const name = nanoid(21);

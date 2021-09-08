@@ -38,7 +38,7 @@ const validateFiles = (files, {
   return null;
 };
 
-const parseFiles = (files) => {
+const insertKeys = (files) => {
   files.forEach((f) => {
     if (!f.key) {
       f.key = newKey();
@@ -58,7 +58,7 @@ const DirProvider = ({
   children,
 }) => {
   const [err, setErr] = useState(false);
-  const [files, setFiles] = useState(parseFiles(initValue));
+  const [files, setFiles] = useState(insertKeys(initValue));
 
   const update = (draft) => {
     const e = validateFiles(draft, { accept, maxSize });
@@ -66,7 +66,7 @@ const DirProvider = ({
     if (e) {
       setErr(e);
     } else {
-      parseFiles(draft);
+      insertKeys(draft);
       setFiles(draft);
       onChange(draft.filter((f) => !(f instanceof File)));
     }
@@ -84,11 +84,17 @@ const DirProvider = ({
   };
 
   const replace = (index, file) => {
-    update([...files].splice(index, 1, file));
+    const draft = [...files];
+
+    draft.splice(index, 1, file);
+    update(draft);
   };
 
   const remove = (index) => {
-    update([...files].splice(index, 1));
+    const draft = [...files];
+
+    draft.splice(index, 1);
+    update(draft);
   };
 
   const value = {

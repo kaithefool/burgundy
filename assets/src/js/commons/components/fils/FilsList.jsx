@@ -21,7 +21,7 @@ const FilsList = ({
         </Dir.Click>
         {files.map((f, i) => (
           <Fil
-            key={f.path || f.key}
+            key={f.key}
             file={f}
             onChange={(v) => replace(i, v)}
           >

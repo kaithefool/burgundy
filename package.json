@@ -8,6 +8,7 @@
     "dev-server": "nodemon server/bin/www",
     "dev-assets": "cd assets && npm run dev",
     "sh": "docker exec -it burgundy_server_1 sh",
+    "db": "docker exec -it burgundy_db_1 sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
