@@ -1,12 +1,18 @@
 # Burgundy
 
-### Getting Start
+### Getting Start (with Docker)
 ```shell
 docker-compose up
 npm run sh
 ```
 
-- Generate the first admin user
+### Getting Start (without Docker)
+```shell
+npm i
+npm start
+```
+
+### Generate the first admin user
 ./server/bin/gen-admin [username@domain.com] [password]
 
 ### In process

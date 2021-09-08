@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons/faTimesCircle';
+
 import Dir from './dir';
 import Fil from './fil';
 
@@ -10,7 +13,7 @@ const FilsList = ({
   <Dir
     {...props}
   >
-    {({ files, replace }) => (
+    {({ files, replace, remove }) => (
       <Dir.Drop>
         <Dir.Click>
           <h6 className="text-center">
@@ -43,7 +46,16 @@ const FilsList = ({
                     <small><Fil.Size /></small>
                   </div>
                   <div className="col-auto">
-                    <Fil.StatusIcon size="2x" />
+                    <Fil.StatusIcon size="lg" />
+                  </div>
+                  <div className="col-auto">
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => remove(i)}
+                    >
+                      <FA icon={faTimesCircle} size="lg" />
+                    </button>
                   </div>
                 </div>
               </div>
