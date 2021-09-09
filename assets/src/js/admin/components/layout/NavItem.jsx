@@ -21,7 +21,7 @@ const NavListItem = ({
   return (
     <>
       <Link
-        className="nav-link link-light w-100 my-2 py-1"
+        className="nav-link w-100 my-2 py-1"
         {...props}
         {...(to ? { activeClassName } : {})}
       >

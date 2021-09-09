@@ -1,5 +1,5 @@
-#admin {
+#root.admin {
   nav {
-    border-color: darken($light, 10%);
+    border-color: darken($light, 5%) !important;
   }
 }

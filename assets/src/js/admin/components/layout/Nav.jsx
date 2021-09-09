@@ -2,6 +2,9 @@ import React, { Fragment, useState } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import {
+  faCircle,
+} from '@fortawesome/free-solid-svg-icons/faCircle';
+import {
   faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import {
@@ -24,10 +27,17 @@ const Nav = ({
     >
       <button
         type="button"
-        className="btn btn-sm btn-primary rounded-circle position-absolute"
+        className="btn text-secondary position-absolute"
         onClick={() => setExpanded(!expanded)}
       >
-        <FA icon={expanded ? faChevronLeft : faChevronRight} />
+        <span className="fa-layers fa-lg fa-fw">
+          <FA icon={faCircle} />
+          <FA
+            className="text-white"
+            icon={expanded ? faChevronLeft : faChevronRight}
+            transform="shrink-9 "
+          />
+        </span>
       </button>
       <div className="nav align-self-center flex-column">
         {links.map((g, i) => (
