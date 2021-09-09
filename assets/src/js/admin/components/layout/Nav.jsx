@@ -20,7 +20,6 @@ const Nav = ({
     <nav
       className={`
         d-flex vh-100 ${className}
-        bg-primary text-white
       `}
     >
       <button

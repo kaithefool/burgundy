@@ -2,7 +2,9 @@
   "name": "burgundy",
   "version": "0.1.0",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "dev": "nodemon bin/www"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/kaithefool/burgundy.git"
@@ -34,5 +36,7 @@
     "tunnel-ssh": "^4.1.4",
     "yup": "^0.29.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }

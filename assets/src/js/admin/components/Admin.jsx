@@ -10,8 +10,8 @@ const Admin = () => (
   <div className="container-fluid">
     <div className="row">
       <Router>
-        <Nav className="col-auto" />
-        <div className="col">
+        <Nav className="col-auto border-endd" />
+        <div className="col bg-light">
           <Routes />
         </div>
       </Router>

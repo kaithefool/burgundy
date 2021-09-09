@@ -29,6 +29,7 @@ npm start
   - Remember filter settings for back button?
   - Make table rows into links (for right click new tab)
 - i18n
+  - who should translate http error message? server or client?
   - response
     - status
     - success
