@@ -7,15 +7,13 @@ import Nav from './layout/Nav';
 import Routes from './routes';
 
 const Admin = () => (
-  <div className="container-fluid">
-    <div className="row">
-      <Router>
-        <Nav className="col-auto border-end" />
-        <div className="col bg-light">
-          <Routes />
-        </div>
-      </Router>
-    </div>
+  <div className="row g-0">
+    <Router>
+      <Nav className="col-auto border-end" />
+      <div className="col p-3 bg-light">
+        <Routes />
+      </div>
+    </Router>
   </div>
 );
 

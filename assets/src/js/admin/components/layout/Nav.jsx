@@ -1,15 +1,12 @@
 import React, { Fragment, useState } from 'react';
 
-import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import {
-  faCircle,
-} from '@fortawesome/free-solid-svg-icons/faCircle';
+  faChevronCircleLeft,
+} from '@fortawesome/free-solid-svg-icons/faChevronCircleLeft';
 import {
-  faChevronLeft,
-} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
-import {
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons/faChevronRight';
+  faChevronCircleRight,
+} from '@fortawesome/free-solid-svg-icons/faChevronCircleRight';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons/faPowerOff';
 
 import NavItem from './NavItem';
 import links from './links';
@@ -22,27 +19,19 @@ const Nav = ({
   return (
     <nav
       className={`
-        d-flex vh-100 ${className}
+        d-flex flex-column py-1 min-vh-100 ${className}
       `}
     >
-      <button
-        type="button"
-        className="btn text-secondary position-absolute"
+      {/* expand/collapse button */}
+      <NavItem
         onClick={() => setExpanded(!expanded)}
-      >
-        <span className="fa-layers fa-lg fa-fw">
-          <FA icon={faCircle} />
-          <FA
-            className="text-white"
-            icon={expanded ? faChevronLeft : faChevronRight}
-            transform="shrink-9 "
-          />
-        </span>
-      </button>
-      <div className="nav align-self-center flex-column">
+        icon={expanded ? faChevronCircleLeft : faChevronCircleRight}
+      />
+      {/* nav items */}
+      <div className="flex-fill nav flex-column justify-content-center">
         {links.map((g, i) => (
           <Fragment key={i}>
-            {!!i && <hr />}
+            {!!i && <hr className="mx-4" />}
             {g.map((l) => (
               <NavItem key={l.label} expanded={expanded} {...l}>
                 {l.links && (
@@ -55,6 +44,12 @@ const Nav = ({
           </Fragment>
         ))}
       </div>
+      {/* logout */}
+      <NavItem
+        href="/logout"
+        label="Logout"
+        icon={faPowerOff}
+      />
     </nav>
   );
 };

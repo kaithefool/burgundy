@@ -1,5 +1,22 @@
 #root.admin {
   nav {
-    border-color: darken($light, 5%) !important;
+    border-color: darken($light, 3%) !important;
+
+    .nav-link {
+      position: relative;
+      color: $text-muted;
+
+      &.active {
+        color: $primary;
+        &:after {
+          content: '';
+          position: absolute;
+          height: 100%;
+          top: 0;
+          right: 0;
+          border-right: solid .2rem $primary;
+        }
+      }
+    }
   }
 }

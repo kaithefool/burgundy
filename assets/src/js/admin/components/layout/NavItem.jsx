@@ -6,7 +6,7 @@ const activeClassName = 'active';
 
 const NavListItem = ({
   icon,
-  label,
+  label = '',
   children,
   links,
   expanded,
@@ -21,17 +21,17 @@ const NavListItem = ({
   return (
     <>
       <Link
-        className="nav-link w-100 my-2 py-1"
+        className="nav-link py-0 my-2 px-4"
         {...props}
         {...(to ? { activeClassName } : {})}
       >
         <FA icon={icon} fixedWidth />
         {expanded && (
-          <span className="mx-3">{label}</span>
+          <span className="ms-3 me-1">{label}</span>
         )}
       </Link>
       {children && (
-        <div className={`ms-3 nav ${match ? '' : 'd-none'}`}>
+        <div className={`ms-2 nav flex-column ${match ? '' : 'd-none'}`}>
           {children}
         </div>
       )}
