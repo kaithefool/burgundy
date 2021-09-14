@@ -3,8 +3,8 @@ import { Switch } from 'react-router-dom';
 
 import RouteResource from './RouteResource';
 
-import PageUsers from '../pages/users/PageUsers';
-import PageUser from '../pages/users/PageUser';
+import PageUsers from '../pages/PageUsers';
+import PageUser from '../pages/PageUser';
 
 const Routes = () => (
   <Switch>

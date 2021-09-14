@@ -23,7 +23,7 @@ const RouteResource = ({
       )}
       {Doc && (
         <Route
-          path={`${path}/:_id`}
+          path={`${path}/:_id([0-9a-f]{24})`}
           component={Doc}
         />
       )}

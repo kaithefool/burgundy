@@ -22,8 +22,7 @@ npm start
 - Update image and packages to use node:16-alpine
   - dart-sass? node-sass/libsass seems to be faster
 - Grid html editor
-- ListTable tabs to categorize columns
-- Base nav styles
+- ListTable tabs to categorize columns / columns selector?
 - Table
   - Editable table cells
   - Remember filter settings for back button?
@@ -42,3 +41,4 @@ npm start
   - Unlinked
 - Deploy script (PM2?)
 - Import csv template
+- Admin panel responsive layout

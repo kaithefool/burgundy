@@ -10,6 +10,7 @@ const NavListItem = ({
   children,
   links,
   expanded,
+  subDir = false,
   ...props
 }) => {
   const { to } = props;
@@ -21,7 +22,7 @@ const NavListItem = ({
   return (
     <>
       <Link
-        className="nav-link py-0 my-2 px-4"
+        className={`nav-link py-0 my-2 px-4 ${subDir ? 'pe-3' : ''}`}
         {...props}
         {...(to ? { activeClassName } : {})}
       >

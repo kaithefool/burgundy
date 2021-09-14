@@ -9,8 +9,8 @@ import Routes from './routes';
 const Admin = () => (
   <div className="row g-0">
     <Router>
-      <Nav className="col-auto border-end" />
-      <div className="col p-3 bg-light">
+      <Nav className="col-auto vh-100 sticky-top border-end py-3" />
+      <div className="col p-4 bg-light">
         <Routes />
       </div>
     </Router>

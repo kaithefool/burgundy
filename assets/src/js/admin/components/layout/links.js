@@ -24,6 +24,7 @@ export default [
         },
       ],
     },
+  ], [
     {
       icon: faGlobeAmericas,
       label: 'Translations',

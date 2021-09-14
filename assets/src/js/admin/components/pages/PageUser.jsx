@@ -2,8 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { object, string } from 'yup';
 
-import Page from '../../layout/Page';
-import Doc from '../../layout/Doc';
+import Page from '../layout/Page';
+import Doc from '../layout/Doc';
 import Form from '~/commons/components/form';
 import FilsList from '~/commons/components/fils/FilsList';
 

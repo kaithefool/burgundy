@@ -17,11 +17,7 @@ const Nav = ({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <nav
-      className={`
-        d-flex flex-column py-1 min-vh-100 ${className}
-      `}
-    >
+    <nav className={`d-flex flex-column ${className}`}>
       {/* expand/collapse button */}
       <NavItem
         onClick={() => setExpanded(!expanded)}
@@ -36,7 +32,12 @@ const Nav = ({
               <NavItem key={l.label} expanded={expanded} {...l}>
                 {l.links && (
                   l.links.map((ll, ii) => (
-                    <NavItem key={ii} expanded={expanded} {...ll} />
+                    <NavItem
+                      key={ii}
+                      expanded={expanded}
+                      subDir
+                      {...ll}
+                    />
                   ))
                 )}
               </NavItem>

@@ -19,4 +19,10 @@
       }
     }
   }
+  .breadcrumb-item::after {
+    display: inline-block;
+    padding-left: .5rem;
+    color: #6c757d;
+    content: "/";
+  }
 }
