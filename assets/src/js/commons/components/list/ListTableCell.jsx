@@ -97,7 +97,7 @@ const ListTableCell = ({
           value={getter(value, row)}
         />
       ) : (
-        value
+        getter(value, row)
       )}
     </td>
   );

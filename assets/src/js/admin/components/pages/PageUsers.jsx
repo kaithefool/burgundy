@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { DateTime } from 'luxon';
 
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
@@ -25,13 +26,13 @@ const PageUsers = () => {
 
           return (
             <>
-              <div className="row">
+              <div className="row mb-3">
                 <div className="col">
                   <List.Search />
                 </div>
                 <List.Pagination className="col-auto" />
               </div>
-              <div>
+              <div className="list-ctrls mb-3">
                 <List.Ctrl.Create />
                 <List.Ctrl.Refresh />
                 {hasSelectedInactive && (
@@ -54,6 +55,13 @@ const PageUsers = () => {
                 <List.Table
                   cols={[
                     { key: 'email', sortable: true },
+                    { key: 'role' },
+                    {
+                      key: 'createdAt',
+                      getter: (v) => DateTime
+                        .fromISO(v)
+                        .toLocaleString(DateTime.DATETIME_MED),
+                    },
                   ]}
                   onRowClick={({ _id }) => {
                     history.push(path.resolve(_id));

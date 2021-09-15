@@ -10,7 +10,7 @@ import useAlert from '../../alert/useAlert';
 
 const ListCtrlImport = ({
   api: apiOpts,
-  className = 'btn btn-link',
+  className = 'btn',
   ...props
 }) => {
   const { res, req } = useHttpFileUpload();

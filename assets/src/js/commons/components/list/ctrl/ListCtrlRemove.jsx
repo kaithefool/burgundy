@@ -11,7 +11,7 @@ import useAlert from '../../alert/useAlert';
 const ListCtrlRemove = ({
   api: apiOpts,
   confirm = 'Are you sure to delete?',
-  className = 'btn btn-link',
+  className = 'btn',
 }) => {
   const { api, refresh, selected } = useList();
   const [confirmModal, setConfirmModal] = useState(false);
