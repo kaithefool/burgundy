@@ -1,5 +1,5 @@
 #root.admin {
-  nav {
+  nav.main-nav {
     border-color: darken($light, 3%) !important;
 
     .nav-link {
@@ -18,11 +18,5 @@
         }
       }
     }
-  }
-  .breadcrumb-item::after {
-    display: inline-block;
-    padding-left: .5rem;
-    color: #6c757d;
-    content: "/";
   }
 }

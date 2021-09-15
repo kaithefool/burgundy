@@ -17,14 +17,14 @@ const Nav = ({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <nav className={`d-flex flex-column ${className}`}>
+    <nav className={`main-nav d-flex flex-column ${className}`}>
       {/* expand/collapse button */}
       <NavItem
         onClick={() => setExpanded(!expanded)}
         icon={expanded ? faChevronCircleLeft : faChevronCircleRight}
       />
       {/* nav items */}
-      <div className="flex-fill nav flex-column justify-content-center">
+      <div className="flex-fill nav flex-column mt-4">
         {links.map((g, i) => (
           <Fragment key={i}>
             {!!i && <hr className="mx-4" />}

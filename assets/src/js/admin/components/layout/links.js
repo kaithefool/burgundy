@@ -9,7 +9,10 @@ export default [
   [
     {
       icon: faUser,
-      label: 'Users',
+      label: {
+        default: 'Users',
+        subDir: 'All',
+      },
       to: '/admin/users',
       links: [
         {

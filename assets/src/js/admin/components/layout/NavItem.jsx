@@ -2,8 +2,6 @@ import React from 'react';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
-const activeClassName = 'active';
-
 const NavListItem = ({
   icon,
   label = '',
@@ -24,11 +22,11 @@ const NavListItem = ({
       <Link
         className={`nav-link py-0 my-2 px-4 ${subDir ? 'pe-3' : ''}`}
         {...props}
-        {...(to ? { activeClassName } : {})}
+        {...(to ? { activeClassName: 'active' } : {})}
       >
         <FA icon={icon} fixedWidth />
         {expanded && (
-          <span className="ms-3 me-1">{label}</span>
+          <span className="ms-3 me-1">{label.default || label}</span>
         )}
       </Link>
       {children && (
