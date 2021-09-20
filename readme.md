@@ -27,9 +27,8 @@ npm start
   - Editable table cells
   - Remember filter settings for back button?
   - Make table rows into links (for right click new tab)
-  - Format date time by default / use preset formats prop?
+  - Format date time by default / use preset format prop?
 - i18n
-  - who should translate http error message? server or client?
   - response
     - status
     - success
@@ -44,3 +43,7 @@ npm start
 - Import csv template
 - Admin panel responsive layout
 - Doc page last updated time
+- Tooltips
+- Postman
+  - Request documentation generator?
+  - How to share collection?

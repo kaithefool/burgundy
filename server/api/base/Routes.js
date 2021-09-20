@@ -1,9 +1,5 @@
 const { Router } = require('express');
-const {
-  get,
-  castArray,
-  forEach,
-} = require('lodash');
+const _ = require('lodash');
 
 const authorizer = require('./authorizer');
 const validator = require('./validator');
@@ -33,7 +29,7 @@ class Routes {
     this.parseNamedRoutes();
 
     // register routes
-    forEach(this.routes, (r, serve) => {
+    _.forEach(this.routes, (r, serve) => {
       this.registerRoute({ serve, ...r });
     });
 
@@ -50,7 +46,7 @@ class Routes {
     const namedRoutes = this.namedRoutes();
 
     // insert named routes
-    forEach(this.routes, (opts, serve) => {
+    _.forEach(this.routes, (opts, serve) => {
       draft[serve] = opts === true
         ? namedRoutes[serve]
         : opts;
@@ -64,7 +60,7 @@ class Routes {
       req.attrs = Object.assign(
         {},
         req.attrs,
-        ...castArray(attrsPath).map((p) => {
+        ..._.castArray(attrsPath).map((p) => {
           const a = req[p];
 
           return Array.isArray(a) ? { data: a } : a;
@@ -94,7 +90,7 @@ class Routes {
 
   guards(serve) {
     const g = [];
-    const v = get(this, `validate.${serve}`);
+    const v = _.get(this, `validate.${serve}`);
     const a = this.authorize instanceof Object
       ? this.authorize[serve]
       : this.authorize;
@@ -118,7 +114,7 @@ class Routes {
       this.attrsFetcher(attrsPath),
 
       // parsers
-      ...castArray(parse),
+      ..._.castArray(parse),
 
       // guards
       ...this.guards(serve),
@@ -127,7 +123,7 @@ class Routes {
       this.handles(serve),
 
       // responders
-      ...castArray(response),
+      ..._.castArray(response),
 
       // default responder
       (req, res) => {

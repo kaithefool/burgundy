@@ -7,7 +7,7 @@ import useList from '../useList';
 
 const ListCtrlExport = ({
   href,
-  className = 'btn',
+  className = 'btn-list-ctrl',
 }) => {
   const { filter, api } = useList();
   const query = Object.keys(filter).length

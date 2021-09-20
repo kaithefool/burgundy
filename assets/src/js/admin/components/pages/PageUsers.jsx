@@ -57,7 +57,7 @@ const PageUsers = () => {
                     { key: 'email', sortable: true },
                     { key: 'role' },
                     {
-                      key: 'createdAt',
+                      key: 'updatedAt',
                       getter: (v) => DateTime
                         .fromISO(v)
                         .toLocaleString(DateTime.DATETIME_MED),
