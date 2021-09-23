@@ -22,13 +22,15 @@ npm start
 - Update image and packages to use node:16-alpine
   - dart-sass? node-sass/libsass seems to be faster
 - Grid html editor
-- ListTable columns selector
 - Table
   - Editable table cells
   - Remember filter settings for back button?
   - Make table rows into links (for right click new tab)
   - Format date time by default / use preset format prop?
+  - Columns selector
+  - Responsive table
 - i18n
+  - Seeding?
   - response
     - status
     - success
