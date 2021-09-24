@@ -11,7 +11,11 @@ const ListProvider = ({
   initQuery = { skip: 0, limit: 30 },
   filter: baseFilter = {},
   selectable = false,
+  cols = [],
 }) => {
+  const [activeCols, showCols] = useState(
+    () => cols.filter((c) => c.hideOnInit),
+  );
   const { res, req, fetched } = useHttp();
   const [query, setQuery] = useState(initQuery);
   const [listFilter, setFilter] = useState({});
@@ -75,6 +79,8 @@ const ListProvider = ({
     selectable,
     selected: selectable ? selected.map((i) => rows[i]) : [],
     selectedIndex: selected,
+    cols,
+    activeCols,
     rows,
     res,
     staged,
@@ -83,6 +89,7 @@ const ListProvider = ({
     refresh,
     select,
     stage,
+    showCols,
   };
 
   return (

@@ -19,6 +19,16 @@ const PageUsers = () => {
       <List
         api={{ url: '/api/users' }}
         selectable
+        cols={[
+          { key: 'email', sortable: true },
+          { key: 'role' },
+          {
+            key: 'updatedAt',
+            getter: (v) => DateTime
+              .fromISO(v)
+              .toLocaleString(DateTime.DATETIME_MED),
+          },
+        ]}
       >
         {({ selected }) => {
           const hasSelectedActive = Boolean(selected.find((r) => r.active));
@@ -53,16 +63,6 @@ const PageUsers = () => {
               </div>
               <List.Status>
                 <List.Table
-                  cols={[
-                    { key: 'email', sortable: true },
-                    { key: 'role' },
-                    {
-                      key: 'updatedAt',
-                      getter: (v) => DateTime
-                        .fromISO(v)
-                        .toLocaleString(DateTime.DATETIME_MED),
-                    },
-                  ]}
                   onRowClick={({ _id }) => {
                     history.push(path.resolve(_id));
                   }}

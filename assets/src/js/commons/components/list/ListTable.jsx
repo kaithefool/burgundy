@@ -14,10 +14,10 @@ import ListTableCell from './ListTableCell';
 
 const ListTable = ({
   className = '',
-  cols = [],
   onRowClick,
 }) => {
   const {
+    activeCols: cols,
     rows,
     selectable,
     selectedIndex,

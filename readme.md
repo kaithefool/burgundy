@@ -49,3 +49,7 @@ npm start
 - Postman
   - Request documentation generator?
   - How to share collection?
+- Bump version tag
+- Webpack
+  - Optimize chunks
+- Room for socket.io?
