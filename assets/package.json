@@ -1,7 +1,5 @@
 {
-  "name": "burgundy",
-  "version": "0.1.0",
-  "description": "web client",
+  "name": "assets",
   "main": "webpack.config.js",
   "scripts": {
     "dev": "webpack --watch --mode=development",

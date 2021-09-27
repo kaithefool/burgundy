@@ -1,6 +1,5 @@
 {
-  "name": "burgundy",
-  "version": "0.1.0",
+  "name": "server",
   "private": true,
   "scripts": {
     "dev": "nodemon bin/www"

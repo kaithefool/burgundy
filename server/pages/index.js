@@ -3,7 +3,7 @@ const routes = require('express').Router();
 const authByCookies = require('../api/parsers/authByCookies');
 const {
   version: assetsVer,
-} = require('../../assets/package.json');
+} = require('../../package.json');
 
 // authentication middleware
 routes.use(authByCookies);
