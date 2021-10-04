@@ -4,8 +4,9 @@ const {
 } = require('./package.json');
 
 const postSetup = () => [
-  'mkdir -p ../shared/commons',
-  'cp -n .env-example ../shared/commons/.env',
+  'mkdir -p ../shared/public ../shared/private',
+  'ln -sf ../shared/public .',
+  'ln -sf ../shared/private .',
 ].join(' && ');
 
 const postDeploy = (env) => [

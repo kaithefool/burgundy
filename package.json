@@ -9,9 +9,9 @@
     "dev-assets": "cd assets && npm run dev",
     "sh": "docker exec -it burgundy_server_1 sh",
     "db": "docker exec -it burgundy_db_1 sh",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd private && cp -n example.env .env",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
