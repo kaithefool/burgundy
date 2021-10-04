@@ -8,8 +8,9 @@ logs
 # Database
 .db/
 
-# Public files
+# Shared files
 public/
+private/
 
 # Packages
 node_modules/

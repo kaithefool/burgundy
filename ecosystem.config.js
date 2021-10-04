@@ -11,8 +11,13 @@ const postSetup = () => [
 
 const postDeploy = (env) => [
   'npm ci',
-  `pm2 reload ecosystem.config.js --env ${env}`,
+  `pm2 startOrRestart ecosystem.config.js --env ${env}`,
 ].join(' && ');
+
+const scripts = (env) => ({
+  'post-deploy': postDeploy(env),
+  'pre-setup': postSetup(env),
+});
 
 module.exports = {
   apps: [{
@@ -24,15 +29,13 @@ module.exports = {
   }],
 
   deploy: {
-    dev: {
+    uat: {
       user: 'SSH_USERNAME',
       host: 'SSH_HOSTMACHINE',
       ref: 'origin/master',
       repo,
       path: `/home/ubuntu/www-nodejs/${name}`,
-      'pre-deploy-local': '',
-      'post-deploy': postDeploy('dev'),
-      'pre-setup': ''
+      ...scripts('uat'),
     }
   }
 };
