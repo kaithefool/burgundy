@@ -5,16 +5,8 @@
     "dev": "webpack --watch --mode=development",
     "build": "webpack --mode=production"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/kaithefool/burgundy.git"
-  },
   "author": "Kai Lam <kai.chun.lam@gmail.com>",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kaithefool/burgundy/issues"
-  },
-  "homepage": "https://github.com/kaithefool/burgundy#readme",
   "dependencies": {
     "@babel/polyfill": "^7.11.5",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",

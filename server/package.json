@@ -4,10 +4,8 @@
   "scripts": {
     "dev": "nodemon bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/kaithefool/burgundy.git"
-  },
+  "author": "Kai Lam <kai.chun.lam@gmail.com>",
+  "license": "ISC",
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "csurf": "^1.11.0",

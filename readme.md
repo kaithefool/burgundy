@@ -43,6 +43,7 @@ npm start
   - Unlinked
 - Deploy script (PM2?)
 - Import csv template
+- Import json & excel?
 - Admin panel responsive layout
 - Doc page last updated time
 - Tooltips
