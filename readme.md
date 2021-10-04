@@ -8,12 +8,16 @@ npm run sh
 
 ### Getting Start (without Docker)
 ```shell
+npm run setup
 npm i
 npm start
 ```
 
 ### Generate the first admin user
 ./server/bin/gen-admin [username@domain.com] [password]
+
+### Deploy
+pm2 deploy [env]
 
 ### In process
 

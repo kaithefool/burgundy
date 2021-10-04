@@ -7,9 +7,12 @@
     "start": "run-p dev-server dev-assets",
     "dev-server": "cd server && npm run dev",
     "dev-assets": "cd assets && npm run dev",
+    "ci-server": "cd server && npm ci",
+    "ci-assets": "cd assets && npm ci",
+    "build": "ci-server && ci-assets && cd assets && npm run build",
     "sh": "docker exec -it burgundy_server_1 sh",
     "db": "docker exec -it burgundy_db_1 sh",
-    "postinstall": "mkdir -p private && cp -n example.env private/.env",
+    "setup": "mkdir -p private && cp example.env private/.env",
     "postversion": "git push && git push --tags",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

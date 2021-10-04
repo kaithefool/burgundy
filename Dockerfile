@@ -5,21 +5,8 @@ FROM base as dev
 COPY server/package*.json  ./server/
 COPY assets/package*.json  ./assets/
 COPY package.json ./
-RUN cd /app/server && \
-  if [ -f package.lock.json ]; \
-    then npm ci; \
-    else npm i; \
-  fi
-RUN cd /app/assets && \
-  if [ -f package.lock.json ]; \
-    then npm ci; \
-    else npm i; \
-  fi
+RUN npm run ci-server
+RUN npm run ci-assets
 RUN npm i --only=prod
+RUN npm run setup
 CMD npm start
-
-FROM base as prd
-COPY . /app
-RUN cd server && npm ci
-RUN cd assets && npm ci && npm run build
-CMD node server/bin/www

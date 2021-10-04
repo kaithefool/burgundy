@@ -10,7 +10,7 @@ const postSetup = () => [
 ].join(' && ');
 
 const postDeploy = (env) => [
-  'npm ci',
+  'npm build',
   `pm2 startOrRestart ecosystem.config.js --env ${env}`,
 ].join(' && ');
 
