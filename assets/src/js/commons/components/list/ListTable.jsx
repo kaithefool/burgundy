@@ -108,7 +108,7 @@ const ListTable = ({
                 key={c}
                 row={row}
                 col={col}
-                link={rowLink && rowLink(row)}
+                rowLink={rowLink}
                 focused={focused[0] === c && focused[1] === r}
                 onFocus={([x, y]) => {
                   const f = [c + x, r + y];

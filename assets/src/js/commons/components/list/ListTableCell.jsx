@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import get from 'lodash/get';
 
 import useList from './useList';
 
 import GrowingTextarea from '../inputs/GrowingTextarea';
+import path from '../../helpers/path';
 
 const ListTableCell = ({
   row,
@@ -13,6 +15,7 @@ const ListTableCell = ({
     setter = (v) => v,
     editable = false,
   },
+  rowLink,
   focused = false,
   onFocus = () => {},
 }) => {
@@ -21,6 +24,10 @@ const ListTableCell = ({
   const stored = get(row, key);
   let value = stored;
   const prevDraft = useRef(value);
+  const classNames = [];
+
+  if (focused) classNames.push('outline-primary');
+  if (rowLink) classNames.push('link');
 
   if (editable) {
     value = get(staged[row._id], key, value);
@@ -67,38 +74,45 @@ const ListTableCell = ({
     }
   };
 
+  let content = getter(value, row);
+
+  if (editable && focused) {
+    content = (
+      <GrowingTextarea
+        className={caret ? '' : 'caret-none'}
+        autoFocus
+        onKeyDown={onKeydown}
+        onBlur={() => {
+          setCaret(false);
+        }}
+        onChange={(e) => {
+          const v = e.target.value;
+
+          setCaret(true);
+          stage(row._id, { [key]: setter(v, row) });
+        }}
+        value={content}
+      />
+    );
+  } else if (rowLink) {
+    const to = typeof rowLink === 'function' ? rowLink(row) : rowLink;
+
+    content = (
+      <Link to={path.resolve(to)}>{content}</Link>
+    );
+  }
+
   return (
     <td
-      className={focused ? 'outline-primary' : ''}
+      className={classNames.join(' ')}
       onClick={() => {
         if (editable) {
-          if (!focused) {
-            onFocus([0, 0]);
-          } else {
-            setCaret(true);
-          }
+          if (!focused) onFocus([0, 0]);
+          else setCaret(true);
         }
       }}
     >
-      {editable && focused ? (
-        <GrowingTextarea
-          className={caret ? '' : 'caret-none'}
-          autoFocus
-          onKeyDown={onKeydown}
-          onBlur={() => {
-            setCaret(false);
-          }}
-          onChange={(e) => {
-            const v = e.target.value;
-
-            setCaret(true);
-            stage(row._id, { [key]: setter(v, row) });
-          }}
-          value={getter(value, row)}
-        />
-      ) : (
-        getter(value, row)
-      )}
+      {content}
     </td>
   );
 };

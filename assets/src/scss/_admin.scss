@@ -1,4 +1,13 @@
 #root.admin {
+  .table > :not(caption) > * > td.link {
+    padding: 0;
+    a {
+      display: block;
+      color: inherit;
+      text-decoration: inherit;
+      padding: $table-cell-padding-y $table-cell-padding-x;
+    }
+  }
   nav.main-nav {
     border-color: darken($light, 3%) !important;
 

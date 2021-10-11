@@ -29,7 +29,6 @@ pm2 deploy [env]
 - Table
   - Editable table cells
   - Remember filter settings for back button?
-  - Make table rows into links (for right click new tab)
   - Format date time by default / use preset format prop?
   - Columns selector
   - Responsive table
