@@ -48,6 +48,7 @@ const AlertItem = ({
         </div>
         <button
           type="button"
+          aria-label="Close"
           className={`
             btn-close ${theme ? 'btn-close-white' : ''}
             m-auto me-2

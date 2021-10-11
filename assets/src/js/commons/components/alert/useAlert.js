@@ -16,7 +16,7 @@ function useAlert(http, {
         push({
           dirty: true,
           theme: 'danger',
-          children: http.res.payload,
+          children: http.res.payload?.message,
           ...(typeof error === 'function' ? error(http.res) : {}),
         });
       }

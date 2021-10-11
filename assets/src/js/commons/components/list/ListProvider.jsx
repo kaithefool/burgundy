@@ -14,7 +14,7 @@ const ListProvider = ({
   cols = [],
 }) => {
   const [activeCols, showCols] = useState(
-    () => cols.filter((c) => c.hideOnInit),
+    () => cols.filter((c) => !c.hide),
   );
   const { res, req, fetched } = useHttp();
   const [query, setQuery] = useState(initQuery);

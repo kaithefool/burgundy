@@ -45,7 +45,6 @@ pm2 deploy [env]
 - Purge files
   - Temp
   - Unlinked
-- Deploy script (PM2?)
 - Import csv template
 - Import json & excel?
 - Admin panel responsive layout
@@ -54,7 +53,6 @@ pm2 deploy [env]
 - Postman
   - Request documentation generator?
   - How to share collection?
-- Bump version tag
 - Webpack
   - Optimize chunks
 - Room for socket.io?

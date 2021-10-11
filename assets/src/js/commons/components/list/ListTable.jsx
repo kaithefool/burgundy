@@ -14,7 +14,7 @@ import ListTableCell from './ListTableCell';
 
 const ListTable = ({
   className = '',
-  onRowClick,
+  rowLink,
 }) => {
   const {
     activeCols: cols,
@@ -31,7 +31,7 @@ const ListTable = ({
   // [col, row]
   const [focused, setFocused] = useState([null, null]);
 
-  if (onRowClick) {
+  if (rowLink) {
     classes.push('table-hover');
   }
 
@@ -86,10 +86,6 @@ const ListTable = ({
         {rows.map((row, r) => (
           <tr
             key={r}
-            className={onRowClick ? 'cursor-pointer' : ''}
-            onClick={() => {
-              if (onRowClick) onRowClick(row, r);
-            }}
           >
             {selectable && (
               <td>
@@ -112,6 +108,7 @@ const ListTable = ({
                 key={c}
                 row={row}
                 col={col}
+                link={rowLink && rowLink(row)}
                 focused={focused[0] === c && focused[1] === r}
                 onFocus={([x, y]) => {
                   const f = [c + x, r + y];

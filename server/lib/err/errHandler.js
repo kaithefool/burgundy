@@ -2,8 +2,8 @@ const { NODE_ENV } = process.env;
 
 // eslint-disable-next-line no-unused-vars
 module.exports = (err, { t }, res, next) => {
-  const { status = 500, expose = false } = err;
-  let { message, stack } = err;
+  const { status = 500, expose = false, stack } = err;
+  let { message } = err;
 
   // server log
   if (status >= 500) console.error(err);
@@ -11,14 +11,13 @@ module.exports = (err, { t }, res, next) => {
   // i18n
   message = t(message);
 
-  // only providing error details in development
-  if (NODE_ENV === 'production' && !expose) {
-    message = '';
-    stack = undefined;
-  }
-
   // render the error
   const e = { status, message, stack };
+
+  // only providing error details in development
+  if (NODE_ENV === 'production' && !expose) {
+    delete e.stack;
+  }
 
   res.status(status);
   res.locals.error = e;
