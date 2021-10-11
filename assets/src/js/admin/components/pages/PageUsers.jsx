@@ -36,6 +36,9 @@ const PageUsers = () => (
                 <List.Search />
               </div>
               <List.Pagination className="col-auto" />
+              <div className="col-auto">
+                <List.ColsToggle />
+              </div>
             </div>
             <div className="list-ctrls mb-3">
               <List.Ctrl.Create />

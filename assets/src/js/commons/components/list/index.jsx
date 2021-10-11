@@ -2,6 +2,7 @@ import React from 'react';
 
 import ListContext from './ListContext';
 import ListPagination from './ListPagination';
+import ListColsToggle from './ListColsToggle';
 import ListProvider from './ListProvider';
 import ListSearch from './ListSearch';
 import ListStatus from './ListStatus';
@@ -12,6 +13,7 @@ import useList from './useList';
 export {
   ListContext,
   ListPagination,
+  ListColsToggle,
   ListProvider,
   ListSearch,
   ListStatus,
@@ -23,6 +25,7 @@ export {
 const List = (props) => <ListProvider {...props} />;
 
 List.Pagination = ListPagination;
+List.ColsToggle = ListColsToggle;
 List.Provider = ListProvider;
 List.Search = ListSearch;
 List.Status = ListStatus;

@@ -30,7 +30,7 @@ pm2 deploy [env]
   - Editable table cells
   - Remember filter settings for back button?
   - Format date time by default / use preset format prop?
-  - Columns selector
+  - i18n column label (table header and cols toggle)
   - Responsive table
 - i18n
   - Seeding?

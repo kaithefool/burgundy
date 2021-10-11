@@ -16,6 +16,7 @@ const BtnHttp = ({
 
   return (
     <button
+      type="button"
       {...props}
       disabled={status === 'pending' || disabled}
       className={`
