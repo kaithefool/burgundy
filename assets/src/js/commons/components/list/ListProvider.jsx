@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import ListContext from './ListContext';
 import useHttp from '../../hooks/useHttp';
 import useComparable from '../../hooks/useComparable';
+import useQuery from '../../hooks/useQuery';
 
 const ListProvider = ({
   children,
@@ -12,6 +13,7 @@ const ListProvider = ({
   filter: baseFilter = {},
   selectable = false,
   cols = [],
+  history = true,
 }) => {
   const [activeCols, showCols] = useState(
     () => cols.filter((c) => !c.hide),
