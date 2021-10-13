@@ -5,6 +5,7 @@ FROM base as dev
 COPY server/package*.json  ./server/
 COPY assets/package*.json  ./assets/
 COPY package.json ./
+COPY example.env ./
 RUN npm run ci-server
 RUN npm run ci-assets
 RUN npm i --only=prod

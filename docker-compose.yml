@@ -6,6 +6,8 @@ services:
       - ./.db:/data/db
     logging:
       driver: none
+    ports:
+      - 27018:27017
   server:
     platform: linux/amd64
     build:

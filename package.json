@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/bin/www",
   "scripts": {
-    "start": "run-p dev-server dev-assets",
+    "start": "npm run setup && run-p dev-server dev-assets",
     "dev-server": "cd server && npm run dev",
     "dev-assets": "cd assets && npm run dev",
     "ci-server": "cd server && npm ci",
@@ -12,7 +12,7 @@
     "build": "ci-server && ci-assets && cd assets && npm run build",
     "sh": "docker exec -it burgundy_server_1 sh",
     "db": "docker exec -it burgundy_db_1 sh",
-    "setup": "mkdir -p private && cp example.env private/.env",
+    "setup": "if [ ! -f private/.env ]; then mkdir -p private && cp example.env private/.env; fi",
     "postversion": "git push && git push --tags",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
