@@ -1,5 +1,4 @@
 import React from 'react';
-import { DateTime } from 'luxon';
 
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
@@ -17,12 +16,7 @@ const PageUsers = () => (
       cols={[
         { key: 'email', sortable: true },
         { key: 'role' },
-        {
-          key: 'updatedAt',
-          getter: (v) => DateTime
-            .fromISO(v)
-            .toLocaleString(DateTime.DATETIME_MED),
-        },
+        { key: 'updatedAt', format: 'fromNow' },
       ]}
     >
       {({ selected }) => {

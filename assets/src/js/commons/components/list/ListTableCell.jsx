@@ -6,13 +6,15 @@ import useList from './useList';
 
 import GrowingTextarea from '../inputs/GrowingTextarea';
 import path from '../../helpers/path';
+import formats from './formats';
 
 const ListTableCell = ({
   row,
   col: {
     key,
-    getter = (v) => v,
+    getter = (v, r, format) => (format ? formats[format](v) : v),
     setter = (v) => v,
+    format,
     editable = false,
   },
   rowLink,
@@ -74,7 +76,7 @@ const ListTableCell = ({
     }
   };
 
-  let content = getter(value, row);
+  let content = getter(value, row, format);
 
   if (editable && focused) {
     content = (

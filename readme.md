@@ -28,7 +28,6 @@ pm2 deploy [env]
 - Grid html editor
 - Table
   - Editable table cells
-  - Format date time by default / use preset format prop?
   - i18n column label (table header and cols toggle)
   - Limit select dropdown
 - i18n
