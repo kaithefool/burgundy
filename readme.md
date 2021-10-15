@@ -28,10 +28,10 @@ pm2 deploy [env]
 - Grid html editor
 - Table
   - Editable table cells
-  - Remember filter settings for back button?
   - Format date time by default / use preset format prop?
   - i18n column label (table header and cols toggle)
   - Responsive table
+  - Limit select dropdown
 - i18n
   - Seeding?
   - response

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import get from 'lodash/get';
+import pick from 'lodash/pick';
 
 import ListContext from './ListContext';
 import useHttp from '../../hooks/useHttp';
@@ -15,12 +16,18 @@ const ListProvider = ({
   cols = [],
   history = true,
 }) => {
+  const [urlQuery, setUrlQuery] = useQuery();
   const [activeCols, showCols] = useState(
     () => cols.filter((c) => !c.hide),
   );
   const { res, req, fetched } = useHttp();
-  const [query, setQuery] = useState(initQuery);
-  const [listFilter, setFilter] = useState({});
+  const [query, setQuery] = useState(() => ({
+    ...initQuery,
+    ...(history && pick(urlQuery, ['skip', 'limit'])),
+  }));
+  const [listFilter, setFilter] = useState(() => (
+    (history && urlQuery?.filter) || {}
+  ));
   const [selected, setSelected] = useState([]);
   const [staged, setStaged] = useState({});
 
@@ -73,6 +80,16 @@ const ListProvider = ({
   useEffect(() => {
     refresh();
   }, [useComparable({ baseFilter, api })]);
+
+  useEffect(() => {
+    const { skip, limit } = query;
+
+    setUrlQuery({
+      ...(skip !== initQuery.skip && { skip }),
+      ...(limit !== initQuery.limit && { limit }),
+      filter: listFilter,
+    }, true);
+  }, [history && useComparable({ listFilter, query })]);
 
   const value = {
     api,

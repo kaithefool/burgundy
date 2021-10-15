@@ -5,13 +5,12 @@ export default function useQuery() {
   const loc = useLocation();
   const history = useHistory();
 
-  return {
-    query: qs.parse(loc.search, { ignoreQueryPrefix: true }),
-    push(q) {
-      history.push(`${loc.pathname}?${qs.stringify(q)}`);
+  return [
+    qs.parse(loc.search, { ignoreQueryPrefix: true }),
+    (q, replace = false) => {
+      history[replace ? 'replace' : 'push'](
+        `${loc.pathname}?${qs.stringify(q)}`,
+      );
     },
-    replace(q) {
-      history.replace(`${loc.pathname}?${qs.stringify(q)}`);
-    },
-  };
+  ];
 }

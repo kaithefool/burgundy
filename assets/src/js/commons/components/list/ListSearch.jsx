@@ -25,7 +25,7 @@ const ListSearch = ({
       if (by) f.search = { [by]: str };
       else if (str) f.search = str;
 
-      fetch(f);
+      fetch({ filter: f });
     },
     deboucT,
   ), []);
