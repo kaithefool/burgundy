@@ -1,8 +1,9 @@
 const httpError = require('http-errors');
 
 class Service {
-  constructor(model) {
+  constructor(model, opts = {}) {
     this.model = model;
+    this.opts = opts;
   }
 
   throw(...args) {
@@ -29,8 +30,40 @@ class Service {
     return data;
   }
 
-  match(filter) {
-    return filter;
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
+  escapeRegExp(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  search(f) {
+    let { search: opts } = this.opts;
+    if (!opts || !f) return null;
+
+    if (typeof opts === 'string' || Array.isArray(opts)) {
+      opts = { default: opts };
+    }
+
+    const by = Object.keys(typeof f === 'object' ? f : opts)[0];
+    const query = typeof f === 'object' ? Object.values(f)[0] : f;
+    const regex = new RegExp(this.escapeRegExp(query.trim()), 'i');
+    const fields = opts[by];
+
+    if (!fields) return null;
+
+    if (Array.isArray(fields)) {
+      return {
+        $or: fields.map((fld) => ({ [fld]: regex })),
+      };
+    }
+
+    return { [fields]: regex };
+  }
+
+  match({ search, ...filter } = {}) {
+    return {
+      ...this.search(search),
+      ...filter,
+    };
   }
 
   find(filter, user, opts) {

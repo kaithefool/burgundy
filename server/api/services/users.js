@@ -12,4 +12,6 @@ class UserServ extends Service {
   }
 }
 
-module.exports = new UserServ(model);
+module.exports = new UserServ(model, {
+  search: 'email',
+});
