@@ -1,5 +1,8 @@
 extends layout
 
+block head
+  link(rel='stylesheet', href=`/assets/admin.css?v=${ver}`)
+
 block body
   #root.admin
-  script(src=`/assets/admin.js?v=${assetsVer}`)
+  script(src=`/assets/admin.js?v=${ver}`)

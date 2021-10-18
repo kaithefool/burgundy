@@ -1,5 +1,8 @@
 extends layout
 
+head
+  link(rel='stylesheet', href=`/assets/app.css?v=${ver}`)
+
 block body
   #root.app
-  script(src=`/assets/app.js?v=${assetsVer}`)
+  script(src=`/assets/app.js?v=${ver}`)

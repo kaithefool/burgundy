@@ -10,7 +10,7 @@ import useQuery from '../../hooks/useQuery';
 const ListProvider = ({
   children,
   api,
-  initQuery = { skip: 0, limit: 30 },
+  initQuery = { skip: 0, limit: 10 },
   filter: baseFilter = {},
   selectable = false,
   cols = [],
@@ -36,7 +36,7 @@ const ListProvider = ({
   const rows = fetched?.payload?.rows || [];
 
   const fetch = ({ filter: newF, ...q }) => {
-    const newQ = { ...q, ...query };
+    const newQ = { ...query, ...q };
 
     if (newF) {
       setFilter(newF);
@@ -100,6 +100,7 @@ const ListProvider = ({
     selectedIndex: selected,
     cols,
     activeCols,
+    fetched,
     rows,
     res,
     staged,

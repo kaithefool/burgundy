@@ -1,22 +1,13 @@
-import { DateTime } from 'luxon';
+import { DateTime as dt } from 'luxon';
 
 export default {
   datetime: (v) => (
-    v
-      ? DateTime
-        .fromISO(v)
-        .toLocaleString(DateTime.DATETIME_MED)
-      : ''),
+    v ? dt.fromISO(v).toLocaleString(dt.DATETIME_MED) : ''
+  ),
   date: (v) => (
-    v
-      ? DateTime
-        .fromISO(v)
-        .toLocaleString(DateTime.DATE_MED)
-      : ''),
+    v ? dt.fromISO(v).toLocaleString(dt.DATE_MED) : ''
+  ),
   fromNow: (v) => (
-    v
-      ? DateTime
-        .fromISO(v)
-        .toRelative()
-      : ''),
+    v ? dt.fromISO(v).toRelative() : ''
+  ),
 };

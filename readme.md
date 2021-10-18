@@ -30,6 +30,7 @@ pm2 deploy [env]
   - Editable table cells
   - i18n column label (table header and cols toggle)
   - Limit select dropdown
+  - Toggle switch table cell
 - i18n
   - Seeding?
   - response
@@ -47,9 +48,8 @@ pm2 deploy [env]
 - Admin panel responsive layout
 - Doc page last updated time
 - Tooltips
+- ObjectId validator
 - Postman
   - Request documentation generator?
   - How to share collection?
-- Webpack
-  - Optimize chunks
 - Room for socket.io?

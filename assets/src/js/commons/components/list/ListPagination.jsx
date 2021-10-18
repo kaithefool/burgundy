@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import useList from './useList';
 
 const ListPagination = ({
   className,
 }) => {
+  const [input, setInput] = useState('');
   const {
     query: { skip, limit },
     fetched,
@@ -29,25 +30,37 @@ const ListPagination = ({
   if (pg.total < 1) return '';
 
   return (
-    <div className={`pagination ${className}`}>
-      <div
-        className={`page-item${prev ? '' : ' disabled'}`}
-        onClick={() => to(pg.current - 1)}
-      >
-        <a className="page-link">&lt;</a>
-      </div>
-      <div className="page-item disabled">
-        <a className="page-link">
-          {pg.current} / {pg.total}
-        </a>
-      </div>
-      <div
-        className={`page-item${next ? '' : ' disabled'}`}
-        onClick={() => to(pg.current + 1)}
-      >
-        <a className="page-link">&gt;</a>
-      </div>
-    </div>
+    <nav className={className} aria-label="List Pages">
+      <ul className="pagination">
+        <li className={`page-item${prev ? '' : ' disabled'}`}>
+          <button
+            type="button"
+            onClick={() => to(pg.current - 1)}
+            aria-label="Previous"
+            className="page-link"
+            tabIndex={prev ? '' : -1}
+          >
+            &lt;
+          </button>
+        </li>
+        <li className="page-item">
+          <span className="page-link">
+            {`${pg.current} / ${pg.total}`}
+          </span>
+        </li>
+        <li className={`page-item${next ? '' : ' disabled'}`}>
+          <button
+            type="button"
+            onClick={() => to(pg.current + 1)}
+            aria-label="Next"
+            className="page-link"
+            tabIndex={next ? '' : -1}
+          >
+            &gt;
+          </button>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

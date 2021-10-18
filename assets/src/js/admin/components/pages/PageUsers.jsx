@@ -17,6 +17,7 @@ const PageUsers = () => (
         { key: 'email', sortable: true },
         { key: 'role' },
         { key: 'updatedAt', format: 'fromNow' },
+        { key: 'lastLogin', format: 'datetime' },
       ]}
     >
       {({ selected }) => {
