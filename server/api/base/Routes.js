@@ -4,6 +4,8 @@ const _ = require('lodash');
 const authorizer = require('./authorizer');
 const validator = require('./validator');
 
+const idMatch = '[0-9a-f]{24}';
+
 const defaultNamedRoutes = {
   list: {},
   find: {
@@ -15,8 +17,8 @@ const defaultNamedRoutes = {
     },
   },
   create: { method: 'post' },
-  patch: { method: 'patch', path: '/:_id' },
-  delete: { method: 'delete', path: '/:_id' },
+  patch: { method: 'patch', path: `/:_id(${idMatch})` },
+  delete: { method: 'delete', path: `/:_id(${idMatch})?` },
 };
 
 class Routes {

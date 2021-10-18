@@ -29,7 +29,6 @@ pm2 deploy [env]
 - Table
   - Editable table cells
   - i18n column label (table header and cols toggle)
-  - Limit select dropdown
   - Toggle switch table cell
 - i18n
   - Seeding?

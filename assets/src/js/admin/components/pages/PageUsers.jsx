@@ -26,7 +26,7 @@ const PageUsers = () => (
 
         return (
           <>
-            <div className="row mb-3">
+            <div className="row">
               <div className="col">
                 <List.Search />
               </div>
