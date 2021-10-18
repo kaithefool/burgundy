@@ -30,7 +30,7 @@ const PageUsers = () => (
               <div className="col">
                 <List.Search />
               </div>
-              <List.Pagination className="col-auto" />
+              <List.Pagination />
               <div className="col-auto">
                 <List.ColsToggle />
               </div>

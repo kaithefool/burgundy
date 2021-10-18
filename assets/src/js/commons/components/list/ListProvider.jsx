@@ -10,7 +10,7 @@ import useQuery from '../../hooks/useQuery';
 const ListProvider = ({
   children,
   api,
-  initQuery = { skip: 0, limit: 10 },
+  initQuery = { skip: 0, limit: 20 },
   filter: baseFilter = {},
   selectable = false,
   cols = [],
