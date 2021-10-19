@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import '../../scss/app.scss';
+import '../../scss/main.scss';
 import '~/commons/config';
 
 import App from './components/App';

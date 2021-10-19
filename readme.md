@@ -39,6 +39,7 @@ pm2 deploy [env]
   - form
     - button
     - label
+- File Uploads
 - Purge files
   - Temp
   - Unlinked

@@ -27,13 +27,13 @@ const PageUsers = () => (
         return (
           <>
             <div className="row">
-              <div className="col">
+              <div className="col-12 col-md mb-3">
                 <List.Search />
               </div>
-              <List.Pagination />
-              <div className="col-auto">
+              <div className="col-auto mb-3">
                 <List.ColsToggle />
               </div>
+              <List.Pagination className="col-auto mb-3" />
             </div>
             <div className="mb-3">
               <List.Ctrl.Create />

@@ -40,7 +40,7 @@ const ListPagination = ({
       <div className="row">
 
         {/* limit */}
-        <div className="col">
+        <div className="col-auto">
           <select
             className="form-select"
             value={limit}
@@ -52,7 +52,7 @@ const ListPagination = ({
           >
             {limits.map((l) => (
               <option value={l} key={l}>
-                {`${l} per page`}
+                {`${l} / page`}
               </option>
             ))}
           </select>
@@ -60,8 +60,8 @@ const ListPagination = ({
 
         {/* skip */}
         {pg.total > 1 && (
-          <div className="col">
-            <ul className="pagination">
+          <div className="col-auto">
+            <ul className="pagination m-0">
               {/* previous button */}
               <li className={`page-item${prev ? '' : ' disabled'}`}>
                 <button
