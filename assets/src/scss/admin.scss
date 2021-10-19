@@ -1,4 +1,11 @@
+@import 'bootstrap/index';
+@import 'base';
+@import 'table';
+@import 'theme';
+
 #root.admin {
+   
+  // table row link
   .table > :not(caption) > * > td.link {
     padding: 0;
     a {
@@ -8,6 +15,8 @@
       padding: $table-cell-padding-y $table-cell-padding-x;
     }
   }
+
+  // main navigation
   nav.main-nav {
     border-color: darken($light, 3%) !important;
 
@@ -27,11 +36,5 @@
         }
       }
     }
-  }
-  .btn-list-ctrl {
-    @extend .btn;
-    @extend .shadow-sm;
-    @extend .px-2;
-    @extend .me-3;
   }
 }

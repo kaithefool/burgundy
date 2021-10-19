@@ -9,7 +9,7 @@ import useAlert from '../../alert/useAlert';
 
 const ListCtrlSave = ({
   api: apiOpts,
-  className = 'btn-list-ctrl',
+  className = 'btn px-2 me-3 border',
 }) => {
   const { api, staged } = useList();
   const { req, res } = useHttp();

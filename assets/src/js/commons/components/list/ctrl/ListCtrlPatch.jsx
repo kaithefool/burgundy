@@ -10,7 +10,7 @@ const ListCtrlPatch = ({
   icon,
   api: apiOpts,
   updates,
-  className = 'btn-list-ctrl',
+  className = 'btn px-2 me-3 border',
 }) => {
   const { res, req } = useHttp();
   const { api, refresh, selected } = useList();

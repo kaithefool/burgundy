@@ -5,7 +5,7 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import useList from '../useList';
 
 const ListCtrlRefresh = ({
-  className = 'btn-list-ctrl',
+  className = 'btn px-2 me-3 border',
 }) => {
   const { refresh } = useList();
 

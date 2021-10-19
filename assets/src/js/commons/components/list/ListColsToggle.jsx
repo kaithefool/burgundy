@@ -26,6 +26,7 @@ const ListColsToggle = () => {
   return (
     <DropdownButton
       title={<FA icon={faColumns} />}
+      variant=""
     >
       {cols.map((c) => (
         <li key={c.key} className="dropdown-item">

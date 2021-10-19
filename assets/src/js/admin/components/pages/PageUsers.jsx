@@ -35,7 +35,7 @@ const PageUsers = () => (
                 <List.ColsToggle />
               </div>
             </div>
-            <div className="list-ctrls mb-3">
+            <div className="mb-3">
               <List.Ctrl.Create />
               <List.Ctrl.Refresh />
               {hasSelectedInactive && (
@@ -44,7 +44,6 @@ const PageUsers = () => (
                   updates={{ active: true }}
                 />
               )}
-              <List.Ctrl.Save />
               {hasSelectedActive && (
                 <List.Ctrl.Patch
                   icon={faLock}

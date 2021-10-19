@@ -6,7 +6,7 @@ import path from '~/commons/helpers/path';
 
 const ListCtrlCreate = ({
   to,
-  className = 'btn-list-ctrl btn-primary',
+  className = 'btn px-2 me-3 btn-primary',
 }) => (
   <Link
     to={typeof to === 'string' ? to : path.resolve('new')}
