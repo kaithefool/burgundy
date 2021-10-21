@@ -30,8 +30,9 @@ pm2 deploy [env]
   - Editable table cells
   - i18n column label (table header and cols toggle)
   - Toggle switch table cell
+  - Reorganize pagination and cols toggle
 - i18n
-  - Seeding?
+  - import and export
   - response
     - status
     - success
@@ -47,6 +48,7 @@ pm2 deploy [env]
 - Import json & excel?
 - Admin panel responsive layout
 - Doc page last updated time
+- Singleton
 - Tooltips
 - ObjectId validator
 - Postman

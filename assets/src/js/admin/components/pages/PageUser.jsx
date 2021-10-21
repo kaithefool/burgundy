@@ -5,17 +5,13 @@ import { object, string } from 'yup';
 import Page from '../layout/Page';
 import Doc from '../layout/Doc';
 import Form from '~/commons/components/form';
-import FilsList from '~/commons/components/fils/FilsList';
 
 const PageUser = ({ match }) => {
   const { _id } = match.params;
   const history = useHistory();
 
   return (
-    <Doc
-      _id={_id}
-      api={{ url: '/api/users' }}
-    >
+    <Doc _id={_id} api={{ url: '/api/users' }}>
       {(user) => (
         <Page
           header={{
@@ -46,21 +42,17 @@ const PageUser = ({ match }) => {
               if (!user) history.push(payload._id);
             }}
           >
-            <Form.BtnSubmit />
+            <div className="mb-3">
+              <Form.BtnSubmit />
+            </div>
+
             <Form.Field name="email" />
             <Form.Field name="role" as="select">
               <option value=""> - </option>
               <option value="admin">Admin</option>
-              <option value="customer">Customer</option>
+              <option value="client">Client</option>
             </Form.Field>
-            <Form.Field
-              name="password"
-              type="password"
-            />
-            <FilsList
-              api={{ url: '/api/files' }}
-              multiple={3}
-            />
+            <Form.Field name="password" type="password" />
           </Form>
         </Page>
       )}

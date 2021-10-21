@@ -1,8 +1,8 @@
 const httpError = require('http-errors');
-const { castArray } = require('lodash');
+const _ = require('lodash');
 
 module.exports = (roles) => (req, res, next) => {
-  const rr = castArray(roles);
+  const rr = _.castArray(roles);
   const { role = 'guest' } = req.user || {};
 
   if (!rr.includes('guest') && role === 'guest') {
