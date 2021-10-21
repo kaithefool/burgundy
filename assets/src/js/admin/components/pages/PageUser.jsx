@@ -38,8 +38,8 @@ const PageUser = ({ match }) => {
             beforeSubmit={({ password, ...values }) => ({
               ...values, ...(password && { password }),
             })}
-            onSubmitted={({ payload }) => {
-              if (!user) history.push(payload._id);
+            onSubmitted={({ data }) => {
+              if (!user) history.push(data._id);
             }}
           >
             <div className="mb-3">

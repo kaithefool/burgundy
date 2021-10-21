@@ -47,7 +47,9 @@ pm2 deploy [env]
 - Import csv template
 - Import json & excel?
 - Admin panel responsive layout
-- Doc page last updated time
+- Doc page
+  - Last updated time
+  - Delete button
 - Singleton
   - Seeding?
 - Tooltips
