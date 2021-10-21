@@ -30,7 +30,7 @@ pm2 deploy [env]
   - Editable table cells
   - i18n column label (table header and cols toggle)
   - Toggle switch table cell
-  - Reorganize pagination and cols toggle
+  - Lang keys getter
 - i18n
   - import and export
   - response
@@ -49,9 +49,11 @@ pm2 deploy [env]
 - Admin panel responsive layout
 - Doc page last updated time
 - Singleton
+  - Seeding?
 - Tooltips
 - ObjectId validator
 - Postman
   - Request documentation generator?
   - How to share collection?
 - Room for socket.io?
+- 4xx and 5xx error templates

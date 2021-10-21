@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import get from 'lodash/get';
-import pick from 'lodash/pick';
 
 import ListContext from './ListContext';
 import useHttp from '../../hooks/useHttp';
@@ -23,7 +22,10 @@ const ListProvider = ({
   const { res, req, fetched } = useHttp();
   const [query, setQuery] = useState(() => ({
     ...initQuery,
-    ...(history && pick(urlQuery, ['skip', 'limit'])),
+    ...(history && {
+      ...(urlQuery.skip && { skip: Number(urlQuery.skip) }),
+      ...(urlQuery.limit && { limit: Number(urlQuery.limit) }),
+    }),
   }));
   const [listFilter, setFilter] = useState(() => (
     (history && urlQuery?.filter) || {}
