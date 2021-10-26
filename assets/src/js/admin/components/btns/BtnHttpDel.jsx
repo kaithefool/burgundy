@@ -13,16 +13,15 @@ const BtnHttpDel = ({
   ...props
 }) => {
   const http = useHttp();
-  const { req, res } = http;
   const { pushPath } = usePath();
 
-  useAlert(http, { success: () => ({ children: 'Deleted' }) });
+  useAlert(http.res, { success: () => ({ children: 'Deleted' }) });
 
   return (
     <BtnHttpConfirm
-      res={res}
+      res={http.res}
       req={async () => {
-        await req({
+        await http.req({
           method: 'delete',
           ...api,
         });

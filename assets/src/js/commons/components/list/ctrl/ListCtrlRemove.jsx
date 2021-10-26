@@ -15,7 +15,7 @@ const ListCtrlRemove = ({
   const { api, refresh, selected } = useList();
   const { req, res } = useHttp();
 
-  useAlert(res, { success: { children: 'Deleted' } });
+  useAlert(res, { success: () => ({ children: 'Deleted' }) });
 
   const remove = async () => {
     await req({

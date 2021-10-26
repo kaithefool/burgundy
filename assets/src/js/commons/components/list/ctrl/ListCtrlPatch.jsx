@@ -11,13 +11,13 @@ const ListCtrlPatch = ({
   updates,
   className = 'btn px-2 me-3 border',
 }) => {
-  const { res, req } = useHttp();
+  const http = useHttp();
   const { api, refresh, selected } = useList();
 
-  useAlert(res);
+  useAlert(http.res);
 
   const patch = async () => {
-    await req({
+    await http.req({
       method: 'patch',
       data: {
         _id: selected.map((s) => s._id),
@@ -34,7 +34,7 @@ const ListCtrlPatch = ({
 
   return (
     <BtnHttp
-      res={res}
+      res={http.res}
       className={className}
       onClick={patch}
       icon={icon}

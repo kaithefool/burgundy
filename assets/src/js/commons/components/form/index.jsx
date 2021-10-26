@@ -19,7 +19,7 @@ export {
 };
 
 const Form = ({
-  alert = {},
+  alert,
   ...props
 }) => (
   alert

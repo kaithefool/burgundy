@@ -5,13 +5,16 @@ import {
 
 import Nav from './layout/Nav';
 import Routes from './routes';
+import Alert from '~/commons/components/alert';
 
 const Admin = () => (
   <div className="row g-0">
     <Router>
       <Nav className="col-auto vh-100 sticky-top border-end py-3" />
       <div className="col bg-light">
-        <Routes />
+        <Alert className="m-3 position-fixed top-0 end-0">
+          <Routes />
+        </Alert>
       </div>
     </Router>
   </div>
