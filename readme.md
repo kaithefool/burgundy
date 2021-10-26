@@ -31,6 +31,7 @@ pm2 deploy [env]
   - i18n column label (table header and cols toggle)
   - Toggle switch table cell
   - Lang keys getter
+  - Sticky table head
 - i18n
   - import and export
   - response
@@ -59,3 +60,5 @@ pm2 deploy [env]
   - How to share collection?
 - Room for socket.io?
 - 4xx and 5xx error templates
+- Alert
+  - useAlert on every request

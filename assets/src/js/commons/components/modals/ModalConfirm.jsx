@@ -1,43 +1,62 @@
-import React from 'react';
-import Modal from './Modal';
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-bootstrap/Modal';
 
 const ModalConfirm = ({
-  onConfirm = () => {},
-  children,
+  header,
+  body,
+  onConfirm,
+  typeToConfirm = false,
   ...props
 }) => {
-  const { onHide } = props;
+  const { show, onHide } = props;
+  const [input, setInput] = useState('');
+  const confirmText = typeof typeToConfirm === 'string'
+    || 'DELETE';
+
+  useEffect(() => {
+    if (!show) setInput('');
+  }, [show]);
 
   return (
-    <Modal
-      {...props}
-    >
-      <div className="modal-body">
-        {children}
-        <div className="form-row">
-          <div className="col">
-            <button
-              type="button"
-              className="btn btn-outline-primary"
-              onClick={onHide}
-            >
-              Cancel
-            </button>
-          </div>
-          <div className="col">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => {
-                onConfirm();
-                onHide();
-              }}
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-      </div>
+    <Modal {...props}>
+      <Modal.Header closeButton>
+        {header}
+      </Modal.Header>
+      <Modal.Body>
+        {body}
+        {typeToConfirm && (
+          <>
+            <p>
+              Type&nbsp;
+              <strong>{confirmText}</strong>
+              &nbsp;to confirm
+            </p>
+            <input
+              type="text"
+              className="form-control"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+          </>
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={() => { onConfirm(); onHide(); }}
+          disabled={typeToConfirm && input !== confirmText}
+        >
+          Yes
+        </button>
+        <button
+          className="btn btn-outline-primary"
+          type="button"
+          onClick={onHide}
+        >
+          No
+        </button>
+      </Modal.Footer>
     </Modal>
   );
 };

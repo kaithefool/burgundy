@@ -53,7 +53,7 @@ const ListProvider = ({
     });
   };
 
-  const refresh = () => fetch({ skip: 0 });
+  const refresh = () => fetch({});
 
   const select = (s) => setSelected(s);
 

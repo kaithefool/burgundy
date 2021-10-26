@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 
 import { useHttpFileUpload } from '../../../hooks/useHttp';
@@ -33,8 +32,8 @@ const ListCtrlImport = ({
     <BtnHttp
       res={res}
       className={className}
+      icon={faUpload}
     >
-      <FA icon={faUpload} fixedWidth />
       <Fils onChange={upload} {...props} />
     </BtnHttp>
   );

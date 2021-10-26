@@ -5,8 +5,8 @@ import get from 'lodash/get';
 import useList from './useList';
 
 import GrowingTextarea from '../inputs/GrowingTextarea';
-import path from '../../helpers/path';
 import formats from './formats';
+import usePath from '../../hooks/usePath';
 
 const ListTableCell = ({
   row,
@@ -22,6 +22,7 @@ const ListTableCell = ({
   onFocus = () => {},
 }) => {
   const { stage, staged } = useList();
+  const { path } = usePath();
   const [caret, setCaret] = useState(false);
   const stored = get(row, key);
   let value = stored;
@@ -100,7 +101,7 @@ const ListTableCell = ({
     const to = typeof rowLink === 'function' ? rowLink(row) : rowLink;
 
     content = (
-      <Link to={path.resolve(to)}>{content}</Link>
+      <Link to={path(to)}>{content}</Link>
     );
   }
 

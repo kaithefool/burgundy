@@ -1,49 +1,60 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { object, string } from 'yup';
 
 import Page from '../layout/Page';
 import Doc from '../layout/Doc';
 import Form from '~/commons/components/form';
+import BtnHttpDel from '../btns/BtnHttpDel';
+import usePath from '~/commons/hooks/usePath';
 
 const PageUser = ({ match }) => {
   const { _id } = match.params;
-  const history = useHistory();
+  const { pushPath } = usePath();
 
   return (
     <Doc _id={_id} api={{ url: '/api/users' }}>
-      {(user) => (
+      {(doc) => (
         <Page
           header={{
             breadcrumb: [
               { to: '../', children: 'Users' },
             ],
-            title: user?.email || 'New User',
+            title: doc?.email || 'New',
           }}
         >
           <Form
             api={{
-              url: `/api/users/${user ? _id : ''}`,
-              method: user ? 'patch' : 'post',
+              url: `/api/users/${doc ? _id : ''}`,
+              method: doc ? 'patch' : 'post',
             }}
-            stored={user}
+            stored={doc}
             defaults={{ email: '', role: '', password: '' }}
             schema={object({
               email: string().email().required(),
               role: string().required(),
               password: (
-                user ? string() : string().required()
+                doc ? string() : string().required()
               ).min(8),
             })}
             beforeSubmit={({ password, ...values }) => ({
               ...values, ...(password && { password }),
             })}
             onSubmitted={({ data }) => {
-              if (!user) history.push(data._id);
+              if (!doc) pushPath(data._id);
             }}
           >
-            <div className="mb-3">
-              <Form.BtnSubmit />
+            <div className="row mb-3">
+              <div className="col">
+                <Form.BtnSubmit />
+              </div>
+              <div className="col-auto">
+                {doc && (
+                  <BtnHttpDel
+                    api={{ url: `/api/users/${_id}` }}
+                    redirect=".."
+                  />
+                )}
+              </div>
             </div>
 
             <Form.Field name="email" />

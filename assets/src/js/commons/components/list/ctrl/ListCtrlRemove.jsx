@@ -1,23 +1,21 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import React from 'react';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
-import useHttp from '../../../hooks/useHttp';
-import BtnHttp from '../../btns/BtnHttp';
-import ModalConfirm from '../../modals/ModalConfirm';
+import BtnHttpConfirm from '../../btns/BtnHttpConfirm';
 import useList from '../useList';
 import useAlert from '../../alert/useAlert';
+import useHttp from '../../../hooks/useHttp';
 
 const ListCtrlRemove = ({
   api: apiOpts,
   confirm = 'Are you sure to delete?',
   className = 'btn px-2 me-3 border',
+  ...props
 }) => {
   const { api, refresh, selected } = useList();
-  const [confirmModal, setConfirmModal] = useState(false);
   const { req, res } = useHttp();
 
-  useAlert(res, { success: { children: 'Removed' } });
+  useAlert(res, { success: { children: 'Deleted' } });
 
   const remove = async () => {
     await req({
@@ -31,29 +29,15 @@ const ListCtrlRemove = ({
 
   return (
     <>
-      {confirm && (
-        <ModalConfirm
-          show={confirmModal}
-          onConfirm={remove}
-          onHide={() => setConfirmModal(false)}
-        >
-          {confirm}
-        </ModalConfirm>
-      )}
       {selected.length > 0 && (
-        <BtnHttp
+        <BtnHttpConfirm
+          req={remove}
           res={res}
           className={className}
-          onClick={() => {
-            if (confirm) {
-              setConfirmModal(true);
-            } else {
-              remove();
-            }
-          }}
-        >
-          <FA icon={faTrash} fixedWidth />
-        </BtnHttp>
+          icon={faTrash}
+          confirm={confirm}
+          {...props}
+        />
       )}
     </>
   );

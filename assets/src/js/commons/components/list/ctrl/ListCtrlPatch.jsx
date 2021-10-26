@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
 import useHttp from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp';
@@ -38,9 +37,8 @@ const ListCtrlPatch = ({
       res={res}
       className={className}
       onClick={patch}
-    >
-      <FA icon={icon} fixedWidth />
-    </BtnHttp>
+      icon={icon}
+    />
   );
 };
 
