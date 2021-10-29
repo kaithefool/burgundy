@@ -8,11 +8,11 @@ const ListCtrlCreate = ({
   to,
   className = 'btn px-2 me-3 btn-primary',
 }) => {
-  const { path } = usePath();
+  const { resolvePath } = usePath();
 
   return (
     <Link
-      to={typeof to === 'string' ? to : path('new')}
+      to={typeof to === 'string' ? to : resolvePath('new')}
       className={className}
     >
       <FA icon={faPlus} fixedWidth />

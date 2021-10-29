@@ -7,11 +7,10 @@ const { ObjectId } = m.Schema.Types;
 
 module.exports = class Schema {
   static lang(field) {
-    return LANG.map((ln) => (
-      typeof field === 'function'
-        ? field(ln)
-        : field
-    ));
+    return LANG.split(',').reduce(
+      (s, ln) => ({ ...s, [ln]: field }),
+      {},
+    );
   }
 
   static ref(ref) {

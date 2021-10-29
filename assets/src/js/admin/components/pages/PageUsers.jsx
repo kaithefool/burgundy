@@ -15,6 +15,7 @@ const PageUsers = () => (
       selectable
       cols={[
         { key: 'email', sortable: true },
+        { key: 'name', sortable: true },
         { key: 'role' },
         { key: 'updatedAt', format: 'fromNow' },
         { key: 'lastLogin', format: 'datetime' },

@@ -26,12 +26,12 @@ pm2 deploy [env]
 - Update image and packages to use node:16-alpine
   - dart-sass? node-sass/libsass seems to be faster
 - Grid html editor
+- Language switcher
 - Table
   - Editable table cells
   - i18n column label (table header and cols toggle)
   - Toggle switch table cell
-  - Lang keys getter
-  - Sticky table head
+  - Sticky table head (not possible with pure css)
 - i18n
   - import and export
   - response

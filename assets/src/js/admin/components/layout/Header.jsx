@@ -9,7 +9,7 @@ const Header = ({
   breadcrumb = [],
   subsDir = true,
 }) => {
-  const { path } = usePath();
+  const { resolvePath } = usePath();
 
   return (
     <header>
@@ -17,7 +17,7 @@ const Header = ({
         <h5>
           {breadcrumb.map(({ to, ...b }, i) => (
             <span key={i}>
-              <Link to={path(to)} {...b} />
+              <Link to={resolvePath(to)} {...b} />
               &nbsp;/&nbsp;
             </span>
           ))}

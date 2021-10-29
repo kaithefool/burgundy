@@ -1,6 +1,8 @@
 const Model = require('../base/Model');
 const crypto = require('../helpers/crypto');
 
+const { Schema } = Model;
+
 class User extends Model {
   constructor(name, paths, opts) {
     super(name, {
@@ -17,6 +19,14 @@ class User extends Model {
         type: String,
         enum: ['admin', 'client'],
       },
+
+      // additional
+      name: {
+        type: Schema.lang(String),
+        default: undefined,
+      },
+
+      // extends
       ...paths,
     }, {
       ...opts,

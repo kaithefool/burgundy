@@ -1,14 +1,22 @@
 import { useHistory } from 'react-router-dom';
 
-import helper from '../helpers/path';
+function resolvePath(...segments) {
+  const { origin, pathname } = window.location;
+  let url = new URL(`${origin}${pathname.replace(/\/$/, '')}/`);
+
+  segments.forEach((s) => {
+    url = new URL(s, url);
+  });
+
+  return url.pathname.replace(/\/$/, '');
+}
 
 export default function usePath() {
   const history = useHistory();
-  const path = helper.resolve;
 
   return {
-    path,
-    pushPath: (...seg) => history.push(path(...seg)),
-    replacePath: (...seg) => history.replace(path(...seg)),
+    resolvePath,
+    pushPath: (...seg) => history.push(resolvePath(...seg)),
+    replacePath: (...seg) => history.replace(resolvePath(...seg)),
   };
 }

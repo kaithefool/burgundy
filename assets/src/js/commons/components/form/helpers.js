@@ -1,13 +1,13 @@
 import pick from 'lodash/pick';
 
-import util from '../../helpers/util';
+import { recursiveMap } from '../../helpers';
 
 const dateRegex = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/;
 
 export default {
   initValues(defaults, stored = {}) {
     // parse data into formik friendly format
-    const values = util.recursiveMap(
+    const values = recursiveMap(
       { ...defaults, ...stored },
       (val) => {
         // formik doesn't support numbers very well

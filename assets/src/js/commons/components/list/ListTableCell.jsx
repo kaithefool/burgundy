@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import get from 'lodash/get';
+import { useTranslation } from 'react-i18next';
 
 import useList from './useList';
 
@@ -21,8 +22,9 @@ const ListTableCell = ({
   focused = false,
   onFocus = () => {},
 }) => {
+  const { i18n } = useTranslation();
   const { stage, staged } = useList();
-  const { path } = usePath();
+  const { resolvePath } = usePath();
   const [caret, setCaret] = useState(false);
   const stored = get(row, key);
   let value = stored;
@@ -79,6 +81,10 @@ const ListTableCell = ({
 
   let content = getter(value, row, format);
 
+  if (typeof content === 'object') {
+    content = i18n.pickLng(content);
+  }
+
   if (editable && focused) {
     content = (
       <GrowingTextarea
@@ -101,7 +107,7 @@ const ListTableCell = ({
     const to = typeof rowLink === 'function' ? rowLink(row) : rowLink;
 
     content = (
-      <Link to={path(to)}>{content}</Link>
+      <Link to={resolvePath(to)}>{content}</Link>
     );
   }
 

@@ -6,6 +6,7 @@ import Doc from '../layout/Doc';
 import Form from '~/commons/components/form';
 import BtnHttpDel from '../btns/BtnHttpDel';
 import usePath from '~/commons/hooks/usePath';
+import env from '~/commons/config/env';
 
 const PageUser = ({ match }) => {
   const { _id } = match.params;
@@ -28,7 +29,14 @@ const PageUser = ({ match }) => {
               method: doc ? 'patch' : 'post',
             }}
             stored={doc}
-            defaults={{ email: '', role: '', password: '' }}
+            defaults={{
+              email: '',
+              role: '',
+              password: '',
+              name: env.lngs.reduce((a, l) => ({
+                ...a, [l]: '',
+              }), {}),
+            }}
             schema={object({
               email: string().email().required(),
               role: string().required(),
@@ -64,6 +72,14 @@ const PageUser = ({ match }) => {
               <option value="client">Client</option>
             </Form.Field>
             <Form.Field name="password" type="password" />
+            <div className="row">
+              {env.lngs.map((ln) => (
+                <div className="col" key={ln}>
+                  <Form.Field name={`name.${ln}`} />
+                </div>
+              ))}
+            </div>
+
           </Form>
         </Page>
       )}

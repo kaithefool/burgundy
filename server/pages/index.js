@@ -5,6 +5,8 @@ const {
   version: ver,
 } = require('../../package.json');
 
+const { LANG } = process.env;
+
 // authentication middleware
 routes.use(authByCookies);
 
@@ -13,6 +15,7 @@ routes.use(({ csrfToken }, res, next) => {
   res.locals.ver = ver;
   res.locals.env = {
     csrf: csrfToken ? csrfToken() : null,
+    lngs: LANG.split(','),
   };
 
   return next();
