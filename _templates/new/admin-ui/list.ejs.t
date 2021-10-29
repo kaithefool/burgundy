@@ -1,22 +1,19 @@
+---
+to: assets/src/js/admin/components/pages/Page<%= n.plural.pascal %>.jsx
+---
 import React from 'react';
 
 import List from '~/commons/components/list';
 import Page from '../layout/Page';
-import ListCtrlActivate from '../list/ListCtrlActivate';
 
-const PageUsers = () => (
+const Page<%= n.plural.pascal %> = () => (
   <Page
-    header={{ title: 'Users' }}
+    header={{ title: '<%= n.plural.title %>' }}
   >
     <List
-      api={{ url: '/api/users' }}
+      api={{ url: '/api/<%= n.plural.path %>' }}
       selectable
       cols={[
-        { key: 'email', sortable: true },
-        { key: 'name', sortable: true },
-        { key: 'role' },
-        { key: 'updatedAt', format: 'fromNow' },
-        { key: 'lastLogin', format: 'datetime' },
       ]}
     >
       <div className="row">
@@ -30,7 +27,6 @@ const PageUsers = () => (
       <div className="mb-3">
         <List.Ctrl.Create />
         <List.Ctrl.Refresh />
-        <ListCtrlActivate />
         <List.Ctrl.Remove />
         <List.Ctrl.Export />
       </div>
@@ -41,4 +37,4 @@ const PageUsers = () => (
   </Page>
 );
 
-export default PageUsers;
+export default Page<%= n.plural.pascal %>;

@@ -7,7 +7,9 @@ import { useAlert } from '../alert';
 const FormAlerts = () => {
   const { submitCount, isValid } = useFormikContext();
   const formHttp = useFormHttp();
-  const { push } = useAlert(formHttp.res);
+  const { push } = useAlert(formHttp.res, {
+    success: () => ({ children: 'Saved' }),
+  });
 
   useEffect(() => {
     if (!isValid) {
