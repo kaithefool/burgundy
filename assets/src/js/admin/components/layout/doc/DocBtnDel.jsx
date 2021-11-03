@@ -3,15 +3,16 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
 import useHttp from '~/commons/hooks/useHttp';
 import BtnHttpConfirm from '~/commons/components/btns/BtnHttpConfirm';
-import usePath from '../../../commons/hooks/usePath';
-import useAlert from '../../../commons/components/alert/useAlert';
+import usePath from '~/commons/hooks/usePath';
+import useAlert from '~/commons/components/alert/useAlert';
+import useDoc from './useDoc';
 
-const BtnHttpDel = ({
-  api,
+const DocBtnDel = ({
   confirm = 'Are you sure to delete?',
-  redirect,
+  redirect = '..',
   ...props
 }) => {
+  const { api, _id } = useDoc();
   const http = useHttp();
   const { pushPath } = usePath();
 
@@ -22,8 +23,9 @@ const BtnHttpDel = ({
       res={http.res}
       req={async () => {
         await http.req({
-          method: 'delete',
           ...api,
+          method: 'delete',
+          url: `/api/users/${_id}`,
         });
 
         if (redirect) {
@@ -37,4 +39,4 @@ const BtnHttpDel = ({
   );
 };
 
-export default BtnHttpDel;
+export default DocBtnDel;

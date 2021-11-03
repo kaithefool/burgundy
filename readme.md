@@ -48,18 +48,13 @@ pm2 deploy [env]
 - Import csv template
 - Import json & excel?
 - Admin panel responsive layout
-- Doc page
-  - Last updated time
-  - Delete button
 - Singleton
   - Seeding?
 - Tooltips
 - ObjectId validator
-- Postman
-  - Request documentation generator?
-  - How to share collection?
 - Room for socket.io?
 - 4xx and 5xx error templates
 - Alert
   - useAlert on every request
     - Doc and List
+  - Network error
