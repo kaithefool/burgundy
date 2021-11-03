@@ -23,10 +23,16 @@ pm2 deploy [env]
 
 
 ### Todos
+- Language switcher
+- File Uploads
+- Purge files
+  - Temp
+  - Unlinked
+
+- Dedockerize?
 - Update image and packages to use node:16-alpine
   - dart-sass? node-sass/libsass seems to be faster
 - Grid html editor
-- Language switcher
 - Table
   - Editable table cells
   - i18n column label (table header and cols toggle)
@@ -41,10 +47,6 @@ pm2 deploy [env]
   - form
     - button
     - label
-- File Uploads
-- Purge files
-  - Temp
-  - Unlinked
 - Import csv template
 - Import json & excel?
 - Admin panel responsive layout

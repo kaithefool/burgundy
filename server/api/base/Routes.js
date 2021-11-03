@@ -9,7 +9,7 @@ const idMatch = '[0-9a-f]{24}';
 const defaultNamedRoutes = {
   list: {},
   find: {
-    path: '/:_id',
+    path: `/:_id(${idMatch})`,
     response: (req, res) => {
       const { out: [o] = [] } = res.locals;
 
