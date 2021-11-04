@@ -23,7 +23,6 @@ pm2 deploy [env]
 
 
 ### Todos
-- Language switcher
 - File Uploads
 - Purge files
   - Temp
