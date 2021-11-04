@@ -5,7 +5,7 @@ import env from '../../config/env';
 
 const { lngs, lngLabels } = env;
 
-const BtnLang = ({ className = '' }) => {
+const BtnLng = ({ className = '' }) => {
   const { i18n } = useTranslation();
   const { language } = i18n;
 
@@ -41,4 +41,4 @@ const BtnLang = ({ className = '' }) => {
   );
 };
 
-export default BtnLang;
+export default BtnLng;

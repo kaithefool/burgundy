@@ -18,7 +18,7 @@ const ListPagination = ({
       onChange={(e) => {
         const { value } = e.target;
 
-        fetch({ limit: Number(value) });
+        fetch({ limit: Number(value), skip: 0 });
       }}
     >
       {limits.map((l) => (
