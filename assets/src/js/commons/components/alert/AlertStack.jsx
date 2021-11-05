@@ -10,11 +10,13 @@ const AlertStack = ({
   const { stack } = useAlert();
 
   return (
-    <div className={`
+    <div
+      className={`
         toast-container
         ${fullWidth ? 'w-100' : ''}
         ${className}
       `}
+      style={{ zIndex: 10 }}
     >
       {stack.map((a) => (
         <AlertItem

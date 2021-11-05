@@ -6,7 +6,7 @@ const service = require('../services/<%= n.plural.camel %>');
 
 module.exports = new Routes({
   service,
-  authorize: {},
+  authorize: 'admin',
   validate: {},
 }, {
   list: true,

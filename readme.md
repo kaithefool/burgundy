@@ -25,8 +25,8 @@ pm2 deploy [env]
 ### Todos
 - File Uploads
 - Purge files
-  - Temp
-  - Unlinked
+  - Garbage collection 
+  - Search every string in all documents in all collections
 
 - Dedockerize?
 - Update image and packages to use node:16-alpine
@@ -38,6 +38,7 @@ pm2 deploy [env]
   - Toggle switch table cell
   - Sticky table head (not possible with pure css)
 - i18n
+  - Lang form fields
   - import and export
   - response
     - status

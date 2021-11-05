@@ -8,7 +8,7 @@ const {
   RESET_PWD_KEY_TTL,
 } = process.env;
 
-module.exports = new Model('pwdReset', {
+module.exports = new Model('PwdReset', {
   verifyKey: {
     type: String,
     index: true,

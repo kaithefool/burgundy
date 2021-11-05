@@ -38,10 +38,6 @@ module.exports = class Schema {
     };
   }
 
-  static onConnected(fn) {
-    m.connection.on('connected', fn);
-  }
-
   constructor(name, paths, {
     timestamps,
     uniques,
