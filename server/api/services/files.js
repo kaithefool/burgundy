@@ -69,8 +69,14 @@ class FileServ extends Service {
 
   async delete(filter, user) {
     const files = await this.find(filter, user);
+    const trashDir = resolve(FILE_STORAGE_TRASH);
 
     await super.delete(filter, user);
+
+    // make sure trash dir exists
+    if (!fs.existsSync(trashDir)) {
+      fs.mkdirSync(trashDir, { recursive: true });
+    }
 
     // move files to trash dir
     await Promise.all(files.map((f) => f.path).map(async (p) => {

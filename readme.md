@@ -24,8 +24,8 @@ pm2 deploy [env]
 
 ### Todos
 - File Uploads
+  - sortable
   - truncate filename and always show ext
-
 
 - Dedockerize?
 - Update image and packages to use node:16-alpine
