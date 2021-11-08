@@ -72,6 +72,8 @@ const DirProvider = ({
     }
   };
 
+  const findIndex = (key) => files.findIndex((f) => f.key === key);
+
   const push = (fileList) => {
     const fs = Array.from(fileList);
     let draft = [fs[0]];
@@ -83,17 +85,17 @@ const DirProvider = ({
     update(draft);
   };
 
-  const replace = (index, file) => {
+  const replace = (key, file) => {
     const draft = [...files];
 
-    draft.splice(index, 1, file);
+    draft.splice(findIndex(key), 1, file);
     update(draft);
   };
 
-  const remove = (index) => {
+  const remove = (key) => {
     const draft = [...files];
 
-    draft.splice(index, 1);
+    draft.splice(findIndex(key), 1);
     update(draft);
   };
 

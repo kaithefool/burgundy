@@ -64,6 +64,7 @@ class FileServ extends Service {
     }, Promise.resolve());
 
     // delete
+    await this.delete({ _id: { $in: toDel.map((d) => d._id) } });
   }
 
   async delete(filter, user) {

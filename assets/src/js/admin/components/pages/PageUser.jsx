@@ -5,6 +5,7 @@ import Page from '../layout/Page';
 import Doc from '../layout/doc';
 import Form from '~/commons/components/form';
 import env from '~/commons/config/env';
+import FilsList from '~/commons/components/fils/FilsList';
 
 const defaults = {
   email: '',
@@ -70,6 +71,13 @@ const PageUser = ({
                 <Form.Field name={`name.${ln}`} />
               </div>
             ))}
+          </div>
+
+          <div className="row my-3">
+            <div className="col">
+              <FilsList api={{ url: '/api/files' }} />
+            </div>
+            <div className="col" />
           </div>
 
         </Doc.Form>

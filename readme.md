@@ -24,9 +24,8 @@ pm2 deploy [env]
 
 ### Todos
 - File Uploads
-- Purge files
-  - Garbage collection 
-  - Search every string in all documents in all collections
+  - truncate filename and always show ext
+
 
 - Dedockerize?
 - Update image and packages to use node:16-alpine

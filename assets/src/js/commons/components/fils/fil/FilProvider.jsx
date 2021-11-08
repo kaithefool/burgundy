@@ -6,10 +6,9 @@ import useDir from '../dir/useDir';
 
 const FilProvider = ({
   file,
-  onChange = () => {},
   children,
 }) => {
-  const { api } = useDir();
+  const { api, replace, remove } = useDir();
   const http = useHttpFileUpload();
 
   // halt upload process
@@ -30,7 +29,7 @@ const FilProvider = ({
 
   useEffect(() => {
     if (http.res?.status === 'success') {
-      onChange({
+      replace(file.key, {
         ...http.res.payload,
         key: file.key, // keep the same key
       });
@@ -41,6 +40,7 @@ const FilProvider = ({
     file,
     http,
     cancel,
+    remove: () => remove(file.key),
   };
 
   return (
