@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+
 import Dir from './dir';
 import Fil from './fil';
 
@@ -12,37 +15,40 @@ const FilsList = ({
   >
     {({ files }) => (
       <Dir.Drop>
-        <Dir.Click>
-          <h6 className="text-center">
-            Drag &amp; Drop your files or
-            &nbsp;
-            <u>Browse</u>
-          </h6>
+        <Dir.Click className="d-grid gap-2">
+          <div className="btn btn-secondary px-3 text-start">
+            <FA icon={faPlus} fixedWidth className="me-2" />
+            Add or drag files
+          </div>
         </Dir.Click>
-        {files.map((f) => (
-          <Fil key={f.key} file={f}>
-            <div className="row align-items-center">
-              <div className="col-auto">
-                <div className="position-relative">
-                  {/* <div className="position-absolute w-100 h-100">
-                    <Fil.Preview />
-                  </div> */}
-                  <Fil.TypeIcon />
+        <div className="d-grid gap-2">
+          {files.map((f) => (
+            <Fil key={f.key} file={f}>
+              <div className="rounded bg-white border">
+                <div className="px-3">
+                  <div className="row g-2 align-items-center">
+                    <div className="col-auto text-primary">
+                      <Fil.TypeIcon fixedWidth />
+                    </div>
+                    <div className="col">
+                      <Fil.Name />
+                    </div>
+                    <div className="col-auto">
+                      <small className="text-muted"><Fil.Size /></small>
+                    </div>
+                    <div className="col-auto">
+                      <Fil.Status />
+                    </div>
+                    <div className="col-auto">
+                      <Fil.Remove className="btn text-secondary" />
+                    </div>
+                  </div>
                 </div>
+                <Fil.Progress />
               </div>
-              <div className="col">
-                <Fil.Name />
-                <small><Fil.Size /></small>
-              </div>
-              <div className="col-auto">
-                <Fil.StatusIcon size="lg" />
-              </div>
-              <div className="col-auto">
-                <Fil.Remove />
-              </div>
-            </div>
-          </Fil>
-        ))}
+            </Fil>
+          ))}
+        </div>
       </Dir.Drop>
     )}
   </Dir>

@@ -12,6 +12,7 @@ function useHttpBase(requests, opts) {
     code: null, // http status code
     progress: 0,
   });
+  const resRef = useRef(() => res);
 
   const cancel = () => {
     if (xhr.current) {
@@ -19,13 +20,19 @@ function useHttpBase(requests, opts) {
     }
   };
 
+  const response = (chg) => {
+    const draft = { ...resRef.current, ...chg };
+
+    resRef.current = draft; // ref for callbacks
+    setRes(draft); // state for components
+  };
+
   const req = (r, o) => {
     // detach all callback from previous request
     cancel();
 
     // pending
-    setRes({
-      ...res,
+    response({
       status: 'pending',
       payload: null,
       code: null,
@@ -35,12 +42,11 @@ function useHttpBase(requests, opts) {
     const x = (
       Array.isArray(r) ? compoundHttp : http
     )(r, (state) => {
-      const draft = { ...res, ...state };
-
       if (state.status === 'success') {
         fetched.current = state;
       }
-      setRes(draft);
+
+      response(state);
     }, o);
 
     xhr.current = x;

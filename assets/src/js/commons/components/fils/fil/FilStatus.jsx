@@ -2,12 +2,12 @@ import React from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faFan } from '@fortawesome/free-solid-svg-icons/faFan';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons/faCheckCircle';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
 
 import useFil from './useFil';
 
-const FilStatusIcon = ({
+const FilStatus = ({
   className,
   ...props
 }) => {
@@ -19,7 +19,7 @@ const FilStatusIcon = ({
   const icon = {
     pending: { icon: faFan, spin: true },
     error: { icon: faExclamationCircle },
-    success: { icon: faCheckCircle },
+    success: { icon: faCheck },
   }[status];
   const color = {
     pending: '',
@@ -35,11 +35,11 @@ const FilStatusIcon = ({
         {...icon}
         {...props}
       />
-      {progress === 'pending' && (
+      {status === 'pending' && (
         <span>{`${Math.round(progress * 100)}%`}</span>
       )}
     </>
   );
 };
 
-export default FilStatusIcon;
+export default FilStatus;

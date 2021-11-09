@@ -24,6 +24,7 @@ const mimes = [
       'application/vnd.ms-word',
       'application/vnd.oasis.opendocument.text',
       'application/vnd.openxmlformats-officedocument.wordprocessingml',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     ],
   },
   {

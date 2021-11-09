@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-regular-svg-icons/faTimesCircle';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 import useFil from './useFil';
 
@@ -15,7 +15,7 @@ const FilRemove = (props) => {
       onClick={() => remove()}
       {...props}
     >
-      <FA icon={faTimesCircle} size="lg" />
+      <FA icon={faTimes} />
     </button>
   );
 };

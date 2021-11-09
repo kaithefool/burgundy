@@ -26,6 +26,8 @@ pm2 deploy [env]
 - File Uploads
   - sortable
   - truncate filename and always show ext
+  - useAlert (instead of modals)
+  - drag file indicator
 
 - Dedockerize?
 - Update image and packages to use node:16-alpine

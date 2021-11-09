@@ -75,7 +75,10 @@ const PageUser = ({
 
           <div className="row my-3">
             <div className="col">
-              <FilsList api={{ url: '/api/files' }} />
+              <FilsList
+                api={{ url: '/api/files' }}
+                multiple={3}
+              />
             </div>
             <div className="col" />
           </div>

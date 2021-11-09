@@ -35,8 +35,13 @@ input, textarea {
 }
 
 // transition
-.tra-opacity {
-  transition: opacity .3s;
+@for $i from 1 through 10 {
+  .tra-opacity-#{$i} {
+    transition: opacity .3s * $i;
+  }
+  .tra-width-#{$i} {
+    transition: width .3s * $i;
+  }
 }
 
 // opacity
