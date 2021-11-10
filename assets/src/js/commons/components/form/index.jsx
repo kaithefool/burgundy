@@ -8,14 +8,20 @@ import useFormHttp from './useFormHttp';
 import helpers from './helpers';
 
 import Alert from '../alert';
+import FormInput from './FormInput';
+import FormCheck from './FormCheck';
+import FormSelect from './FormSelect';
 
 export {
-  FormBtnSubmit,
-  FormField,
   FormHttpContext,
   FormProvider,
   useFormHttp,
   helpers,
+  FormBtnSubmit,
+  FormField,
+  FormInput,
+  FormCheck,
+  FormSelect,
 };
 
 const Form = ({
@@ -29,5 +35,8 @@ const Form = ({
 
 Form.BtnSubmit = FormBtnSubmit;
 Form.Field = FormField;
+Form.Input = FormInput;
+Form.Check = FormCheck;
+Form.Select = FormSelect;
 
 export default Form;

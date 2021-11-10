@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Field,
   useField,
   ErrorMessage,
 } from 'formik';
@@ -10,47 +9,39 @@ import useUniqKey from '../../hooks/useUniqKey';
 
 const FormField = ({
   label,
-  type,
+  appendLabel = false,
+  labelClassName = 'form-label',
   className = 'mb-3',
   helpText,
   affirm = false,
+  children,
   ...props
 }) => {
   const { name } = props;
   const [, { error, touched }] = useField(name);
   const [id] = useUniqKey();
-  const isFormCheck = ['checkbox', 'radio', 'switch'].includes(type);
-  const isAffirmed = affirm && touched && !error;
+  const valid = affirm && touched && !error;
+  const invalid = touched && error;
 
-  const l = label !== null && (
-    <label
-      htmlFor={id}
-      className={isFormCheck ? 'form-check-label' : 'form-label'}
-    >
-      {label || startCase(name)}
-    </label>
-  );
+  const l = label !== null
+    ? (
+      <label
+        className={labelClassName}
+        htmlFor={id}
+      >
+        {label || startCase(name)}
+      </label>
+    )
+    : null;
 
   return (
-    <div className={`
-      ${className}
-      ${isFormCheck ? 'form-check' : ''}
-      ${type === 'switch' ? 'form-switch' : ''}
-    `}
-    >
-      {!isFormCheck && l}
-      <Field
-        id={id}
-        className={`
-          ${isFormCheck ? 'form-check-input' : 'form-control'}
-          ${touched && error ? 'is-invalid' : ''}
-          ${isAffirmed ? 'is-valid' : ''}
-        `}
-        type={type === 'switch' ? 'checkbox' : type}
-        {...props}
-      />
-      {isFormCheck && l}
-      {isAffirmed && typeof affirm !== 'boolean' && (
+    <div className={className}>
+      {l && !appendLabel && l}
+      {children({
+        ...props, id, invalid, valid,
+      })}
+      {l && appendLabel && l}
+      {valid && typeof affirm !== 'boolean' && (
         <div className="valid-feedback">{affirm}</div>
       )}
       <ErrorMessage name={name}>

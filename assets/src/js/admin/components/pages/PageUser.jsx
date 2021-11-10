@@ -14,6 +14,7 @@ const defaults = {
   name: env.lngs.reduce((a, l) => ({
     ...a, [l]: '',
   }), {}),
+  active: true,
 };
 
 const schema = (doc) => object({
@@ -58,17 +59,18 @@ const PageUser = ({
             </div>
           </div>
 
-          <Form.Field name="email" />
-          <Form.Field name="role" as="select">
+          <Form.Check name="active" type="switch" />
+          <Form.Input name="email" />
+          <Form.Select name="role" as="select">
             <option value=""> - </option>
             <option value="admin">Admin</option>
             <option value="client">Client</option>
-          </Form.Field>
-          <Form.Field name="password" type="password" />
+          </Form.Select>
+          <Form.Input name="password" type="password" />
           <div className="row">
             {env.lngs.map((ln) => (
               <div className="col" key={ln}>
-                <Form.Field name={`name.${ln}`} />
+                <Form.Input name={`name.${ln}`} />
               </div>
             ))}
           </div>
