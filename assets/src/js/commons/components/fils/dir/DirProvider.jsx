@@ -49,7 +49,7 @@ const insertKeys = (files) => {
 };
 
 const DirProvider = ({
-  api,
+  api = { url: '/api/files' },
   initValue = [],
   multiple = false, // Boolean or max no. of files
   onChange = () => {},
@@ -58,7 +58,7 @@ const DirProvider = ({
   children,
 }) => {
   const [err, setErr] = useState(false);
-  const [files, setFiles] = useState(insertKeys(initValue));
+  const [files, setFiles] = useState(() => insertKeys(initValue));
 
   const update = (draft) => {
     const e = validateFiles(draft, { accept, maxSize });
@@ -79,7 +79,11 @@ const DirProvider = ({
     let draft = [fs[0]];
 
     if (multiple) {
-      draft = files.concat(fs).slice(0, Number(multiple));
+      draft = files.concat(fs);
+
+      if (typeof multiple === 'number') {
+        draft = draft.slice(0, Number(multiple));
+      }
     }
 
     update(draft);

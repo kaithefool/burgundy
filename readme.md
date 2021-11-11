@@ -28,6 +28,7 @@ pm2 deploy [env]
   - truncate filename and always show ext
   - useAlert (instead of modals)
   - drag file indicator
+- Rich text editor
 
 - Dedockerize?
 - Update image and packages to use node:16-alpine

@@ -5,7 +5,6 @@ import Page from '../layout/Page';
 import Doc from '../layout/doc';
 import Form from '~/commons/components/form';
 import env from '~/commons/config/env';
-import FilsList from '~/commons/components/fils/FilsList';
 
 const defaults = {
   email: '',
@@ -15,6 +14,9 @@ const defaults = {
     ...a, [l]: '',
   }), {}),
   active: true,
+
+  profiles: [],
+  avatar: null,
 };
 
 const schema = (doc) => object({
@@ -77,12 +79,11 @@ const PageUser = ({
 
           <div className="row my-3">
             <div className="col">
-              <FilsList
-                api={{ url: '/api/files' }}
-                multiple={3}
-              />
+              <Form.FilsList name="profiles" multiple={3} />
             </div>
-            <div className="col" />
+            <div className="col">
+              <Form.FilsList name="avatar" />
+            </div>
           </div>
 
         </Doc.Form>

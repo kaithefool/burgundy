@@ -11,6 +11,7 @@ import Alert from '../alert';
 import FormInput from './FormInput';
 import FormCheck from './FormCheck';
 import FormSelect from './FormSelect';
+import FormFilsList from './FormFilsList';
 
 export {
   FormHttpContext,
@@ -22,6 +23,7 @@ export {
   FormInput,
   FormCheck,
   FormSelect,
+  FormFilsList,
 };
 
 const Form = ({
@@ -38,5 +40,6 @@ Form.Field = FormField;
 Form.Input = FormInput;
 Form.Check = FormCheck;
 Form.Select = FormSelect;
+Form.FilsList = FormFilsList;
 
 export default Form;

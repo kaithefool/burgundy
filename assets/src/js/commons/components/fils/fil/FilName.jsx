@@ -5,11 +5,18 @@ import useFil from './useFil';
 const FilName = ({
   className = 'text-truncate',
 }) => {
-  const { file: { name = '' } } = useFil();
+  const { file: { name = '', path } } = useFil();
 
   return (
     <div className={className}>
-      {name}
+      <a
+        className="link-dark"
+        target="_blank"
+        href={`/uploads/${path}`}
+        rel="noreferrer"
+      >
+        {name}
+      </a>
     </div>
   );
 };
