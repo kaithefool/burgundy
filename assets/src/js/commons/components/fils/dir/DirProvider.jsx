@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import mimer from 'mimer';
-import Modal from 'react-bootstrap/Modal';
 
 import DirContext from './DirContext';
 import { newKey } from '../../../hooks/useUniqKey';
+import useAlert from '../../alert/useAlert';
 
 const toMimes = (accept) => (
   accept
@@ -30,7 +30,7 @@ const validateFiles = (files, {
   if (accept) {
     const mimes = toMimes(accept);
 
-    if (!toCheck.find((f) => mimes.includes(f.type))) {
+    if (toCheck.find((f) => !mimes.includes(f.type))) {
       return 'err.file.accept';
     }
   }
@@ -57,14 +57,14 @@ const DirProvider = ({
   maxSize,
   children,
 }) => {
-  const [err, setErr] = useState(false);
   const [files, setFiles] = useState(() => insertKeys(initValue));
+  const { push: pushAlert } = useAlert();
 
   const update = (draft) => {
     const e = validateFiles(draft, { accept, maxSize });
 
     if (e) {
-      setErr(e);
+      pushAlert({ dirty: true, theme: 'danger', children: e });
     } else {
       insertKeys(draft);
       setFiles(draft);
@@ -116,26 +116,7 @@ const DirProvider = ({
 
   return (
     <DirContext.Provider value={value}>
-      <>
-        <Modal show={err} onHide={() => setErr(false)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Error</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {err}
-          </Modal.Body>
-          <Modal.Footer>
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={() => setErr(false)}
-            >
-              OK
-            </button>
-          </Modal.Footer>
-        </Modal>
-        {typeof children === 'function' ? children(value) : children}
-      </>
+      {typeof children === 'function' ? children(value) : children}
     </DirContext.Provider>
   );
 };

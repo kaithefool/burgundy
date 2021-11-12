@@ -14,6 +14,7 @@ function useHttpFileUpload() {
         'Content-Type': 'multipart/form-data',
       },
       data: fd,
+      timeout: 60 * 60 * 1000,
       ...api,
     }, { uploadProgress: true });
   };

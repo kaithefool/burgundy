@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useHttpFileUpload } from '../../../hooks/useHttp';
 import FilContext from './FilContext';
 import useDir from '../dir/useDir';
+import useAlert from '../../alert/useAlert';
 
 const FilProvider = ({
   file,
@@ -10,6 +11,8 @@ const FilProvider = ({
 }) => {
   const { api, replace, remove } = useDir();
   const http = useHttpFileUpload();
+
+  useAlert(http.res, { success: false });
 
   // halt upload process
   const cancel = () => {

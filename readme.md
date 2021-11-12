@@ -25,8 +25,6 @@ pm2 deploy [env]
 ### Todos
 - File Uploads
   - sortable
-  - truncate filename and always show ext
-  - useAlert (instead of modals)
   - drag file indicator
 - Rich text editor
 
@@ -58,7 +56,3 @@ pm2 deploy [env]
 - ObjectId validator
 - Room for socket.io?
 - 4xx and 5xx error templates
-- Alert
-  - useAlert on every request
-    - Doc and List
-  - Network error

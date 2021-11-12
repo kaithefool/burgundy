@@ -43,12 +43,12 @@ const FormLogin = () => {
         </div>
       </div>
 
-      <Form.Field name="email" />
-      <Form.Field name="password" type="password" />
+      <Form.Input name="email" />
+      <Form.Input name="password" type="password" />
 
       <div className="row">
         <div className="col">
-          <Form.Field name="presist" type="switch" />
+          <Form.Check name="presist" type="switch" />
         </div>
         <div className="col-auto">
           <Link to="/auth/pwd-recovery">

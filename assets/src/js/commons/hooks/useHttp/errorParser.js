@@ -3,9 +3,9 @@ export default function errorParser(err) {
   let payload;
 
   if (message === 'Network Error') {
-    payload = 'Oops...can\'t connect to the server :(';
+    payload = { message: 'Oops...can\'t connect to the server :(' };
   } else if (code === 'ECONNABORTED') {
-    payload = 'Connection timeout';
+    payload = { message: 'Connection timeout' };
   } else {
     payload = response.data;
   }
