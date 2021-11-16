@@ -24,6 +24,7 @@ pm2 deploy [env]
 
 ### Todos
 - File Uploads
+  - cover image
   - sortable
   - drag file indicator
 - Rich text editor

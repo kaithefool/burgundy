@@ -12,6 +12,7 @@ module.exports = new User('User', {
   // additional
   profiles: Schema.files(),
   avatar: Schema.files(),
+  cover: Schema.files(),
 }, {
   timestamps: true,
   uniques: { email: 1 },

@@ -16,7 +16,8 @@ const defaults = {
   active: true,
 
   profiles: [],
-  avatar: null,
+  avatar: [],
+  cover: [],
 };
 
 const schema = (doc) => object({
@@ -76,6 +77,8 @@ const PageUser = ({
               </div>
             ))}
           </div>
+
+          <Form.FilsCoverImg name="cover" />
 
           <div className="row my-3">
             <div className="col">

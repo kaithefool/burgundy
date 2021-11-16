@@ -5,22 +5,19 @@ import useAlert from './useAlert';
 
 const AlertStack = ({
   className = 'm-3',
-  fullWidth = false,
 }) => {
   const { stack } = useAlert();
 
   return (
     <div
       className={`
-        toast-container
-        ${fullWidth ? 'w-100' : ''}
-        ${className}
+        toast-container ${className}
       `}
       style={{ zIndex: 10 }}
     >
       {stack.map((a) => (
         <AlertItem
-          className={fullWidth ? 'w-100' : ''}
+          className="w-auto"
           key={a.id}
           {...a}
         />

@@ -12,6 +12,8 @@ const DirClick = ({
     push, accept, multiple, files,
   } = useDir();
 
+  if (!multiple && files.length) return '';
+
   return (
     <div
       className={className}
@@ -22,23 +24,19 @@ const DirClick = ({
         }
       }}
     >
-      {(multiple || !files.length) && (
-        <>
-          {children}
-          <div className="position-relative opacity-0 overflow-hidden">
-            <input
-              ref={input}
-              type="file"
-              onChange={(e) => push(e.target.files)}
-              className="position-absolute"
-              autoComplete="off"
-              {...multiple && { multiple: true }}
-              {...accept && { accept }}
-              {...props}
-            />
-          </div>
-        </>
-      )}
+      {children}
+      <div className="position-relative opacity-0 overflow-hidden">
+        <input
+          ref={input}
+          type="file"
+          onChange={(e) => push(e.target.files)}
+          className="position-absolute"
+          autoComplete="off"
+          {...multiple && { multiple: true }}
+          {...accept && { accept }}
+          {...props}
+        />
+      </div>
     </div>
   );
 };

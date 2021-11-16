@@ -12,7 +12,7 @@ const FormLogin = () => {
 
   return (
     <Form
-      alert={{ fullWidth: true }}
+      alert={{ className: 'w-auto my-3' }}
       schema={object({
         email: string()
           .trim()
