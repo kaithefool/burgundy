@@ -5,6 +5,7 @@ import useDir from './useDir';
 const DirClick = ({
   className = '',
   children,
+  alwaysEnable = false,
   ...props
 }) => {
   const input = useRef();
@@ -12,7 +13,7 @@ const DirClick = ({
     push, accept, multiple, files,
   } = useDir();
 
-  if (!multiple && files.length) return '';
+  if (!alwaysEnable && !multiple && files.length) return '';
 
   return (
     <div

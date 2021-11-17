@@ -38,11 +38,13 @@ const DirDrop = ({
     >
       {children}
       {backdrop && (
-        <div className="">
-          <div className={`
-            text-white display-4
-            position-absolute top-50 start-50 translate-middle
-          `}
+        <div style={{ zIndex: 1 }}>
+          <div className="w-100 h-100 bg-dark opacity-75" />
+          <div
+            className={`
+              text-white display-4
+              position-absolute top-50 start-50 translate-middle
+            `}
           >
             <FA icon={faCloudUploadAlt} />
           </div>

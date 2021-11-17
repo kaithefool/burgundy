@@ -24,9 +24,11 @@ pm2 deploy [env]
 
 ### Todos
 - File Uploads
-  - cover image
   - sortable
   - drag file indicator
+  - gallery mode
+  - image dimension
+  - file preview file switch transition (onload event?)
 - Rich text editor
 
 - Dedockerize?
@@ -57,3 +59,4 @@ pm2 deploy [env]
 - ObjectId validator
 - Room for socket.io?
 - 4xx and 5xx error templates
+- Use _id to keep sorting consistency

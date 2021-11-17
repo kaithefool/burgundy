@@ -7,10 +7,7 @@ import Dir from './dir';
 import Fil from './fil';
 import FilsListItem from './FilsListItem';
 
-const FilsList = ({
-  mode = 'list', // list or gallery
-  ...props
-}) => (
+const FilsList = (props) => (
   <Dir
     {...props}
   >
