@@ -5,9 +5,10 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import Dir from './dir';
 import Fil from './fil';
+import FilsListItem from './FilsListItem';
 
 const FilsCoverImg = ({
-  className = 'rounded border ratio ratio-21x9',
+  className = 'rounded border ratio ratio-21x9 max-vh-50',
   ...props
 }) => (
   <Dir
@@ -28,14 +29,14 @@ const FilsCoverImg = ({
         </Dir.Click>
         {files[0] && (
           <Fil file={files[0]}>
-            <Fil.Preview />
-            <div className="position-relative">
+            <div
+              className="h-auto bg-white"
+              style={{ zIndex: 1 }}
+            >
               <Fil.Progress />
-              <div className="p-3">
-                <Fil.Size />
-                <Fil.Remove />
-              </div>
+              <FilsListItem />
             </div>
+            <Fil.Preview />
           </Fil>
         )}
       </Dir.Drop>

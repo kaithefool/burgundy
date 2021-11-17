@@ -44,31 +44,9 @@ input, textarea {
   }
 }
 
-// opacity
-@for $i from 0 through 10 {
-  $name: opacity-#{$i};
-
-  .#{$name},
-  .hvr-#{$name}:hover,
-  .onhvr:hover .hvr-#{$name} {
-    opacity: 0.1 * $i;
-  }
-}
-
-// sizing
-.fill {
-  width: 100%;
-  height: 100%;
-}
-.pos-abs-fill {
-  @extend .fill;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
 // images
-.img-bg {
+.img-bg, .img-bg-cover {
   position: absolute;
   left: 0;
   top: 0;
@@ -84,12 +62,6 @@ input, textarea {
 }
 
 // inputs
-.cursor-pointer {
-  cursor: pointer;
-}
-.cursor-default {
-  cursor: default !important;
-}
 .caret-none {
   caret-color: transparent;
 }

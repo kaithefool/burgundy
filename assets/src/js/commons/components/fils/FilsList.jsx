@@ -5,6 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import Dir from './dir';
 import Fil from './fil';
+import FilsListItem from './FilsListItem';
 
 const FilsList = ({
   mode = 'list', // list or gallery
@@ -24,26 +25,8 @@ const FilsList = ({
         {files.map((f) => (
           <Fil key={f.key} file={f}>
             <div className="rounded bg-white border mb-2">
-              <div className="px-3">
-                <div className="row g-2 align-items-center">
-                  <div className="col-auto text-primary">
-                    <Fil.TypeIcon fixedWidth />
-                  </div>
-                  <div className="col">
-                    <Fil.Name />
-                  </div>
-                  <div className="col-auto">
-                    <small className="text-muted"><Fil.Size /></small>
-                  </div>
-                  <div className="col-auto">
-                    <Fil.Status />
-                  </div>
-                  <div className="col-auto">
-                    <Fil.Remove className="btn text-secondary" />
-                  </div>
-                </div>
-              </div>
               <Fil.Progress />
+              <FilsListItem />
             </div>
           </Fil>
         ))}
