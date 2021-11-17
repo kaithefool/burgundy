@@ -17,11 +17,7 @@ const FilsCoverImg = ({
     {...props}
   >
     {({ files }) => (
-      <Dir.Drop
-        className={`
-          position-reative overflow-hidden
-          ${className}`}
-      >
+      <Dir.Drop className={className}>
         {files[0] && (
           <Fil file={files[0]}>
             <div

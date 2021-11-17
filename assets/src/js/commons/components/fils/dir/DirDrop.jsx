@@ -16,7 +16,7 @@ const DirDrop = ({
 
   return (
     <div
-      className={className}
+      className={`${className} position-relative overflow-hidden`}
       onDragEnter={() => {
         dragIn.current += 1;
         if (!backdrop) setBackdrop(true);
@@ -38,15 +38,20 @@ const DirDrop = ({
     >
       {children}
       {backdrop && (
-        <div style={{ zIndex: 1 }}>
-          <div className="w-100 h-100 bg-dark opacity-75" />
+        <div
+          className="anim-fade-in position-absolute w-100 h-100 top-0"
+          style={{ zIndex: 1 }}
+        >
+          <div className="w-100 h-100 bg-primary opacity-75" />
           <div
             className={`
-              text-white display-4
+              text-white h1
               position-absolute top-50 start-50 translate-middle
             `}
           >
-            <FA icon={faCloudUploadAlt} />
+            <div className="anim-slide-in">
+              <FA icon={faCloudUploadAlt} />
+            </div>
           </div>
         </div>
       )}

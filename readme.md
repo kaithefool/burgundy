@@ -25,7 +25,6 @@ pm2 deploy [env]
 ### Todos
 - File Uploads
   - sortable
-  - drag file indicator
   - gallery mode
   - image dimension
   - file preview file switch transition (onload event?)
