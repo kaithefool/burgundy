@@ -23,14 +23,17 @@ pm2 deploy [env]
 
 
 ### Todos
+- Singleton
+  - Seeding?
+
 - File Uploads
   - sortable
   - gallery mode
   - image dimension
   - file preview file switch transition (onload event?)
 - Rich text editor
-- Singleton
-  - Seeding?
+  - Drop file handler
+  - maxSize and accept
 
 
 - Dedockerize?

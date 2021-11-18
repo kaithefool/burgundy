@@ -1,11 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import $ from 'jQuery';
 import sanitizeHtml from 'sanitize-html';
+import useAlert from '../alert/useAlert';
 
 import 'summernote/dist/summernote-lite.css';
 import 'summernote/dist/summernote-lite';
 
 import useUniqKey from '../../hooks/useUniqKey';
+import { useHttpFileUpload } from '../../hooks/useHttp';
 
 const sanitize = (html) => sanitizeHtml(html, {
   allowedAttributes: {
@@ -29,10 +31,14 @@ const FormEditor = ({
   onChange = () => {},
   onBlur = () => {},
   essentials = false,
+  fileApi = { url: '/api/files' },
 }) => {
   const [id] = useUniqKey();
   const editor = useRef();
   const el = useRef();
+  const fileHttp = useHttpFileUpload();
+
+  useAlert(fileHttp);
 
   const toolbar = [
     !essentials && ['style', ['style']],
@@ -65,6 +71,17 @@ const FormEditor = ({
           onChange(editor.current.summernote('isEmpty') ? '' : v);
         },
         onBlur,
+        async onImageUpload(files) {
+          const {
+            data: { path, name },
+          } = await fileHttp.req(fileApi, files[0]);
+
+          editor.current.summernote(
+            'insertImage',
+            `/uploads/${path}`,
+            name,
+          );
+        },
         onPaste(e) {
           e.preventDefault();
 
