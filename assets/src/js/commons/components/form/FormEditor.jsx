@@ -1,9 +1,6 @@
 import React from 'react';
 
-import 'summernote';
-import {
-  useField,
-} from 'formik';
+import { useField } from 'formik';
 
 import FormField from './FormField';
 import Summernote from './Summernote';

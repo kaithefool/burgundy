@@ -29,6 +29,9 @@ pm2 deploy [env]
   - image dimension
   - file preview file switch transition (onload event?)
 - Rich text editor
+- Singleton
+  - Seeding?
+
 
 - Dedockerize?
 - Update image and packages to use node:16-alpine
@@ -52,8 +55,6 @@ pm2 deploy [env]
 - Import csv template
 - Import json & excel?
 - Admin panel responsive layout
-- Singleton
-  - Seeding?
 - Tooltips
 - ObjectId validator
 - Room for socket.io?
