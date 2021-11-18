@@ -13,6 +13,7 @@ import FormCheck from './FormCheck';
 import FormSelect from './FormSelect';
 import FormFilsList from './FormFilsList';
 import FormFilsCoverImg from './FormFilsCoverImg';
+import FormEditor from './FormEditor';
 
 export {
   FormHttpContext,
@@ -26,6 +27,7 @@ export {
   FormSelect,
   FormFilsList,
   FormFilsCoverImg,
+  FormEditor,
 };
 
 const Form = ({
@@ -44,5 +46,6 @@ Form.Check = FormCheck;
 Form.Select = FormSelect;
 Form.FilsList = FormFilsList;
 Form.FilsCoverImg = FormFilsCoverImg;
+Form.Editor = FormEditor;
 
 export default Form;

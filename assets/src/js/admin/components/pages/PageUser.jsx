@@ -18,6 +18,7 @@ const defaults = {
   profiles: [],
   avatar: [],
   cover: [],
+  intro: '',
 };
 
 const schema = (doc) => object({
@@ -88,6 +89,8 @@ const PageUser = ({
               <Form.FilsList name="avatar" />
             </div>
           </div>
+
+          <Form.Editor name="intro" />
 
         </Doc.Form>
       </Page>

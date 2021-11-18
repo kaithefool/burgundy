@@ -32,6 +32,8 @@
     "react-dom": "^16.13.1",
     "react-i18next": "^11.8.4",
     "react-router-dom": "^5.2.0",
+    "sanitize-html": "^2.5.3",
+    "summernote": "^0.8.20",
     "yup": "^0.29.3"
   },
   "devDependencies": {

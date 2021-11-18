@@ -13,6 +13,9 @@ module.exports = () => ({
     filename: '[name].js',
     path: resolve(__dirname, '../public', 'assets'),
   },
+  externals: {
+    jQuery: 'jQuery',
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
