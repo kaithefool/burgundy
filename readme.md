@@ -14,12 +14,14 @@ npm start
 ```
 
 ### Generate the first admin user
+```shell
+npm run sh
 ./server/bin/gen-admin [username@domain.com] [password]
+```
 
 ### Generate resources API and admin UI
 ```shell
-cd server
-npx hygen new api [resource]
+npx hygen new api [resource] --singleton
 ```
 
 ### Deploy

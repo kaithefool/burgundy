@@ -107,8 +107,8 @@ class Service {
     return this.patchBy({ _id }, attrs, user);
   }
 
-  async upsert(attrs, user) {
-    return this.patchBy({}, attrs, user, { upsert: true });
+  async upsert(attrs, user, match = {}) {
+    return this.patchBy(match, attrs, user, { upsert: true });
   }
 
   delete({ _id }, user) {
