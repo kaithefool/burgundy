@@ -107,6 +107,10 @@ class Service {
     return this.patchBy({ _id }, attrs, user);
   }
 
+  async upsert(attrs, user) {
+    return this.patchBy({}, attrs, user, { upsert: true });
+  }
+
   delete({ _id }, user) {
     return this.model.delete(
       this.match({ _id }, user),

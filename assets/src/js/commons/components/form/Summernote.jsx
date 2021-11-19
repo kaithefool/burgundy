@@ -1,30 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import $ from 'jQuery';
-import sanitizeHtml from 'sanitize-html';
-import useAlert from '../alert/useAlert';
 
 import 'summernote/dist/summernote-lite.css';
 import 'summernote/dist/summernote-lite';
 
+import { sanitizeHtml } from '../../helpers';
 import useUniqKey from '../../hooks/useUniqKey';
 import { useHttpFileUpload } from '../../hooks/useHttp';
-
-const sanitize = (html) => sanitizeHtml(html, {
-  allowedAttributes: {
-    '*': ['style'],
-    a: ['href', 'name', 'target'],
-    img: ['src'],
-  },
-  allowedStyles: {
-    '*': {
-      color: [
-        /^#(0x)?[0-9a-f]+$/i,
-        /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/,
-      ],
-      'text-align': [/^left$/, /^right$/, /^center$/, /^justify$/],
-    },
-  },
-});
+import useAlert from '../alert/useAlert';
 
 const FormEditor = ({
   initValue = '',
@@ -92,7 +75,7 @@ const FormEditor = ({
           const text = clipboard.getData('text');
 
           if (html) {
-            editor.current.summernote('pasteHTML', sanitize(html));
+            editor.current.summernote('pasteHTML', sanitizeHtml(html));
           } else {
             editor.current.summernote('insertText', text);
           }

@@ -18,6 +18,7 @@ const defaultNamedRoutes = {
   },
   create: { method: 'post' },
   patch: { method: 'patch', path: `/:_id(${idMatch})` },
+  upsert: { method: 'put' },
   delete: { method: 'delete', path: `/:_id(${idMatch})?` },
 };
 

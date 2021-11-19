@@ -9,9 +9,13 @@ module.exports = new Routes({
   authorize: 'admin',
   validate: {},
 }, {
-  list: true,
+<%= singleton
+? `find: {},
+  upsert: true,`
+: `list: true,
   find: true,
   create: true,
   patch: true,
-  delete: true,
+  delete: true,`
+%>
 });

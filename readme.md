@@ -25,6 +25,7 @@ pm2 deploy [env]
 ### Todos
 - Singleton
   - Seeding?
+  - Api? Page Routes?
 
 - File Uploads
   - sortable
@@ -32,8 +33,9 @@ pm2 deploy [env]
   - image dimension
   - file preview file switch transition (onload event?)
 - Rich text editor
+  - Styles for both editor and display
   - Drop file handler
-  - maxSize and accept
+  - MaxSize and accept
 
 
 - Dedockerize?
