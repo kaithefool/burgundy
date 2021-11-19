@@ -16,6 +16,12 @@ npm start
 ### Generate the first admin user
 ./server/bin/gen-admin [username@domain.com] [password]
 
+### Generate resources API and admin UI
+```shell
+cd server
+npx hygen new api [resource]
+```
+
 ### Deploy
 pm2 deploy [env]
 
