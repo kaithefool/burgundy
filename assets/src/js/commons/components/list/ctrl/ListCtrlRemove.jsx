@@ -9,7 +9,7 @@ import useHttp from '../../../hooks/useHttp';
 const ListCtrlRemove = ({
   api: apiOpts,
   confirm = 'Are you sure to delete?',
-  className = 'btn px-2 me-3 border',
+  className = 'btn px-2 me-3 btn-secondary',
   ...props
 }) => {
   const { api, refresh, selected } = useList();

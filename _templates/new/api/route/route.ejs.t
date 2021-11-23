@@ -9,7 +9,7 @@ module.exports = new Routes({
   authorize: 'admin',
   validate: {},
 }, {
-<% if (typeof singleton !== 'undefined' && singleton) { %>
+<% if (singleton) { %>
   find: {},
   upsert: true,
 <% } else { %>

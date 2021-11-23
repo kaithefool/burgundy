@@ -2,7 +2,7 @@ const s = require('inflection');
 const c = require('change-case');
 
 module.exports = ({ args }) => {
-  const { name } = args;
+  const { name, singleton = false } = args;
   
   const singular = s.singularize(name);
   const plural = name;
@@ -28,5 +28,6 @@ module.exports = ({ args }) => {
   return {
     ...args,
     n,
+    singleton,
   };
 };

@@ -31,10 +31,6 @@ pm2 deploy [env]
 
 
 ### Todos
-- Singleton
-  - Seeding?
-  - Api? Page Routes?
-
 - File Uploads
   - sortable
   - gallery mode

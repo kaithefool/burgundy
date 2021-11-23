@@ -6,18 +6,25 @@ import useHttp from '~/commons/hooks/useHttp';
 const DocProvider = ({
   api,
   _id,
+  singleton = false,
   children,
 }) => {
   const http = useHttp();
   const value = {
     api,
     _id,
+    singleton,
     doc: http?.res?.payload,
   };
 
   useEffect(() => {
     if (_id !== 'new') {
-      http.req({ ...api, url: `${api.url}/${_id}` });
+      http.req({
+        ...api,
+        url: singleton
+          ? api.url
+          : `${api.url}/${_id}`,
+      });
     }
   }, []);
 

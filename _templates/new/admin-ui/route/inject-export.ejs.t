@@ -4,7 +4,7 @@ to: assets/src/js/admin/components/routes/index.jsx
 skip_if: \/<%= n.plural.path %>("|')
 after: <Switch>
 ---
-<% if (typeof singleton !== 'undefined' && singleton) { %>
+<% if (singleton) { %>
     <RouteResource
       path="/admin/<%= n.singular.path %>"
       Doc={Page<%= n.singular.pascal %>}

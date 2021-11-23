@@ -9,7 +9,7 @@ const ListCtrlPatch = ({
   icon,
   api: apiOpts,
   updates,
-  className = 'btn px-2 me-3 border',
+  className = 'btn px-2 me-3 btn-secondary',
 }) => {
   const http = useHttp();
   const { api, refresh, selected } = useList();

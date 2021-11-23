@@ -1,5 +1,5 @@
 ---
-to: assets/src/js/admin/components/pages/Page<%= n.plural.pascal %>.jsx
+to: "<%= singleton ? null : `assets/src/js/admin/components/pages/Page${n.plural.pascal}` %>.jsx' %>"
 ---
 import React from 'react';
 
