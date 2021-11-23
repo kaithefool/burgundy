@@ -22,6 +22,7 @@ npm run sh
 ### Generate resources API and admin UI
 ```shell
 npx hygen new api [resource] --singleton
+npx hygen new admin-ui [resource] --singleton
 ```
 
 ### Deploy

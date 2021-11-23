@@ -24,10 +24,11 @@ const Page<%= n.singular.pascal %> = (<% if (!singleton) { %>{
     {(doc) => (
       <Page
         header={{
-          breadcrumb: [
+          <% if (!singleton) { %>breadcrumb: [
             { to: '../', children: '<%= n.plural.title %>' },
           ],
-          title: doc?._id || 'New',
+          title: doc?._id || 'New',<%
+          } else { %>title: '<%= n.singular.title %>',<% } %>
         }}
       >
         <Doc.Form
