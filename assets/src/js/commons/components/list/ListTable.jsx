@@ -7,6 +7,7 @@ import without from 'lodash/without';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
+import { useTranslation } from 'react-i18next';
 
 import useList from './useList';
 
@@ -16,6 +17,7 @@ const ListTable = ({
   className = '',
   rowLink,
 }) => {
+  const { t } = useTranslation();
   const {
     activeCols: cols,
     rows,
@@ -71,7 +73,7 @@ const ListTable = ({
                   }
                 }}
               >
-                {col.label || startCase(col.key)}
+                {col.label || t(`fields.${col.key}`, startCase(col.key))}
                 {col.sortable && col.key === sortBy && (
                 <span className="ms-1">
                   <FA

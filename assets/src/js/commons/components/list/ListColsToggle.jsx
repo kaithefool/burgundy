@@ -3,10 +3,12 @@ import startCase from 'lodash/startCase';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faColumns } from '@fortawesome/free-solid-svg-icons/faColumns';
+import { useTranslation } from 'react-i18next';
 
 import useList from './useList';
 
 const ListColsToggle = () => {
+  const { t } = useTranslation();
   const { cols, activeCols, showCols } = useList();
 
   const isChecked = (key) => (
@@ -42,7 +44,7 @@ const ListColsToggle = () => {
               htmlFor={`col-${c.key}`}
               className="form-check-label"
             >
-              {c.label || startCase(c.key)}
+              {c.label || t(`fields.${c.key}`, startCase(c.key))}
             </label>
           </div>
         </li>

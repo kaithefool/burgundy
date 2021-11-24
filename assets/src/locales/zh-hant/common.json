@@ -1,0 +1,14 @@
+{
+  "fields": {
+    "presist": "保持登入",
+    "email": "電郵",
+    "name": "姓名",
+    "updatedAt": "最後更新"
+  },
+  "auth": {
+    "title" : "登入",
+    "register": "新帳戶註冊",
+    "pwdRecovery": "忘記密碼?",
+    "submit": "登入"
+  }
+}

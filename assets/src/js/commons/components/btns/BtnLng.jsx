@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'js-cookie';
+import { Settings } from 'luxon';
+
 import env from '../../config/env';
 
 const { lngs, lngLabels } = env;
@@ -28,6 +30,7 @@ const BtnLng = ({ className = '' }) => {
             type="button"
             className="btn btn-link btn-sm"
             onClick={() => {
+              Settings.defaultLocale = l;
               i18n.changeLanguage(l);
               setCookie(l);
             }}

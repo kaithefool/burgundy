@@ -33,7 +33,7 @@ const FormField = ({
       >
         {
           label
-          || t(`form.fields.${name}`, startCase(name))
+          || t(`fields.${name}`, startCase(name))
         }
       </label>
     )

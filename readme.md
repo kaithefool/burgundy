@@ -53,7 +53,6 @@ pm2 deploy [env]
   - Sticky table head (not possible with pure css)
 - i18n
   - Reload server after new locale files
-  - Table column label (table header and cols toggle)
   - Lang form fields
   - import and export
   - response
@@ -61,8 +60,6 @@ pm2 deploy [env]
     - success
     - error
   - form
-    - button
-    - label
     - invalid input errors
 - Import csv template
 - Import json & excel?

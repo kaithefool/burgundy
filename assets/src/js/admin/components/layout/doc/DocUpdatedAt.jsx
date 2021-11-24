@@ -1,5 +1,6 @@
 import React from 'react';
 import { DateTime as dt } from 'luxon';
+import { useTranslation } from 'react-i18next';
 
 import useDoc from './useDoc';
 
@@ -8,15 +9,16 @@ const DocUpdatedAt = ({
   format = dt.DATETIME_SHORT,
 }) => {
   const { doc } = useDoc();
-  const t = doc?.updatedAt || doc?.createdAt;
+  const { t } = useTranslation();
+  const d = doc?.updatedAt || doc?.createdAt;
 
-  if (!t) return '';
+  if (!d) return '';
 
   return (
     <span className={className}>
-      Updated at
-      {' '}
-      {dt.fromISO(t).toLocaleString(format)}
+      {t('fields.updatedAt', 'Updated at')}
+      {': '}
+      {dt.fromISO(d).toLocaleString(format)}
     </span>
   );
 };
