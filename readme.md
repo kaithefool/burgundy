@@ -28,9 +28,6 @@ npx hygen new admin-ui [resource] --singleton
 ### Deploy
 pm2 deploy [env]
 
-### In process
-
-
 ### Todos
 - File Uploads
   - sortable
@@ -55,12 +52,8 @@ pm2 deploy [env]
   - Reload server after new locale files
   - Lang form fields
   - import and export
-  - response
-    - status
-    - success
-    - error
-  - form
-    - invalid input errors
+  - server response
+  - yupjs errors
 - Import csv template
 - Import json & excel?
 - Admin panel responsive layout
