@@ -30,30 +30,30 @@ pm2 deploy [env]
 
 ### Todos
 - File Uploads
-  - sortable
-  - gallery mode
-  - image dimension
-  - file preview file switch transition (onload event?)
+    - sortable
+    - gallery mode
+    - image dimension
+    - file preview file switch transition (onload event?)
 - Rich text editor
-  - Styles for both editor and display
-  - Drop file handler
-  - MaxSize and accept
+    - Styles for both editor and display
+    - Drop file handler
+    - MaxSize and accept
 
 
 - Dedockerize?
 - Update image and packages to use node:16-alpine
-  - dart-sass? node-sass/libsass seems to be faster
+    - dart-sass? node-sass/libsass seems to be faster
 - Grid html editor
 - Table
-  - Editable table cells
-  - Toggle switch table cell
-  - Sticky table head (not possible with pure css)
+    - Editable table cells
+    - Toggle switch table cell
+    - Sticky table head (not possible with pure css)
 - i18n
-  - Reload server after new locale files
-  - Lang form fields
-  - import and export
-  - server response
-  - yupjs errors
+    - Reload server after new locale files
+    - Lang form fields
+    - import and export
+    - server response
+    - yupjs errors
 - Import csv template
 - Import json & excel?
 - Admin panel responsive layout
