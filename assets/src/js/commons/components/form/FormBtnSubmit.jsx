@@ -4,7 +4,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { useFormikContext } from 'formik';
 
 import BtnHttp from '../btns/BtnHttp';
-import useFormHttp from './useFormHttp';
+import useForm from './useForm';
 
 const FormBtnSubmit = ({
   children,
@@ -13,13 +13,13 @@ const FormBtnSubmit = ({
   className = 'btn-primary',
   ...props
 }) => {
-  const { res } = useFormHttp();
+  const { http } = useForm();
   const { dirty, isValid, isSubmitting } = useFormikContext();
-  const saved = !dirty && res.status === 'success';
+  const saved = !dirty && http.res.status === 'success';
 
   return (
     <BtnHttp
-      res={res}
+      res={http.res}
       type="submit"
       icon={saved ? faCheck : icon}
       className={className}

@@ -2,9 +2,9 @@ import React from 'react';
 
 import FormBtnSubmit from './FormBtnSubmit';
 import FormField from './FormField';
-import FormHttpContext from './FormHttpContext';
+import FormContext from './FormContext';
 import FormProvider from './FormProvider';
-import useFormHttp from './useFormHttp';
+import useForm from './useForm';
 import helpers from './helpers';
 
 import Alert from '../alert';
@@ -16,9 +16,9 @@ import FormFilsCoverImg from './FormFilsCoverImg';
 import FormEditor from './FormEditor';
 
 export {
-  FormHttpContext,
+  FormContext,
   FormProvider,
-  useFormHttp,
+  useForm,
   helpers,
   FormBtnSubmit,
   FormField,

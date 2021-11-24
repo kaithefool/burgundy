@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 
-import FormHttpContext from './FormHttpContext';
+import FormHttpContext from './FormContext';
 import helpers from './helpers';
 import useHttp from '../../hooks/useHttp';
 import FormAlerts from './FormAlerts';
@@ -17,8 +17,8 @@ const FormProvider = ({
   onSubmitted = () => {},
   ...props
 }) => {
-  const formHttp = useHttp();
-  const { req } = formHttp;
+  const http = useHttp();
+  const { req } = http;
 
   const submitHandler = onSubmit || (
     async (values, actions) => {
@@ -38,7 +38,7 @@ const FormProvider = ({
   );
 
   return (
-    <FormHttpContext.Provider value={formHttp}>
+    <FormHttpContext.Provider value={{ http }}>
       <Formik
         validationSchema={schema}
         initialValues={helpers.initValues(defaults, stored)}
@@ -50,7 +50,7 @@ const FormProvider = ({
             <FormAlerts />
             {
               typeof children === 'function'
-                ? children({ ...p, ...formHttp })
+                ? children({ ...p, http })
                 : children
             }
           </Form>

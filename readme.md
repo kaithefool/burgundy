@@ -52,6 +52,7 @@ pm2 deploy [env]
   - Toggle switch table cell
   - Sticky table head (not possible with pure css)
 - i18n
+  - Reload server after new locale files
   - Table column label (table header and cols toggle)
   - Lang form fields
   - import and export
@@ -62,6 +63,7 @@ pm2 deploy [env]
   - form
     - button
     - label
+    - invalid input errors
 - Import csv template
 - Import json & excel?
 - Admin panel responsive layout
