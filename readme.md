@@ -49,10 +49,10 @@ pm2 deploy [env]
 - Grid html editor
 - Table
   - Editable table cells
-  - i18n column label (table header and cols toggle)
   - Toggle switch table cell
   - Sticky table head (not possible with pure css)
 - i18n
+  - Table column label (table header and cols toggle)
   - Lang form fields
   - import and export
   - response

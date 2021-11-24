@@ -29,6 +29,7 @@ module.exports = () => ({
     new CopyPlugin({
       patterns: [
         { from: './src/img', to: 'img' },
+        { from: './src/locales', to: '../locales' },
       ],
     }),
   ],

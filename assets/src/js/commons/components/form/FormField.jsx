@@ -4,6 +4,7 @@ import {
   ErrorMessage,
 } from 'formik';
 import startCase from 'lodash/startCase';
+import { useTranslation } from 'react-i18next';
 
 import useUniqKey from '../../hooks/useUniqKey';
 
@@ -22,6 +23,7 @@ const FormField = ({
   const [id] = useUniqKey();
   const valid = affirm && touched && !error;
   const invalid = touched && error;
+  const { t } = useTranslation();
 
   const l = label !== null
     ? (
@@ -29,7 +31,10 @@ const FormField = ({
         className={labelClassName}
         htmlFor={id}
       >
-        {label || startCase(name)}
+        {
+          label
+          || t(`form.fields.${name}`, startCase(name))
+        }
       </label>
     )
     : null;

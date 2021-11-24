@@ -1,0 +1,13 @@
+{
+  "form" : {
+    "fields": {
+      "presist": "Remember me"
+    },
+    "auth": {
+      "title" : "Login",
+      "register": "Sign up",
+      "pwdRecovery": "Forgot password?",
+      "submit": "Login"
+    }
+  }
+}

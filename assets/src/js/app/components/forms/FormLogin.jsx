@@ -32,12 +32,12 @@ const FormLogin = () => {
     >
       <div className="row align-items-end">
         <div className="col">
-          <h3>{t('auth.login')}</h3>
+          <h3>{t('form.auth.title')}</h3>
         </div>
         <div className="col-auto">
           <h6>
             <Link to="/auth/register">
-              {t('auth.register')}
+              {t('form.auth.register')}
             </Link>
           </h6>
         </div>
@@ -52,7 +52,7 @@ const FormLogin = () => {
         </div>
         <div className="col-auto">
           <Link to="/auth/pwd-recovery">
-            {t('auth.pwdRecovery')}
+            {t('form.auth.pwdRecovery')}
           </Link>
         </div>
       </div>
@@ -62,7 +62,7 @@ const FormLogin = () => {
         type="submit"
         className="btn-primary btn-block"
       >
-        {t('auth.login')}
+        {t('form.auth.submit')}
       </Form.BtnSubmit>
     </Form>
   );
