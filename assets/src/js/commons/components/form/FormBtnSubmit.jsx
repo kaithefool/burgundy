@@ -2,6 +2,7 @@ import React from 'react';
 import { faSave } from '@fortawesome/free-regular-svg-icons/faSave';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { useFormikContext } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import BtnHttp from '../btns/BtnHttp';
 import useForm from './useForm';
@@ -13,6 +14,7 @@ const FormBtnSubmit = ({
   className = 'btn-primary',
   ...props
 }) => {
+  const { t } = useTranslation();
   const { http } = useForm();
   const { dirty, isValid, isSubmitting } = useFormikContext();
   const saved = !dirty && http.res.status === 'success';
@@ -26,7 +28,7 @@ const FormBtnSubmit = ({
       disabled={!dirty || (onlyValid && !isValid) || isSubmitting}
       {...props}
     >
-      {children || (saved ? 'Saved' : 'Save')}
+      {children || t(saved ? 'res.saved' : 'fields.save')}
     </BtnHttp>
   );
 };

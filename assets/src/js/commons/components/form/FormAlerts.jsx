@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import { useFormikContext } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import useForm from './useForm';
 import { useAlert } from '../alert';
 
 const FormAlerts = () => {
+  const { t } = useTranslation();
   const { submitCount, isValid } = useFormikContext();
   const { http } = useForm();
   const { push } = useAlert(http.res, {
-    success: () => ({ children: 'Saved' }),
+    success: () => ({ children: t('res.saved') }),
   });
 
   useEffect(() => {

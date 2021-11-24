@@ -1,14 +1,28 @@
 {
+  "res": {
+    "deleted": "已刪除",
+    "saved": "已儲存",
+    "confirm": "你確定嗎？",
+    "confirmDel": "你確定要刪除嗎？"
+  },
   "fields": {
     "presist": "保持登入",
+    "save": "儲存",
     "email": "電郵",
     "name": "姓名",
-    "updatedAt": "最後更新"
+    "role": "類型",
+    "updatedAt": "最後更新",
+    "lastLogin": "上次登錄"
   },
   "auth": {
     "title" : "登入",
     "register": "新帳戶註冊",
     "pwdRecovery": "忘記密碼?",
     "submit": "登入"
+  },
+  "gen": {
+    "perPage": "每頁{{page}}個",
+    "yes": "是",
+    "no": "否"
   }
 }

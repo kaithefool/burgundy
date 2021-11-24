@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import { useTranslation } from 'react-i18next';
 
 const ModalConfirm = ({
   header,
@@ -8,6 +9,7 @@ const ModalConfirm = ({
   typeToConfirm = false,
   ...props
 }) => {
+  const { t } = useTranslation();
   const { show, onHide } = props;
   const [input, setInput] = useState('');
   const confirmText = typeof typeToConfirm === 'string'
@@ -47,14 +49,14 @@ const ModalConfirm = ({
           onClick={() => { onConfirm(); onHide(); }}
           disabled={typeToConfirm && input !== confirmText}
         >
-          Yes
+          {t('gen.yes')}
         </button>
         <button
           className="btn btn-outline-primary"
           type="button"
           onClick={onHide}
         >
-          No
+          {t('gen.no')}
         </button>
       </Modal.Footer>
     </Modal>

@@ -1,11 +1,23 @@
 {
+  "res": {
+    "deleted": "Deleted",
+    "saved": "Saved",
+    "confirm": "Are you sure?",
+    "confirmDel": "Are you sure to delete?"
+  },
   "fields": {
-    "presist": "Remember me"
+    "presist": "Remember me",
+    "save": "Save"
   },
   "auth": {
     "title" : "Login",
     "register": "Sign up",
     "pwdRecovery": "Forgot password?",
     "submit": "Login"
+  },
+  "gen": {
+    "perPage": "{{page}} / page",
+    "yes": "Yes",
+    "no": "No"
   }
 }

@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import BtnHttp from './BtnHttp';
 import ModalConfirm from '../modals/ModalConfirm';
 
 const BtnHttpDel = ({
   req,
-  confirm = 'Are you sure?',
+  confirm = true,
   typeToConfirm = false,
   ...props
 }) => {
+  const { t } = useTranslation();
   const [confirmModal, setConfirmModal] = useState(false);
+  const body = typeof confirm !== 'boolean'
+    ? confirm : t('res.confirm');
 
   return (
     <>
@@ -19,7 +23,7 @@ const BtnHttpDel = ({
           onConfirm={() => req()}
           onHide={() => setConfirmModal(false)}
           typeToConfirm={typeToConfirm}
-          body={confirm}
+          body={body}
         />
       )}
       <BtnHttp
