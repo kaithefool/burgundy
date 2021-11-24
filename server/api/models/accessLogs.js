@@ -9,6 +9,7 @@ module.exports = new Model('AccessLog', {
   user: Schema.ref('User'),
   ip: String,
   userAgent: String,
+  payload: String,
 
   expiresAt: {
     type: Date,
