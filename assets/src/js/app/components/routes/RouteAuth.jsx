@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Switch,
+  Routes,
   Route,
 } from 'react-router-dom';
 
@@ -10,11 +10,11 @@ import {
 
 const RoutePages = ({ path, ...props }) => (
   <Route path={path} {...props}>
-    <Switch>
+    <Routes>
       <Route path={path} exact>
         <PageLogin />
       </Route>
-    </Switch>
+    </Routes>
   </Route>
 );
 

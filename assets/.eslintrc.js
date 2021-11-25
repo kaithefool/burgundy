@@ -53,6 +53,13 @@ module.exports = {
     // it's okay to use index if the array is constant
     'react/no-array-index-key': 'off',
 
+    // resolve 'function-declaration' and 'unnamed function' conflict
+    // what a joke
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'arrow-function' },
+    ],
+
     // ARIA: TBC...
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',

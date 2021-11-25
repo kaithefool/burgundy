@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
 } from 'react-router-dom';
 
 import {
@@ -10,9 +10,9 @@ import {
 
 const Auth = () => (
   <Router>
-    <Switch>
+    <Routes>
       <RouteAuth path="/auth" />
-    </Switch>
+    </Routes>
   </Router>
 );
 

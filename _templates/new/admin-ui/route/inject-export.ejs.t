@@ -2,7 +2,7 @@
 inject: true
 to: assets/src/js/admin/components/routes/index.jsx
 skip_if: \/<%= n.plural.path %>("|')
-after: <Switch>
+after: <Routes>
 ---
     <% if (singleton) { %><RouteResource
       path="/admin/<%= n.singular.path %>"

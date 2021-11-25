@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Switch,
+  Routes,
   Route,
 } from 'react-router-dom';
 
@@ -36,10 +36,10 @@ const RouteResource = ({
 
   return (
     <Route path={path} {...props}>
-      <Switch>
+      <Routes>
         {children}
         {routes}
-      </Switch>
+      </Routes>
     </Route>
   );
 };

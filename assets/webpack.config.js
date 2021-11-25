@@ -21,6 +21,8 @@ module.exports = () => ({
     alias: {
       '~': resolve(__dirname, './src/js'),
     },
+    // webpack 4 to 5 fix
+    fallback: { path: require.resolve('path-browserify') },
   },
   plugins: [
     new MiniCssExtractPlugin({

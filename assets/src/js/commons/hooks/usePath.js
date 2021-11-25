@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function resolvePath(...segments) {
   const { origin, pathname } = window.location;
@@ -12,11 +12,14 @@ function resolvePath(...segments) {
 }
 
 export default function usePath() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return {
     resolvePath,
-    pushPath: (...seg) => history.push(resolvePath(...seg)),
-    replacePath: (...seg) => history.replace(resolvePath(...seg)),
+    pushPath: (...seg) => navigate(resolvePath(...seg)),
+    replacePath: (...seg) => navigate(
+      resolvePath(...seg),
+      { replace: true },
+    ),
   };
 }

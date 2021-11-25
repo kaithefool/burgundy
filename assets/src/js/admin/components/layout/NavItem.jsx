@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
 const NavListItem = ({
@@ -15,7 +15,7 @@ const NavListItem = ({
   const Link = to
     ? NavLink
     : ({ children: c, ...p }) => <a {...p}>{c}</a>;
-  const match = useRouteMatch(to);
+  const match = useMatch(to);
 
   return (
     <>

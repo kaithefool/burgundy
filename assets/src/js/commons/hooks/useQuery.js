@@ -1,15 +1,16 @@
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
 export default function useQuery() {
   const loc = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return [
     qs.parse(loc.search, { ignoreQueryPrefix: true }),
     (q, replace = false) => {
-      history[replace ? 'replace' : 'push'](
+      navigate(
         `${loc.pathname}?${qs.stringify(q)}`,
+        { replace }
       );
     },
   ];
