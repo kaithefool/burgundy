@@ -25,11 +25,6 @@ function connect() {
   db = mongoose.connect(env.MONGO_URI, {
     // auto index can be handled in Model
     autoIndex: !Number(env.MONGO_SYNC_INDEX),
-
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
   });
 }
 
