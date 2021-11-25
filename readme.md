@@ -38,9 +38,6 @@ pm2 deploy [env]
     - Styles for both editor and display
     - Drop file handler
     - MaxSize and accept
-
-
-- Dedockerize?
 - Update image and packages to use node:16-alpine
     - dart-sass? node-sass/libsass seems to be faster
 - Grid html editor
