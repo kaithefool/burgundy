@@ -5,13 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-node",
+      "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "program": "${workspaceFolder}/server/bin/www"
+      "name": "Node: Nodemon",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "outputCapture": "std",
     }
   ]
 }
