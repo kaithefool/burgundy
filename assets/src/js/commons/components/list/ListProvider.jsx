@@ -49,7 +49,7 @@ const ListProvider = ({
 
     req({
       ...api,
-      params: { ...newQ, filter: newF },
+      params: { ...newQ, filter: { ...baseFilter, ...newF } },
     });
   };
 

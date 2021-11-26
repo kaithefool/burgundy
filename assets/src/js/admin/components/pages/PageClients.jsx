@@ -4,17 +4,17 @@ import List from '~/commons/components/list';
 import Page from '../layout/Page';
 import ListCtrlActivate from '../list/ListCtrlActivate';
 
-const PageUsers = () => (
+const PageClients = () => (
   <Page
-    header={{ title: 'Users' }}
+    header={{ title: 'Clients' }}
   >
     <List
       api={{ url: '/api/users' }}
       selectable
+      filter={{ role: 'client' }}
       cols={[
         { key: 'email', sortable: true },
         { key: 'name', sortable: true },
-        { key: 'role' },
         { key: 'updatedAt', format: 'fromNow' },
         { key: 'lastLogin', format: 'datetime' },
       ]}
@@ -28,16 +28,17 @@ const PageUsers = () => (
         </div>
       </div>
       <div className="mb-3">
+        <List.Ctrl.Create />
         <List.Ctrl.Refresh />
         <ListCtrlActivate />
         <List.Ctrl.Remove />
         <List.Ctrl.Export />
       </div>
       <List.Status>
-        <List.Table rowLink={({ _id, role }) => `${role}s/${_id}`} />
+        <List.Table rowLink={({ _id }) => _id} />
       </List.Status>
     </List>
   </Page>
 );
 
-export default PageUsers;
+export default PageClients;

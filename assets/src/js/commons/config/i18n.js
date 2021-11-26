@@ -6,6 +6,8 @@ import { Settings } from 'luxon';
 
 import env from './env';
 
+let lngs = [];
+
 // init
 i18n
   .use(Backend)
@@ -22,15 +24,15 @@ i18n
     },
     react: { useSuspense: false },
   }, () => {
-    // date format
-    Settings.defaultLocale = i18n.language;
+    const { language, languages } = i18n;
+
+    // for lang value picker
+    lngs = [language, ...languages];
+
+    // for date format
+    Settings.defaultLocale = language;
   });
 
-i18n.pickLng = (obj) => {
-  const { language, languages } = i18n;
-  const lngs = [language, ...languages];
-
-  return obj[lngs.find((l) => obj[l])];
-};
+i18n.pickLng = (obj) => obj[lngs.find((l) => obj[l])];
 
 export default i18n;

@@ -9,7 +9,7 @@ import env from '~/commons/config/env';
 
 const defaults = {
   email: '',
-  role: '',
+  role: 'client',
   password: '',
   name: env.lngs.reduce((a, l) => ({
     ...a, [l]: '',
@@ -30,7 +30,7 @@ const schema = (doc) => object({
   ).min(8),
 });
 
-const PageUser = () => {
+const PageClient = () => {
   const { _id } = useParams();
 
   return (
@@ -39,7 +39,8 @@ const PageUser = () => {
         <Page
           header={{
             breadcrumb: [
-              { to: '../', children: 'Users' },
+              { to: '../..', children: 'Users' },
+              { to: '..', children: 'Clients' },
             ],
             title: doc?.email || 'New',
           }}
@@ -65,11 +66,6 @@ const PageUser = () => {
 
             <Form.Check name="active" type="switch" />
             <Form.Input name="email" />
-            <Form.Select name="role" as="select">
-              <option value=""> - </option>
-              <option value="admin">Admin</option>
-              <option value="client">Client</option>
-            </Form.Select>
             <Form.Input name="password" type="password" />
             <div className="row">
               {env.lngs.map((ln) => (
@@ -79,19 +75,6 @@ const PageUser = () => {
               ))}
             </div>
 
-            <Form.FilsCoverImg name="cover" />
-
-            <div className="row my-3">
-              <div className="col">
-                <Form.FilsList name="profiles" multiple={3} />
-              </div>
-              <div className="col">
-                <Form.FilsList name="avatar" />
-              </div>
-            </div>
-
-            <Form.Editor name="intro" />
-
           </Doc.Form>
         </Page>
       )}
@@ -99,4 +82,4 @@ const PageUser = () => {
   );
 };
 
-export default PageUser;
+export default PageClient;

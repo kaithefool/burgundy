@@ -33,6 +33,7 @@ const SubDirsNav = ({
         <NavLink
           className="nav-link"
           to={parent.to}
+          end
         >
           {t(`nav.${p}`, p)}
         </NavLink>

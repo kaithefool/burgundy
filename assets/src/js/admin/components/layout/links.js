@@ -10,17 +10,17 @@ export default [
         default: 'Users',
         subDir: 'All',
       },
-      to: '/admin/users',
+      to: '/users',
       links: [
         {
           icon: faUserTie,
           label: 'Admins',
-          to: '/admin/users/admins',
+          to: '/users/admins',
         },
         {
           icon: faReUser,
           label: 'Clients',
-          to: '/admin/users/clients',
+          to: '/users/clients',
         },
       ],
     },
