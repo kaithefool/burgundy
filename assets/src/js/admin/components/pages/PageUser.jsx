@@ -1,5 +1,6 @@
 import React from 'react';
 import { object, string } from 'yup';
+import { useParams } from 'react-router-dom';
 
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
@@ -29,73 +30,73 @@ const schema = (doc) => object({
   ).min(8),
 });
 
-const PageUser = ({
-  match: {
-    params: { _id },
-  },
-}) => (
-  <Doc _id={_id} api={{ url: '/api/users' }}>
-    {(doc) => (
-      <Page
-        header={{
-          breadcrumb: [
-            { to: '../', children: 'Users' },
-          ],
-          title: doc?.email || 'New',
-        }}
-      >
-        <Doc.Form
-          defaults={defaults}
-          schema={schema(doc)}
-          beforeSubmit={({ password, ...values }) => ({
-            ...values, ...(password && { password }),
-          })}
+const PageUser = () => {
+  const { _id } = useParams();
+
+  return (
+    <Doc _id={_id} api={{ url: '/api/users' }}>
+      {(doc) => (
+        <Page
+          header={{
+            breadcrumb: [
+              { to: '../', children: 'Users' },
+            ],
+            title: doc?.email || 'New',
+          }}
         >
-          <div className="row mb-3 align-items-center">
-            <div className="col-auto">
-              <Form.BtnSubmit />
-            </div>
-            <div className="col-auto">
-              <Doc.UpdatedAt />
-            </div>
-            <div className="col text-end">
-              <Doc.BtnDel />
-            </div>
-          </div>
-
-          <Form.Check name="active" type="switch" />
-          <Form.Input name="email" />
-          <Form.Select name="role" as="select">
-            <option value=""> - </option>
-            <option value="admin">Admin</option>
-            <option value="client">Client</option>
-          </Form.Select>
-          <Form.Input name="password" type="password" />
-          <div className="row">
-            {env.lngs.map((ln) => (
-              <div className="col" key={ln}>
-                <Form.Input name={`name.${ln}`} />
+          <Doc.Form
+            defaults={defaults}
+            schema={schema(doc)}
+            beforeSubmit={({ password, ...values }) => ({
+              ...values, ...(password && { password }),
+            })}
+          >
+            <div className="row mb-3 align-items-center">
+              <div className="col-auto">
+                <Form.BtnSubmit />
               </div>
-            ))}
-          </div>
-
-          <Form.FilsCoverImg name="cover" />
-
-          <div className="row my-3">
-            <div className="col">
-              <Form.FilsList name="profiles" multiple={3} />
+              <div className="col-auto">
+                <Doc.UpdatedAt />
+              </div>
+              <div className="col text-end">
+                <Doc.BtnDel />
+              </div>
             </div>
-            <div className="col">
-              <Form.FilsList name="avatar" />
+
+            <Form.Check name="active" type="switch" />
+            <Form.Input name="email" />
+            <Form.Select name="role" as="select">
+              <option value=""> - </option>
+              <option value="admin">Admin</option>
+              <option value="client">Client</option>
+            </Form.Select>
+            <Form.Input name="password" type="password" />
+            <div className="row">
+              {env.lngs.map((ln) => (
+                <div className="col" key={ln}>
+                  <Form.Input name={`name.${ln}`} />
+                </div>
+              ))}
             </div>
-          </div>
 
-          <Form.Editor name="intro" />
+            <Form.FilsCoverImg name="cover" />
 
-        </Doc.Form>
-      </Page>
-    )}
-  </Doc>
-);
+            <div className="row my-3">
+              <div className="col">
+                <Form.FilsList name="profiles" multiple={3} />
+              </div>
+              <div className="col">
+                <Form.FilsList name="avatar" />
+              </div>
+            </div>
+
+            <Form.Editor name="intro" />
+
+          </Doc.Form>
+        </Page>
+      )}
+    </Doc>
+  );
+};
 
 export default PageUser;

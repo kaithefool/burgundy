@@ -21,6 +21,10 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
+- Routes
+    - remove pathResolves
+    - restructure routes files
+
 - File Uploads
     - sortable
     - gallery mode

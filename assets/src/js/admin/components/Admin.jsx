@@ -1,10 +1,12 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
+  Routes,
+  Route,
 } from 'react-router-dom';
 
 import Nav from './layout/Nav';
-import Routes from './routes';
+import AppRoutes from './routes';
 import Alert from '~/commons/components/alert';
 
 const Admin = () => (
@@ -13,7 +15,9 @@ const Admin = () => (
       <Nav className="col-auto vh-100 sticky-top border-end py-3" />
       <div className="col bg-light">
         <Alert className="m-3 position-fixed top-0 end-0">
-          <Routes />
+          <Routes>
+            <Route path="/admin/*" element={<AppRoutes />} />
+          </Routes>
         </Alert>
       </div>
     </Router>

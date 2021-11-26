@@ -7,7 +7,6 @@ import useList from './useList';
 
 import GrowingTextarea from '../inputs/GrowingTextarea';
 import formats from './formats';
-import usePath from '../../hooks/usePath';
 
 const ListTableCell = ({
   row,
@@ -24,7 +23,6 @@ const ListTableCell = ({
 }) => {
   const { i18n } = useTranslation();
   const { stage, staged } = useList();
-  const { resolvePath } = usePath();
   const [caret, setCaret] = useState(false);
   const stored = get(row, key);
   let value = stored;
@@ -107,7 +105,7 @@ const ListTableCell = ({
     const to = typeof rowLink === 'function' ? rowLink(row) : rowLink;
 
     content = (
-      <Link to={resolvePath(to)}>{content}</Link>
+      <Link to={to}>{content}</Link>
     );
   }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useMatch } from 'react-router-dom';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
-const NavListItem = ({
+const NavItem = ({
   icon,
   label = '',
   children,
@@ -12,17 +12,16 @@ const NavListItem = ({
   ...props
 }) => {
   const { to } = props;
+  const match = useMatch(to ? `${to}/*` : '');
   const Link = to
     ? NavLink
     : ({ children: c, ...p }) => <a {...p}>{c}</a>;
-  const match = useMatch(to);
 
   return (
     <>
       <Link
         className={`nav-link py-0 my-2 px-4 ${subDir ? 'pe-3' : ''}`}
         {...props}
-        {...(to ? { activeClassName: 'active' } : {})}
       >
         <FA icon={icon} fixedWidth />
         {expanded && (
@@ -38,4 +37,4 @@ const NavListItem = ({
   );
 };
 
-export default NavListItem;
+export default NavItem;

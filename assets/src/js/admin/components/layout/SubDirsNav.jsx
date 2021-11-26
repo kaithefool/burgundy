@@ -12,13 +12,13 @@ const SubDirsNav = ({
 
   links.find((g) => {
     parent = g.find(({ to }) => (
-      to && matchPath(loc.pathname, { path: to })
+      to && matchPath(`${to}/*`, loc.pathname)
     ));
 
     return parent;
   });
 
-  if (!parent.links) return '';
+  if (!parent?.links) return '';
 
   return (
     <nav className={`nav nav-tabs-min ${className}`}>
@@ -26,7 +26,6 @@ const SubDirsNav = ({
         <NavLink
           className="nav-link"
           to={parent.to}
-          activeClassName="active"
         >
           {parent.label.subDir || parent.label.default || parent.label}
         </NavLink>
@@ -36,7 +35,6 @@ const SubDirsNav = ({
         <NavLink
           key={i}
           className="nav-link"
-          activeClassName="active"
           {...l}
         >
           {label}

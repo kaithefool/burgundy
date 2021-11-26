@@ -2,18 +2,15 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
+  Route,
 } from 'react-router-dom';
 
-import {
-  RouteAuth,
-} from './routes';
+import AppRoutes from './routes';
 
-const Auth = () => (
+const App = () => (
   <Router>
-    <Routes>
-      <RouteAuth path="/auth" />
-    </Routes>
+    <AppRoutes />
   </Router>
 );
 
-export default Auth;
+export default App;

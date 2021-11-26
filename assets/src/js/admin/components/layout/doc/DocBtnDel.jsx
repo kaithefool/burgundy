@@ -1,10 +1,10 @@
 import React from 'react';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import useHttp from '~/commons/hooks/useHttp';
 import BtnHttpConfirm from '~/commons/components/btns/BtnHttpConfirm';
-import usePath from '~/commons/hooks/usePath';
 import useAlert from '~/commons/components/alert/useAlert';
 
 import useDoc from './useDoc';
@@ -17,7 +17,7 @@ const DocBtnDel = ({
   const { t } = useTranslation();
   const { api, _id } = useDoc();
   const http = useHttp();
-  const { pushPath } = usePath();
+  const { navigate } = useNavigate();
 
   useAlert(http.res, { success: () => ({ children: t('res.deleted') }) });
 
@@ -32,7 +32,7 @@ const DocBtnDel = ({
         });
 
         if (redirect) {
-          pushPath(redirect);
+          navigate(redirect);
         }
       }}
       icon={faTrash}

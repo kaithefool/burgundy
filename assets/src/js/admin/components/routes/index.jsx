@@ -1,19 +1,14 @@
 import React from 'react';
-import { Routes as Switch } from 'react-router-dom';
-
-import RouteResource from './RouteResource';
+import { Routes, Route } from 'react-router-dom';
 
 import PageUsers from '../pages/PageUsers';
 import PageUser from '../pages/PageUser';
 
-const Routes = () => (
-  <Switch>
-    <RouteResource
-      path="/admin/users"
-      List={PageUsers}
-      Doc={PageUser}
-    />
-  </Switch>
+const AppRoutes = () => (
+  <Routes>
+    <Route path="/users" element={<PageUsers />} />
+    <Route path="/users/:_id" element={<PageUser />} />
+  </Routes>
 );
 
-export default Routes;
+export default AppRoutes;

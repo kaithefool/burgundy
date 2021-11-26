@@ -1,14 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Form from '~/commons/components/form';
 import useDoc from './useDoc';
-import usePath from '~/commons/hooks/usePath';
 
 const DocForm = (props) => {
   const {
     api, _id, doc, singleton,
   } = useDoc();
-  const { pushPath } = usePath();
+  const { navigate } = useNavigate();
 
   const a = singleton
     ? { ...api, method: 'put' }
@@ -24,7 +24,7 @@ const DocForm = (props) => {
       api={a}
       stored={doc}
       onSubmitted={({ data }) => {
-        if (!doc) pushPath(data._id);
+        if (!doc) navigate(data._id);
       }}
       {...props}
     />
