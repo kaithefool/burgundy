@@ -1,15 +1,9 @@
 ---
 inject: true
 to: assets/src/js/admin/components/routes/index.jsx
-skip_if: \/<%= n.plural.path %>("|')
+skip_if: \/<%= n.singular.path %>("|')
 after: <Routes>
 ---
-    <% if (singleton) { %><RouteResource
-      path="/admin/<%= n.singular.path %>"
-      Doc={Page<%= n.singular.pascal %>}
-      singleton
-    /><% } else { %><RouteResource
-      path="/admin/<%= n.plural.path %>"
-      List={Page<%= n.plural.pascal %>}
-      Doc={Page<%= n.singular.pascal %>}
-    /><% } %>
+    <% if (singleton) { %><Route path="/<%= n.singular.path %>" element={<Page<%= n.singular.pascal %> />} /><% } else { %>
+    <Route path="/<%= n.plural.path %>" element={<Page<%= n.plural.pascal %> />} />
+    <Route path="/<%= n.singular.path %>/:_id" element={<Page<%= n.singular.pascal %> />} /><% } %>

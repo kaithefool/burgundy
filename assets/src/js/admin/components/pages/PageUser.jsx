@@ -1,6 +1,6 @@
 import React from 'react';
-import { object, string } from 'yup';
 import { useParams } from 'react-router-dom';
+import { object, string } from 'yup';
 
 import Page from '../layout/Page';
 import Doc from '../layout/doc';

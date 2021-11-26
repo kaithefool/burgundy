@@ -39,13 +39,6 @@ module.exports = () => ({
   module: {
     rules: [
       {
-        test: /\.(eot|ttf|woff2?)(\?\w+)?$/i,
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]',
-        },
-      },
-      {
         test: /\.pug$/,
         use: ['pug-loader'],
       },
