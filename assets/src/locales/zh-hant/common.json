@@ -25,5 +25,11 @@
     "perPage": "每頁{{page}}個",
     "yes": "是",
     "no": "否"
+  },
+  "nav": {
+    "All": "全部",
+    "Users": "用戶",
+    "Admins": "管理員",
+    "Clients": "客戶"
   }
 }

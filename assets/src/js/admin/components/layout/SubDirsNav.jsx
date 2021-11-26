@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation, matchPath } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import links from './links';
 
@@ -7,8 +8,10 @@ const SubDirsNav = ({
   className = '',
   parent: showParent = true,
 }) => {
+  const { t } = useTranslation();
   const loc = useLocation();
   let parent;
+  let p;
 
   links.find((g) => {
     parent = g.find(({ to }) => (
@@ -20,6 +23,10 @@ const SubDirsNav = ({
 
   if (!parent?.links) return '';
 
+  if (showParent) {
+    p = parent.label.subDir || parent.label.default || parent.label;
+  }
+
   return (
     <nav className={`nav nav-tabs-min ${className}`}>
       {showParent && (
@@ -27,7 +34,7 @@ const SubDirsNav = ({
           className="nav-link"
           to={parent.to}
         >
-          {parent.label.subDir || parent.label.default || parent.label}
+          {t(`nav.${p}`, p)}
         </NavLink>
       )}
 
@@ -37,7 +44,7 @@ const SubDirsNav = ({
           className="nav-link"
           {...l}
         >
-          {label}
+          {t(`nav.${label}`, label)}
         </NavLink>
       ))}
     </nav>

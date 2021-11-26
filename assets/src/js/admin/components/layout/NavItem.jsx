@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useMatch } from 'react-router-dom';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import { useTranslation } from 'react-i18next';
 
 const NavItem = ({
   icon,
@@ -11,11 +12,13 @@ const NavItem = ({
   subDir = false,
   ...props
 }) => {
+  const { t } = useTranslation();
   const { to } = props;
   const match = useMatch(to ? `${to}/*` : '');
   const Link = to
     ? NavLink
     : ({ children: c, ...p }) => <a {...p}>{c}</a>;
+  const l = label.default || label;
 
   return (
     <>
@@ -25,7 +28,7 @@ const NavItem = ({
       >
         <FA icon={icon} fixedWidth />
         {expanded && (
-          <span className="ms-3 me-1">{label.default || label}</span>
+          <span className="ms-3 me-1">{t(`nav.${l}`, l)}</span>
         )}
       </Link>
       {children && (
