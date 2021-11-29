@@ -17,15 +17,19 @@ const Header = ({
       <nav className="border-bottom p-4 pb-2">
         <div className="row">
           <div className="col">
-            <h5>
-              {breadcrumb.map(({ children, ...b }, i) => (
-                <span key={i}>
-                  <Link {...b}>
-                    {t(`nav.${children}`, children)}
-                  </Link>
+            {breadcrumb?.length > 0 && (
+              <div className="small mb-2">
+                {breadcrumb.map(({ children, ...b }, i) => (
+                  <span key={i}>
+                    <Link {...b}>
+                      {t(`nav.${children}`, children)}
+                    </Link>
                   &nbsp;/&nbsp;
-                </span>
-              ))}
+                  </span>
+                ))}
+              </div>
+            )}
+            <h5>
               {t(`nav.${title}`, title)}
             </h5>
           </div>

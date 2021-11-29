@@ -1,5 +1,6 @@
 import React from 'react';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
+import { useTranslation } from 'react-i18next';
 
 import BtnHttpConfirm from '../../btns/BtnHttpConfirm';
 import useList from '../useList';
@@ -8,14 +9,15 @@ import useHttp from '../../../hooks/useHttp';
 
 const ListCtrlRemove = ({
   api: apiOpts,
-  confirm = 'Are you sure to delete?',
+  confirm = true,
   className = 'btn px-2 me-3 btn-secondary',
   ...props
 }) => {
+  const { t } = useTranslation();
   const { api, refresh, selected } = useList();
   const { req, res } = useHttp();
 
-  useAlert(res, { success: () => ({ children: 'Deleted' }) });
+  useAlert(res, { success: () => ({ children: t('res.deleted') }) });
 
   const remove = async () => {
     await req({
@@ -27,19 +29,21 @@ const ListCtrlRemove = ({
     refresh();
   };
 
+  if (selected.length <= 0) return '';
+
   return (
-    <>
-      {selected.length > 0 && (
-        <BtnHttpConfirm
-          req={remove}
-          res={res}
-          className={className}
-          icon={faTrash}
-          confirm={confirm}
-          {...props}
-        />
-      )}
-    </>
+    <BtnHttpConfirm
+      req={remove}
+      res={res}
+      className={className}
+      icon={faTrash}
+      confirm={
+        confirm === true
+          ? t('res.confirmDel')
+          : confirm
+      }
+      {...props}
+    />
   );
 };
 
