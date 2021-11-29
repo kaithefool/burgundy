@@ -14,6 +14,7 @@ const PageUsers = () => (
       cols={[
         { key: 'email', sortable: true },
         { key: 'name', sortable: true },
+        { key: 'active' },
         { key: 'role' },
         { key: 'updatedAt', format: 'fromNow' },
         { key: 'lastLogin', format: 'datetime' },

@@ -15,6 +15,7 @@ const PageAdmins = () => (
       cols={[
         { key: 'email', sortable: true },
         { key: 'name', sortable: true },
+        { key: 'active' },
         { key: 'updatedAt', format: 'fromNow' },
         { key: 'lastLogin', format: 'datetime' },
       ]}

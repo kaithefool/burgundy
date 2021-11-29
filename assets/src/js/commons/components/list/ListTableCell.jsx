@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import get from 'lodash/get';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 import useList from './useList';
 
@@ -81,6 +84,9 @@ const ListTableCell = ({
 
   if (typeof content === 'object') {
     content = i18n.pickLng(content);
+  }
+  if (typeof content === 'boolean') {
+    content = <FA icon={content ? faCheck : faTimes} fixedWidth />;
   }
 
   if (editable && focused) {
