@@ -16,11 +16,6 @@ const defaults = {
     ...a, [l]: '',
   }), {}),
   active: true,
-
-  profiles: [],
-  avatar: [],
-  cover: [],
-  intro: '',
 };
 
 const schema = (doc) => object({

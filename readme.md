@@ -21,10 +21,7 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
-- Routes
-    - remove pathResolves
-    - restructure routes files
-
+- Pwd Resets
 - File Uploads
     - sortable
     - gallery mode
@@ -38,13 +35,10 @@ pm2 deploy [env]
     - dart-sass? node-sass/libsass seems to be faster
 - Grid html editor
 - Table
-    - Editable table cells
-    - Toggle switch table cell
     - Sticky table head (not possible with pure css)
 - i18n
     - Reload server after new locale files
     - Lang form fields
-    - import and export
     - server response
     - yupjs errors
 - Import csv template
