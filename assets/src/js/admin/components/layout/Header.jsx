@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import SubDirsNav from './SubDirsNav';
 import BtnLng from '~/commons/components/btns/BtnLng';
+import { resolvePath } from '../../../commons/helpers';
 
 const Header = ({
   title = '',
@@ -19,9 +20,9 @@ const Header = ({
           <div className="col">
             {breadcrumb?.length > 0 && (
               <div className="small mb-2">
-                {breadcrumb.map(({ children, ...b }, i) => (
+                {breadcrumb.map(({ children, to, ...b }, i) => (
                   <span key={i}>
-                    <Link {...b}>
+                    <Link {...b} to={resolvePath(to)}>
                       {t(`nav.${children}`, children)}
                     </Link>
                   &nbsp;/&nbsp;
@@ -37,9 +38,7 @@ const Header = ({
         </div>
       </nav>
       {subsDir && (
-      <div className="p-4 py-3">
         <SubDirsNav {...subsDir} />
-      </div>
       )}
     </header>
   );

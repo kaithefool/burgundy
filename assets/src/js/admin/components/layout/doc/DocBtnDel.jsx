@@ -8,6 +8,7 @@ import BtnHttpConfirm from '~/commons/components/btns/BtnHttpConfirm';
 import useAlert from '~/commons/components/alert/useAlert';
 
 import useDoc from './useDoc';
+import { resolvePath } from '../../../../commons/helpers';
 
 const DocBtnDel = ({
   confirm = true,
@@ -32,7 +33,7 @@ const DocBtnDel = ({
         });
 
         if (redirect) {
-          navigate(redirect);
+          navigate(resolvePath(redirect));
         }
       }}
       icon={faTrash}
