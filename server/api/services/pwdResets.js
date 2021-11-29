@@ -13,8 +13,8 @@ class PwdResetServ extends Service {
       filter: { email, active: 1, deletedAt: null },
     });
 
-    if (!u) this.throw(400, 'err.userNotExists');
-    if (u.reset_locked) this.throw(400, 'err.maxPwdResetsReached');
+    if (!u) this.throw(400, 'res.userNotExists');
+    if (u.reset_locked) this.throw(400, 'res.maxPwdResetsReached');
 
     const resets = this.find({ filter: { user: u.id } });
 
@@ -26,13 +26,13 @@ class PwdResetServ extends Service {
       );
 
       // notify the client
-      this.throw(400, 'err.maxPwdResetsReached');
+      this.throw(400, 'res.maxPwdResetsReached');
     }
 
     // deactivate previous reset keys
     await this.delete({ user: u.id });
 
-    const [{ verifyKey }] = await super.create({
+    const { verifyKey } = await super.create({
       user: u.id,
     });
 
@@ -52,7 +52,7 @@ class PwdResetServ extends Service {
       filter: { verifyKey, active: 1 },
     });
 
-    if (!r) this.throw(400, 'err.invalidKey');
+    if (!r) this.throw(400, 'res.invalidKey');
     if (returnDoc) return r;
 
     return null;

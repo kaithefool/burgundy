@@ -1,11 +1,12 @@
 import React from 'react';
-import { object, string } from 'yup';
+import { object } from 'yup';
 import { useTranslation } from 'react-i18next';
 
 import { Link } from 'react-router-dom';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
 
 import Form from '~/commons/components/form';
+import { email, password } from '../../../commons/validators';
 
 const FormLogin = () => {
   const { t } = useTranslation();
@@ -14,12 +15,9 @@ const FormLogin = () => {
     <Form
       alert={{ className: 'w-auto my-3' }}
       schema={object({
-        email: string()
-          .trim()
-          .lowercase()
-          .email()
+        email: email
           .required(),
-        password: string()
+        password: password()
           .required(),
       })}
       defaults={{
@@ -59,7 +57,6 @@ const FormLogin = () => {
 
       <Form.BtnSubmit
         icon={faUnlock}
-        type="submit"
         className="btn-primary btn-block"
       >
         {t('auth.submit')}

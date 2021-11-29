@@ -2,12 +2,12 @@ const m = require('mongoose');
 const _ = require('lodash');
 const ms = require('ms');
 
-const { LANG, MONGO_SYNC_INDEX } = process.env;
+const { LNG, MONGO_SYNC_INDEX } = process.env;
 const { ObjectId } = m.Schema.Types;
 
 module.exports = class Schema {
   static lang(field) {
-    return LANG.split(',').reduce(
+    return LNG.split(',').reduce(
       (s, ln) => ({ ...s, [ln]: field }),
       {},
     );

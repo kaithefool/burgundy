@@ -3,7 +3,10 @@
     "deleted": "Deleted",
     "saved": "Saved",
     "confirm": "Are you sure?",
-    "confirmDel": "Are you sure to delete?"
+    "confirmDel": "Are you sure to delete?",
+    "userNotExists": "",
+    "maxPwdResetsReached": "",
+    "invalidKey": ""
   },
   "fields": {
     "presist": "Remember me",
@@ -19,5 +22,16 @@
     "perPage": "{{page}} / page",
     "yes": "Yes",
     "no": "No"
+  },
+  "pg": {
+    "pwdResetReqTitle": "Forgot Password?",
+    "pwdResetReqSubTitle": "We can help you to reset the password.",
+    "pwdResetReqEmail": "First, please enter your account email...",
+    "pwdResetReqSubmit": "Send Reset Email",
+    "pwdResetResTitle": "Sent",
+    "pwdResetResSubTitle": "Please check your inbox and follow the instruction",
+    "pwdResetNoEmail": "Didn't receive the email?",
+    "pwdResetResend": "Resend"
+    
   }
 }

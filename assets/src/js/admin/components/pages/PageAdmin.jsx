@@ -6,6 +6,7 @@ import Page from '../layout/Page';
 import Doc from '../layout/doc';
 import Form from '~/commons/components/form';
 import env from '~/commons/config/env';
+import { email, password } from '~/commons/validators';
 
 const defaults = {
   email: '',
@@ -18,11 +19,9 @@ const defaults = {
 };
 
 const schema = (doc) => object({
-  email: string().email().required(),
+  email: email().required(),
   role: string().required(),
-  password: (
-    doc ? string() : string().required()
-  ).min(8),
+  password: doc ? password() : password().required(),
 });
 
 const PageAdmin = () => {
@@ -43,8 +42,8 @@ const PageAdmin = () => {
           <Doc.Form
             defaults={defaults}
             schema={schema(doc)}
-            beforeSubmit={({ password, ...values }) => ({
-              ...values, ...(password && { password }),
+            beforeSubmit={({ password: p, ...values }) => ({
+              ...values, ...(p && { password: p }),
             })}
           >
             <div className="row mb-3 align-items-center">

@@ -12,7 +12,7 @@ module.exports = new Model('PwdReset', {
   verifyKey: {
     type: String,
     index: true,
-    default: nanoid,
+    default: () => nanoid(),
   },
   user: Schema.ref('User'),
   createdAt: {
