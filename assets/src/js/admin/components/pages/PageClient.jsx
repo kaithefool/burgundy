@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { object, string } from 'yup';
+import { Tabs, Tab } from 'react-bootstrap';
 
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
@@ -64,16 +65,26 @@ const PageClient = () => {
               </div>
             </div>
 
-            <Form.Check name="active" type="switch" />
-            <Form.Input name="email" />
-            <Form.Input name="password" type="password" />
-            <div className="row">
-              {env.lngs.map((ln) => (
-                <div className="col" key={ln}>
-                  <Form.Input name={`name.${ln}`} />
+            <Tabs
+              defaultActiveKey="essentials"
+              className="nav-tabs-min mb-4"
+              unmountOnExit
+            >
+              <Tab eventKey="essentials" title="Essentials">
+                <Form.Check name="active" type="switch" />
+                <Form.Input name="email" />
+                <Form.Input name="password" type="password" />
+              </Tab>
+              <Tab eventKey="names" title="Names">
+                <div className="row">
+                  {env.lngs.map((ln) => (
+                    <div className="col" key={ln}>
+                      <Form.Input name={`name.${ln}`} />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </Tab>
+            </Tabs>
 
           </Doc.Form>
         </Page>

@@ -3,6 +3,7 @@ const { object } = require('yup');
 const { Routes } = require('../base');
 const service = require('../services/users');
 const { email, password } = require('../validators');
+const exportCsv = require('../responders/exportCsv');
 
 module.exports = new Routes({
   service,
@@ -27,4 +28,16 @@ module.exports = new Routes({
     method: 'patch',
   },
   delete: true,
+
+  export: {
+    path: '/export',
+    serve: 'find',
+    response: exportCsv({
+      filename: 'users-export.csv',
+      mapping: [
+        { key: 'email' },
+        { key: 'name.en', label: 'English Name' },
+      ],
+    }),
+  },
 });

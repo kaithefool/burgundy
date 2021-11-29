@@ -9,9 +9,9 @@ const ListCtrlExport = ({
   href,
   className = 'btn px-2 me-3 btn-secondary',
 }) => {
-  const { filter, api } = useList();
+  const { filter = {}, api } = useList();
   const query = Object.keys(filter).length
-    ? `?${qs.stringify({ filter })}`
+    ? `?${qs.stringify(filter)}`
     : '';
   const path = typeof href === 'string'
     ? href

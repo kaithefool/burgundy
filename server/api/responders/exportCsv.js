@@ -1,5 +1,5 @@
 const { startCase, get } = require('lodash');
-const csv = require('csv-stringify');
+const { stringify } = require('csv-stringify');
 
 function csvRow(req, mapping, data) {
   return mapping.map(((m) => {
@@ -23,7 +23,7 @@ function csvHeader(mapping) {
 module.exports = (opts) => (req, res) => {
   const { out } = res.locals;
   const BOM = String.fromCharCode(0xFEFF);
-  const stringifier = csv(); // csv stringifier
+  const stringifier = stringify(); // csv stringifier
   const { filename = 'export.csv' } = opts;
   let { mapping } = opts;
 
@@ -48,5 +48,6 @@ module.exports = (opts) => (req, res) => {
     out.forEach((o) => stringifier.write(
       csvRow(req, mapping, o),
     ));
+    stringifier.end();
   }
 };

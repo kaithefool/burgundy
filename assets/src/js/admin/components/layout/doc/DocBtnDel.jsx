@@ -18,7 +18,7 @@ const DocBtnDel = ({
   const { t } = useTranslation();
   const { api, _id } = useDoc();
   const http = useHttp();
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
 
   useAlert(http.res, { success: () => ({ children: t('res.deleted') }) });
 

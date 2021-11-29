@@ -10,7 +10,7 @@ export default function useQuery() {
     (q, replace = false) => {
       navigate(
         `${loc.pathname}?${qs.stringify(q)}`,
-        { replace }
+        { replace },
       );
     },
   ];
