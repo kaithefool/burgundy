@@ -80,9 +80,10 @@ class Routes {
     return async ({
       attrs,
       user,
+      t, // i18n
     }, res, next) => {
       try {
-        res.locals.out = await service[serve](attrs, user);
+        res.locals.out = await service[serve](attrs, user, { t });
       } catch (e) {
         return next(e);
       }

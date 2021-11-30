@@ -8,7 +8,6 @@ const { REGISTER_TTL } = process.env;
 module.exports = new User('Registrant', {
   verifyKey: {
     type: String,
-    index: true,
     default: nanoid,
   },
   createdAt: {

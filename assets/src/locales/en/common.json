@@ -25,6 +25,9 @@
     "pwdRecovery": "Forgot password?",
     "submit": "Login"
   },
+  "sms": {
+    "verify": "Your verification code is: {{verifyKey}}"
+  },
   "gen": {
     "perPage": "{{page}} / page",
     "yes": "Yes",

@@ -111,11 +111,15 @@ class Service {
     return this.patchBy(match, attrs, user, { upsert: true });
   }
 
-  delete({ _id }, user) {
+  async deleteBy(filter, user) {
     return this.model.delete(
-      this.match({ _id }, user),
+      this.match(filter, user),
       user,
     );
+  }
+
+  delete({ _id }, user) {
+    return this.deleteBy({ _id }, user);
   }
 }
 
