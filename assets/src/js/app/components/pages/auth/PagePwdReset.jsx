@@ -45,8 +45,8 @@ const PagePwdReset = () => {
               navigate(resolvePath('../../success'));
             }}
           >
-            <Form.Input name="password" type="password" />
-            <Form.Input name="passwordConfirm" type="password" />
+            <Form.Input name="password" type="password" affirm />
+            <Form.Input name="passwordConfirm" type="password" affirm />
             <Form.BtnSubmit>
               {t('pg.pwdResetSubmit')}
             </Form.BtnSubmit>

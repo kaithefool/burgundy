@@ -42,7 +42,7 @@ const FormLogin = () => {
       </div>
 
       <Form.Input name="email" />
-      <Form.Input name="password" type="password" />
+      <Form.Password name="password" />
 
       <div className="row">
         <div className="col">
