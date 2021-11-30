@@ -49,7 +49,7 @@ class PwdResetServ extends Service {
 
   async verify({ verifyKey }, returnDoc = false) {
     const [r] = await this.find({
-      filter: { verifyKey, active: 1 },
+      verifyKey,
     });
 
     if (!r) this.throw(400, 'res.invalidKey');

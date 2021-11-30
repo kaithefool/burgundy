@@ -15,7 +15,7 @@ const FormLogin = () => {
     <Form
       alert={{ className: 'w-auto my-3' }}
       schema={object({
-        email: email
+        email: email()
           .required(),
         password: password()
           .required(),

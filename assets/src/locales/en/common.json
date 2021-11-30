@@ -10,7 +10,8 @@
   },
   "fields": {
     "presist": "Remember me",
-    "save": "Save"
+    "save": "Save",
+    "passwordConfirm": "Confirm Password"
   },
   "auth": {
     "title" : "Login",
@@ -24,14 +25,18 @@
     "no": "No"
   },
   "pg": {
-    "pwdResetReqTitle": "Forgot Password?",
-    "pwdResetReqSubTitle": "We can help you to reset the password.",
-    "pwdResetReqEmail": "First, please enter your account email...",
-    "pwdResetReqSubmit": "Send Reset Email",
-    "pwdResetResTitle": "Sent",
-    "pwdResetResSubTitle": "Please check your inbox and follow the instruction",
+    "pwdResetMailTitle": "Forgot Password?",
+    "pwdResetMailSubTitle": "We can help you to reset the password.",
+    "pwdResetMailEmail": "First, please enter your account email...",
+    "pwdResetMailSubmit": "Send Reset Email",
+    "pwdResetMailBack": "Back to Login",
+    "pwdResetMailSuccessTitle": "Sent",
+    "pwdResetMailSuccessSubTitle": "Please check your inbox and follow the instruction",
     "pwdResetNoEmail": "Didn't receive the email?",
-    "pwdResetResend": "Resend"
-    
+    "pwdResetNoEmailLink": "Resend",
+    "pwdResetSubmit": "Reset Password",
+    "pwdResetSuccessTitle": "Success",
+    "pwdResetSuccessSubTitle": "You have reset your password.",
+    "pwdResetSuccessLink": "Login again"
   }
 }

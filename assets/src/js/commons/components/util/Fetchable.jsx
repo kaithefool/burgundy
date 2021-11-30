@@ -18,7 +18,8 @@ const Fetchable = ({
     return <Error res={r} />;
   }
   if (status === 'success') {
-    return children(r.payload);
+    return typeof children === 'function'
+      ? children(r.payload) : children;
   }
 
   return <Pending res={r} progress={progress} />;

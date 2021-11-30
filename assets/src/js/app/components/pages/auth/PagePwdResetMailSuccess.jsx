@@ -5,8 +5,9 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { Link } from 'react-router-dom';
 import Centered from '~/commons/components/layout/Centered';
+import { resolvePath } from '~/commons/helpers';
 
-const PagePwdResetReq = () => {
+const PagePwdResetMailSuccess = () => {
   const { t } = useTranslation();
 
   return (
@@ -15,16 +16,16 @@ const PagePwdResetReq = () => {
         <div>
           <h2>
             <FA icon={faEnvelope} className="me-3" />
-            {t('pg.pwdResetResTitle')}
+            {t('pg.pwdResetMailSuccessTitle')}
           </h2>
           <p>
-            {t('pg.pwdResetResSubTitle')}
+            {t('pg.pwdResetMailSuccessSubTitle')}
           </p>
           <p>
             <strong>{t('pg.pwdResetNoEmail')}</strong>
             <br />
-            <Link to="/auth/pwd-recovery">
-              {t('pg.pwdResetResend')}
+            <Link to={resolvePath('..')}>
+              {t('pg.pwdResetNoEmailLink')}
             </Link>
           </p>
         </div>
@@ -33,4 +34,4 @@ const PagePwdResetReq = () => {
   );
 };
 
-export default PagePwdResetReq;
+export default PagePwdResetMailSuccess;
