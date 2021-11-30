@@ -7,7 +7,7 @@ const Html = ({
   children,
 }) => (
   <div
-    className="note"
+    className="ht"
     dangerouslySetInnerHTML={{ __html: sanitizeHtml(children) }}
   />
 );

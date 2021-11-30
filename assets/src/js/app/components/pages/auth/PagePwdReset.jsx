@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { object, string, ref } from 'yup';
 import Centered from '~/commons/components/layout/Centered';
@@ -12,9 +12,9 @@ import { resolvePath } from '~/commons/helpers';
 const PagePwdReset = () => {
   const { t } = useTranslation();
   const { key } = useParams();
-  const navigate = useNavigate();
 
   return (
+    // <Link to="/auth">Login</Link>
     <Fetchable
       req={{
         method: 'post',
@@ -42,7 +42,9 @@ const PagePwdReset = () => {
             }}
             api={{ url: '/api/pwd-resets/reset' }}
             onSubmitted={() => {
-              navigate(resolvePath('../../success'));
+              // mysterious violation of strict "same-site" cookie policy
+              // when opening this page from links in emails
+              window.location.href = resolvePath('../../success');
             }}
           >
             <Form.Input name="password" type="password" affirm />

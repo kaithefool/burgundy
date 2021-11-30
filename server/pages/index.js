@@ -35,6 +35,8 @@ routes.use(
   },
 );
 
+routes.get('/', (req, res) => res.redirect('/auth'));
+
 routes.use(
   '/',
   ({ user }, res) => {

@@ -21,18 +21,14 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
-- Pwd Resets
 - File Uploads
     - sortable
     - gallery mode
     - image dimension
     - file preview file switch transition (onload event?)
 - Rich text editor
-    - Styles for both editor and display
     - Drop file handler
     - MaxSize and accept
-- Update image and packages to use node:16-alpine
-    - dart-sass? node-sass/libsass seems to be faster
 - Grid html editor
 - Table
     - Sticky table head (not possible with pure css)
