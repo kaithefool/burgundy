@@ -34,13 +34,13 @@ class AuthServ extends Service {
     }, null, { select: '+password' });
 
     if (!u) {
-      this.throw(400, 'err.invalidCredentials');
+      this.throw(400, 'res.invalidCredentials');
     }
     if (!u.active) {
-      this.throw(400, 'err.userInactivated');
+      this.throw(400, 'res.userInactivated');
     }
     if (!await this.model.comparePwd(password, u.password)) {
-      this.throw(400, 'err.invalidCredentials');
+      this.throw(400, 'res.invalidCredentials');
     }
 
     return u;
@@ -73,7 +73,7 @@ class AuthServ extends Service {
     try {
       payload = this.verifyToken(refreshTk);
     } catch (e) {
-      this.throw(400, 'err.invalidToken');
+      this.throw(400, 'res.invalidToken');
     }
 
     const [u] = await this.find({
@@ -82,13 +82,13 @@ class AuthServ extends Service {
     });
 
     if (!u) {
-      this.throw(400, 'err.invalidToken');
+      this.throw(400, 'res.invalidToken');
     }
 
     // check if user has logged out
     // after the token was issued
     if (u.lastLogout > new Date(payload.iat * 1000)) {
-      this.throw(400, 'err.loggedOut');
+      this.throw(400, 'res.loggedOut');
     }
 
     return {

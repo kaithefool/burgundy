@@ -14,6 +14,7 @@ i18next
     lowerCaseLng: true,
     supportedLngs: LNG.split(','),
     fallbackLng: LNG.split(',')[0],
+    ns: ['common'],
     defaultNS: 'common',
     detection: {
       caches: ['cookie', 'header'],

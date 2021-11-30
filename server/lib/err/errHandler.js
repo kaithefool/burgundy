@@ -1,7 +1,7 @@
 const { NODE_ENV } = process.env;
 
 // eslint-disable-next-line no-unused-vars
-module.exports = (err, { t }, res, next) => {
+module.exports = (err, req, res, next) => {
   const { status = 500, expose = false, stack } = err;
   let { message } = err;
 
@@ -9,7 +9,7 @@ module.exports = (err, { t }, res, next) => {
   if (status >= 500) console.error(err);
 
   // i18n
-  message = t(message);
+  message = req.t(message);
 
   // render the error
   const e = { status, message, stack };

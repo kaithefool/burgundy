@@ -27,7 +27,7 @@ app.use('/', pages);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => (
-  next(httpError(404, 'err.notFound'))
+  next(httpError(404, 'res.notFound'))
 ));
 
 // error handler

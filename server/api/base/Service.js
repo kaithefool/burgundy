@@ -12,7 +12,7 @@ class Service {
 
   catch(err) {
     if (err.name === 'MongoError' && err.code === 11000) {
-      this.throw(400, 'err.duplicates');
+      this.throw(400, 'res.duplicates');
     }
 
     throw err;

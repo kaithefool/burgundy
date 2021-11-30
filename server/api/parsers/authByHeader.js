@@ -14,7 +14,7 @@ module.exports = function authByHeader(req, res, next) {
   try {
     req.user = authService.verifyToken(match[1]);
   } catch (e) {
-    return next(httpError(400, 'err.invalidToken'));
+    return next(httpError(400, 'res.invalidToken'));
   }
 
   return next();
