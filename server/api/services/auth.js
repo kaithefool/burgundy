@@ -17,15 +17,20 @@ const userProps = [
 ];
 
 class AuthServ extends Service {
+  async login(user) {
+    // record login time
+    await this.patch(
+      { _id: user._id, lastLogin: new Date() },
+    );
+
+    return this.signTokens(user);
+  }
+
   async authenticate(cred) {
     const u = await this.basicStrag(cred);
 
     // record login time
-    await this.patch(
-      { _id: u._id, lastLogin: new Date() },
-    );
-
-    return this.signTokens(u);
+    return this.login(u);
   }
 
   async basicStrag({ email, password }) {

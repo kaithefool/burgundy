@@ -1,5 +1,6 @@
 const Otps = require('./Otps');
 const userServ = require('../users');
+const authServ = require('../auth');
 
 class AuthMobileServ extends Otps {
   create(attrs, user, { t }) {
@@ -37,6 +38,8 @@ class AuthMobileServ extends Otps {
         mobile,
       });
     }
+
+    return authServ.login(u);
   }
 }
 

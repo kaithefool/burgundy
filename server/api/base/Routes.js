@@ -5,17 +5,19 @@ const authorizer = require('./authorizer');
 const validator = require('./validator');
 
 const idMatch = '[0-9a-f]{24}';
+const responseOne = (req, res) => {
+  const { out: [o] = [] } = res.locals;
+
+  return o ? res.json(o) : res.status(404).end();
+};
 
 const defaultNamedRoutes = {
   list: {},
   find: {
     path: `/:_id(${idMatch})`,
-    response: (req, res) => {
-      const { out: [o] = [] } = res.locals;
-
-      return o ? res.json(o) : res.status(404).end();
-    },
+    response: responseOne,
   },
+  findOne: { response: responseOne },
   create: { method: 'post' },
   patch: { method: 'patch', path: `/:_id(${idMatch})` },
   upsert: { method: 'put' },
