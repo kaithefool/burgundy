@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   env: {
     browser: true,
   },
@@ -13,6 +13,9 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
+    },
+    babelOptions: {
+      configFile: './assets/.babelrc',
     },
   },
   settings: {

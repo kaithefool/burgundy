@@ -36,7 +36,7 @@ module.exports = new Otp('Otp', {
   verifyKey: { type: String, required: true },
   expiresAt: {
     type: Date,
-    // expires: 0,
+    expires: 0,
     required: true,
   },
 

@@ -14,7 +14,6 @@ const PagePwdReset = () => {
   const { key } = useParams();
 
   return (
-    // <Link to="/auth">Login</Link>
     <Fetchable
       req={{
         method: 'post',
