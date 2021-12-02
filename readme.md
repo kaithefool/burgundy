@@ -21,6 +21,11 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
+- OTP
+    - combine pwdResets code to otps
+    - rate limits
+
+
 - File Uploads
     - sortable
     - gallery mode
@@ -33,9 +38,9 @@ pm2 deploy [env]
 - Table
     - Sticky table head (not possible with pure css)
 - i18n
+    - Email templates
     - Reload server after new locale files
     - Lang form fields
-    - server response
     - yupjs errors
 - Import csv template
 - Import json & excel?

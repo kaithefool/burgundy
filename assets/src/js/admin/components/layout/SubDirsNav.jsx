@@ -39,7 +39,7 @@ const SubDirsNav = ({
 
   return (
     <div className={className}>
-      <nav className="nav nav-tabs-min">
+      <nav className="nav nav-tabs">
         {showParent && (
           <NavLink
             className="nav-link"

@@ -119,15 +119,16 @@ module.exports = class Schema {
     };
   }
 
-  timestamps({
-    created = true,
-    updated = true,
-    deleted = true, // soft delete
-  } = {}) {
+  timestamps(opts = {}) {
+    const {
+      created = true,
+      updated = true,
+      deleted = true, // soft delete
+    } = opts;
     const { schema: s } = this;
 
     s.set('timestamps', {
-      createdBy: Boolean(created),
+      createdAt: Boolean(created),
       updatedAt: Boolean(updated),
     });
 
@@ -142,7 +143,7 @@ module.exports = class Schema {
 
     // by user
     ['created', 'updated', 'deleted'].forEach((d) => {
-      if (!(typeof d === 'object' && !d.by)) {
+      if (!(typeof opts[d] === 'object' && !d.by)) {
         s.path(
           `${d}By`,
           this.constructor.ref('User'),

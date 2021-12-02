@@ -1,6 +1,8 @@
 const routes = require('express').Router();
 
 const authByCookies = require('../api/parsers/authByCookies');
+const consts = require('../api/models/consts');
+
 const {
   version: ver,
 } = require('../../package.json');
@@ -17,6 +19,7 @@ routes.use(({ csrfToken }, res, next) => {
     csrf: csrfToken ? csrfToken() : null,
     lngs: LNG.split(','),
     lngLabels: LNG_LABEL.split(','),
+    ...consts.public,
   };
 
   return next();

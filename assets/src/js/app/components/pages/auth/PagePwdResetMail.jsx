@@ -24,7 +24,7 @@ const PagePwdResetMail = () => {
           defaults={{
             email: '',
           }}
-          api={{ url: '/api/pwd-resets' }}
+          api={{ url: '/api/otps/pwdreset-email' }}
           onSubmitted={() => {
             navigate('sent');
           }}

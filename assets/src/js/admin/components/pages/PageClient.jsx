@@ -61,7 +61,7 @@ const PageClient = () => {
 
             <Tabs
               defaultActiveKey="essentials"
-              className="nav-tabs-min mb-4"
+              className="mb-4"
               unmountOnExit
             >
               <Tab eventKey="essentials" title="Essentials">

@@ -18,7 +18,7 @@ const PagePwdReset = () => {
     <Fetchable
       req={{
         method: 'post',
-        url: '/api/pwd-resets/verify',
+        url: '/api/otps/pwdreset-email/verify',
         data: { verifyKey: key },
       }}
     >
@@ -40,7 +40,7 @@ const PagePwdReset = () => {
               passwordConfirm: '',
               verifyKey: key,
             }}
-            api={{ url: '/api/pwd-resets/reset' }}
+            api={{ url: '/api/otps/pwdreset-email/affirm' }}
             onSubmitted={() => {
               // mysterious violation of strict "same-site" cookie policy
               // when opening this page from links in emails

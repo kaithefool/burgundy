@@ -1,8 +1,8 @@
 const { object, string } = require('yup');
 
-const { Routes } = require('../base');
-const service = require('../services/pwdResets');
-const { email, password } = require('../validators');
+const { Routes } = require('../../base');
+const service = require('../../services/otps/pwdresetEmail');
+const { email, password } = require('../../validators');
 
 module.exports = new Routes({
   service,
@@ -13,7 +13,7 @@ module.exports = new Routes({
     verify: object({
       verifyKey: string().required(),
     }),
-    reset: object({
+    affirm: object({
       verifyKey: string().required(),
       password: password().required(),
     }),
@@ -23,9 +23,7 @@ module.exports = new Routes({
   verify: {
     method: 'post',
     path: '/verify',
+    response: (req, res) => res.end(),
   },
-  reset: {
-    method: 'post',
-    path: '/reset',
-  },
+  affirm: { method: 'post', path: '/affirm' },
 });

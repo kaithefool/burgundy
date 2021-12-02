@@ -78,7 +78,7 @@ class Model {
     return created;
   }
 
-  async update(filter, docs, { _id: userId } = {}, opts) {
+  async update(filter, docs, { _id: userId } = {}, opts = {}) {
     const updated = await this.model.update(
       this.matcher(filter),
       await this.parse(docs, userId, 'update'),

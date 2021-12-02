@@ -7,10 +7,8 @@ class User extends Model {
   constructor(name, paths, opts) {
     super(name, {
       // essentials
-      email: {
-        type: String,
-        required: true,
-      },
+      email: String,
+      mobile: String,
       password: {
         type: String,
         select: false,
