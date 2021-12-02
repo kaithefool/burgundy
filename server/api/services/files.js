@@ -93,7 +93,8 @@ class FileServ extends Service {
 
   clean() {
     return fs.emptyDir(
-      resolve(FILE_STORAGE_TRASH), { recursive: true },
+      resolve(FILE_STORAGE_TRASH),
+      { recursive: true },
     );
   }
 }

@@ -3,7 +3,7 @@ import useHttpBase from './useHttpBase';
 function useHttpFileUpload() {
   const { res, req, fetched } = useHttpBase();
 
-  const onFile = (api = {}, file) => {
+  const onFile = (api, file) => {
     const fd = new FormData();
 
     fd.append('file', file);

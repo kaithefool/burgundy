@@ -31,7 +31,7 @@ const fuzzyKey = (obj, key, {
   return match;
 };
 
-const fuzzyMap = (rows = [], cols) => {
+const fuzzyMap = (rows = [], cols = []) => {
   if (!rows.length) return [];
 
   const mappers = [];
