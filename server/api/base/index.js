@@ -1,8 +1,8 @@
 const Model = require('./Model');
 const Routes = require('./Routes');
 const Service = require('./Service');
-const authorizer = require('./Authorizer');
-const validator = require('./Validator');
+const authorizer = require('./authorizer');
+const validator = require('./validator');
 
 module.exports = {
   Model,
