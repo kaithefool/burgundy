@@ -37,7 +37,6 @@ pm2 deploy [env]
     - Reload server after new locale files
     - Lang form fields
     - yupjs errors
-- Import csv template
 - Import json & excel?
 - Admin panel responsive layout
 - ObjectId validator
