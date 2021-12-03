@@ -51,10 +51,10 @@ const ListCtrlImport = ({
         <a
           target="_blank"
           href={template}
-          className="btn btn-outline-secondary"
+          className="btn btn-outline-secondary px-2"
           rel="noreferrer"
         >
-          <FA icon={faFileAlt} className="me-2" fixedWidth />
+          <FA icon={faFileAlt} className="me-1" fixedWidth />
           {t('fields.importTmpl')}
         </a>
       )}

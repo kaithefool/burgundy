@@ -34,7 +34,9 @@ const PageClients = () => (
         <ListCtrlActivate />
         <List.Ctrl.Remove />
         <List.Ctrl.Export />
-        <List.Ctrl.Import />
+        <List.Ctrl.Import
+          template="/api/assets/user-import-tmpl.csv"
+        />
       </div>
       <List.Status>
         <List.Table rowLink={({ _id }) => _id} />
