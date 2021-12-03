@@ -53,6 +53,7 @@ const DirProvider = ({
   initValue = [],
   multiple = false, // Boolean or max no. of files
   onChange = () => {},
+  onDraft = () => {},
   accept,
   maxSize,
   children,
@@ -69,6 +70,7 @@ const DirProvider = ({
       insertKeys(draft);
       setFiles(draft);
       onChange(draft.filter((f) => !(f instanceof File)));
+      onDraft(draft);
     }
   };
 

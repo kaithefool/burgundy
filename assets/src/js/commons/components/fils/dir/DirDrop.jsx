@@ -7,7 +7,7 @@ import useDir from './useDir';
 
 const DirDrop = ({
   children,
-  className = '',
+  className = 'position-relative',
 }) => {
   const { push } = useDir();
   const [backdrop, setBackdrop] = useState(false);
@@ -16,7 +16,7 @@ const DirDrop = ({
 
   return (
     <div
-      className={`${className} position-relative overflow-hidden`}
+      className={`${className} overflow-hidden`}
       onDragEnter={() => {
         dragIn.current += 1;
         if (!backdrop) setBackdrop(true);

@@ -34,6 +34,7 @@ const PageClients = () => (
         <ListCtrlActivate />
         <List.Ctrl.Remove />
         <List.Ctrl.Export />
+        <List.Ctrl.Import />
       </div>
       <List.Status>
         <List.Table rowLink={({ _id }) => _id} />

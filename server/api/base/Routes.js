@@ -34,8 +34,8 @@ class Routes {
     this.parseNamedRoutes();
 
     // register routes
-    _.forEach(this.routes, (r, serve) => {
-      this.registerRoute({ serve, ...r });
+    _.forEach(this.routes, (r, name) => {
+      this.registerRoute(name, { serve: name, ...r });
     });
 
     return this.router;
@@ -107,7 +107,7 @@ class Routes {
     return g;
   }
 
-  registerRoute({
+  registerRoute(name, {
     path = '/',
     method = 'get',
     attrsPath,
@@ -123,7 +123,7 @@ class Routes {
       ..._.castArray(parse),
 
       // guards
-      ...this.guards(serve),
+      ...this.guards(name),
 
       // service handler
       this.handles(serve),

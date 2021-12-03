@@ -9,8 +9,11 @@ const FilsInput = ({
   <Dir
     {...props}
   >
-    <Dir.Drop>
-      <Dir.Click>
+    <Dir.Drop className="position-absolute w-100 h-100 top-0 start-0">
+      <Dir.Click
+        className="position-absolute w-100 h-100"
+        alwaysEnable
+      >
         {children}
       </Dir.Click>
     </Dir.Drop>

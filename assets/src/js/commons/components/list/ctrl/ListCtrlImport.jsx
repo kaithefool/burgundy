@@ -1,5 +1,6 @@
 import React from 'react';
 import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
+import { useTranslation } from 'react-i18next';
 
 import { useHttpFileUpload } from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp';
@@ -13,15 +14,17 @@ const ListCtrlImport = ({
   ...props
 }) => {
   const { res, req } = useHttpFileUpload();
-  const { api, refresh } = useList();
+  const { api: listApi, refresh } = useList();
+  const { t } = useTranslation();
 
   useAlert(res, {
-    success: () => ({ children: 'Imported' }),
+    success: () => ({ children: t('res.imported') }),
   });
 
   const upload = async (files) => {
     await req({
-      ...api,
+      ...listApi,
+      url: `${listApi.url}/import`,
       ...apiOpts,
     }, files[0]);
 
@@ -31,10 +34,10 @@ const ListCtrlImport = ({
   return (
     <BtnHttp
       res={res}
-      className={className}
+      className={`${className} position-relative`}
       icon={faUpload}
     >
-      <Fils onChange={upload} {...props} />
+      <Fils onDraft={upload} {...props} />
     </BtnHttp>
   );
 };

@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const multer = require('multer');
-const csv = require('csv-parse');
+const { parse } = require('csv-parse');
+const httpError = require('http-errors');
 
 const fuzzyKey = (obj, key, {
   caseInsensitive = true,
@@ -79,23 +80,25 @@ module.exports = ({
   return [
     upload.single(field),
     (req, res, next) => {
-      const input = req[field].buffer.toString();
+      if (req[field]) {
+        const input = req[field].buffer.toString();
 
-      csv(input, {
-        columns: true,
-        skip_empty_lines: true,
-        ...parserSettings,
-      }, (err, output) => {
-        if (err) {
-          return res.status(404).send('invalid csv format');
-        }
+        parse(input, {
+          columns: true,
+          skip_empty_lines: true,
+          ...parserSettings,
+        }, (err, output) => {
+          if (err) {
+            return next(httpError(400, 'res.invalidCsv'));
+          }
 
-        req.attrs = mapping
-          ? fuzzyMap(output, mapping)
-          : output;
+          req.attrs = mapping
+            ? fuzzyMap(output, mapping)
+            : output;
 
-        return next();
-      });
+          return next();
+        });
+      }
     },
   ];
 };

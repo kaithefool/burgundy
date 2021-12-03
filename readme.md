@@ -40,7 +40,6 @@ pm2 deploy [env]
 - Import csv template
 - Import json & excel?
 - Admin panel responsive layout
-- Tooltips
 - ObjectId validator
 - Room for socket.io?
 - 4xx and 5xx error templates

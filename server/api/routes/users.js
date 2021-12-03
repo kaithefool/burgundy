@@ -1,9 +1,10 @@
-const { object } = require('yup');
+const { object, array } = require('yup');
 
 const { Routes } = require('../base');
 const service = require('../services/users');
 const { email, password } = require('../validators');
 const exportCsv = require('../responders/exportCsv');
+const parseCsv = require('../parsers/parseCsv');
 
 module.exports = new Routes({
   service,
@@ -17,6 +18,9 @@ module.exports = new Routes({
       email: email(),
       password: password(),
     }),
+    import: array().of(object({
+      email: email().required(),
+    })),
   },
 }, {
   list: true,
@@ -28,6 +32,19 @@ module.exports = new Routes({
     method: 'patch',
   },
   delete: true,
+
+  import: {
+    path: '/import',
+    method: 'post',
+    serve: 'create',
+    parse: parseCsv({
+      mapping: [
+        { key: 'email' },
+        { key: 'englishname', to: 'name.en' },
+        { key: 'role', getter: () => 'client' },
+      ],
+    }),
+  },
 
   export: {
     path: '/export',

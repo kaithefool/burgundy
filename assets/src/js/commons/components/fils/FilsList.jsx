@@ -12,7 +12,7 @@ const FilsList = (props) => (
     {...props}
   >
     {({ files }) => (
-      <Dir.Drop>
+      <Dir.Drop className="position-relative">
         <Dir.Click className="d-grid gap-2">
           <div className="btn btn-secondary px-3 text-start">
             <FA icon={faPlus} fixedWidth className="me-2" />

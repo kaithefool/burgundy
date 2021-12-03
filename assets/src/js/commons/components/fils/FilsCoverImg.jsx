@@ -8,7 +8,9 @@ import Fil from './fil';
 import FilsListItem from './FilsListItem';
 
 const FilsCoverImg = ({
-  className = 'rounded border ratio ratio-21x9 max-vh-50',
+  className = `
+    position-relative rounded border ratio ratio-21x9 max-vh-50
+  `,
   accept = 'image/png,image/jpeg,image/svg+xml,image/gif',
   ...props
 }) => (
