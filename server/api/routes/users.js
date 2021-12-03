@@ -10,7 +10,7 @@ module.exports = new Routes({
   authorize: 'admin',
   validate: {
     create: object({
-      email: email().required(),
+      // email: email().required(),
       password: password().required(),
     }),
     patch: object({

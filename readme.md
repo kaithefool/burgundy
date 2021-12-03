@@ -21,11 +21,6 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
-- OTP
-    - combine pwdResets code to otps
-    - rate limits
-
-
 - File Uploads
     - sortable
     - gallery mode

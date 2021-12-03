@@ -64,8 +64,18 @@ module.exports = class Schema {
     });
 
     if (timestamps) this.timestamps(timestamps);
-    if (uniques) _.castArray(uniques).forEach((u) => this.unique(u));
-    if (indexes) _.castArray(indexes).forEach((i) => this.index(i));
+    if (uniques) {
+      _.castArray(uniques)
+        .forEach((u) => this.unique(
+          ..._.castArray(u),
+        ));
+    }
+    if (indexes) {
+      _.castArray(indexes)
+        .forEach((u) => this.unique(
+          ..._.castArray(u),
+        ));
+    }
     if (hasMany) _.castArray(hasMany).forEach((h) => this.hasMany(h));
   }
 
@@ -80,11 +90,19 @@ module.exports = class Schema {
     return this.mm;
   }
 
-  unique(paths = {}, sparse = false) {
-    this.index({
-      ...paths,
-      ...(this.schema.path('deletedBy') && { deletedAt: 1 }),
-    }, { unique: true, sparse });
+  unique(paths, { partialFilterExpression } = {}) {
+    const p = { ...partialFilterExpression };
+
+    if (this.schema.path('deletedBy')) {
+      p.deletedAt = null;
+    }
+
+    this.index(paths, {
+      unique: true,
+      ...(Object.keys(p).length && {
+        partialFilterExpression: p,
+      }),
+    });
   }
 
   index(...args) {

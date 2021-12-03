@@ -11,7 +11,7 @@ class Service {
   }
 
   catch(err) {
-    if (err.name === 'MongoError' && err.code === 11000) {
+    if (err.name.match(/mongo/i) && err.code === 11000) {
       this.throw(400, 'res.duplicates');
     }
 

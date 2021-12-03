@@ -36,6 +36,7 @@ class AuthMobileServ extends Otps {
         ...otp,
         ...attrs,
         mobile,
+        role: 'client',
       });
     }
 
