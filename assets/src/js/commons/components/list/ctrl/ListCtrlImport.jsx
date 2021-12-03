@@ -1,6 +1,8 @@
 import React from 'react';
 import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import { faFileAlt } from '@fortawesome/free-regular-svg-icons/faFileAlt';
 
 import { useHttpFileUpload } from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp';
@@ -10,7 +12,8 @@ import useAlert from '../../alert/useAlert';
 
 const ListCtrlImport = ({
   api: apiOpts,
-  className = 'btn px-2 me-3 btn-secondary',
+  className = 'btn btn-secondary px-2',
+  template,
   ...props
 }) => {
   const { res, req } = useHttpFileUpload();
@@ -32,13 +35,31 @@ const ListCtrlImport = ({
   };
 
   return (
-    <BtnHttp
-      res={res}
-      className={`${className} position-relative`}
-      icon={faUpload}
-    >
-      <Fils onDraft={upload} {...props} />
-    </BtnHttp>
+    <div className="btn-group me-3">
+      <BtnHttp
+        res={res}
+        className={`${className} position-relative`}
+        icon={faUpload}
+      >
+        <Fils
+          onDraft={upload}
+          accept="text/csv"
+          {...props}
+        />
+      </BtnHttp>
+      {template && (
+        <a
+          target="_blank"
+          href={template}
+          className="btn btn-outline-secondary"
+          rel="noreferrer"
+        >
+          <FA icon={faFileAlt} className="me-2" fixedWidth />
+          {t('fields.importTmpl')}
+        </a>
+      )}
+
+    </div>
   );
 };
 
