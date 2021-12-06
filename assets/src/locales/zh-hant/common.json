@@ -48,18 +48,18 @@
     "Clients": "客戶"
   },
   "pg": {
-    "pwdResetMailTitle": "Forgot Password?",
-    "pwdResetMailSubTitle": "We can help you to reset the password.",
-    "pwdResetMailEmail": "First, please enter your account email...",
-    "pwdResetMailSubmit": "Send Reset Email",
-    "pwdResetMailBack": "Back to Login",
-    "pwdResetMailSuccessTitle": "Sent",
-    "pwdResetMailSuccessSubTitle": "Please check your inbox and follow the instruction",
-    "pwdResetNoEmail": "Didn't receive the email?",
-    "pwdResetNoEmailLink": "Resend",
-    "pwdResetSubmit": "Reset Password",
-    "pwdResetSuccessTitle": "Success",
-    "pwdResetSuccessSubTitle": "You have reset your password.",
-    "pwdResetSuccessLink": "Login again"
+    "pwdResetMailTitle": "忘記密碼?",
+    "pwdResetMailSubTitle": "我們可以協助你重設密碼",
+    "pwdResetMailEmail": "首先請輸入你的帳號電郵地址...",
+    "pwdResetMailSubmit": "傳送重設密碼電郵",
+    "pwdResetMailBack": "重返登入頁",
+    "pwdResetMailSuccessTitle": "驗證電郵已發出",
+    "pwdResetMailSuccessSubTitle": "請按電郵中的指示驗證身分",
+    "pwdResetNoEmail": "沒有收到電郵通知?",
+    "pwdResetNoEmailLink": "重新發送",
+    "pwdResetSubmit": "重設密碼",
+    "pwdResetSuccessTitle": "成功",
+    "pwdResetSuccessSubTitle": "你已更改密碼",
+    "pwdResetSuccessLink": "重返登入頁"
   }
 }
