@@ -25,7 +25,10 @@
     "name": "姓名",
     "role": "類型",
     "updatedAt": "最後更新",
-    "lastLogin": "上次登錄"
+    "lastLogin": "上次登錄",
+    "title": "標題",
+    "body": "內容",
+    "redirect": "重新導向URL"
   },
   "auth": {
     "title" : "登入",

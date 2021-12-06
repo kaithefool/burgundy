@@ -20,7 +20,10 @@
     "presist": "Remember me",
     "save": "Save",
     "passwordConfirm": "Confirm Password",
-    "importTmpl": "Import Template"
+    "importTmpl": "Import Template",
+    "url": "URL",
+    "title": "Title",
+    "body": "Body"
   },
   "auth": {
     "title" : "Login",

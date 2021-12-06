@@ -6,7 +6,7 @@ const { LNG, MONGO_SYNC_INDEX } = process.env;
 const { ObjectId } = m.Schema.Types;
 
 module.exports = class Schema {
-  static lang(field) {
+  static lng(field) {
     return LNG.split(',').reduce(
       (s, ln) => ({ ...s, [ln]: field }),
       {},

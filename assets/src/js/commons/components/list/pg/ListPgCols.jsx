@@ -2,7 +2,7 @@ import React from 'react';
 import startCase from 'lodash/startCase';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faColumns } from '@fortawesome/free-solid-svg-icons/faColumns';
+import { faTable } from '@fortawesome/free-solid-svg-icons/faTable';
 import { useTranslation } from 'react-i18next';
 
 import useList from '../useList';
@@ -27,7 +27,7 @@ const ListColsToggle = () => {
 
   return (
     <DropdownButton
-      title={<FA icon={faColumns} />}
+      title={<FA icon={faTable} />}
       variant=""
     >
       {cols.map((c) => (

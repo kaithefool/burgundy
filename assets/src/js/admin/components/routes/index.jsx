@@ -1,6 +1,8 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
+import PageViews from '../pages/PageViews';
+import PageView from '../pages/PageView';
 import PageClient from '../pages/PageClient';
 import PageClients from '../pages/PageClients';
 import PageAdmins from '../pages/PageAdmins';
@@ -9,6 +11,16 @@ import PageUsers from '../pages/PageUsers';
 
 const AppRoutes = () => (
   <Routes>
+
+    <Route
+      path="settings"
+      element={
+        <Navigate to="/admin/settings/views" replace />
+      }
+    />
+    <Route path="settings/views" element={<PageViews />} />
+    <Route path="settings/views/:_id" element={<PageView />} />
+
     <Route path="users" element={<PageUsers />} />
     <Route path="users/admins" element={<PageAdmins />} />
     <Route path="users/admins/:_id" element={<PageAdmin />} />

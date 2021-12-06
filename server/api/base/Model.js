@@ -99,6 +99,12 @@ class Model {
     // hard delete
     return model.deleteMany(this.matcher(filter));
   }
+
+  seeds(ss) {
+    return Promise.all(ss.map((s) => (
+      this.update(s, s, undefined, { upsert: true })
+    )));
+  }
 }
 
 Model.Schema = Schema;

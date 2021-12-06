@@ -32,9 +32,11 @@ const SubDirsNav = ({
   ) return '';
 
   if (showParent) {
-    parentLabel = parent.label.subDir
-      || parent.label.default
-      || parent.label;
+    const p = parent.label;
+
+    parentLabel = p?.subDir
+      || p?.default
+      || p;
   }
 
   return (

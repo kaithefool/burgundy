@@ -21,7 +21,7 @@ class User extends Model {
 
       // additional
       name: {
-        type: Schema.lang(String),
+        type: Schema.lng(String),
         default: undefined,
       },
 

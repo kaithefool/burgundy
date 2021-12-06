@@ -1,5 +1,6 @@
 const routes = require('express').Router();
 
+const views = require('./views');
 const otps = require('./otps');
 const accessLogs = require('./accessLogs');
 const auth = require('./auth');
@@ -7,6 +8,7 @@ const files = require('./files');
 const users = require('./users');
 const assets = require('./assets');
 
+routes.use('/views', views);
 routes.use('/otps', otps);
 routes.use('/access-logs', accessLogs);
 routes.use('/auth', auth);

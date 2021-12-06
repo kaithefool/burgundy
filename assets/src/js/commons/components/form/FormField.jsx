@@ -7,6 +7,14 @@ import startCase from 'lodash/startCase';
 import { useTranslation } from 'react-i18next';
 
 import useUniqKey from '../../hooks/useUniqKey';
+import env from '../../config/env';
+
+const removeLngPath = (path) => path.replace(
+  new RegExp(`\\.(${
+    env.lngs.join('|')
+  })$`),
+  '',
+);
 
 const FormField = ({
   label,
@@ -24,6 +32,7 @@ const FormField = ({
   const valid = affirm && touched && !error;
   const invalid = touched && error;
   const { t } = useTranslation();
+  const tPath = `fields.${name}`;
 
   const l = label !== null
     ? (
@@ -33,7 +42,7 @@ const FormField = ({
       >
         {
           label
-          || t(`fields.${name}`, startCase(name))
+          || t([tPath, removeLngPath(tPath)], startCase(name))
         }
       </label>
     )

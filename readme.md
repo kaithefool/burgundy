@@ -21,6 +21,9 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
+- Views
+    - Seeds
+    - i18n
 - File Uploads
     - sortable
     - gallery mode
