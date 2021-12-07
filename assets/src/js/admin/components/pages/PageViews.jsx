@@ -6,7 +6,7 @@ import ListCtrlActivate from '../list/ListCtrlActivate';
 
 const PageViews = () => (
   <Page
-    header={{ title: 'Views' }}
+    header={{ title: 'Settings' }}
   >
     <List
       api={{ url: '/api/views' }}

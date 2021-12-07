@@ -6,7 +6,7 @@ import ListCtrlActivate from '../list/ListCtrlActivate';
 
 const PageClients = () => (
   <Page
-    header={{ title: 'Clients' }}
+    header={{ title: 'Users' }}
   >
     <List
       api={{ url: '/api/users' }}

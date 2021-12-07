@@ -43,19 +43,19 @@ const ListTable = ({
         <thead>
           <tr>
             {selectable && (
-            <th scope="col">
-              <div className="form-check">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  onChange={({ target: { checked } }) => {
-                    if (checked) select(range(rows.length));
-                    else select([]);
-                  }}
-                  checked={rows.length && selectedIndex.length === rows.length}
-                />
-              </div>
-            </th>
+              <th scope="col">
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    onChange={({ target: { checked } }) => {
+                      if (checked) select(range(rows.length));
+                      else select([]);
+                    }}
+                    checked={rows.length && selectedIndex.length === rows.length}
+                  />
+                </div>
+              </th>
             )}
             {cols.map((col) => (
               <th

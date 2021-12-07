@@ -5,11 +5,10 @@ import Page from '../layout/Page';
 
 const PageAccessLogs = () => (
   <Page
-    header={{ title: 'Access Logs' }}
+    header={{ title: 'Settings' }}
   >
     <List
       api={{ url: '/api/access-logs' }}
-      selectable
       cols={[
         { key: 'createdAt', format: 'datetime', sortable: true },
         { key: 'action' },

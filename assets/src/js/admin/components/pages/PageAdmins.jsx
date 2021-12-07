@@ -6,7 +6,7 @@ import ListCtrlActivate from '../list/ListCtrlActivate';
 
 const PageAdmins = () => (
   <Page
-    header={{ title: 'Admins' }}
+    header={{ title: 'Users' }}
   >
     <List
       api={{ url: '/api/users' }}
