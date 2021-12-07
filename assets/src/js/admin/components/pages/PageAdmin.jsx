@@ -32,10 +32,6 @@ const PageAdmin = () => {
       {(doc) => (
         <Page
           header={{
-            breadcrumb: [
-              { to: '../..', children: 'Users' },
-              { to: '..', children: 'Admins' },
-            ],
             title: doc?.email || 'New',
           }}
         >

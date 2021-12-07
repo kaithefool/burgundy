@@ -34,10 +34,6 @@ const PageView = () => {
       {(doc) => (
         <Page
           header={{
-            breadcrumb: [
-              { to: '../..', children: 'Settings' },
-              { to: '../', children: 'Views' },
-            ],
             title: doc?.url || 'New',
           }}
         >

@@ -7,9 +7,7 @@ import List from '~/commons/components/list';
 import Page from '../layout/Page';
 
 const Page<%= n.plural.pascal %> = () => (
-  <Page
-    header={{ title: '<%= n.plural.title %>' }}
-  >
+  <Page>
     <List
       api={{ url: '/api/<%= n.plural.param %>' }}
       selectable

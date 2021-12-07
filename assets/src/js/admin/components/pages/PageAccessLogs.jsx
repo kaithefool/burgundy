@@ -4,9 +4,7 @@ import List from '~/commons/components/list';
 import Page from '../layout/Page';
 
 const PageAccessLogs = () => (
-  <Page
-    header={{ title: 'Settings' }}
-  >
+  <Page>
     <List
       api={{ url: '/api/access-logs' }}
       cols={[

@@ -7,7 +7,7 @@ const Page = ({
   children,
 }) => (
   <div>
-    {header && (
+    {header !== null && (
       <Header {...header} />
     )}
     <div className="p-4">

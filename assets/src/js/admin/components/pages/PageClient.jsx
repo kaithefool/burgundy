@@ -33,10 +33,6 @@ const PageClient = () => {
       {(doc) => (
         <Page
           header={{
-            breadcrumb: [
-              { to: '../..', children: 'Users' },
-              { to: '..', children: 'Clients' },
-            ],
             title: doc?.email || 'New',
           }}
         >

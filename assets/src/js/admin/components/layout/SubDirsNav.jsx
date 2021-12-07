@@ -1,28 +1,14 @@
 import React from 'react';
-import { NavLink, useLocation, matchPath } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import linkGroups from './links';
+import useLinks from './useLinks';
 
 const SubDirsNav = ({
   className = 'p-4 py-3',
 }) => {
   const { t } = useTranslation();
-  const loc = useLocation();
-  let parent;
-  let active;
-
-  linkGroups.find((g) => {
-    parent = g.find(({ to, links = [] }) => {
-      active = [{ to }, ...links].find((l) => (
-        to && matchPath(`${l.to}`, loc.pathname)
-      ));
-
-      return active;
-    });
-
-    return parent;
-  });
+  const { parent } = useLinks(true);
 
   if (!parent?.links) return '';
 

@@ -5,13 +5,30 @@ import { useTranslation } from 'react-i18next';
 import SubDirsNav from './SubDirsNav';
 import BtnLng from '~/commons/components/btns/BtnLng';
 import { resolvePath } from '../../../commons/helpers';
+import useLinks from './useLinks';
 
 const Header = ({
-  title = '',
-  breadcrumb = [],
+  title: titleOpt,
+  breadcrumb: breadcrumbOpt,
   subsDir = true,
 }) => {
   const { t } = useTranslation();
+  const { parent, active } = useLinks();
+  const exact = (useLinks(true).active);
+
+  const title = titleOpt
+    || (parent || active)?.label
+    || '';
+  const breadcrumb = breadcrumbOpt
+    || (
+      !exact && [
+        ...(parent.to !== active.to ? [
+          { to: parent.to, children: parent.label },
+        ] : []),
+        { to: active.to, children: active.label },
+      ]
+    )
+    || [];
 
   return (
     <header>

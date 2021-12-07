@@ -5,9 +5,7 @@ import Page from '../layout/Page';
 import ListCtrlActivate from '../list/ListCtrlActivate';
 
 const PageClients = () => (
-  <Page
-    header={{ title: 'Users' }}
-  >
+  <Page>
     <List
       api={{ url: '/api/users' }}
       selectable
