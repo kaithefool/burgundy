@@ -21,7 +21,7 @@ const Page<%= n.singular.pascal %> = () => {<% if (!singleton) { %>
   return (
     <Doc
       <%= singleton ? 'singleton' : '_id={_id}' %>
-      api={{ url: '/api/<%= n.plural.path %>' }}
+      api={{ url: '/api/<%= n.plural.param %>' }}
     >
       {(doc) => (
         <Page

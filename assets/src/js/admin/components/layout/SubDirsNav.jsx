@@ -2,47 +2,36 @@ import React from 'react';
 import { NavLink, useLocation, matchPath } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import links from './links';
+import linkGroups from './links';
 
 const SubDirsNav = ({
   className = 'p-4 py-3',
-  parent: showParent = true,
 }) => {
   const { t } = useTranslation();
   const loc = useLocation();
   let parent;
-  let parentLabel;
+  let active;
 
-  links.find((g) => {
-    parent = g.find(({ to }) => (
-      to && matchPath(`${to}/*`, loc.pathname)
-    ));
+  linkGroups.find((g) => {
+    parent = g.find(({ to, links = [] }) => {
+      active = [{ to }, ...links].find((l) => (
+        to && matchPath(`${l.to}`, loc.pathname)
+      ));
+
+      return active;
+    });
 
     return parent;
   });
 
   if (!parent?.links) return '';
 
-  // check if there is no active link
-  if (
-    !parent.links.find(({ to }) => (
-      to && matchPath(`${to}`, loc.pathname)
-    ))
-    && !(showParent && parent.to && matchPath(parent.to, loc.pathname))
-  ) return '';
-
-  if (showParent) {
-    const p = parent.label;
-
-    parentLabel = p?.subDir
-      || p?.default
-      || p;
-  }
+  const { subDirLabel: parentLabel = parent.label } = parent;
 
   return (
     <div className={className}>
       <nav className="nav nav-tabs">
-        {showParent && (
+        {parentLabel && (
           <NavLink
             className="nav-link"
             to={parent.to}

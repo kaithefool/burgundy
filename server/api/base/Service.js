@@ -73,13 +73,17 @@ class Service {
     });
   }
 
+  all(opts) {
+    return this.model.find(opts);
+  }
+
   async list(opts, user) {
     let { filter } = opts;
 
     filter = this.match(filter, user);
 
     const [rows, total] = await Promise.all([
-      this.model.find({ ...opts, filter }),
+      this.all({ ...opts, filter }),
       this.model.count(filter),
     ]);
 

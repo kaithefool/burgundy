@@ -55,6 +55,7 @@ class AuthServ extends Service {
     const props = pick(user, userProps);
 
     return {
+      user: props,
       access: jwt.sign(
         props,
         SECRET,

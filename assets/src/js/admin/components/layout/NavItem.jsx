@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 const NavItem = ({
   icon,
   label = '',
+  subDirLabel,
   children,
   links,
   expanded,
@@ -18,7 +19,6 @@ const NavItem = ({
   const Link = to
     ? NavLink
     : ({ children: c, ...p }) => <a {...p}>{c}</a>;
-  const l = label.default || label;
 
   return (
     <>
@@ -28,7 +28,7 @@ const NavItem = ({
       >
         <FA icon={icon} fixedWidth />
         {expanded && (
-          <span className="ms-3 me-1">{t(`nav.${l}`, l)}</span>
+          <span className="ms-3 me-1">{t(`nav.${label}`, label)}</span>
         )}
       </Link>
       {children && (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import PageAccessLogs from '../pages/PageAccessLogs';
 import PageViews from '../pages/PageViews';
 import PageView from '../pages/PageView';
 import PageClient from '../pages/PageClient';
@@ -11,15 +12,13 @@ import PageUsers from '../pages/PageUsers';
 
 const AppRoutes = () => (
   <Routes>
-
     <Route
       path="settings"
-      element={
-        <Navigate to="/admin/settings/views" replace />
-      }
+      element={<Navigate to="/admin/settings/views" replace />}
     />
     <Route path="settings/views" element={<PageViews />} />
     <Route path="settings/views/:_id" element={<PageView />} />
+    <Route path="settings/access-logs" element={<PageAccessLogs />} />
 
     <Route path="users" element={<PageUsers />} />
     <Route path="users/admins" element={<PageAdmins />} />
