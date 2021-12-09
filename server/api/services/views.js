@@ -4,6 +4,15 @@ const model = require('../models/views');
 const { LNG } = process.env;
 
 class ViewServ extends Service {
+  match(attrs, user) {
+    return {
+      ...super.match(attrs, user),
+      ...(user?.role !== 'admin' && {
+        active: true,
+      }),
+    };
+  }
+
   patchActive({ _id, active }, user) {
     return super.patchBy(
       { _id },

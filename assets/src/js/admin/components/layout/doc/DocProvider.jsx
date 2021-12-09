@@ -26,7 +26,7 @@ const DocProvider = ({
           : `${api.url}/${_id}`,
       });
     }
-  }, []);
+  }, [_id]);
 
   return (
     <DocContext.Provider value={value}>

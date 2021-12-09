@@ -17,7 +17,7 @@ const defaultNamedRoutes = {
     path: `/:_id(${idMatch})`,
     response: responseOne,
   },
-  findOne: { response: responseOne },
+  findOne: { serve: 'find', response: responseOne },
   create: { method: 'post' },
   patch: { method: 'patch', path: `/:_id(${idMatch})` },
   upsert: { method: 'put' },
@@ -41,14 +41,14 @@ class Routes {
     return this.router;
   }
 
-  namedRoutes() {
+  static get namedRoutes() {
     return defaultNamedRoutes;
   }
 
   // shorthands for common routes
   parseNamedRoutes() {
     const draft = {};
-    const namedRoutes = this.namedRoutes();
+    const { namedRoutes } = this.constructor;
 
     // insert named routes
     _.forEach(this.routes, (opts, serve) => {

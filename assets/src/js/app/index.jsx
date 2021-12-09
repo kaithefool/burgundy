@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 
 import '../../scss/main.scss';
@@ -8,6 +8,8 @@ import '~/commons/config';
 import App from './components/App';
 
 ReactDOM.render(
-  <App />,
+  <Suspense fallback="loading...">
+    <App />
+  </Suspense>,
   document.getElementById('root'),
 );

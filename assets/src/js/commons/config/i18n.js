@@ -20,20 +20,17 @@ i18n
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
-    react: { useSuspense: false },
   }, () => {
-    // lang value picker
-    i18n.pickLng = (obj) => {
-      const { language, languages } = i18n;
-      const lngs = [language, ...languages];
-
-      return obj[lngs.find((l) => obj[l])];
-    };
-
     // for date format
     Settings.defaultLocale = i18n.language;
   });
 
-i18n.pickLng = () => '';
+// lang value picker
+i18n.pickLng = (obj) => {
+  const { language, languages } = i18n || {};
+  const lngs = [language, ...languages];
+
+  return obj[lngs.find((l) => obj[l])];
+};
 
 export default i18n;

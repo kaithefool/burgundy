@@ -44,7 +44,7 @@ routes.use(
   '/',
   ({ user }, res) => {
     if (user) {
-      if (user.role === 'admin') return res.redirect('/admin');
+      // if (user.role === 'admin') return res.redirect('/admin');
     }
 
     return res.render('app');

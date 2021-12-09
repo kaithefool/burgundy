@@ -3,6 +3,9 @@ module.exports = {
     node: true,
   },
   extends: 'airbnb-base',
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   rules: {
     // enable development in windows
     'linebreak-style': 'off',

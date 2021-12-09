@@ -21,10 +21,6 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
-- Views
-    - page routes
-    - find by url api route
-    - cache?
 - File Uploads
     - sortable
     - gallery mode
