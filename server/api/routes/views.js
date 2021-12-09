@@ -10,5 +10,9 @@ module.exports = new Routes({
   find: true,
   create: true,
   patch: true,
+  patchActive: {
+    path: '/active/:_id?',
+    method: 'patch',
+  },
   delete: true,
 });

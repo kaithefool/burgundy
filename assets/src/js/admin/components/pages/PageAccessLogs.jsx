@@ -9,7 +9,7 @@ const PageAccessLogs = () => (
       api={{ url: '/api/access-logs' }}
       cols={[
         { key: 'createdAt', format: 'datetime', sortable: true },
-        { key: 'action' },
+        { key: 'action', sortable: true },
         { key: 'user.email' },
         { key: 'ip', label: 'IP' },
         { key: 'userAgent', hide: true },

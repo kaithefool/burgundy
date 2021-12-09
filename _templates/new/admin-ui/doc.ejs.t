@@ -26,10 +26,7 @@ const Page<%= n.singular.pascal %> = () => {<% if (!singleton) { %>
       {(doc) => (
         <Page
           header={{
-            <% if (!singleton) { %>breadcrumb: [
-              { to: '../', children: '<%= n.plural.title %>' },
-            ],
-            title: doc?._id || 'New',<%
+            <% if (!singleton) { %>title: doc?._id || 'New',<%
             } else { %>title: '<%= n.singular.title %>',<% } %>
           }}
         >
