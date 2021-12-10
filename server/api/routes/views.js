@@ -14,13 +14,16 @@ module.exports = new Routes({
     delete: 'admin',
   },
   validate: {},
+  logs: {
+    create: true,
+    patch: true,
+    patchActive: true,
+    delete: true,
+  },
 }, {
   list: true,
   find: true,
-  findOne: {
-    ...findOne,
-    path: '/u',
-  },
+  findOne: { ...findOne, path: '/u' },
   create: true,
   patch: true,
   patchActive: {

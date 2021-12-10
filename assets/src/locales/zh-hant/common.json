@@ -48,7 +48,10 @@
     "All": "全部",
     "Users": "用戶",
     "Admins": "管理員",
-    "Clients": "客戶"
+    "Clients": "客戶",
+    "Settings": "設定",
+    "Views": "頁面",
+    "Access Logs": "記錄"
   },
   "pg": {
     "pwdResetMailTitle": "忘記密碼?",

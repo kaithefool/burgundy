@@ -3,6 +3,7 @@ const _ = require('lodash');
 
 const authorizer = require('./authorizer');
 const validator = require('./validator');
+const logAccess = require('../parsers/logAccess');
 
 const idMatch = '[0-9a-f]{24}';
 const responseOne = (req, res) => {
@@ -94,17 +95,32 @@ class Routes {
     };
   }
 
-  guards(serve) {
+  guards(name) {
     const g = [];
-    const v = _.get(this, `validate.${serve}`);
+    const v = _.get(this, `validate.${name}`);
     const a = this.authorize instanceof Object
-      ? this.authorize[serve]
+      ? this.authorize[name]
       : this.authorize;
 
     if (a) g.push(authorizer(a));
     if (v) g.push(validator(v));
 
     return g;
+  }
+
+  log(name) {
+    const l = this.logs instanceof Object
+      ? this.logs[name]
+      : this.logs;
+
+    if (!l) return [];
+
+    return [
+      logAccess(
+        name,
+        l instanceof Object ? l : {},
+      ),
+    ];
   }
 
   registerRoute(name, {
@@ -124,6 +140,9 @@ class Routes {
 
       // guards
       ...this.guards(name),
+
+      // access logs
+      ...this.log(name),
 
       // service handler
       this.handles(serve),

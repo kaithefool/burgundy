@@ -20,10 +20,11 @@ function csvHeader(mapping) {
   ));
 }
 
-module.exports = (opts) => (req, res) => {
+module.exports = (options) => (req, res) => {
   const { out } = res.locals;
   const BOM = String.fromCharCode(0xFEFF);
   const stringifier = stringify(); // csv stringifier
+  const opts = typeof options === 'function' ? options(out) : options;
   const { filename = 'export.csv' } = opts;
   let { mapping } = opts;
 

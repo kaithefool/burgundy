@@ -8,6 +8,8 @@ const views = new Model('View', {
 
   title: Schema.lng(String),
   body: Schema.lng(String),
+}, {
+  timestamps: true,
 });
 
 views.seeds([

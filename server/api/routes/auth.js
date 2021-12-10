@@ -17,6 +17,9 @@ module.exports = new Routes({
       token: string().required(),
     }),
   },
+  logs: {
+    logout: true,
+  },
 }, {
   authenticate: {
     method: 'post',
@@ -28,7 +31,7 @@ module.exports = new Routes({
         return next();
       },
       // log
-      logAccess('auth.login'),
+      logAccess('login'),
       // response
       ({ attrs, web }, res) => {
         const { locals: { out } } = res;
