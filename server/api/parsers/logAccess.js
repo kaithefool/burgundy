@@ -7,11 +7,11 @@ module.exports = (
     resPayload = false,
   } = {},
 ) => async (req, res, next) => {
-  const { baseUrl } = req;
   const ip = req.headers['x-forwarded-for']
     || req.connection.remoteAddress;
   const userAgent = req.headers['user-agent'];
-  const { user: { _id } = {}, attrs } = req;
+  const { baseUrl, user: { _id } = {}, attrs } = req;
+  const { out } = res.locals;
 
   await accessLogServ.create({
     action: `${baseUrl}:${action}`,
@@ -19,7 +19,7 @@ module.exports = (
     ip,
     userAgent,
     ...(reqPayload && { reqPayload: JSON.stringify(attrs) }),
-    ...(resPayload && { resPayload: JSON.stringify(attrs) }),
+    ...(resPayload && { resPayload: JSON.stringify(out) }),
   });
 
   return next();

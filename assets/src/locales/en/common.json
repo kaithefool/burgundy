@@ -15,8 +15,8 @@
     "notFound": "Not found",
     "duplicates": "Duplicated record",
     "invalidCsv": "Invalid CSV format",
-    "disconnected": "Cannot connect to server / network",
-    "timeout": "Connection timeout"
+    "disconnected": "Cannot connect to server/network",
+    "timeout": "Connection timed out"
   },
   "fields": {
     "presist": "Remember me",

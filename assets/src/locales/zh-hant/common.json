@@ -2,6 +2,7 @@
   "res": {
     "deleted": "已刪除",
     "saved": "已儲存",
+    "imported": "已上傳",
     "confirm": "你確定嗎？",
     "confirmDel": "你確定要刪除嗎？",
     "userNotExists": "用戶不存在",
@@ -13,7 +14,9 @@
     "loggedOut": "你已登出帳戶",
     "notFound": "找不到網頁",
     "duplicates": "Duplicated record",
-    "invalidCsv": "CSV格式不正確"
+    "invalidCsv": "CSV格式不正確",
+    "disconnected": "無法連接到伺服器/網絡",
+    "timeout": "連接超時"
   },
   "fields": {
     "presist": "保持登入",
@@ -27,8 +30,7 @@
     "updatedAt": "最後更新",
     "lastLogin": "上次登錄",
     "title": "標題",
-    "body": "內容",
-    "redirect": "重新導向URL"
+    "body": "內容"
   },
   "auth": {
     "title" : "登入",

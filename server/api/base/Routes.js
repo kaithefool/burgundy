@@ -141,11 +141,11 @@ class Routes {
       // guards
       ...this.guards(name),
 
-      // access logs
-      ...this.log(name),
-
       // service handler
       this.handles(serve),
+
+      // access logs
+      ...this.log(name),
 
       // responders
       ..._.castArray(response),

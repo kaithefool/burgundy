@@ -46,7 +46,7 @@ const Header = ({
                     <Link {...b} to={resolvePath(to)}>
                       {t(`nav.${children}`, children)}
                     </Link>
-                  &nbsp;/&nbsp;
+                    &nbsp;/&nbsp;
                   </span>
                 ))}
               </div>
