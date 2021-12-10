@@ -1,6 +1,7 @@
 import sanitize from 'sanitize-html';
 import mapValues from 'lodash/mapValues';
 import isPlainObject from 'lodash/isPlainObject';
+import meta from './meta';
 
 function recursiveMap(src, fn = (v) => v) {
   const t = (value, key) => {
@@ -53,4 +54,5 @@ export {
   recursiveMap,
   sanitizeHtml,
   resolvePath,
+  meta,
 };

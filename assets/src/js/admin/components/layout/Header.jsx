@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import SubDirsNav from './SubDirsNav';
 import BtnLng from '~/commons/components/btns/BtnLng';
-import { resolvePath } from '../../../commons/helpers';
+import { resolvePath, meta } from '~/commons/helpers';
 import useLinks from './useLinks';
 
 const Header = ({
@@ -16,7 +16,7 @@ const Header = ({
   const { parent, active } = useLinks();
   const exact = (useLinks(true).active);
 
-  const title = titleOpt
+  let title = titleOpt
     || (parent || active)?.label
     || '';
   const breadcrumb = breadcrumbOpt
@@ -29,6 +29,10 @@ const Header = ({
       ]
     )
     || [];
+
+  title = t(`nav.${title}`, title);
+
+  meta({ title });
 
   return (
     <header>
@@ -48,7 +52,7 @@ const Header = ({
               </div>
             )}
             <h5>
-              {t(`nav.${title}`, title)}
+              {title}
             </h5>
           </div>
           <BtnLng className="col-auto" />

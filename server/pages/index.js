@@ -19,6 +19,9 @@ routes.use(({ csrfToken }, res, next) => {
     csrf: csrfToken ? csrfToken() : null,
     lngs: LNG.split(','),
     lngLabels: LNG_LABEL.split(','),
+    meta: {
+      title: 'Burgundy',
+    },
     ...consts.public,
   };
 
@@ -39,7 +42,6 @@ routes.use(
 );
 
 routes.get('/', (req, res) => res.redirect('/auth'));
-
 routes.use(
   '/auth',
   ({ user }, res) => {

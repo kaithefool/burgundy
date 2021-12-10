@@ -21,11 +21,6 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
-- Views
-    - render page in pug? for SEO?
-    - meta tags
-    - do the redirects in server?
-    - do we really need the redirect field?
 - File Uploads
     - sortable
     - gallery mode

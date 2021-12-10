@@ -10,7 +10,6 @@ import env from '../../../commons/config/env';
 
 const defaults = {
   url: '',
-  redirect: '',
   active: true,
   title: env.lngs.reduce((a, l) => ({
     ...a, [l]: '',
@@ -56,14 +55,7 @@ const PageView = () => {
 
             {/* fields */}
             <Form.Check name="active" type="switch" />
-            <div className="row">
-              <div className="col">
-                <Form.Input name="url" />
-              </div>
-              <div className="col">
-                <Form.Input name="redirect" />
-              </div>
-            </div>
+            <Form.Input name="url" />
 
             <LngTabs>
               {(lng) => (

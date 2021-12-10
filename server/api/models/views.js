@@ -4,7 +4,6 @@ const { Schema } = Model;
 
 const views = new Model('View', {
   url: String,
-  redirect: String,
   active: { type: Boolean, default: true },
 
   title: Schema.lng(String),
