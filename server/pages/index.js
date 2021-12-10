@@ -41,14 +41,19 @@ routes.use(
 routes.get('/', (req, res) => res.redirect('/auth'));
 
 routes.use(
-  '/',
+  '/auth',
   ({ user }, res) => {
     if (user) {
-      // if (user.role === 'admin') return res.redirect('/admin');
+      if (user.role === 'admin') return res.redirect('/admin');
     }
 
     return res.render('app');
   },
+);
+
+routes.use(
+  '/',
+  (req, res) => res.render('app'),
 );
 
 module.exports = routes;

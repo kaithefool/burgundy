@@ -11,9 +11,9 @@ const PageViews = () => (
       selectable
       cols={[
         { key: 'url', sortable: true },
+        { key: 'redirect' },
         { key: 'title', sortable: true },
         { key: 'active' },
-        { key: 'redirect' },
       ]}
     >
       <div className="row">

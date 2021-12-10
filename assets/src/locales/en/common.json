@@ -14,7 +14,9 @@
     "loggedOut": "You've logged out",
     "notFound": "Not found",
     "duplicates": "Duplicated record",
-    "invalidCsv": "Invalid CSV format"
+    "invalidCsv": "Invalid CSV format",
+    "disconnected": "Cannot connect to server / network",
+    "timeout": "Connection timeout"
   },
   "fields": {
     "presist": "Remember me",

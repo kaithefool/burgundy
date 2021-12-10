@@ -1,5 +1,5 @@
 import React from 'react';
-import { object } from 'yup';
+import { object, string } from 'yup';
 import { useParams } from 'react-router-dom';
 
 import Page from '../layout/Page';
@@ -21,6 +21,7 @@ const defaults = {
 };
 
 const schema = () => object({
+  url: string().required(),
 });
 
 const PageView = () => {

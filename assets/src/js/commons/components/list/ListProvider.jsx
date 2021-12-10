@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import get from 'lodash/get';
 
 import ListContext from './ListContext';
 import useHttp from '../../hooks/useHttp';
 import useComparable from '../../hooks/useComparable';
 import useQuery from '../../hooks/useQuery';
+import useAlert from '../alert/useAlert';
 
 const ListProvider = ({
   children,
@@ -31,7 +31,6 @@ const ListProvider = ({
     (history && urlQuery?.filter) || {}
   ));
   const [selected, setSelected] = useState([]);
-  const [staged, setStaged] = useState({});
 
   const filter = { ...baseFilter, ...listFilter };
 
@@ -57,27 +56,10 @@ const ListProvider = ({
 
   const select = (s) => setSelected(s);
 
-  const stage = (_id, changes = {}) => {
-    const s = { ...staged };
-    const t = staged[_id];
-    const r = rows.find((r0) => r0._id === _id);
-    const c = { ...t, ...changes };
-
-    // diff with stored
-    Object.keys(c).forEach((k) => {
-      if (c[k] === get(r, k)) delete c[k];
-    });
-
-    // update staged list
-    if (!c || !Object.keys(c).length) {
-      // clear
-      delete s[_id];
-    } else {
-      s[_id] = c;
-    }
-
-    setStaged(s);
-  };
+  // http alerts
+  useAlert(res, {
+    success: false,
+  });
 
   useEffect(() => {
     refresh();
@@ -105,12 +87,10 @@ const ListProvider = ({
     fetched,
     rows,
     res,
-    staged,
 
     fetch,
     refresh,
     select,
-    stage,
     showCols,
   };
 

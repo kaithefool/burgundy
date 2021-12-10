@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 
 import http from './http';
 import compoundHttp from './compoundHttp';
+import useComparable from '../useComparable';
 
 function useHttpBase(requests, opts) {
   const xhr = useRef(undefined);
@@ -64,10 +65,10 @@ function useHttpBase(requests, opts) {
     return () => {
       cancel();
     };
-  }, []);
+  }, [useComparable(requests)]);
 
   return {
-    res,
+    res: resRef.current,
     req,
     fetched: fetched.current,
     cancel,

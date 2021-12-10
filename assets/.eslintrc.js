@@ -63,6 +63,9 @@ module.exports = {
       { namedComponents: 'arrow-function' },
     ],
 
+    // TBC... too much work for little performance gain?
+    'react/jsx-no-constructed-context-values': 'off',
+
     // ARIA: TBC...
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',
