@@ -8,7 +8,7 @@ const authByCookies = require('./parsers/authByCookies');
 const api = Router();
 
 // catch 404 and forward to error handler
-routes.use((req, res, next) => next(httpError(404)));
+routes.use((req, res, next) => next(httpError(404, 'res.notFound')));
 
 api.use((req, res, next) => {
   res.isApi = true;

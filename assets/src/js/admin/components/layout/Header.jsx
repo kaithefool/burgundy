@@ -51,9 +51,9 @@ const Header = ({
                 ))}
               </div>
             )}
-            <h5>
+            <h1 className="h5">
               {title}
-            </h5>
+            </h1>
           </div>
           <BtnLng className="col-auto" />
         </div>

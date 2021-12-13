@@ -67,7 +67,7 @@ class Service {
     };
   }
 
-  populate(query /* user, one */) {
+  populate(query/* , user, one */) {
     return query;
   }
 

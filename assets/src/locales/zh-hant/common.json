@@ -16,7 +16,8 @@
     "duplicates": "Duplicated record",
     "invalidCsv": "CSV格式不正確",
     "disconnected": "無法連接到伺服器/網絡",
-    "timeout": "連接超時"
+    "timeout": "連接超時",
+    "goBack": "回到主頁"
   },
   "fields": {
     "presist": "保持登入",
