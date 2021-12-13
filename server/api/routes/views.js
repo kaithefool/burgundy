@@ -22,7 +22,7 @@ module.exports = new Routes({
   },
 }, {
   list: true,
-  find: true,
+  findById: true,
   findOne: { ...findOne, path: '/u' },
   create: true,
   patch: true,

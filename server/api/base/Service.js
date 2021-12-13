@@ -37,6 +37,7 @@ class Service {
 
   search(f) {
     let { search: opts } = this.opts;
+
     if (!opts || !f) return null;
 
     if (typeof opts === 'string' || Array.isArray(opts)) {
@@ -66,25 +67,45 @@ class Service {
     };
   }
 
-  find(filter, user, opts) {
-    return this.model.find({
-      filter: this.match(filter, user),
-      ...opts,
-    });
+  populate(query /* user, one */) {
+    return query;
   }
 
-  all(opts) {
-    return this.model.find(opts);
+  findOne(filter, user) {
+    const q = this.model.findOne(
+      this.match(filter, user),
+    );
+
+    return this.populate(q, user, true);
+  }
+
+  find(opts, user) {
+    const { filter } = opts;
+
+    const q = this.model.find({
+      ...opts,
+      filter: this.match(filter, user),
+    });
+
+    return this.populate(q, user, false);
+  }
+
+  count(filter, user) {
+    return this.model.count(
+      this.match(filter, user),
+    );
   }
 
   async list(opts, user) {
-    let { filter } = opts;
-
-    filter = this.match(filter, user);
+    const { filter, skip, limit } = opts;
 
     const [rows, total] = await Promise.all([
-      this.all({ ...opts, filter }),
-      this.model.count(filter),
+      this.find({
+        ...opts,
+        ...skip && { skip: parseInt(skip, 10) },
+        ...limit && { limit: parseInt(limit, 10) },
+      }, user),
+      this.model.count(filter, user),
     ]);
 
     return { rows, total };

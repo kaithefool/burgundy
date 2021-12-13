@@ -24,7 +24,7 @@ module.exports = new Routes({
   },
 }, {
   list: true,
-  find: true,
+  findById: true,
   create: true,
   patch: true,
   patchActive: {

@@ -2,12 +2,8 @@ const Service = require('../base/Service');
 const model = require('../models/accessLogs');
 
 class AccessLogServ extends Service {
-  find(...args) {
-    return super.find(...args).populate('user', 'email mobile');
-  }
-
-  all(...args) {
-    return super.all(...args).populate('user', 'email mobile');
+  populate(query) {
+    return query.populate('user', 'email mobile');
   }
 }
 

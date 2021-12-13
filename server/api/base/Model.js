@@ -66,6 +66,10 @@ class Model {
     return q;
   }
 
+  findOne(filter, select) {
+    return this.model.findOne(this.matcher(filter), select);
+  }
+
   count(filter) {
     return this.model.countDocuments(this.matcher(filter));
   }

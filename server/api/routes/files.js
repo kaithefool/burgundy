@@ -7,7 +7,7 @@ module.exports = new Routes({
   authorize: 'admin',
 }, {
   list: true,
-  find: true,
+  findById: true,
   create: {
     method: 'post',
     parse: upload(),

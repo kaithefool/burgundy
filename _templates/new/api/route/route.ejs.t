@@ -10,11 +10,11 @@ module.exports = new Routes({
   validate: {},
 }, {
 <% if (singleton) { %>
-  findOne: {},
+  findOne: true,
   upsert: true,
 <% } else { %>
   list: true,
-  find: true,
+  findById: true,
   create: true,
   patch: true,
   delete: true,

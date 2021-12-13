@@ -1,24 +1,24 @@
 const { Router } = require('express');
 const _ = require('lodash');
+const httpError = require('http-errors');
 
 const authorizer = require('./authorizer');
 const validator = require('./validator');
 const logAccess = require('../parsers/logAccess');
 
 const idMatch = '[0-9a-f]{24}';
-const responseOne = (req, res) => {
-  const { out: [o] = [] } = res.locals;
-
-  return o ? res.json(o) : res.status(404).end();
-};
+const responseOne = (req, res, next) => (
+  res.locals.out ? next() : next(httpError(404, 'res.notFound'))
+);
 
 const defaultNamedRoutes = {
   list: {},
-  find: {
+  findById: {
     path: `/:_id(${idMatch})`,
+    serve: 'findOne',
     response: responseOne,
   },
-  findOne: { serve: 'find', response: responseOne },
+  findOne: { response: responseOne },
   create: { method: 'post' },
   patch: { method: 'patch', path: `/:_id(${idMatch})` },
   upsert: { method: 'put' },
