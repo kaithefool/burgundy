@@ -16,9 +16,7 @@ i18next
     fallbackLng: LNG.split(',')[0],
     ns: ['common'],
     defaultNS: 'common',
-    detection: {
-      caches: ['cookie', 'header'],
-    },
+    caches: false,
     backend: {
       loadPath: `${storage}/{{lng}}/{{ns}}.json`,
     },
