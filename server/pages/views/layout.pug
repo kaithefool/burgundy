@@ -1,7 +1,8 @@
 doctype html
 html
   head
-    title= env.meta.title
+    if env && env.meta
+      include meta
     meta(
       name='viewport'
       content='width=device-width, user-scalable=no'

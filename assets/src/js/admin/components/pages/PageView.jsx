@@ -10,7 +10,7 @@ import env from '../../../commons/config/env';
 
 const defaults = {
   url: '',
-  active: true,
+  active: false,
   title: env.lngs.reduce((a, l) => ({
     ...a, [l]: '',
   }), {}),
@@ -44,6 +44,9 @@ const PageView = () => {
             <div className="row mb-3 align-items-center">
               <div className="col-auto">
                 <Form.BtnSubmit />
+              </div>
+              <div className="col-auto">
+                <Doc.BtnPreview href={(v) => v.url} />
               </div>
               <div className="col-auto">
                 <Doc.UpdatedAt />

@@ -17,7 +17,7 @@
     "invalidCsv": "Invalid CSV format",
     "disconnected": "Cannot connect to server/network",
     "timeout": "Connection timed out",
-    "goBack": "Go Back"
+    "goBack": "Go Home"
   },
   "fields": {
     "presist": "Remember me",
@@ -26,7 +26,8 @@
     "importTmpl": "Import Template",
     "url": "URL",
     "title": "Title",
-    "body": "Body"
+    "body": "Body",
+    "preview": "Preview"
   },
   "auth": {
     "title" : "Login",

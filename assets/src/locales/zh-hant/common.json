@@ -2,7 +2,7 @@
   "res": {
     "deleted": "已刪除",
     "saved": "已儲存",
-    "imported": "已上傳",
+    "imported": "已上載",
     "confirm": "你確定嗎？",
     "confirmDel": "你確定要刪除嗎？",
     "userNotExists": "用戶不存在",
@@ -23,7 +23,7 @@
     "presist": "保持登入",
     "save": "儲存",
     "email": "電郵",
-    "importTmpl": "上傳樣板",
+    "importTmpl": "上載樣板",
     "password": "密碼",
     "active": "啟用",
     "name": "姓名",
@@ -31,7 +31,8 @@
     "updatedAt": "最後更新",
     "lastLogin": "上次登錄",
     "title": "標題",
-    "body": "內容"
+    "body": "內容",
+    "preview": "預覽"
   },
   "auth": {
     "title" : "登入",

@@ -9,7 +9,9 @@ module.exports = (err, req, res, next) => {
   if (status >= 500) console.error(err);
 
   // i18n
-  message = req.t(message);
+  if (req.t) {
+    message = req.t(message);
+  }
 
   // render the error
   const e = { status, message, stack };

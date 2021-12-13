@@ -4,7 +4,7 @@ const { Schema } = Model;
 
 const views = new Model('View', {
   url: String,
-  active: { type: Boolean, default: true },
+  active: { type: Boolean, default: false },
 
   title: Schema.lng(String),
   body: Schema.lng(String),
