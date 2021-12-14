@@ -27,7 +27,7 @@ module.exports = (err, { t }, res, next) => {
       ...err,
       ...err.keys && {
         keys: err.keys.map((k) => (
-          t(`fields.${k}`, _.startCase(k))
+          t(`fields.${k}`, _.lowerCase(k))
         )).join(t('gen.or')),
       },
       ...err.values && {

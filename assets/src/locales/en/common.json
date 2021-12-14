@@ -2,7 +2,7 @@
   "res": {
     "models": {
       "User": {
-        "duplicates": "{{keys}} already in use"
+        "duplicates": "That {{keys}} is already in use"
       }
     },
     "deleted": "Deleted",

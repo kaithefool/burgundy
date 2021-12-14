@@ -18,7 +18,7 @@
     "invalidToken": "密鑰無效或已過期",
     "loggedOut": "你已登出帳戶",
     "notFound": "找不到網頁",
-    "duplicates": "不能重複數據",
+    "duplicates": "不能重複數據: {{values}}",
     "invalidCsv": "CSV格式不正確",
     "disconnected": "無法連接到伺服器/網絡",
     "timeout": "連接超時",
@@ -56,6 +56,7 @@
     "or": "或"
   },
   "nav": {
+    "New": "新增",
     "All": "全部",
     "Users": "用戶",
     "Admins": "管理員",
