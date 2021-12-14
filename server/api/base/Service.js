@@ -105,7 +105,7 @@ class Service {
         ...skip && { skip: parseInt(skip, 10) },
         ...limit && { limit: parseInt(limit, 10) },
       }, user),
-      this.model.count(filter, user),
+      this.count(filter, user),
     ]);
 
     return { rows, total };
