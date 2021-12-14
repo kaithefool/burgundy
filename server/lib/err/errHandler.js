@@ -10,7 +10,7 @@ module.exports = (err, req, res, next) => {
 
   // i18n
   if (req.t) {
-    message = req.t(message);
+    message = req.t(message, err);
   }
 
   // render the error

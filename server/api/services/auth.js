@@ -35,8 +35,9 @@ class AuthServ extends Service {
 
   async basicStrag({ email, password }) {
     const [u] = await this.find({
-      email,
-    }, null, { select: '+password' });
+      filter: { email },
+      select: '+password',
+    });
 
     if (!u) {
       this.throw(400, 'res.invalidCredentials');
