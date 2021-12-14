@@ -1,16 +1,39 @@
+const _ = require('lodash');
+
 const { NODE_ENV } = process.env;
 
 // eslint-disable-next-line no-unused-vars
-module.exports = (err, req, res, next) => {
-  const { status = 500, expose = false, stack } = err;
+module.exports = (err, { t }, res, next) => {
+  const {
+    status = 500, expose = false, stack, model,
+  } = err;
   let { message } = err;
 
   // server log
   if (status >= 500) console.error(err);
 
   // i18n
-  if (req.t) {
-    message = req.t(message, err);
+  if (t) {
+    const m = [message];
+
+    // model specified message
+    if (model) {
+      m.unshift(`res.models.${model}.${
+        message.replace(/^res\./, '')
+      }`);
+    }
+
+    message = t(m, {
+      ...err,
+      ...err.keys && {
+        keys: err.keys.map((k) => (
+          t(`fields.${k}`, _.startCase(k))
+        )).join(t('gen.or')),
+      },
+      ...err.values && {
+        values: err.values.join(', '),
+      },
+    });
   }
 
   // render the error

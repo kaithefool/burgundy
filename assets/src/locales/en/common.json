@@ -1,5 +1,10 @@
 {
   "res": {
+    "models": {
+      "User": {
+        "duplicates": "{{keys}} already in use"
+      }
+    },
     "deleted": "Deleted",
     "saved": "Saved",
     "imported": "Imported",
@@ -13,7 +18,7 @@
     "invalidToken": "Invalid token",
     "loggedOut": "You've logged out",
     "notFound": "Not found",
-    "duplicates": "Duplicated record",
+    "duplicates": "Duplicated record: {{values}}",
     "invalidCsv": "Invalid CSV format",
     "disconnected": "Cannot connect to server/network",
     "timeout": "Connection timed out",
@@ -41,7 +46,8 @@
   "gen": {
     "perPage": "{{page}} / page",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "or": " or "
   },
   "pg": {
     "pwdResetMailTitle": "Forgot Password?",

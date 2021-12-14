@@ -1,5 +1,10 @@
 {
   "res": {
+    "models": {
+      "User": {
+        "duplicates": "該{{keys}}已被使用"
+      }
+    },
     "deleted": "已刪除",
     "saved": "已儲存",
     "imported": "已上載",
@@ -13,7 +18,7 @@
     "invalidToken": "密鑰無效或已過期",
     "loggedOut": "你已登出帳戶",
     "notFound": "找不到網頁",
-    "duplicates": "Duplicated record",
+    "duplicates": "不能重複數據",
     "invalidCsv": "CSV格式不正確",
     "disconnected": "無法連接到伺服器/網絡",
     "timeout": "連接超時",
@@ -23,6 +28,7 @@
     "presist": "保持登入",
     "save": "儲存",
     "email": "電郵",
+    "mobile": "手機號碼",
     "importTmpl": "上載樣板",
     "password": "密碼",
     "active": "啟用",
@@ -46,7 +52,8 @@
   "gen": {
     "perPage": "每頁{{page}}個",
     "yes": "是",
-    "no": "否"
+    "no": "否",
+    "or": "或"
   },
   "nav": {
     "All": "全部",
