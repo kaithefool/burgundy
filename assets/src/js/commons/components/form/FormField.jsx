@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  useField,
-  ErrorMessage,
-} from 'formik';
+import { useField } from 'formik';
 import startCase from 'lodash/startCase';
 import { useTranslation } from 'react-i18next';
 
@@ -58,11 +55,9 @@ const FormField = ({
       {valid && typeof affirm !== 'boolean' && (
         <div className="valid-feedback">{affirm}</div>
       )}
-      <ErrorMessage name={name}>
-        {(msg) => (
-          <div className="invalid-feedback">{msg}</div>
-        )}
-      </ErrorMessage>
+      {error && touched && (
+        <div className="invalid-feedback">{t(error.rule, error)}</div>
+      )}
     </div>
   );
 };

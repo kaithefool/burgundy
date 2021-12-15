@@ -14,8 +14,10 @@ class Service {
     if (err.name.match(/mongo/i) && err.code === 11000) {
       this.throw(400, 'res.duplicates', {
         model: this.model.schema.name,
-        values: Object.values(err.keyValue),
-        keys: Object.keys(err.keyValue),
+        // values: Object.values(err.keyValue),
+        // keys: Object.keys(err.keyValue),
+        keys: ['email', 'mobile'],
+        values: ['admin@d.com', 'admin'],
       });
     }
 

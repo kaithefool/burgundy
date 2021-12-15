@@ -84,8 +84,10 @@ class AuthServ extends Service {
     }
 
     const [u] = await this.find({
-      _id: payload._id,
-      active: 1,
+      filter: {
+        _id: payload._id,
+        active: 1,
+      },
     });
 
     if (!u) {

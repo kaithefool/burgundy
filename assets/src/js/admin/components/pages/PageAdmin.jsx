@@ -20,7 +20,6 @@ const defaults = {
 
 const schema = (doc) => object({
   email: email().required(),
-  role: string().required(),
   password: doc ? password() : password().required(),
 });
 

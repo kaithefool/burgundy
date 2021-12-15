@@ -2,7 +2,7 @@
   "res": {
     "models": {
       "User": {
-        "duplicates": "該{{keys}}已被使用"
+        "duplicates": "該{{keys, list(type:disjunction)}}已被使用"
       }
     },
     "deleted": "已刪除",
@@ -23,6 +23,11 @@
     "disconnected": "無法連接到伺服器/網絡",
     "timeout": "連接超時",
     "goBack": "回到主頁"
+  },
+  "yup": {
+    "mixed": {
+      "required": "$t(fields.{{path}})為必填"
+    }
   },
   "fields": {
     "presist": "保持登入",
@@ -52,8 +57,7 @@
   "gen": {
     "perPage": "每頁{{page}}個",
     "yes": "是",
-    "no": "否",
-    "or": "或"
+    "no": "否"
   },
   "nav": {
     "New": "新增",

@@ -2,9 +2,18 @@ import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import { Settings } from 'luxon';
+import { Settings as LuxonSetting } from 'luxon';
+import Cookies from 'js-cookie';
 
 import env from './env';
+
+const setCookie = (lng) => {
+  Cookies.set('i18next', lng, {
+    expires: 365,
+    sameSite: 'strict',
+    secure: window.location.protocol === 'https:',
+  });
+};
 
 // init
 i18n
@@ -16,13 +25,9 @@ i18n
     supportedLngs: env.lngs,
     fallbackLng: env.lngs[0],
     ns: ['common'],
-    defaultNS: 'common',
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
-  }, () => {
-    // for date format
-    Settings.defaultLocale = i18n.language;
   });
 
 // lang value picker
@@ -32,5 +37,10 @@ i18n.pickLng = (obj) => {
 
   return obj[lngs.find((l) => obj[l])];
 };
+
+i18n.on('languageChanged', (lng) => {
+  setCookie(lng);
+  LuxonSetting.defaultLocale = lng;
+});
 
 export default i18n;

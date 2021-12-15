@@ -15,7 +15,6 @@ i18next
     supportedLngs: LNG.split(','),
     fallbackLng: LNG.split(',')[0],
     ns: ['common'],
-    defaultNS: 'common',
     caches: false,
     backend: {
       loadPath: `${storage}/{{lng}}/{{ns}}.json`,

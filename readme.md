@@ -41,5 +41,4 @@ pm2 deploy [env]
 - Admin panel responsive layout
 - ObjectId validator
 - Room for socket.io?
-- 4xx and 5xx error templates
 - Use _id to keep sorting consistency

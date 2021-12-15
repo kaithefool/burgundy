@@ -2,7 +2,7 @@
   "res": {
     "models": {
       "User": {
-        "duplicates": "That {{keys}} is already in use"
+        "duplicates": "That {{keys, list(type:disjunction)}} is already in use"
       }
     },
     "deleted": "Deleted",
@@ -23,6 +23,11 @@
     "disconnected": "Cannot connect to server/network",
     "timeout": "Connection timed out",
     "goBack": "Go Home"
+  },
+  "yup": {
+    "mixed": {
+      "required": "$t(fields.{{path}}, {{path}}) is a required field"
+    }
   },
   "fields": {
     "presist": "Remember me",
@@ -46,8 +51,7 @@
   "gen": {
     "perPage": "{{page}} / page",
     "yes": "Yes",
-    "no": "No",
-    "or": " or "
+    "no": "No"
   },
   "pg": {
     "pwdResetMailTitle": "Forgot Password?",
