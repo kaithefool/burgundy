@@ -2,7 +2,7 @@
   "res": {
     "models": {
       "User": {
-        "duplicates": "該{{keys, list(type:disjunction)}}已被使用"
+        "duplicates": "該{{keys, field, list(type:disjunction)}}已被使用"
       }
     },
     "deleted": "已刪除",

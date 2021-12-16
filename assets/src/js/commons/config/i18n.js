@@ -5,6 +5,7 @@ import { initReactI18next } from 'react-i18next';
 import { Settings as LuxonSetting } from 'luxon';
 import Cookies from 'js-cookie';
 import startCase from 'lodash/startCase';
+import lowerCase from 'lodash/lowerCase';
 
 import env from './env';
 
@@ -46,23 +47,30 @@ i18n.on('languageChanged', (lng) => {
 });
 
 i18n.services.formatter.add('startcase', (v) => startCase(v));
+i18n.services.formatter.add('lowercase', (v) => lowerCase(v));
 
-i18n.services.formatter.add('field', (value) => {
+const formatField = (value, { fieldCase = 'lowercase' } = {}) => {
   const { lngs, lngLabels } = env;
   const [, path, lng] = value.match(
     new RegExp(`(.*?)(?:\\.(${
       lngs.join('|')
     }))?$`),
   );
-  let str = `$t(${path}, startcase)`;
+  let str = `$t(${path}, ${fieldCase})`;
 
   if (lng) {
-    str = `${str} (${
+    str = `${str}(${
       lngLabels[lngs.indexOf(lng)]
     })`;
   }
 
   return str;
-});
+};
+
+i18n.services.formatter.add('field', (value, lng, opts) => (
+  Array.isArray(value)
+    ? value.map((v) => formatField(v, opts))
+    : formatField(value, opts)
+));
 
 export default i18n;

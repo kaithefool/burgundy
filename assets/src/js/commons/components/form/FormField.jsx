@@ -27,7 +27,7 @@ const FormField = ({
         className={labelClassName}
         htmlFor={id}
       >
-        {label || t('field', { path: name })}
+        {label || t('field', { path: name, fieldCase: 'startcase' })}
       </label>
     )
     : null;

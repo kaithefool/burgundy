@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 const { NODE_ENV } = process.env;
 
 // eslint-disable-next-line no-unused-vars
@@ -23,14 +21,7 @@ module.exports = (err, { t }, res, next) => {
       }`);
     }
 
-    message = t(m, {
-      ...err,
-      ...err.keys && {
-        keys: err.keys.map((k) => (
-          t(`fields.${k}`, _.lowerCase(k))
-        )),
-      },
-    });
+    message = t(m, err);
   }
 
   // render the error

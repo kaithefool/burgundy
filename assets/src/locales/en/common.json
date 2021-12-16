@@ -1,9 +1,9 @@
 {
-  "field": "{{path, field}}",
+  "field": "{{path, field, list(type:disjunction)}}",
   "res": {
     "models": {
       "User": {
-        "duplicates": "That {{keys, list(type:disjunction)}} is already in use"
+        "duplicates": "That {{keys, field, list(type:disjunction)}} is already in use"
       }
     },
     "deleted": "Deleted",
