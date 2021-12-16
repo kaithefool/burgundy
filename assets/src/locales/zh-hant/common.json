@@ -26,48 +26,48 @@
   },
   "yup": {
     "mixed": {
-      "default": "{{path, field}} is invalid",
+      "default": "{{path, field}}不是有效的值",
       "required": "{{path, field}}為必填",
-      "oneOf": "{{path, field}} must be one of the following values: {{values}}",
-      "notOneOf": "{{path, field}} must not be one of the following values: {{values}}",
-      "notType": "{{path, field}} must be a \"{{type}}\" type",
-      "defined": "{{path, field}} must be defined"
+      "oneOf": "{{path, field}}必須為以下之一: {{values}}",
+      "notOneOf": "{{path, field}}不得是以下之一: {{values}}",
+      "notType": "{{path, field}}必須為\"{{type}}\"類",
+      "defined": "{{path, field}}不得是undefined"
     },
     "string": {
-      "length": "{{path, field}} must be exactly {{length}} characters",
-      "min": "{{path, field}} must be at least {{min}} characters",
-      "max": "{{path, field}} must be at most {{max}} characters",
-      "matches": "{{path, field}} must match the following: \"{{regex}}\"",
+      "length": "{{path, field}}必須包含{{length}}個字符",
+      "min": "{{path, field}}必須至少包含{{min}}個字符",
+      "max": "{{path, field}}必須最多包含{{max}}個字符",
+      "matches": "{{path, field}}必須符合: \"{{regex}}\"",
       "email": "{{path, field}}必須為有效電郵地址",
-      "url": "{{path, field}} must be a valid URL",
-      "uuid": "{{path, field}} must be a valid UUID",
-      "trim": "{{path, field}} must be a trimmed string",
-      "lowercase": "{{path, field}} must be a lowercase string",
-      "uppercase": "{{path, field}} must be a upper case string"
+      "url": "{{path, field}}必須為有效URL",
+      "uuid": "{{path, field}}必須為有效UUID",
+      "trim": "{{path, field}}首尾不能有空白",
+      "lowercase": "{{path, field}}必須為細楷",
+      "uppercase": "{{path, field}}必須為大楷"
     },
     "number": {
-      "min": "{{path, field}} must be greater than or equal to {{min}}",
-      "max": "{{path, field}} must be less than or equal to {{max}}",
-      "lessThan": "{{path, field}} must be less than {{less}}",
-      "moreThan": "{{path, field}} must be greater than {{more}}",
-      "positive": "{{path, field}} must be a positive number",
-      "negative": "{{path, field}} must be a negative number",
-      "integer": "{{path, field}} must be an integer"
+      "min": "{{path, field}}必須為{{min}}或以上",
+      "max": "{{path, field}}必須為{{max}}或以下",
+      "lessThan": "{{path, field}}必須少於{{less}}",
+      "moreThan": "{{path, field}}必須大於{{more}}",
+      "positive": "{{path, field}}必須為正數",
+      "negative": "{{path, field}}必須為負數",
+      "integer": "{{path, field}}必須為整數"
     },
     "date": {
-      "min": "{{path, field}} field must be later than {{min}}",
-      "max": "{{path, field}} field must be at earlier than {{max}}"
+      "min": "{{path, field}}必須為{{min}}之後",
+      "max": "{{path, field}}必須為{{max}}之前"
     },
     "boolean": {
-      "isValue": "{{path, field}} field must be {{value}}"
+      "isValue": "{{path, field}}必須為{{value}}"
     },
     "object": {
-      "noUnknown": "{{path, field}} field has unspecified keys: {{unknown}}"
+      "noUnknown": "{{path, field}}不得有規定以外的屬性: {{unknown}}"
     },
     "array": {
-      "min": "{{path, field}} field must have at least {{min}} items",
-      "max": "{{path, field}} field must have less than or equal to {{max}} items",
-      "length": "{{path, field}} must have {{length}} items"
+      "min": "{{path, field}}必須至少有{{min}}項",
+      "max": "{{path, field}}必須最多有{{max}}項",
+      "length": "{{path, field}}必須有{{length}}項"
     }
   },
   "sms": {
