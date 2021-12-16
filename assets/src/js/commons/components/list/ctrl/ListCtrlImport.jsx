@@ -55,7 +55,7 @@ const ListCtrlImport = ({
           rel="noreferrer"
         >
           <FA icon={faFileAlt} className="me-1" fixedWidth />
-          {t('fields.importTmpl')}
+          {t('importTmpl')}
         </a>
       )}
 

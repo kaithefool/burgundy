@@ -16,7 +16,7 @@ const DocUpdatedAt = ({
 
   return (
     <span className={className}>
-      {t('fields.updatedAt', 'Updated at')}
+      {t('updatedAt', 'Updated at')}
       {': '}
       {dt.fromISO(d).toLocaleString(format)}
     </span>

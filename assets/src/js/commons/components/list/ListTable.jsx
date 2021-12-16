@@ -73,7 +73,7 @@ const ListTable = ({
                   }
                 }}
               >
-                {col.label || t(`fields.${col.key}`, startCase(col.key))}
+                {col.label || t(`${col.key}`, startCase(col.key))}
                 {col.sortable && col.key === sortBy && (
                 <span className="ms-1">
                   <FA

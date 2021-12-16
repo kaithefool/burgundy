@@ -4,6 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 import { Settings as LuxonSetting } from 'luxon';
 import Cookies from 'js-cookie';
+import startCase from 'lodash/startCase';
 
 import env from './env';
 
@@ -24,7 +25,8 @@ i18n
     lowerCaseLng: true,
     supportedLngs: env.lngs,
     fallbackLng: env.lngs[0],
-    ns: ['common'],
+    ns: ['common', 'glossary'],
+    fallbackNS: ['glossary'],
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
@@ -41,6 +43,26 @@ i18n.pickLng = (obj) => {
 i18n.on('languageChanged', (lng) => {
   setCookie(lng);
   LuxonSetting.defaultLocale = lng;
+});
+
+i18n.services.formatter.add('startcase', (v) => startCase(v));
+
+i18n.services.formatter.add('field', (value) => {
+  const { lngs, lngLabels } = env;
+  const [, path, lng] = value.match(
+    new RegExp(`(.*?)(?:\\.(${
+      lngs.join('|')
+    }))?$`),
+  );
+  let str = `$t(${path}, startcase)`;
+
+  if (lng) {
+    str = `${str} (${
+      lngLabels[lngs.indexOf(lng)]
+    })`;
+  }
+
+  return str;
 });
 
 export default i18n;

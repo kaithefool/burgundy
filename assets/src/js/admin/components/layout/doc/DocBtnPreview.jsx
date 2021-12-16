@@ -22,7 +22,7 @@ const DocBtnPreview = ({
       rel="noreferrer"
     >
       <FA icon={faEye} className="me-2" />
-      {t('fields.preview')}
+      {t('preview')}
     </a>
   );
 };

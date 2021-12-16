@@ -28,7 +28,7 @@ const FormBtnSubmit = ({
       disabled={!dirty || (onlyValid && !isValid) || isSubmitting}
       {...props}
     >
-      {children || t(saved ? 'res.saved' : 'fields.save')}
+      {children || t(saved ? 'res.saved' : 'save')}
     </BtnHttp>
   );
 };

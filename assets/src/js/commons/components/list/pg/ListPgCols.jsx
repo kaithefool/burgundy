@@ -44,7 +44,7 @@ const ListColsToggle = () => {
               htmlFor={`col-${c.key}`}
               className="form-check-label"
             >
-              {c.label || t(`fields.${c.key}`, startCase(c.key))}
+              {c.label || t(`${c.key}`, startCase(c.key))}
             </label>
           </div>
         </li>

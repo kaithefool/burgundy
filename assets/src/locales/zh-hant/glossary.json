@@ -1,0 +1,16 @@
+{
+  "presist": "保持登入",
+  "save": "儲存",
+  "email": "電郵",
+  "mobile": "手機號碼",
+  "importTmpl": "上載樣板",
+  "password": "密碼",
+  "active": "啟用",
+  "name": "姓名",
+  "role": "類型",
+  "updatedAt": "最後更新",
+  "lastLogin": "上次登錄",
+  "title": "標題",
+  "body": "內容",
+  "preview": "預覽"
+}
