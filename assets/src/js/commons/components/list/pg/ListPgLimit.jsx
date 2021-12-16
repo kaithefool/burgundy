@@ -25,7 +25,7 @@ const ListPagination = ({
     >
       {limits.map((l) => (
         <option value={l} key={l}>
-          {t('gen.perPage', { page: l })}
+          {t('perPage', { page: l })}
         </option>
       ))}
     </select>

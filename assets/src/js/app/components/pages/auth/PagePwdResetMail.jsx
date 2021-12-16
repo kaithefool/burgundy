@@ -29,27 +29,27 @@ const PagePwdResetMail = () => {
             navigate('sent');
           }}
         >
-          <h1>{t('pg.pwdResetMailTitle')}</h1>
+          <h1>{t('pg.pwdReset.mailTitle')}</h1>
           <p className="text-muted">
-            {t('pg.pwdResetMailSubTitle')}
+            {t('pg.pwdReset.mailSubTitle')}
           </p>
 
           <Form.Input
             name="email"
             label={null}
-            placeholder={t('pg.pwdResetMailEmail')}
+            placeholder={t('pg.pwdReset.mailEmail')}
           />
 
           <Form.BtnSubmit
             icon={faPaperPlane}
           >
-            {t('pg.pwdResetMailSubmit')}
+            {t('pg.pwdReset.mailSubmit')}
           </Form.BtnSubmit>
         </Form>
 
         <div className="mt-3">
           <Link to={resolvePath('..')}>
-            {t('pg.pwdResetMailBack')}
+            {t('pg.pwdReset.mailBack')}
           </Link>
         </div>
       </div>

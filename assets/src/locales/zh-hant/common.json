@@ -70,19 +70,8 @@
       "length": "{{path, field}} must have {{length}} items"
     }
   },
-  "auth": {
-    "title" : "登入",
-    "register": "新帳戶註冊",
-    "pwdRecovery": "忘記密碼?",
-    "submit": "登入"
-  },
   "sms": {
     "verify": "您的驗證碼是: {{verifyKey}}"
-  },
-  "gen": {
-    "perPage": "每頁{{page}}個",
-    "yes": "是",
-    "no": "否"
   },
   "nav": {
     "New": "新增",
@@ -95,18 +84,26 @@
     "Access Logs": "記錄"
   },
   "pg": {
-    "pwdResetMailTitle": "忘記密碼?",
-    "pwdResetMailSubTitle": "我們可以協助你重設密碼",
-    "pwdResetMailEmail": "首先請輸入你的帳號電郵地址...",
-    "pwdResetMailSubmit": "傳送重設密碼電郵",
-    "pwdResetMailBack": "重返登入頁",
-    "pwdResetMailSuccessTitle": "驗證電郵已發出",
-    "pwdResetMailSuccessSubTitle": "請按電郵中的指示驗證身分",
-    "pwdResetNoEmail": "沒有收到電郵通知?",
-    "pwdResetNoEmailLink": "重新發送",
-    "pwdResetSubmit": "重設密碼",
-    "pwdResetSuccessTitle": "成功",
-    "pwdResetSuccessSubTitle": "你已更改密碼",
-    "pwdResetSuccessLink": "重返登入頁"
+    "auth": {
+      "title" : "登入",
+      "register": "新帳戶註冊",
+      "pwdRecovery": "忘記密碼?",
+      "submit": "登入"
+    },
+    "pwdReset": {
+      "mailTitle": "忘記密碼?",
+      "mailSubTitle": "我們可以協助你重設密碼",
+      "mailEmail": "首先請輸入你的帳號電郵地址...",
+      "mailSubmit": "傳送重設密碼電郵",
+      "mailBack": "重返登入頁",
+      "mailSuccessTitle": "驗證電郵已發出",
+      "mailSuccessSubTitle": "請按電郵中的指示驗證身分",
+      "noEmail": "沒有收到電郵通知?",
+      "noEmailLink": "重新發送",
+      "submit": "重設密碼",
+      "successTitle": "成功",
+      "successSubTitle": "你已更改密碼",
+      "successLink": "重返登入頁"
+    }
   }
 }

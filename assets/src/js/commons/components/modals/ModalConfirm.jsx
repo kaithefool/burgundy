@@ -49,14 +49,14 @@ const ModalConfirm = ({
           onClick={() => { onConfirm(); onHide(); }}
           disabled={typeToConfirm && input !== confirmText}
         >
-          {t('gen.yes')}
+          {t('yes')}
         </button>
         <button
           className="btn btn-outline-primary"
           type="button"
           onClick={onHide}
         >
-          {t('gen.no')}
+          {t('no')}
         </button>
       </Modal.Footer>
     </Modal>

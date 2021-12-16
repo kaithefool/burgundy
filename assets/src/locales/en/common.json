@@ -1,5 +1,5 @@
 {
-  "field": "{{path, field, list(type:disjunction)}}",
+  "field": "{{path, field}}",
   "res": {
     "models": {
       "User": {
@@ -71,33 +71,30 @@
       "length": "{{path, field}} must have {{length}} items"
     }
   },
-  "auth": {
-    "title" : "Login",
-    "register": "Sign up",
-    "pwdRecovery": "Forgot password?",
-    "submit": "Login"
-  },
   "sms": {
     "verify": "Your verification code is: {{verifyKey}}"
   },
-  "gen": {
-    "perPage": "{{page}} / page",
-    "yes": "Yes",
-    "no": "No"
-  },
   "pg": {
-    "pwdResetMailTitle": "Forgot Password?",
-    "pwdResetMailSubTitle": "We can help you to reset the password.",
-    "pwdResetMailEmail": "First, please enter your account email...",
-    "pwdResetMailSubmit": "Send Reset Email",
-    "pwdResetMailBack": "Back to Login",
-    "pwdResetMailSuccessTitle": "Sent",
-    "pwdResetMailSuccessSubTitle": "Please check your inbox and follow the instruction",
-    "pwdResetNoEmail": "Didn't receive the email?",
-    "pwdResetNoEmailLink": "Resend",
-    "pwdResetSubmit": "Reset Password",
-    "pwdResetSuccessTitle": "Success",
-    "pwdResetSuccessSubTitle": "You have reset your password.",
-    "pwdResetSuccessLink": "Login again"
+    "auth": {
+      "title" : "Login",
+      "register": "Sign up",
+      "pwdRecovery": "Forgot password?",
+      "submit": "Login"
+    },
+    "pwdReset": {
+      "mailTitle": "Forgot Password?",
+      "mailSubTitle": "We can help you to reset the password.",
+      "mailEmail": "First, please enter your account email...",
+      "mailSubmit": "Send Reset Email",
+      "mailBack": "Back to Login",
+      "mailSuccessTitle": "Sent",
+      "mailSuccessSubTitle": "Please check your inbox and follow the instruction",
+      "noEmail": "Didn't receive the email?",
+      "noEmailLink": "Resend",
+      "submit": "Reset Password",
+      "successTitle": "Success",
+      "successSubTitle": "You have reset your password.",
+      "successLink": "Login again"
+    }
   }
 }

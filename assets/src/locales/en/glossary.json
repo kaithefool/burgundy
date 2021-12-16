@@ -1,4 +1,7 @@
 {
+  "perPage": "{{page}} / page",
+  "yes": "Yes",
+  "no": "No",
   "presist": "Remember me",
   "save": "Save",
   "passwordConfirm": "Confirm Password",

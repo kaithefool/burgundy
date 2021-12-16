@@ -30,12 +30,12 @@ const FormLogin = () => {
     >
       <div className="row align-items-end">
         <div className="col">
-          <h3>{t('auth.title')}</h3>
+          <h3>{t('pg.auth.title')}</h3>
         </div>
         <div className="col-auto">
           <h6>
             <Link to="/auth/register">
-              {t('auth.register')}
+              {t('pg.auth.register')}
             </Link>
           </h6>
         </div>
@@ -50,7 +50,7 @@ const FormLogin = () => {
         </div>
         <div className="col-auto">
           <Link to="/auth/pwd-recovery">
-            {t('auth.pwdRecovery')}
+            {t('pg.auth.pwdRecovery')}
           </Link>
         </div>
       </div>
@@ -59,7 +59,7 @@ const FormLogin = () => {
         icon={faUnlock}
         className="btn-primary btn-block"
       >
-        {t('auth.submit')}
+        {t('pg.auth.submit')}
       </Form.BtnSubmit>
     </Form>
   );

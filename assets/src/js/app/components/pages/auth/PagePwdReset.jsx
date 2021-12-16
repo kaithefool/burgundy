@@ -49,7 +49,7 @@ const PagePwdReset = () => {
             <Form.Input name="password" type="password" affirm />
             <Form.Input name="passwordConfirm" type="password" affirm />
             <Form.BtnSubmit>
-              {t('pg.pwdResetSubmit')}
+              {t('pg.pwdReset.submit')}
             </Form.BtnSubmit>
           </Form>
         </div>

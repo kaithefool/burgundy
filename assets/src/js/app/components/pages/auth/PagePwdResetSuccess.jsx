@@ -16,14 +16,14 @@ const PagePwdResetSuccess = () => {
         <div>
           <h2>
             <FA icon={faCheckCircle} className="me-3" />
-            {t('pg.pwdResetSuccessTitle')}
+            {t('pg.pwdReset.successTitle')}
           </h2>
           <p>
-            {t('pg.pwdResetSuccessSubTitle')}
+            {t('pg.pwdReset.successSubTitle')}
           </p>
           <p>
             <Link to={resolvePath('../..')}>
-              {t('pg.pwdResetSuccessLink')}
+              {t('pg.pwdReset.successLink')}
             </Link>
           </p>
         </div>

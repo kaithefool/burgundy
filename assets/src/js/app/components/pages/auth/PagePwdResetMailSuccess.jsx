@@ -16,16 +16,16 @@ const PagePwdResetMailSuccess = () => {
         <div>
           <h2>
             <FA icon={faEnvelope} className="me-3" />
-            {t('pg.pwdResetMailSuccessTitle')}
+            {t('pg.pwdReset.mailSuccessTitle')}
           </h2>
           <p>
-            {t('pg.pwdResetMailSuccessSubTitle')}
+            {t('pg.pwdReset.mailSuccessSubTitle')}
           </p>
           <p>
-            <strong>{t('pg.pwdResetNoEmail')}</strong>
+            <strong>{t('pg.pwdReset.noEmail')}</strong>
             <br />
             <Link to={resolvePath('..')}>
-              {t('pg.pwdResetNoEmailLink')}
+              {t('pg.pwdReset.noEmailLink')}
             </Link>
           </p>
         </div>
