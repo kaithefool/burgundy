@@ -27,11 +27,12 @@ const EmbedMap = ({
   const src = `${root}?${qs.stringify({
     key: env.googleApiKey,
     language: i18n.language,
+    ...props,
     q,
   })}`;
 
   return (
-    <div className={className} {...props}>
+    <div className={className}>
       <iframe
         title="map"
         src={src}
