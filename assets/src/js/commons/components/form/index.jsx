@@ -15,6 +15,7 @@ import FormFilsList from './FormFilsList';
 import FormFilsCoverImg from './FormFilsCoverImg';
 import FormEditor from './FormEditor';
 import FormPassword from './FormPassword';
+import FormMap from './FormMap';
 
 export {
   FormContext,
@@ -30,6 +31,7 @@ export {
   FormFilsCoverImg,
   FormEditor,
   FormPassword,
+  FormMap,
 };
 
 const Form = ({
@@ -50,5 +52,6 @@ Form.FilsList = FormFilsList;
 Form.FilsCoverImg = FormFilsCoverImg;
 Form.Editor = FormEditor;
 Form.Password = FormPassword;
+Form.Map = FormMap;
 
 export default Form;

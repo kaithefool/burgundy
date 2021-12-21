@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react';
-import debounce from 'lodash/debounce';
+import React, { useState } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 
 import useList from './useList';
+import useDebounce from '../../hooks/useDebounce';
 
 const ListSearch = ({
   opts,
@@ -18,7 +18,7 @@ const ListSearch = ({
       ? opts[0].value || opts[0]
       : null,
   );
-  const debouncedSearch = useCallback(debounce(
+  const debouncedSearch = useDebounce(
     (str, by) => {
       const { search: s, ...f } = filter;
 
@@ -28,7 +28,7 @@ const ListSearch = ({
       fetch({ filter: f });
     },
     deboucT,
-  ), []);
+  );
 
   return (
     <div className="input-group">

@@ -7,7 +7,7 @@ const {
   version: ver,
 } = require('../../package.json');
 
-const { LNG, LNG_LABEL } = process.env;
+const { LNG, LNG_LABEL, GOOGLE_API_KEY } = process.env;
 
 // authentication middleware
 routes.use(authByCookies);
@@ -19,6 +19,7 @@ routes.use(({ csrfToken }, res, next) => {
     csrf: csrfToken ? csrfToken() : null,
     lngs: LNG.split(','),
     lngLabels: LNG_LABEL.split(','),
+    googleApiKey: GOOGLE_API_KEY,
     meta: {
       title: 'Burgundy',
     },

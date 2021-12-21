@@ -17,6 +17,7 @@ const defaults = {
     ...a, [l]: '',
   }), {}),
   active: true,
+  address: '',
 };
 
 const schema = (doc) => object({
@@ -63,6 +64,10 @@ const PageClient = () => {
                 <Form.Check name="active" type="switch" />
                 <Form.Input name="email" />
                 <Form.Input name="password" type="password" />
+
+                <Form.Input name="address" />
+
+                <Form.Map name="address" />
               </Tab>
               <Tab eventKey="names" title="Names">
                 <div className="row">

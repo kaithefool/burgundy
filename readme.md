@@ -35,8 +35,6 @@ pm2 deploy [env]
 - i18n
     - Email templates
     - Reload server after new locale files
-    - Lang form fields
-    - yupjs errors
 - Import json & excel?
 - Admin panel responsive layout
 - ObjectId validator
