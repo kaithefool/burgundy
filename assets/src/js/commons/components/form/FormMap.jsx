@@ -1,39 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import debounce from 'lodash/debounce';
-import qs from 'qs';
+import React from 'react';
 import { useField } from 'formik';
 
-import env from '../../config/env';
-import useDebounce from '../../hooks/useDebounce';
-
-const root = 'https://www.google.com/maps/embed/v1/place';
+import EmbedMap from '../inputs/EmbedMap';
 
 const FormMap = ({
-  fieldClassName = 'form-control',
-  children,
-  wait = 1000,
+  name,
   ...props
 }) => {
-  const [{ value }] = useField(props.name);
-  const [src, setSrc] = useState('');
+  const [{ value }] = useField(name);
 
-  const update = useDebounce((q) => {
-    setSrc(`${root}?${qs.stringify({
-      key: env.googleApiKey,
-      q,
-    })}`);
-  }, wait);
-
-  useEffect(() => {
-    update(value);
-  }, [value]);
-
-  return (
-    <div className={fieldClassName}>
-      {/* <iframe src={src} frameBorder="0" title="map" /> */}
-      {src}
-    </div>
-  );
+  return <EmbedMap query={value} {...props} />;
 };
 
 export default FormMap;
