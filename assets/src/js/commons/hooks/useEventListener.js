@@ -1,25 +1,24 @@
-import { useCallback, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 export default function useEventListener(
   target,
   eventType,
   cb,
-  deps = [],
 ) {
-  const handler = useCallback(cb, [
-    Boolean(cb),
-    ...deps,
-  ]);
+  const func = useRef();
+  const handl = useRef(function handler(...args) {
+    func.current.apply(this, args);
+  });
+
+  // always update func in state changes
+  // so func can use state variables
+  func.current = cb;
 
   useEffect(() => {
-    if (handler) {
-      target.addEventListener(eventType, handler);
-    }
+    target.addEventListener(eventType, handl.current);
 
     return () => {
-      if (handler) {
-        target.removeEventListener(eventType, handler);
-      }
+      target.removeEventListener(eventType, handl.current);
     };
-  }, [handler]);
+  }, []);
 }
