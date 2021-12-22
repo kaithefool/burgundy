@@ -1,4 +1,5 @@
 import { DateTime as dt } from 'luxon';
+import truncate from 'lodash/truncate';
 
 export default {
   datetime: (v) => (
@@ -10,4 +11,5 @@ export default {
   fromNow: (v) => (
     v ? dt.fromISO(v).toRelative() : ''
   ),
+  truncate: (v) => truncate(v, { length: 25 }),
 };
