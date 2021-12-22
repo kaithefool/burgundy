@@ -38,6 +38,19 @@ module.exports = class Schema {
     };
   }
 
+  static geo(type = 'Point') {
+    return new m.Schema({
+      type: {
+        type: String,
+        default: type,
+      },
+      coordinates: {
+        type: type === 'Point' ? [Number] : [[Number]],
+        required: true,
+      },
+    });
+  }
+
   constructor(name, paths, {
     timestamps,
     uniques,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { object, string } from 'yup';
+import { object } from 'yup';
 import { Tabs, Tab } from 'react-bootstrap';
 
 import Page from '../layout/Page';
