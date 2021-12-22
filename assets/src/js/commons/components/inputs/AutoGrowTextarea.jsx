@@ -6,7 +6,21 @@ function pxToNum(px) {
   return parseFloat(px.replace('px', ''), 10);
 }
 
-const computeHeight = (el, maxRows) => {
+const rowsToHeight = (style, rows) => {
+  let h = rows * pxToNum(style.lineHeight);
+
+  h += pxToNum(style.paddingTop);
+  h += pxToNum(style.paddingBottom);
+  h += pxToNum(style.borderTopWidth);
+  h += pxToNum(style.borderBottomWidth);
+
+  return h;
+};
+
+const computeHeight = (el, {
+  maxRows,
+  minRows,
+} = {}) => {
   const style = window.getComputedStyle(el);
 
   // shrink el to get scroll height
@@ -18,24 +32,28 @@ const computeHeight = (el, maxRows) => {
   scrollHeight += 1;
 
   // scrollHeight doesn't include border by default
-  // compensate it when box-sizing = border-box;
-  scrollHeight += pxToNum(style.borderTopWidth);
-  scrollHeight += pxToNum(style.borderBottomWidth);
+  if (style.boxSizing === 'border-box') {
+    scrollHeight += pxToNum(style.borderTopWidth);
+    scrollHeight += pxToNum(style.borderBottomWidth);
+  }
 
-  if (!maxRows) return scrollHeight;
+  if (!maxRows && !minRows) return scrollHeight;
 
-  let h = maxRows * pxToNum(style.lineHeight);
+  let h = scrollHeight;
 
-  h += pxToNum(style.paddingTop);
-  h += pxToNum(style.paddingBottom);
-  h += pxToNum(style.borderTopWidth);
-  h += pxToNum(style.borderBottomWidth);
+  if (maxRows) {
+    h = Math.min(h, rowsToHeight(style, maxRows));
+  }
+  if (minRows) {
+    h = Math.max(h, rowsToHeight(style, minRows));
+  }
 
-  return Math.min(scrollHeight, h);
+  return h;
 };
 
 const AutoGrowTextarea = ({
   maxRows,
+  minRows = 2, // visually indicates it's a textarea
   styleProp = {},
   ...props
 }) => {
@@ -45,7 +63,10 @@ const AutoGrowTextarea = ({
     const el = elRef.current;
 
     el.style.height = `${
-      computeHeight(elRef.current, maxRows)
+      computeHeight(elRef.current, {
+        maxRows,
+        minRows,
+      })
     }px`;
   };
 
