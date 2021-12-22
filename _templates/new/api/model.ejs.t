@@ -5,4 +5,6 @@ const Model = require('../base/Model');
 
 module.exports = new Model('<%= n.singular.pascal %>', {
 
+}, {
+  timestamps: true,
 });
