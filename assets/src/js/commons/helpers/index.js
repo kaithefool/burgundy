@@ -2,8 +2,12 @@ import sanitize from 'sanitize-html';
 import mapValues from 'lodash/mapValues';
 import isPlainObject from 'lodash/isPlainObject';
 import meta from './meta';
+import env from '../config/env';
+import i18n from '../config/i18n';
 
-function recursiveMap(src, fn = (v) => v) {
+export { meta };
+
+export function recursiveMap(src, fn = (v) => v) {
   const t = (value, key) => {
     const val = fn(value, key);
 
@@ -19,7 +23,7 @@ function recursiveMap(src, fn = (v) => v) {
   return t(src);
 }
 
-function sanitizeHtml(html) {
+export function sanitizeHtml(html) {
   return sanitize(html, {
     allowedAttributes: {
       '*': ['style'],
@@ -38,7 +42,7 @@ function sanitizeHtml(html) {
   });
 }
 
-function resolvePath(...segments) {
+export function resolvePath(...segments) {
   const { origin, pathname } = window.location;
 
   let url = new URL(`${origin}${pathname.replace(/\/$/, '')}/`);
@@ -50,9 +54,26 @@ function resolvePath(...segments) {
   return url.pathname.replace(/\/$/, '');
 }
 
-export {
-  recursiveMap,
-  sanitizeHtml,
-  resolvePath,
-  meta,
-};
+export function reduceLng(value) {
+  return env.lngs.reduce((obj, l, i) => ({
+    ...obj,
+    [l]: typeof value === 'function'
+      ? value(l, env.lngLabels[i])
+      : value,
+  }), {});
+}
+
+export function mapLng(value) {
+  return env.lngs.map((l, i) => (
+    typeof value === 'function'
+      ? value(l, env.lngLabels[i])
+      : value
+  ));
+}
+
+export function pickLng(obj) {
+  const { language, languages } = i18n;
+  const lngs = [language, ...languages];
+
+  return obj[lngs.find((l) => obj[l])];
+}

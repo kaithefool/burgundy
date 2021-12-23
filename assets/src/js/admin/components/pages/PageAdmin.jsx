@@ -1,20 +1,18 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { object, string } from 'yup';
+import { object } from 'yup';
 
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
 import Form from '~/commons/components/form';
-import env from '~/commons/config/env';
 import { email, password } from '~/commons/validators';
+import { reduceLng, mapLng } from '~/commons/helpers';
 
 const defaults = {
   email: '',
   role: 'admin',
   password: '',
-  name: env.lngs.reduce((a, l) => ({
-    ...a, [l]: '',
-  }), {}),
+  name: reduceLng(''),
   active: true,
 };
 
@@ -57,7 +55,7 @@ const PageAdmin = () => {
             <Form.Input name="email" />
             <Form.Input name="password" type="password" />
             <div className="row">
-              {env.lngs.map((ln) => (
+              {mapLng((ln) => (
                 <div className="col" key={ln}>
                   <Form.Input name={`name.${ln}`} />
                 </div>

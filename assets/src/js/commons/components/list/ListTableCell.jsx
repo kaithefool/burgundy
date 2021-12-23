@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import get from 'lodash/get';
-import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 import formats from './formats';
+import { pickLng } from '../../helpers';
 
 const ListTableCell = ({
   row,
@@ -17,13 +17,12 @@ const ListTableCell = ({
   },
   rowLink,
 }) => {
-  const { i18n } = useTranslation();
   const value = get(row, key);
 
   let content = getter(value, row, format);
 
   if (typeof content === 'object') {
-    content = i18n.pickLng(content);
+    content = pickLng(content);
   }
   if (typeof content === 'boolean') {
     content = <FA icon={content ? faCheck : faTimes} fixedWidth />;

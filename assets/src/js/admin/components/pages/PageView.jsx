@@ -6,17 +6,13 @@ import Page from '../layout/Page';
 import Doc from '../layout/doc';
 import Form from '~/commons/components/form';
 import LngTabs from '../layout/LngTabs';
-import env from '../../../commons/config/env';
+import { reduceLng } from '~/commons/helpers';
 
 const defaults = {
   url: '',
   active: false,
-  title: env.lngs.reduce((a, l) => ({
-    ...a, [l]: '',
-  }), {}),
-  body: env.lngs.reduce((a, l) => ({
-    ...a, [l]: '',
-  }), {}),
+  title: reduceLng(''),
+  body: reduceLng(''),
 };
 
 const schema = () => object({

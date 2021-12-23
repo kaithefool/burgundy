@@ -6,16 +6,14 @@ import { Tabs, Tab } from 'react-bootstrap';
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
 import Form from '~/commons/components/form';
-import env from '~/commons/config/env';
 import { email, password } from '~/commons/validators';
+import { reduceLng, mapLng } from '~/commons/helpers';
 
 const defaults = {
   email: '',
   role: 'client',
   password: '',
-  name: env.lngs.reduce((a, l) => ({
-    ...a, [l]: '',
-  }), {}),
+  name: reduceLng(''),
   active: true,
 };
 
@@ -66,7 +64,7 @@ const PageClient = () => {
               </Tab>
               <Tab eventKey="names" title="Names">
                 <div className="row">
-                  {env.lngs.map((ln) => (
+                  {mapLng((ln) => (
                     <div className="col" key={ln}>
                       <Form.Input name={`name.${ln}`} />
                     </div>

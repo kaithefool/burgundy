@@ -2,22 +2,21 @@ import React from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 
 import env from '~/commons/config/env';
-
-const { lngs, lngLabels } = env;
+import { mapLng } from '~/commons/helpers';
 
 const LngTabs = ({
   children,
 }) => (
   <Tabs
-    defaultActiveKey={lngs[0]}
+    defaultActiveKey={env.lngs[0]}
     className="mb-4"
     unmountOnExit
   >
-    {lngs.map((lng, i) => (
+    {mapLng((lng, lngLabel) => (
       <Tab
         key={lng}
         eventKey={lng}
-        title={lngLabels[i]}
+        title={lngLabel}
       >
         {children(lng)}
       </Tab>

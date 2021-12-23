@@ -33,14 +33,6 @@ i18n
     },
   });
 
-// lang value picker
-i18n.pickLng = (obj) => {
-  const { language, languages } = i18n || {};
-  const lngs = [language, ...languages];
-
-  return obj[lngs.find((l) => obj[l])];
-};
-
 i18n.on('languageChanged', (lng) => {
   setCookie(lng);
   LuxonSetting.defaultLocale = lng;
