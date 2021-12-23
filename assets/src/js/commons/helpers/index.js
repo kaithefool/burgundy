@@ -3,7 +3,6 @@ import mapValues from 'lodash/mapValues';
 import isPlainObject from 'lodash/isPlainObject';
 import meta from './meta';
 import env from '../config/env';
-import i18n from '../config/i18n';
 
 export { meta };
 
@@ -69,13 +68,4 @@ export function mapLng(value) {
       ? value(l, env.lngLabels[i])
       : value
   ));
-}
-
-export function pickLng(obj) {
-  if (typeof obj !== 'object') return obj;
-
-  const { language, languages } = i18n;
-  const lngs = [language, ...languages];
-
-  return obj[lngs.find((l) => obj[l])];
 }

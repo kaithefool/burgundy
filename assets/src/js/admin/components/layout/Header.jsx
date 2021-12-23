@@ -12,7 +12,7 @@ const Header = ({
   breadcrumb: breadcrumbOpt,
   subsDir = true,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { parent, active } = useLinks();
   const exact = (useLinks(true).active);
 
@@ -30,7 +30,11 @@ const Header = ({
     )
     || [];
 
-  title = t(`nav.${title}`, title);
+  if (typeof title === 'object') {
+    title = i18n.pickLng(title);
+  } else {
+    title = t(`nav.${title}`, title);
+  }
 
   meta({ title });
 

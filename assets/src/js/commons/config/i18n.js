@@ -33,11 +33,23 @@ i18n
     },
   });
 
+// on language changed
 i18n.on('languageChanged', (lng) => {
   setCookie(lng);
   LuxonSetting.defaultLocale = lng;
 });
 
+// helper functions
+i18n.pickLng = (obj) => {
+  if (typeof obj !== 'object') return obj;
+
+  const { language, languages } = i18n;
+  const lngs = [language, ...languages];
+
+  return obj[lngs.find((l) => obj[l])];
+};
+
+// formats
 i18n.services.formatter.add('startcase', (v) => startCase(v));
 i18n.services.formatter.add('lowercase', (v) => lowerCase(v));
 
