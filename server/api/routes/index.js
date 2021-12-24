@@ -7,6 +7,7 @@ const auth = require('./auth');
 const files = require('./files');
 const users = require('./users');
 const assets = require('./assets');
+const consts = require('./consts');
 
 routes.use('/views', views);
 routes.use('/otps', otps);
@@ -15,5 +16,6 @@ routes.use('/auth', auth);
 routes.use('/files', files);
 routes.use('/users', users);
 routes.use('/assets', assets);
+routes.use('/consts', consts);
 
 module.exports = routes;
