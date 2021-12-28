@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import startCase from 'lodash/startCase';
 
 import FormInput from './FormInput';
 
@@ -13,7 +14,7 @@ const FormSelect = ({
     && children.every((c) => typeof c === 'string')
     ? children.map((o) => (
       <option key={o} value={o}>
-        {t(o, o)}
+        {t(o, startCase(o))}
       </option>
     )) : children;
 
