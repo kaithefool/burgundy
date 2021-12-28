@@ -9,7 +9,8 @@ const FormSelect = ({
 }) => {
   const { t } = useTranslation();
 
-  const c = Array.isArray(children)
+  const cc = Array.isArray(children)
+    && children.every((c) => typeof c === 'string')
     ? children.map((o) => (
       <option key={o} value={o}>
         {t(o, o)}
@@ -22,7 +23,7 @@ const FormSelect = ({
       fieldClassName="form-select"
       {...props}
     >
-      {c}
+      {cc}
     </FormInput>
   );
 };
