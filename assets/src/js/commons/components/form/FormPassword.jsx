@@ -20,7 +20,7 @@ const FormPassword = ({
       {({ invalid, valid, ...p }) => (
         <div
           className={`
-            input-group
+            input-group shared-border
             ${invalid ? 'is-invalid' : ''}
             ${valid ? 'is-valid' : ''}
         `}
@@ -36,10 +36,10 @@ const FormPassword = ({
           />
           <button
             type="button"
-            className="btn btn-pwd-visibility"
+            className="btn btn-input"
             onClick={() => setVisible(!visible)}
           >
-            <FA icon={visible ? faEyeSlash : faEye} />
+            <FA icon={visible ? faEyeSlash : faEye} fixedWidth />
           </button>
         </div>
       )}
