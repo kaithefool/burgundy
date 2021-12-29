@@ -2,28 +2,22 @@ import pick from 'lodash/pick';
 
 import { recursiveMap } from '../../helpers';
 
-const dateRegex = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/;
+export function initValues(defaults, stored = {}) {
+  // parse data into formik friendly format
+  const values = recursiveMap(
+    { ...defaults, ...stored },
+    (val) => {
+      // formik doesn't support numbers very well
+      if (typeof val === 'number') {
+        return val.toString();
+      }
+      // null
+      if (val === null) return '';
 
-export default {
-  initValues(defaults, stored = {}) {
-    // parse data into formik friendly format
-    const values = recursiveMap(
-      { ...defaults, ...stored },
-      (val) => {
-        // formik doesn't support numbers very well
-        if (typeof val === 'number') {
-          return val.toString();
-        }
-        // dates
-        if (typeof val === 'string' && val.match(dateRegex)) {
-          return new Date(val);
-        }
+      return val;
+    },
+  );
 
-        return val;
-      },
-    );
-
-    // only includes props the form uses
-    return pick(values, Object.keys(defaults));
-  },
-};
+  // only includes props the form uses
+  return pick(values, Object.keys(defaults));
+}

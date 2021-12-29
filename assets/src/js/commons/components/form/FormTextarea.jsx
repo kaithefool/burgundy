@@ -5,8 +5,6 @@ import FormField from './FormField';
 import AutoGrowTextarea from '../inputs/AutoGrowTextarea';
 
 const FormTextarea = ({
-  fieldClassName = 'form-control',
-  children,
   ...props
 }) => {
   const [field] = useField(props);
@@ -15,15 +13,11 @@ const FormTextarea = ({
     <FormField {...props}>
       {({ invalid, valid, ...p }) => (
         <AutoGrowTextarea
-          className={`
-            ${fieldClassName}
-            ${invalid ? 'is-invalid' : ''}
-            ${valid ? 'is-valid' : ''}
-          `}
-          {...{ ...field, ...p, children }}
+          {...{ ...field, ...p }}
         />
       )}
     </FormField>
   );
 };
+
 export default FormTextarea;

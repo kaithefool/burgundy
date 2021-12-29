@@ -8,10 +8,12 @@ const FormField = ({
   label,
   appendLabel = false,
   labelClassName = 'form-label',
+  fieldClassName = 'form-control',
   className = 'mb-3',
   helpText,
   affirm = false,
   children,
+  fieldOnly = false,
   ...props
 }) => {
   const { name } = props;
@@ -20,6 +22,27 @@ const FormField = ({
   const valid = affirm && touched && !error;
   const invalid = touched && error;
   const { t } = useTranslation();
+  let err = error;
+
+  // in case of nested field
+  if (err && (!err.path || !err.rule)) {
+    [err] = Object.values(err);
+  }
+
+  let fC = fieldClassName;
+
+  if (invalid) fC += ' is-invalid';
+  if (valid) fC += ' is-valid';
+
+  const c = children({
+    ...props,
+    id,
+    invalid,
+    valid,
+    className: fC,
+  });
+
+  if (fieldOnly) return c;
 
   const l = label !== null
     ? (
@@ -35,15 +58,13 @@ const FormField = ({
   return (
     <div className={className}>
       {l && !appendLabel && l}
-      {children({
-        ...props, id, invalid, valid,
-      })}
+      {c}
       {l && appendLabel && l}
       {valid && typeof affirm !== 'boolean' && (
         <div className="valid-feedback">{affirm}</div>
       )}
-      {error && touched && (
-        <div className="invalid-feedback">{t(error.rule, error)}</div>
+      {err && touched && (
+        <div className="invalid-feedback">{t(err.rule, err)}</div>
       )}
     </div>
   );

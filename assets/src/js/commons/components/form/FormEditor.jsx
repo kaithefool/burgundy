@@ -3,7 +3,7 @@ import React from 'react';
 import { useField } from 'formik';
 
 import FormField from './FormField';
-import Summernote from './Summernote';
+import Summernote from '../inputs/Summernote';
 
 const FormEditor = (props) => {
   const [, { value }, { setTouched, setValue }] = useField(props);

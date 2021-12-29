@@ -3,19 +3,22 @@ html {
   letter-spacing: .04rem;
 }
 
-.btn-input {
-  border-color: $input-border-color;
-  color: $input-color;
-}
 .input-group.shared-border {
+  .btn-input, .input-group-text {
+    border-color: $input-border-color;
+    color: $input-color;
+    background-color: $input-bg;
+  }
   :not(:first-child) {
     border-left: none;
   }
   :not(:last-child) {
     border-right: none;
   }
-  &.is-invalid .btn-input {
-    border-color: $form-feedback-invalid-color;
-    color: $form-feedback-invalid-color;
+  &.is-invalid {
+    .btn-input, .input-group-text {
+      border-color: $form-feedback-invalid-color;
+      color: $form-feedback-invalid-color;
+    }
   }
 }

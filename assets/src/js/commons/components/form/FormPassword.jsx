@@ -9,7 +9,6 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons/faEyeSlash';
 import FormField from './FormField';
 
 const FormPassword = ({
-  fieldClassName = 'form-control',
   children,
   ...props
 }) => {
@@ -26,11 +25,6 @@ const FormPassword = ({
         `}
         >
           <Field
-            className={`
-              ${fieldClassName}
-              ${invalid ? 'is-invalid' : ''}
-              ${valid ? 'is-valid' : ''}
-            `}
             {...{ ...p, children }}
             type={visible ? 'text' : 'password'}
           />

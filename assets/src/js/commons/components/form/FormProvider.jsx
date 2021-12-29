@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 
 import FormHttpContext from './FormContext';
-import helpers from './helpers';
+import { initValues } from './helpers';
 import useHttp from '../../hooks/useHttp';
 import FormAlerts from './FormAlerts';
 
@@ -41,7 +41,7 @@ const FormProvider = ({
     <FormHttpContext.Provider value={{ http }}>
       <Formik
         validationSchema={schema}
-        initialValues={helpers.initValues(defaults, stored)}
+        initialValues={initValues(defaults, stored)}
         onSubmit={submitHandler}
         {...props}
       >
