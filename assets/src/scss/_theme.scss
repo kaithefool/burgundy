@@ -3,7 +3,7 @@ html {
   letter-spacing: .04rem;
 }
 
-.input-group.shared-border {
+.input-group.input-group-input {
   .btn-input, .input-group-text {
     border-color: $input-border-color;
     color: $input-color;
@@ -17,8 +17,10 @@ html {
   }
   &.is-invalid {
     .btn-input, .input-group-text {
-      border-color: $form-feedback-invalid-color;
       color: $form-feedback-invalid-color;
+    }
+    .btn-input, .input-group-text, .form-control {
+      border-color: $form-feedback-invalid-color;
     }
   }
 }

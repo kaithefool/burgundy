@@ -6,7 +6,7 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons/faEye';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons/faEyeSlash';
 
-import FormField from './FormField';
+import FormInputGroup from './FormInputGroup';
 
 const FormPassword = ({
   children,
@@ -15,15 +15,9 @@ const FormPassword = ({
   const [visible, setVisible] = useState(false);
 
   return (
-    <FormField {...props}>
-      {({ invalid, valid, ...p }) => (
-        <div
-          className={`
-            input-group shared-border
-            ${invalid ? 'is-invalid' : ''}
-            ${valid ? 'is-valid' : ''}
-        `}
-        >
+    <FormInputGroup {...props}>
+      {(p) => (
+        <>
           <Field
             {...{ ...p, children }}
             type={visible ? 'text' : 'password'}
@@ -35,9 +29,9 @@ const FormPassword = ({
           >
             <FA icon={visible ? faEyeSlash : faEye} fixedWidth />
           </button>
-        </div>
+        </>
       )}
-    </FormField>
+    </FormInputGroup>
   );
 };
 

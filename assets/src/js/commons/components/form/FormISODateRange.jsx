@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useField } from 'formik';
 import { DateTime as dt } from 'luxon';
 
-import FormField from './FormField';
+import FormInputGroup from './FormInputGroup';
 import FormISODate from './FormISODate';
 
 const FormISODateRange = ({
@@ -29,15 +29,9 @@ const FormISODateRange = ({
   }, [value.from]);
 
   return (
-    <FormField {...props}>
-      {({ invalid, valid, ...p }) => (
-        <div
-          className={`
-            input-group shared-border
-            ${invalid ? 'is-invalid' : ''}
-            ${valid ? 'is-valid' : ''}
-        `}
-        >
+    <FormInputGroup {...props}>
+      {(p) => (
+        <>
           <FormISODate
             {...p}
             name={`${name}.from`}
@@ -49,12 +43,12 @@ const FormISODateRange = ({
           <FormISODate
             {...p}
             name={`${name}.to`}
-            min={from > min ? from : min}
+            min={from > min || !min ? from : min}
             fieldOnly
           />
-        </div>
+        </>
       )}
-    </FormField>
+    </FormInputGroup>
   );
 };
 
