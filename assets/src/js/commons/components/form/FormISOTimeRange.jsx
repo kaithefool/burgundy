@@ -3,9 +3,9 @@ import { useField } from 'formik';
 import { DateTime as dt } from 'luxon';
 
 import FormInputGroup from './FormInputGroup';
-import FormISODate from './FormISODate';
+import FormISOTime from './FormISOTime';
 
-const FormISODateRange = ({
+const FormISOTimeRange = ({
   ...props
 }) => {
   const { name } = props;
@@ -24,7 +24,7 @@ const FormISODateRange = ({
   // make sure "to" always later than "from"
   useEffect(() => {
     if (from && to && from > to) {
-      setTo(from.endOf('day').toISO());
+      setTo(from.toISOTime());
     }
   }, [value.from]);
 
@@ -32,7 +32,7 @@ const FormISODateRange = ({
     <FormInputGroup {...props}>
       {(p) => (
         <>
-          <FormISODate
+          <FormISOTime
             {...p}
             name={`${name}.from`}
             fieldOnly
@@ -40,11 +40,10 @@ const FormISODateRange = ({
           <span className="input-group-text">
             —
           </span>
-          <FormISODate
+          <FormISOTime
             {...p}
             name={`${name}.to`}
             min={from > min || !min ? from : min}
-            endOf="day"
             fieldOnly
           />
         </>
@@ -53,4 +52,4 @@ const FormISODateRange = ({
   );
 };
 
-export default FormISODateRange;
+export default FormISOTimeRange;

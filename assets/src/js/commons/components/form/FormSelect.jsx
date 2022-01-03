@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import startCase from 'lodash/startCase';
+import capitalize from 'lodash/capitalize';
 
 import FormInput from './FormInput';
 
@@ -10,13 +10,27 @@ const FormSelect = ({
 }) => {
   const { t } = useTranslation();
 
-  const cc = Array.isArray(children)
-    && children.every((c) => typeof c === 'string')
-    ? children.map((o) => (
-      <option key={o} value={o}>
-        {t(o, startCase(o))}
-      </option>
-    )) : children;
+  let cc = children;
+
+  if (Array.isArray(cc)) {
+    if (cc.every((c) => typeof c === 'string')) {
+      cc = cc.map((o) => (
+        <option key={o} value={o}>
+          {t(o, capitalize(o))}
+        </option>
+      ));
+    } else if (cc.every((c) => c.value !== undefined)) {
+      cc = cc.map((o) => {
+        const l = o.label || o.value;
+
+        return (
+          <option key={o.value} value={o.value}>
+            {t(l, l)}
+          </option>
+        );
+      });
+    }
+  }
 
   return (
     <FormInput

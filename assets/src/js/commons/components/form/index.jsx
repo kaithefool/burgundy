@@ -19,6 +19,8 @@ import FormMap from './FormMap';
 import FormTextarea from './FormTextarea';
 import FormISODateRange from './FormISODateRange';
 import FormISODate from './FormISODate';
+import FormISOTimeRange from './FormISOTimeRange';
+import FormISOTime from './FormISOTime';
 
 export {
   FormContext,
@@ -38,6 +40,8 @@ export {
   FormTextarea,
   FormISODateRange,
   FormISODate,
+  FormISOTimeRange,
+  FormISOTime,
 };
 
 const Form = ({
@@ -62,5 +66,7 @@ Form.Map = FormMap;
 Form.Textarea = FormTextarea;
 Form.ISODateRange = FormISODateRange;
 Form.ISODate = FormISODate;
+Form.ISOTimeRange = FormISOTimeRange;
+Form.ISOTime = FormISOTime;
 
 export default Form;

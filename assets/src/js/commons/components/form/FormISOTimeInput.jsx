@@ -4,23 +4,21 @@ import { useField } from 'formik';
 
 import FormField from './FormField';
 
-const FormISODate = ({
-  startOf,
-  endOf,
+const FormISOTimeInput = ({
+  name,
   zone,
   ...props
 }) => {
-  const { name } = props;
   const [
     field, { value }, { setValue },
   ] = useField(name);
   let { min, max } = props;
 
   if (min && min instanceof dt) {
-    min = min.toISODate();
+    min = min.toFormat('HH:mm');
   }
   if (max && max instanceof dt) {
-    max = max.toISODate();
+    max = max.toFormat('HH:mm');
   }
 
   return (
@@ -30,22 +28,19 @@ const FormISODate = ({
           {...{
             ...field, ...p, min, max,
           }}
-          type="date"
+          type="time"
           onChange={(evt) => {
             const { value: v } = evt.target;
 
             if (!v) setValue('');
 
-            let d = dt.fromISO(v, { zone });
+            const d = dt.fromISO(v, { zone });
 
-            if (startOf) d = d.startOf(startOf);
-            if (endOf) d = d.endOf(endOf);
-
-            setValue(d.toISO());
+            setValue(d.toISOTime());
           }}
           value={
             value
-              ? dt.fromISO(value, { zone }).toISODate()
+              ? dt.fromISO(value, { zone }).toFormat('HH:mm')
               : ''
             }
         />
@@ -54,4 +49,4 @@ const FormISODate = ({
   );
 };
 
-export default FormISODate;
+export default FormISOTimeInput;
