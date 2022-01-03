@@ -8,6 +8,7 @@ const DocProvider = ({
   _id,
   singleton = false,
   children,
+  resources = [],
 }) => {
   const http = useHttp();
   const value = {
@@ -16,21 +17,26 @@ const DocProvider = ({
     singleton,
     doc: http?.res?.payload,
   };
+  const requests = [...resources];
+
+  if (_id !== 'new') {
+    requests.push({
+      ...api,
+      url: singleton
+        ? api.url
+        : `${api.url}/${_id}`,
+    });
+  }
 
   useEffect(() => {
-    if (_id !== 'new') {
-      http.req({
-        ...api,
-        url: singleton
-          ? api.url
-          : `${api.url}/${_id}`,
-      });
+    if (requests.length) {
+      http.req(resources.length ? requests : requests[0]);
     }
   }, [_id]);
 
   return (
     <DocContext.Provider value={value}>
-      {_id === 'new' ? (
+      {!requests.length ? (
         children()
       ) : (
         <Fetchable res={http.res}>
