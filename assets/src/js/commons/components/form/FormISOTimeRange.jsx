@@ -43,7 +43,7 @@ const FormISOTimeRange = ({
           <FormISOTime
             {...p}
             name={`${name}.to`}
-            min={from > min || !min ? from : min}
+            min={(from > min || !min ? from : min) || undefined}
             fieldOnly
           />
         </>

@@ -81,7 +81,8 @@
     "Clients": "客戶",
     "Settings": "設定",
     "Views": "頁面",
-    "Access Logs": "記錄"
+    "Access Logs": "記錄",
+    "General": "一般"
   },
   "pg": {
     "auth": {

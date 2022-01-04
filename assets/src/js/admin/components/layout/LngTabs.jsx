@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tabs, Tab } from 'react-bootstrap';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 import env from '~/commons/config/env';
 import { mapLng } from '~/commons/helpers';

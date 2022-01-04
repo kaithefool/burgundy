@@ -3,18 +3,19 @@ import FormField from './FormField';
 
 const FormInputGroup = ({
   children,
+  inputGroupClassName = 'input-group-input',
   ...props
 }) => (
   <FormField {...props}>
     {(p) => (
       <div
         className={`
-            input-group input-group-input
+            input-group ${inputGroupClassName}
             ${p.invalid ? 'is-invalid' : ''}
             ${p.valid ? 'is-valid' : ''}
         `}
       >
-        {children(p)}
+        {typeof children === 'function' ? children(p) : children}
       </div>
     )}
   </FormField>
