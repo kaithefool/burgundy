@@ -8,7 +8,6 @@ import DocBtnDel from './DocBtnDel';
 import DocUpdatedAt from './DocUpdatedAt';
 import DocBtnPreview from './DocBtnPreview';
 
-
 const Doc = (props) => <DocProvider {...props} />;
 
 export {

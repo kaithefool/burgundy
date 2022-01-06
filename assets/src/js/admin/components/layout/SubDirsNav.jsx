@@ -2,15 +2,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import useLinks from './useLinks';
+import useActiveLink from './useActiveLink';
 
 const SubDirsNav = ({
   className = 'p-4 py-3',
 }) => {
   const { t } = useTranslation();
-  const { parent } = useLinks(true);
+  const { parent, exact } = useActiveLink();
 
-  if (!parent?.links) return '';
+  if (!exact || !parent?.links) return '';
 
   const { subDirLabel: parentLabel = parent.label } = parent;
 

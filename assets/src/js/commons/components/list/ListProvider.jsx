@@ -62,6 +62,10 @@ const ListProvider = ({
   });
 
   useEffect(() => {
+    showCols(cols.filter((c) => !c.hide));
+  }, [useComparable(cols)]);
+
+  useEffect(() => {
     refresh();
   }, [useComparable({ baseFilter, api })]);
 

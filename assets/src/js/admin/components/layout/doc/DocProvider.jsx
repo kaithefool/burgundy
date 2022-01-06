@@ -15,7 +15,9 @@ const DocProvider = ({
     api,
     _id,
     singleton,
-    doc: http?.res?.payload,
+    doc: resources.length
+      ? http?.res?.payload?.[resources.length]
+      : http?.res?.payload,
   };
   const requests = [...resources];
 

@@ -41,7 +41,7 @@ i18n.on('languageChanged', (lng) => {
 
 // helper functions
 i18n.pickLng = (obj) => {
-  if (typeof obj !== 'object') return obj;
+  if (!obj || typeof obj !== 'object') return obj;
 
   const { language, languages } = i18n;
   const lngs = [language, ...languages];

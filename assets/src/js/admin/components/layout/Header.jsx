@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import capitalize from 'lodash/capitalize';
 
 import SubDirsNav from './SubDirsNav';
 import BtnLng from '~/commons/components/btns/BtnLng';
 import { resolvePath, meta } from '~/commons/helpers';
-import useLinks from './useLinks';
+import useActiveLink from './useActiveLink';
 
 const Header = ({
   title: titleOpt,
@@ -13,8 +14,9 @@ const Header = ({
   subsDir = true,
 }) => {
   const { t, i18n } = useTranslation();
-  const { parent, active } = useLinks();
-  const exact = (useLinks(true).active);
+  const {
+    parent, active, exact, residue,
+  } = useActiveLink();
 
   let title = titleOpt
     || (parent || active)?.label
@@ -23,12 +25,18 @@ const Header = ({
     || (
       !exact && [
         ...(parent.to !== active.to ? [
-          { to: parent.to, children: parent.label },
+          { to: parent.to, label: parent.label },
         ] : []),
-        { to: active.to, children: active.label },
+        { to: active.to, label: active.label },
+        ...residue.slice(0, -1).map(((p, i) => ({
+          to: Array.from(
+            { length: residue.length - 1 - i },
+            () => '..',
+          ).join('/'),
+          label: capitalize(p),
+        }))),
       ]
-    )
-    || [];
+    );
 
   if (typeof title === 'object') {
     title = i18n.pickLng(title);
@@ -45,10 +53,10 @@ const Header = ({
           <div className="col">
             {breadcrumb?.length > 0 && (
               <div className="small mb-2">
-                {breadcrumb.map(({ children, to, ...b }, i) => (
+                {breadcrumb.map(({ label, to, ...b }, i) => (
                   <span key={i}>
                     <Link {...b} to={resolvePath(to)}>
-                      {t(`nav.${children}`, children)}
+                      {t(`nav.${label}`, label)}
                     </Link>
                     &nbsp;/&nbsp;
                   </span>

@@ -17,7 +17,7 @@ const ListTableCell = ({
   },
   rowLink,
 }) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const value = get(row, key);
   let content = getter(value, row, format);
 
@@ -30,6 +30,8 @@ const ListTableCell = ({
   if (typeof content === 'boolean') {
     content = <FA icon={content ? faCheck : faTimes} fixedWidth />;
   }
+
+  content = t(content, content);
 
   if (rowLink) {
     const to = typeof rowLink === 'function' ? rowLink(row) : rowLink;

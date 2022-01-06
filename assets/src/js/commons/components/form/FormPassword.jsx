@@ -16,7 +16,7 @@ const FormPassword = ({
 
   return (
     <FormInputGroup {...props}>
-      {(p) => (
+      {({ valid, invalid, ...p }) => (
         <>
           <Field
             {...{ ...p, children }}

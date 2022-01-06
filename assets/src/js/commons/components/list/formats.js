@@ -8,6 +8,9 @@ export default {
   date: (v) => (
     v ? dt.fromISO(v).toLocaleString(dt.DATE_MED) : ''
   ),
+  time: (v) => (
+    v ? dt.fromISO(v).toLocaleString(dt.TIME_SIMPLE) : ''
+  ),
   fromNow: (v) => (
     v ? dt.fromISO(v).toRelative() : ''
   ),
