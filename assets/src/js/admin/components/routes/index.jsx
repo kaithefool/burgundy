@@ -11,7 +11,6 @@ import PageAdmin from '../pages/PageAdmin';
 import PageUsers from '../pages/PageUsers';
 import Error from '~/commons/components/util/Error';
 
-
 const AppRoutes = () => (
   <Routes>
     <Route
@@ -26,7 +25,7 @@ const AppRoutes = () => (
     <Route path="users/admins" element={<PageAdmins />} />
     <Route path="users/admins/:_id" element={<PageAdmin />} />
     <Route path="users/clients" element={<PageClients />} />
-    <Route path="users/clients/:_id" element={<PageClient />} />
+    <Route path="users/clients/:_id/*" element={<PageClient />} />
 
     {/* homepage and not found page */}
     <Route path="/" element={<Navigate to="/admin/users" replace />} />

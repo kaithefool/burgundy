@@ -1,11 +1,54 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import startCase from 'lodash/startCase';
+import { useTranslation } from 'react-i18next';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import TabContainer from 'react-bootstrap/TabContainer';
-import TabContent from 'react-bootstrap/TabContent';
+import BTabs from 'react-bootstrap/Tabs';
+import BTab from 'react-bootstrap/Tab';
 
-const Tabs = (props) => {
+const Tabs = ({
+  children,
+  defaultActiveKey,
+  route = false,
+  ...props
+}) => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const defaultKey = defaultActiveKey
+    || children[0]?.props?.eventKey;
+  const [activeState, setActiveState] = useState(defaultKey);
+  let { '*': activePath } = useParams();
 
+  if (!activePath) activePath = defaultKey;
+
+  return (
+    <BTabs
+      className="mb-4"
+      unmountOnExit
+      activeKey={route ? activePath : activeState}
+      onSelect={(k) => {
+        if (route) {
+          navigate(k === defaultKey ? '' : k, { replace: true });
+        } else {
+          setActiveState(k);
+        }
+      }}
+      {...props}
+    >
+      {children.map((child) => {
+        const childProps = { ...child.props };
+        const { eventKey } = childProps;
+
+        if (!childProps.title) {
+          const title = startCase(eventKey);
+
+          childProps.title = t(`nav.${title}`, title);
+        }
+
+        return <BTab key={eventKey} {...childProps} />;
+      })}
+    </BTabs>
+  );
 };
 
 export default Tabs;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { object } from 'yup';
-import { Tabs, Tab } from 'react-bootstrap';
 
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
 import Form from '~/commons/components/form';
+import { Tabs, Tab } from '~/commons/components/layout/tabs';
 import { email, password } from '~/commons/validators';
 import { reduceLng, mapLng } from '~/commons/helpers';
 
@@ -52,17 +52,13 @@ const PageClient = () => {
               </div>
             </div>
 
-            <Tabs
-              defaultActiveKey="essentials"
-              className="mb-4"
-              unmountOnExit
-            >
-              <Tab eventKey="essentials" title="Essentials">
+            <Tabs route>
+              <Tab eventKey="essentials">
                 <Form.Check name="active" type="switch" />
                 <Form.Input name="email" />
                 <Form.Input name="password" type="password" />
               </Tab>
-              <Tab eventKey="names" title="Names">
+              <Tab eventKey="names">
                 <div className="row">
                   {mapLng((ln) => (
                     <div className="col" key={ln}>
