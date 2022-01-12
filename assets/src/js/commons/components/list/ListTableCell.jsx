@@ -30,8 +30,9 @@ const ListTableCell = ({
   if (typeof content === 'boolean') {
     content = <FA icon={content ? faCheck : faTimes} fixedWidth />;
   }
-
-  content = t(content, content);
+  if (typeof content === 'string') {
+    content = t(content, content);
+  }
 
   if (rowLink) {
     const to = typeof rowLink === 'function' ? rowLink(row) : rowLink;

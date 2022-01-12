@@ -21,8 +21,6 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
-- Tabs and sections
-    - hash history
 - List
     - status
 - File Uploads

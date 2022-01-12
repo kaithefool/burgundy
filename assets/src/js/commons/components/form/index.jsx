@@ -22,6 +22,7 @@ import FormISODate from './FormISODate';
 import FormISOTimeRange from './FormISOTimeRange';
 import FormISOTime from './FormISOTime';
 import FormInputGroup from './FormInputGroup';
+import FormCoordinates from './FormCoordinates';
 
 export {
   FormContext,
@@ -44,6 +45,7 @@ export {
   FormISOTimeRange,
   FormISOTime,
   FormInputGroup,
+  FormCoordinates,
 };
 
 const Form = ({
@@ -71,5 +73,6 @@ Form.ISODate = FormISODate;
 Form.ISOTimeRange = FormISOTimeRange;
 Form.ISOTime = FormISOTime;
 Form.InputGroup = FormInputGroup;
+Form.Coordinates = FormCoordinates;
 
 export default Form;

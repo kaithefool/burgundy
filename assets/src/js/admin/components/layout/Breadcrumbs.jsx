@@ -8,14 +8,14 @@ import { resolvePath } from '~/commons/helpers';
 
 const Breadcrumbs = (props) => {
   const { className, residue: includeResidue = false } = props;
-  let { paths } = props;
+  let { paths = [] } = props;
 
   const { t } = useTranslation();
   const {
     parent, active, exact, residue,
   } = useActiveLink();
 
-  if (!paths && !exact) {
+  if (!paths.length && !exact) {
     // active
     paths = [
       { to: active.to, label: active.label },
@@ -42,7 +42,7 @@ const Breadcrumbs = (props) => {
     }
   }
 
-  if (paths?.length <= 0) return '';
+  if (paths.length <= 0) return '';
 
   return (
     <div className={className}>
