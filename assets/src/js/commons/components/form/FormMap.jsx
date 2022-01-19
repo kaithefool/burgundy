@@ -9,7 +9,16 @@ const FormMap = ({
 }) => {
   const [{ value }] = useField(name);
 
-  return <EmbedMap query={value} {...props} />;
+  const q = Array.isArray(value)
+    ? value?.length && value.join(',')
+    : value;
+
+  return (
+    <EmbedMap
+      {...props}
+      q={q}
+    />
+  );
 };
 
 export default FormMap;

@@ -16,7 +16,7 @@ class User extends Model {
       role: {
         type: String,
         enum: ['admin', 'client'],
-        default: 'client',
+        required: true,
       },
 
       // additional
@@ -24,6 +24,8 @@ class User extends Model {
         type: Schema.lng(String),
         default: undefined,
       },
+      address: String,
+      location: Schema.geo(),
 
       // extends
       ...paths,

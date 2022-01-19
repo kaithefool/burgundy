@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import qs from 'qs';
 import { useTranslation } from 'react-i18next';
 
 import env from '../../config/env';
-import useDebounce from '../../hooks/useDebounce';
 
-const root = 'https://www.google.com/maps/embed/v1/place';
+const root = 'https://www.google.com/maps/embed/v1';
 
 const EmbedMap = ({
   className = 'rounded ratio ratio-21x9 max-vh-50 overflow-hidden',
-  debounce: [wait = 1000, opts] = [],
-  query,
+  type = 'place',
+  q,
   ...props
 }) => {
-  const { i18n } = useTranslation();
-  const [q, setQ] = useState('');
+  const { i18n: { language } } = useTranslation();
+  const src = useMemo(() => {
+    if (!q) return null;
 
-  const update = useDebounce(setQ, wait, opts);
+    return `${root}/${type}?${qs.stringify({
+      key: env.googleApiKey,
+      language,
+      ...props,
+      q,
+    })}`;
+  }, [q, type, language]);
 
-  useEffect(() => {
-    update(query);
-  }, [query]);
-
-  if (!q) return '';
-
-  const src = `${root}?${qs.stringify({
-    key: env.googleApiKey,
-    language: i18n.language,
-    ...props,
-    q,
-  })}`;
+  if (!src) return '';
 
   return (
     <div className={className}>

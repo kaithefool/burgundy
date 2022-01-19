@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { object } from 'yup';
+import { object, string } from 'yup';
 
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
@@ -15,11 +15,15 @@ const defaults = {
   password: '',
   name: reduceLng(''),
   active: true,
+  address: '',
+  location: undefined,
 };
 
 const schema = (doc) => object({
   email: email().email().required(),
   password: doc ? password() : password().required(),
+
+  address: string().required(),
 });
 
 const PageClient = () => {
@@ -57,6 +61,11 @@ const PageClient = () => {
                 <Form.Check name="active" type="switch" />
                 <Form.Input name="email" />
                 <Form.Input name="password" type="password" />
+                <Form.Input name="address" />
+                <Form.Coordinates
+                  name="location.coordinates"
+                  address="address"
+                />
               </Tab>
               <Tab eventKey="names">
                 <div className="row">

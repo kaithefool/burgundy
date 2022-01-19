@@ -1,28 +1,59 @@
 /* global google */
 
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useField } from 'formik';
-import useDebounce from '../../hooks/useDebounce';
 
-const geocoder = google ? new google.maps.Geocoder() : undefined;
+import useDebounce from '../../hooks/useDebounce';
+import useDidUpdate from '../../hooks/useDidUpdate';
+import FormMap from './FormMap';
+
+const geocoder = typeof google !== 'undefined'
+  ? new google.maps.Geocoder() : undefined;
 
 const FormCoordinates = ({
   address: addressField,
   name,
   debounce: [wait = 1000, opts] = [],
+  map = true,
 }) => {
   const [{ value: address }] = useField(addressField);
-  const [{ value }] = useField(name);
+  const [,, { setValue }] = useField(name);
+  const addressRef = useRef(address);
 
-  const update = useDebounce(async (a) => {
-    geocoder.geocode({ address: a });
+  const geocode = useDebounce(async (a) => {
+    try {
+      const {
+        results: [{
+          geometry: { location: l },
+        }],
+      } = await geocoder.geocode({ address: a });
+
+      // make sure address hasn't been changed
+      if (a !== addressRef.current) return;
+
+      setValue([l.lat(), l.lng()]);
+    } catch (err) {
+      if (err.code === 'ZERO_RESULTS') {
+        // TODO: handle invalid address error
+      } else {
+        throw err;
+      }
+    }
   }, wait, opts);
 
-  useEffect(() => {
-
+  useDidUpdate(() => {
+    addressRef.current = address;
+    setValue(undefined);
+    if (address) {
+      geocode(address);
+    }
   }, [address]);
 
-  return <input type="hidden" name={name} value={value} />;
+  if (!map) return '';
+
+  return (
+    <FormMap {...map} name={name} />
+  );
 };
 
 export default FormCoordinates;
