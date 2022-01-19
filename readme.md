@@ -41,4 +41,3 @@ pm2 deploy [env]
 - Admin panel responsive layout
 - ObjectId validator
 - Room for socket.io?
-- Use _id to keep sorting consistency

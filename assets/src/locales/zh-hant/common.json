@@ -22,7 +22,8 @@
     "invalidCsv": "CSV格式不正確",
     "disconnected": "無法連接到伺服器/網絡",
     "timeout": "連接超時",
-    "goBack": "回到主頁"
+    "goBack": "回到主頁",
+    "noRecord": "沒有找到記錄"
   },
   "yup": {
     "mixed": {

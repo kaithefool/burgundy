@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import useList from './useList';
 import Pending from '../util/Pending';
@@ -6,20 +7,23 @@ import Error from '../util/Error';
 
 const ListStatus = ({
   children,
-  empty = 'No record found',
+  empty,
+  className = 'position-relative',
   ...props
 }) => {
   const { res, rows } = useList();
+  const { t } = useTranslation();
+  const emptyLabel = empty ?? t('res.noRecord');
 
   return (
-    <div {...props}>
+    <div {...props} className={className}>
       {res.status === 'pending' && (
         <Pending />
       )}
       {res.status === 'error' && (
         <Error res={res} />
       )}
-      {rows.length ? children : empty}
+      {rows.length ? children : emptyLabel}
     </div>
   );
 };

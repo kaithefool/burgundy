@@ -23,7 +23,8 @@
     "invalidCsv": "Invalid CSV format",
     "disconnected": "Cannot connect to server/network",
     "timeout": "Connection timed out",
-    "goBack": "Go Home"
+    "goBack": "Go Home",
+    "noRecord": "No record found"
   },
   "yup": {
     "mixed": {
