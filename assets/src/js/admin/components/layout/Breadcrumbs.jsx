@@ -1,19 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import capitalize from 'lodash/capitalize';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import useActiveLink from './useActiveLink';
 import { resolvePath } from '~/commons/helpers';
 
 const Breadcrumbs = (props) => {
-  const { className, residue: includeResidue = false } = props;
+  const { className, residue: includeResidue = true } = props;
   let { paths = [] } = props;
 
   const { t } = useTranslation();
   const {
     parent, active, exact, residue,
   } = useActiveLink();
+  const { tab } = useParams();
 
   if (!paths.length && !exact) {
     // active
@@ -30,7 +31,7 @@ const Breadcrumbs = (props) => {
     if (includeResidue) {
       paths.push(
         ...residue
-          .slice(0, -1)
+          .slice(0, tab && residue.slice(-1)[0] === tab ? -2 : -1)
           .map((p, i) => ({
             to: Array.from(
               { length: residue.length - 1 - i },

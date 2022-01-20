@@ -5,6 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import BTabs from 'react-bootstrap/Tabs';
 import BTab from 'react-bootstrap/Tab';
+import { resolvePath } from '../../../helpers';
 
 const Tabs = ({
   children,
@@ -17,20 +18,26 @@ const Tabs = ({
   const defaultKey = defaultActiveKey
     || children[0]?.props?.eventKey;
   const [activeState, setActiveState] = useState(defaultKey);
-  let { '*': activePath } = useParams();
+  let { tab: activePath } = useParams();
 
   if (!activePath) activePath = defaultKey;
+
+  const activeKey = route ? activePath : activeState;
 
   return (
     <BTabs
       className="mb-4"
       unmountOnExit
-      activeKey={route ? activePath : activeState}
+      activeKey={activeKey}
       onSelect={(k) => {
-        if (route) {
-          navigate(k === defaultKey ? '' : k, { replace: true });
-        } else {
-          setActiveState(k);
+        if (k !== activeKey) {
+          if (route) {
+            const to = resolvePath(k === defaultKey ? '../' : k);
+
+            navigate(to, { replace: true });
+          } else {
+            setActiveState(k);
+          }
         }
       }}
       {...props}
