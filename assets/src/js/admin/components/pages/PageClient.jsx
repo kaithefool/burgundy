@@ -17,6 +17,8 @@ const defaults = {
   active: true,
   address: '',
   location: undefined,
+  files: [],
+  contacts: [],
 };
 
 const schema = (doc) => object({
@@ -65,6 +67,18 @@ const PageClient = () => {
                 <Form.Coordinates
                   name="location.coordinates"
                   address="address"
+                />
+                <Form.FilsList name="files" multiple />
+                <Form.Array
+                  name="contacts"
+                  defaults={{ code: '', number: '' }}
+                  header={false}
+                  body={(i) => (
+                    <>
+                      <Form.Input name={`contacts.${i}.code`} />
+                      <Form.Input name={`contacts.${i}.number`} />
+                    </>
+                  )}
                 />
               </Tab>
               <Tab eventKey="names">

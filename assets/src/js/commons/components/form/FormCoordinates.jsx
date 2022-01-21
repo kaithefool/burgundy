@@ -28,7 +28,7 @@ const FormCoordinates = ({
         }],
       } = await geocoder.geocode({ address: a });
 
-      // make sure address hasn't been changed
+      // make sure the address hasn't been changed in the meanwhile
       if (a !== addressRef.current) return;
 
       setValue([l.lat(), l.lng()]);

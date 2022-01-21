@@ -21,6 +21,12 @@ npx hygen new admin-ui [resource] --singleton
 pm2 deploy [env]
 
 ### Todos
+- Field Array
+    - in cards?
+    - handle _ids
+    - add and delete
+    - sortable
+- A showcase of all form field types?
 - File Uploads
     - sortable
     - gallery mode

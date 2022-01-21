@@ -56,6 +56,12 @@ module.exports = {
     // it's okay to use index if the array is constant
     'react/no-array-index-key': 'off',
 
+    // component slots
+    'react/no-unstable-nested-components': [
+      'error',
+      { allowAsProps: true },
+    ],
+
     // resolve 'function-declaration' and 'unnamed function' conflict
     // what a joke
     'react/function-component-definition': [
