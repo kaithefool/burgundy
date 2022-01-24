@@ -10,8 +10,8 @@ import { newKey } from '../../hooks/useUniqKey';
 
 const FormArray = ({
   defaults,
-  header = (i) => `${i + 1}.`,
-  body,
+  title = (i) => `${i + 1}.`,
+  children,
   max,
   ...props
 }) => {
@@ -43,9 +43,9 @@ const FormArray = ({
                 {value.map((item, i) => {
                   const rmBtn = (
                     <button
-                      className="btn btn-sm"
+                      className="btn"
                       type="button"
-                      onClick={() => h.remove(i)}
+                      onClick={() => h.removei()}
                     >
                       <FA icon={faTimes} />
                     </button>
@@ -53,37 +53,23 @@ const FormArray = ({
 
                   return (
                     <div
-                      className="card border-dark bg-light mb-3"
+                      className="px-4 py-3"
                       key={item.key}
                     >
-                      {header && (
-                        <div className="card-header">
-                          <div className="row">
-                            <div className="col">
-                              {header(i, item, h)}
-                            </div>
-                            <div className="col-auto">
-                              {rmBtn}
-                            </div>
+                      <div className="border-bottom mb-3">
+                        <div className="row align-items-center">
+                          <div className="col">
+                            <strong>
+                              {title(i, item, h)}
+                            </strong>
+                          </div>
+                          <div className="col-auto">
+                            {rmBtn}
                           </div>
                         </div>
-                      )}
-                      {body && (
-                        <div className="card-body px-4">
-                          {header ? (
-                            body(i, item, h)
-                          ) : (
-                            <div className="row">
-                              <div className="col">
-                                {body(i, item, h)}
-                              </div>
-                              <div className="col-auto">
-                                {rmBtn}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      )}
+                      </div>
+
+                      {children(i, item, h)}
                     </div>
                   );
                 })}

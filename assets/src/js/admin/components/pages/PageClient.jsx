@@ -72,14 +72,18 @@ const PageClient = () => {
                 <Form.Array
                   name="contacts"
                   defaults={{ code: '', number: '' }}
-                  header={false}
-                  body={(i) => (
-                    <>
-                      <Form.Input name={`contacts.${i}.code`} />
-                      <Form.Input name={`contacts.${i}.number`} />
-                    </>
+                >
+                  {(i) => (
+                    <div className="row">
+                      <div className="col">
+                        <Form.Input name={`contacts.${i}.code`} />
+                      </div>
+                      <div className="col">
+                        <Form.Input name={`contacts.${i}.number`} />
+                      </div>
+                    </div>
                   )}
-                />
+                </Form.Array>
               </Tab>
               <Tab eventKey="names">
                 <div className="row">
