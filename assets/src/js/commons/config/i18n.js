@@ -4,8 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 import { Settings as LuxonSetting } from 'luxon';
 import Cookies from 'js-cookie';
-import startCase from 'lodash/startCase';
-import lowerCase from 'lodash/lowerCase';
+import inflect from 'inflect';
 
 import env from './env';
 
@@ -50,17 +49,45 @@ i18n.pickLng = (obj) => {
 };
 
 // formats
-i18n.services.formatter.add('startcase', (v) => startCase(v));
-i18n.services.formatter.add('lowercase', (v) => lowerCase(v));
+i18n.services.formatter.add('singularize', (v) => inflect.singularize(v));
+i18n.services.formatter.add('titleize', (v) => inflect.titleize(v));
+i18n.services.formatter.add(
+  'humanize',
+  (v) => inflect.humanize(v).toLowerCase(),
+);
 
-const formatField = (value, { fieldCase = 'lowercase' } = {}) => {
+const formatField = (value, {
+  fieldCase = 'humanize',
+  fieldPath = true, // include field parents in label?
+} = {}) => {
   const { lngs, lngLabels } = env;
+  // extract lng path
   const [, path, lng] = value.match(
     new RegExp(`(.*?)(?:\\.(${
       lngs.join('|')
     }))?$`),
   );
+  const segments = path.split(/(?:\]\.|\[|\.)/);
   let str = `$t(${path}, ${fieldCase})`;
+
+  // array and nested fields
+  if (segments.find((s) => s.match(/^\d+$/))) {
+    const [parent, index, child] = segments;
+
+    if (!fieldPath && child) {
+      str = `$t(${child}, ${fieldCase})`;
+    } else {
+      str = `$t(${
+        child ? 'nestedField' : 'arrayField'
+      }, ${
+        JSON.stringify({
+          parent,
+          index: Number(index) + 1,
+          child,
+        })
+      })`;
+    }
+  }
 
   if (lng) {
     str = `${str}(${

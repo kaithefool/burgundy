@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { object, string } from 'yup';
+import { array, object, string } from 'yup';
 
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
@@ -26,6 +26,10 @@ const schema = (doc) => object({
   password: doc ? password() : password().required(),
 
   address: string().required(),
+
+  contacts: array().of(object({
+    code: string().required(),
+  })),
 });
 
 const PageClient = () => {

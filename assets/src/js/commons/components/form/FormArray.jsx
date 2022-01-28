@@ -45,7 +45,7 @@ const FormArray = ({
                     <button
                       className="btn"
                       type="button"
-                      onClick={() => h.removei()}
+                      onClick={() => h.remove()}
                     >
                       <FA icon={faTimes} />
                     </button>

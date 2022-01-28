@@ -50,7 +50,14 @@ const FormField = ({
         className={labelClassName}
         htmlFor={id}
       >
-        {label || t('field', { path: name, fieldCase: 'startcase' })}
+        {
+          label
+          || t('field', {
+            path: name,
+            fieldCase: 'titleize',
+            fieldPath: false,
+          })
+        }
       </label>
     )
     : null;

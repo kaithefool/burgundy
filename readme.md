@@ -22,10 +22,11 @@ pm2 deploy [env]
 
 ### Todos
 - Field Array
-    - in cards?
+    - label
     - handle _ids
     - add and delete
     - sortable
+    - multiple layer nested
 - A showcase of all form field types?
 - File Uploads
     - sortable

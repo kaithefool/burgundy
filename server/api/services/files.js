@@ -23,7 +23,7 @@ class FileServ extends Service {
     const mm = Object.values(models);
 
     const toDel = await File.find({
-      // only purge files created in less than 48 hours
+      // only purge files created in more than 48 hours
       createdAt: {
         $lt: dt.now().minus({ hours: 48 }).toJSDate(),
       },
