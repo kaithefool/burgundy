@@ -1,7 +1,7 @@
 {
   "field": "{{path, field}}",
   "arrayField": "{{parent, singularize, field}} {{index}}",
-  "nestedField": "{{parent, singularize, field}} {{index}}'s {{child, field}}",
+  "arrayObjField": "$t(arrayField)'s {{child, field}}",
   "res": {
     "models": {
       "User": {

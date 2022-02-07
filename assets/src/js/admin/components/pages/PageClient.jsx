@@ -25,11 +25,9 @@ const schema = (doc) => object({
   email: email().email().required(),
   password: doc ? password() : password().required(),
 
-  address: string().required(),
-
-  contacts: array().of(object({
-    code: string().required(),
-  })),
+  // contacts: array().of(object({
+  //   code: string().required(),
+  // })),
 });
 
 const PageClient = () => {
@@ -75,17 +73,38 @@ const PageClient = () => {
                 <Form.FilsList name="files" multiple />
                 <Form.Array
                   name="contacts"
-                  defaults={{ code: '', number: '' }}
+                  defaults={{
+                    name: '',
+                    phones: [],
+                  }}
                 >
                   {(i) => (
-                    <div className="row">
-                      <div className="col">
-                        <Form.Input name={`contacts.${i}.code`} />
-                      </div>
-                      <div className="col">
-                        <Form.Input name={`contacts.${i}.number`} />
-                      </div>
-                    </div>
+                    <>
+                      <Form.Input name={`contacts.${i}.name`} />
+                      <Form.Array
+                        name={`contacts.${i}.phones`}
+                        defaults={{
+                          code: '',
+                          number: '',
+                        }}
+                      >
+                        {((ii) => (
+                          <div className="row">
+                            <div className="col">
+                              <Form.Input
+                                name={`contacts.${i}.phones.${ii}.code`}
+                              />
+                            </div>
+                            <div className="col">
+                              <Form.Input
+                                name={`contacts.${i}.phones.${ii}.number`}
+                              />
+                            </div>
+                          </div>
+                        ))}
+
+                      </Form.Array>
+                    </>
                   )}
                 </Form.Array>
               </Tab>

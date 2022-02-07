@@ -58,7 +58,7 @@ i18n.services.formatter.add(
 
 const formatField = (value, {
   fieldCase = 'humanize',
-  fieldPath = true, // include field parents in label?
+  fieldArrayPath = true, // include field parents in label?
 } = {}) => {
   const { lngs, lngLabels } = env;
   // extract lng path
@@ -67,18 +67,23 @@ const formatField = (value, {
       lngs.join('|')
     }))?$`),
   );
-  const segments = path.split(/(?:\]\.|\[|\.)/);
   let str = `$t(${path}, ${fieldCase})`;
 
-  // array and nested fields
-  if (segments.find((s) => s.match(/^\d+$/))) {
-    const [parent, index, child] = segments;
+  const arrSegments = path.match(
+    fieldArrayPath
+      ? /^(.+?)[[.](\d+)]?(?:\.(.+))?$/
+      : /^(?:.+[[.]\d+]?\.)?(.+?)[[.](\d+)]?(?:\.(.+))?$/,
+  );
 
-    if (!fieldPath && child) {
+  // array fields
+  if (arrSegments) {
+    const [, parent, index, child] = arrSegments;
+
+    if (!fieldArrayPath && child) {
       str = `$t(${child}, ${fieldCase})`;
     } else {
       str = `$t(${
-        child ? 'nestedField' : 'arrayField'
+        child ? 'arrayObjField' : 'arrayField'
       }, ${
         JSON.stringify({
           parent,

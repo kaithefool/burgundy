@@ -55,7 +55,7 @@ const FormField = ({
           || t('field', {
             path: name,
             fieldCase: 'titleize',
-            fieldPath: false,
+            fieldArrayPath: false,
           })
         }
       </label>
