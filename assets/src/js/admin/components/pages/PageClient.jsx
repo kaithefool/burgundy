@@ -83,24 +83,17 @@ const PageClient = () => {
                       <Form.Input name={`contacts.${i}.name`} />
                       <Form.Array
                         name={`contacts.${i}.phones`}
+                        tmpl="list"
                         defaults={{
                           code: '',
                           number: '',
                         }}
                       >
                         {((ii) => (
-                          <div className="row">
-                            <div className="col">
-                              <Form.Input
-                                name={`contacts.${i}.phones.${ii}.code`}
-                              />
-                            </div>
-                            <div className="col">
-                              <Form.Input
-                                name={`contacts.${i}.phones.${ii}.number`}
-                              />
-                            </div>
-                          </div>
+                          <Form.Input
+                            name={`contacts.${i}.phones.${ii}.number`}
+                            label={null}
+                          />
                         ))}
 
                       </Form.Array>

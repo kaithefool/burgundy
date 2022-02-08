@@ -22,11 +22,8 @@ pm2 deploy [env]
 
 ### Todos
 - Field Array
-    - label
-    - handle _ids
-    - add and delete
+    - handle _id reference
     - sortable
-    - multiple layer nested
 - A showcase of all form field types?
 - File Uploads
     - sortable

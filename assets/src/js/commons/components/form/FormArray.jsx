@@ -2,17 +2,18 @@ import React from 'react';
 import { FieldArray, useField } from 'formik';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import FormField from './FormField';
 import { newKey } from '../../hooks/useUniqKey';
+import FormArrayItem from './FormArrayItem';
 
 const FormArray = ({
   defaults,
-  title = (i) => `${i + 1}.`,
-  children,
   max,
+  children,
+  title,
+  tmpl,
   ...props
 }) => {
   const [{ value }] = useField(props.name);
@@ -40,39 +41,18 @@ const FormArray = ({
 
             return (
               <div>
-                {value.map((item, i) => {
-                  const rmBtn = (
-                    <button
-                      className="btn"
-                      type="button"
-                      onClick={() => h.remove()}
-                    >
-                      <FA icon={faTimes} />
-                    </button>
-                  );
-
-                  return (
-                    <div
-                      className="px-4 py-3"
-                      key={item.key}
-                    >
-                      <div className="border-bottom mb-3">
-                        <div className="row align-items-center">
-                          <div className="col">
-                            <strong>
-                              {title(i, item, h)}
-                            </strong>
-                          </div>
-                          <div className="col-auto">
-                            {rmBtn}
-                          </div>
-                        </div>
-                      </div>
-
-                      {children(i, item, h)}
-                    </div>
-                  );
-                })}
+                {value.map((item, i) => (
+                  <FormArrayItem
+                    key={item.key}
+                    helpers={h}
+                    index={i}
+                    item={item}
+                    title={title}
+                    tmpl={tmpl}
+                  >
+                    {children}
+                  </FormArrayItem>
+                ))}
                 <button
                   type="button"
                   className="btn btn-primary"
