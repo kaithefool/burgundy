@@ -2,7 +2,7 @@ const path = require('path');
 const i18n = require('i18next');
 const middleware = require('i18next-http-middleware');
 const FilesystemBackend = require('i18next-fs-backend');
-const _ = require('lodash');
+const inflect = require('inflect');
 
 const { FILE_STORAGE_LOCALES, LNG, LNG_LABEL } = process.env;
 const storage = path.resolve(__dirname, '../../', FILE_STORAGE_LOCALES);
@@ -28,16 +28,48 @@ i18n
     },
   });
 
-i18n.services.formatter.add('startcase', (v) => _.startCase(v));
-i18n.services.formatter.add('lowercase', (v) => _.lowerCase(v));
+i18n.services.formatter.add('singularize', (v) => inflect.singularize(v));
+i18n.services.formatter.add('titleize', (v) => inflect.titleize(v));
+i18n.services.formatter.add(
+  'humanize',
+  (v) => inflect.humanize(v).toLowerCase(),
+);
 
-const formatField = (value, { fieldCase = 'lowercase' } = {}) => {
+const formatField = (value, {
+  fieldCase = 'lowercase',
+  fieldArrayPath = true, // include field parents in label?
+} = {}) => {
   const [, fieldPath, lng] = value.match(
     new RegExp(`(.*?)(?:\\.(${
       lngs.join('|')
     }))?$`),
   );
   let str = `$t(${fieldPath}, ${fieldCase})`;
+
+  const arrSegments = path.match(
+    fieldArrayPath
+      ? /^(.+?)[[.](\d+)]?(?:\.(.+))?$/
+      : /^(?:.+[[.]\d+]?\.)?(.+?)[[.](\d+)]?(?:\.(.+))?$/,
+  );
+
+  // array fields
+  if (arrSegments) {
+    const [, parent, index, child] = arrSegments;
+
+    if (!fieldArrayPath && child) {
+      str = `$t(${child}, ${fieldCase})`;
+    } else {
+      str = `$t(${
+        child ? 'arrayObjField' : 'arrayField'
+      }, ${
+        JSON.stringify({
+          parent,
+          index: Number(index) + 1,
+          child,
+        })
+      })`;
+    }
+  }
 
   if (lng) {
     str = `${str}(${

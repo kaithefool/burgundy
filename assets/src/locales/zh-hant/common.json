@@ -1,4 +1,5 @@
 {
+  "arrayObjField": "$t(arrayField)的{{child, field}}",
   "res": {
     "models": {
       "User": {
