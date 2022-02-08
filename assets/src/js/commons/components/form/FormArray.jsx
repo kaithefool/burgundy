@@ -14,6 +14,7 @@ const FormArray = ({
   children,
   title,
   tmpl,
+  sortable = true,
   ...props
 }) => {
   const [{ value }] = useField(props.name);
@@ -45,10 +46,12 @@ const FormArray = ({
                   <FormArrayItem
                     key={item.key}
                     helpers={h}
+                    value={value}
                     index={i}
                     item={item}
                     title={title}
                     tmpl={tmpl}
+                    sortable={sortable}
                   >
                     {children}
                   </FormArrayItem>
