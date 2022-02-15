@@ -29,6 +29,7 @@ i18n
     fallbackNS: ['glossary'],
     interpolation: {
       escapeValue: false, // react already safes from xss
+      skipOnVariables: false,
     },
   });
 

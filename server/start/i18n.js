@@ -25,6 +25,7 @@ i18n
     },
     interpolation: {
       escapeValue: false, // we are not going to i18n any user input
+      skipOnVariables: false,
     },
   });
 
