@@ -2,12 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { array, object, string } from 'yup';
 
-import Page from '../layout/Page';
-import Doc from '../layout/doc';
 import Form from '~/commons/components/form';
 import { Tabs, Tab } from '~/commons/components/layout/tabs';
 import { email, password } from '~/commons/validators';
 import { reduceLng, mapLng } from '~/commons/helpers';
+import Doc from '../layout/doc';
+import Page from '../layout/Page';
 
 const defaults = {
   email: '',
@@ -84,6 +84,7 @@ const PageClient = () => {
                       <Form.Array
                         name={`contacts.${i}.phones`}
                         tmpl="list"
+                        sortable
                         defaults={{
                           code: '',
                           number: '',

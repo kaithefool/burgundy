@@ -1,11 +1,14 @@
 import React from 'react';
 import { FieldArray, useField } from 'formik';
+import {
+  DragDropContext, Droppable,
+} from 'react-beautiful-dnd';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import FormField from './FormField';
-import { newKey } from '../../hooks/useUniqKey';
+import useUniqKey from '../../hooks/useUniqKey';
 import FormArrayItem from './FormArrayItem';
 
 const FormArray = ({
@@ -14,10 +17,11 @@ const FormArray = ({
   children,
   title,
   tmpl,
-  sortable = true,
+  sortable = false,
   ...props
 }) => {
   const [{ value }] = useField(props.name);
+  const [key, newKey] = useUniqKey();
 
   return (
     <FormField {...props}>
@@ -40,22 +44,41 @@ const FormArray = ({
               }),
             };
 
+            const list = value.map((item, i) => (
+              <FormArrayItem
+                key={item.key}
+                helpers={h}
+                array={value}
+                index={i}
+                item={item}
+                title={title}
+                tmpl={tmpl}
+                sortable={sortable}
+              >
+                {children}
+              </FormArrayItem>
+            ));
+
             return (
               <div>
-                {value.map((item, i) => (
-                  <FormArrayItem
-                    key={item.key}
-                    helpers={h}
-                    value={value}
-                    index={i}
-                    item={item}
-                    title={title}
-                    tmpl={tmpl}
-                    sortable={sortable}
+                {sortable ? (
+                  <DragDropContext
+                    onDragEnd={({ source, destination }) => {
+                      h.swap(source, destination);
+                    }}
                   >
-                    {children}
-                  </FormArrayItem>
-                ))}
+                    <Droppable id={key}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.droppableProps}
+                        >
+                          {list}
+                        </div>
+                      )}
+                    </Droppable>
+                  </DragDropContext>
+                ) : list}
                 <button
                   type="button"
                   className="btn btn-primary"
