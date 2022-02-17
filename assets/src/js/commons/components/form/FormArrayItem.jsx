@@ -20,6 +20,7 @@ const FormArrayItem = ({
     index,
     item,
     title: title(index, item),
+    sortable,
     children: children(index, item, helpers),
   };
   let Tag = ({ children: c }) => c;
@@ -28,22 +29,25 @@ const FormArrayItem = ({
   if (tmpl === 'list') Tag = FormArrayItemList;
 
   if (sortable) {
-    <Draggable
-      draggableId={item.key}
-      index={index}
-    >
-      {(provided, snapshot) => (
-        <div
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-        >
-          <Tag
-            {...context}
-            isDragging={snapshot.isDragging}
-          />
-        </div>
-      )}
-    </Draggable>;
+    return (
+      <Draggable
+        draggableId={item.key}
+        index={index}
+      >
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+          >
+            <Tag
+              {...context}
+              dragHandleProps={provided.dragHandleProps}
+              isDragging={snapshot.isDragging}
+            />
+          </div>
+        )}
+      </Draggable>
+    );
   }
 
   return (

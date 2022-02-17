@@ -84,7 +84,6 @@ const PageClient = () => {
                       <Form.Array
                         name={`contacts.${i}.phones`}
                         tmpl="list"
-                        sortable
                         defaults={{
                           code: '',
                           number: '',

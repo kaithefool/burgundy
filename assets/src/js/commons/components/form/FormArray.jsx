@@ -17,7 +17,7 @@ const FormArray = ({
   children,
   title,
   tmpl,
-  sortable = false,
+  sortable = true,
   ...props
 }) => {
   const [{ value }] = useField(props.name);
@@ -64,16 +64,19 @@ const FormArray = ({
                 {sortable ? (
                   <DragDropContext
                     onDragEnd={({ source, destination }) => {
-                      h.swap(source, destination);
+                      h.swap(source.index, destination.index);
                     }}
                   >
-                    <Droppable id={key}>
+                    <Droppable
+                      droppableId={key}
+                    >
                       {(provided) => (
                         <div
                           ref={provided.innerRef}
                           {...provided.droppableProps}
                         >
                           {list}
+                          {provided.placeholder}
                         </div>
                       )}
                     </Droppable>

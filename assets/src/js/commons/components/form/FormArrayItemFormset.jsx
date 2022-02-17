@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { faGripVertical } from '@fortawesome/free-solid-svg-icons/faGripVertical';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
@@ -12,12 +13,22 @@ const FormArrayItemFormset = ({
   title,
   sortable,
   children,
+  dragHandleProps,
+  isDragging,
 }) => (
-  <div className="px-4 py-3">
+  <div className={`px-4 py-3 ${isDragging ? 'opacity-50' : ''}`}>
     <div className="border-bottom mb-3">
       <div className="row gx-3 align-items-center">
+        {sortable && (
+          <div
+            className="col-auto text-muted"
+            {...dragHandleProps}
+          >
+            <FA icon={faGripVertical} />
+          </div>
+        )}
         <div className="col">
-          <strong>{title}</strong>
+          {title}
         </div>
         {sortable && (
           <>
