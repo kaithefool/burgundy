@@ -19,7 +19,7 @@ const FormArrayItem = ({
     array,
     index,
     item,
-    title: title(index, item),
+    title: typeof title === 'function' ? title(index, item) : title,
     sortable,
     children: children(index, item, helpers),
   };

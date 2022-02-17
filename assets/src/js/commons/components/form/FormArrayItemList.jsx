@@ -14,22 +14,24 @@ const FormArrayItemList = ({
   isDragging = false,
 }) => (
   <div className={`px-4 ${isDragging ? 'opacity-50' : ''}`}>
-    <div className="row gx-3 align-items-center">
+    <div className="row gx-3">
       {sortable && (
         <div
-          className="col-auto pb-3 text-muted"
+          className="col-auto pt-2 text-muted"
           {...dragHandleProps}
         >
           <FA icon={faGripVertical} />
         </div>
       )}
-      <div className="col-auto pb-3">
-        {title}
-      </div>
+      {title && (
+        <div className="col-auto pt-2 font-monospace">
+          {title}
+        </div>
+      )}
       <div className="col">
         {children}
       </div>
-      <div className="col-auto pb-3">
+      <div className="col-auto">
         <button
           className="btn"
           type="button"

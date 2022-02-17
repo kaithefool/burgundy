@@ -27,7 +27,7 @@ const FormArrayItemFormset = ({
             <FA icon={faGripVertical} />
           </div>
         )}
-        <div className="col">
+        <div className="col font-monospace">
           {title}
         </div>
         {sortable && (
