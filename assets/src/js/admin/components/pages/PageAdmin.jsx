@@ -2,11 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { object } from 'yup';
 
-import Page from '../layout/Page';
-import Doc from '../layout/doc';
 import Form from '~/commons/components/form';
 import { email, password } from '~/commons/validators';
 import { reduceLng, mapLng } from '~/commons/helpers';
+
+import Doc from '../layout/doc';
+import Page from '../layout/Page';
 
 const defaults = {
   email: '',

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import Error from '~/commons/components/util/Error';
+
 import PageAccessLogs from './pages/PageAccessLogs';
 import PageViews from './pages/PageViews';
 import PageView from './pages/PageView';
-import PageClient from './pages/PageClient';
-import PageClients from './pages/PageClients';
 import PageAdmins from './pages/PageAdmins';
 import PageAdmin from './pages/PageAdmin';
 import PageUsers from './pages/PageUsers';
-import Error from '~/commons/components/util/Error';
+import PageExample from './pages/PageExample';
 
 const AppRoutes = () => (
   <Routes>
@@ -24,9 +24,10 @@ const AppRoutes = () => (
     <Route path="users" element={<PageUsers />} />
     <Route path="users/admins" element={<PageAdmins />} />
     <Route path="users/admins/:_id" element={<PageAdmin />} />
-    <Route path="users/clients" element={<PageClients />} />
-    <Route path="users/clients/:_id" element={<PageClient />} />
-    <Route path="users/clients/:_id/:tab" element={<PageClient />} />
+
+    {/* showcase of all form field types */}
+    <Route path="example" element={<PageExample />} />
+    <Route path="example/:tab" element={<PageExample />} />
 
     {/* homepage and not found page */}
     <Route path="/" element={<Navigate to="/admin/users" replace />} />

@@ -1,9 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import SubDirsNav from './SubDirsNav';
 import BtnLng from '~/commons/components/btns/BtnLng';
 import { meta } from '~/commons/helpers';
+
+import SubDirsNav from './SubDirsNav';
 import useActiveLink from './useActiveLink';
 import Breadcrumbs from './Breadcrumbs';
 

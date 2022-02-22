@@ -24,8 +24,6 @@ class User extends Model {
         type: Schema.lng(String),
         default: undefined,
       },
-      address: String,
-      location: Schema.geo(),
 
       // extends
       ...paths,

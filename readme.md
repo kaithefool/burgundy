@@ -11,10 +11,10 @@ npm start
 ./server/bin/gen-admin [username@domain.com] [password]
 ```
 
-### Generate resources API and admin UI
+### Generate resources API and CMS UI
 ```shell
 npx hygen new api [resource] --singleton
-npx hygen new admin-ui [resource] --singleton
+npx hygen new cms [resource] --singleton
 ```
 
 ### Deploy
@@ -23,7 +23,6 @@ pm2 deploy [env]
 ### Todos
 - Field Array
     - handle _id reference
-    - sortable
 - A showcase of all form field types?
 - File Uploads
     - sortable

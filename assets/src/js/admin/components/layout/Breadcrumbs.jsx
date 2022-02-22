@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import capitalize from 'lodash/capitalize';
 import { Link, useParams } from 'react-router-dom';
 
-import useActiveLink from './useActiveLink';
 import { resolvePath } from '~/commons/helpers';
+
+import useActiveLink from './useActiveLink';
 
 const Breadcrumbs = (props) => {
   const { className, residue: includeResidue = true } = props;
@@ -16,7 +17,7 @@ const Breadcrumbs = (props) => {
   } = useActiveLink();
   const { tab } = useParams();
 
-  if (!paths.length && !exact) {
+  if (!paths.length && !exact && active) {
     // active
     paths = [
       { to: active.to, label: active.label },

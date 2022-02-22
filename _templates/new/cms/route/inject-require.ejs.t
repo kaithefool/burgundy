@@ -1,6 +1,6 @@
 ---
 inject: true
-to: assets/src/js/admin/components/routes/index.jsx
+to: assets/src/js/admin/components/routes.jsx
 skip_if: import\sPage<%= n.singular.pascal %>\s
 before: import\sPage.*?\sfrom
 ---

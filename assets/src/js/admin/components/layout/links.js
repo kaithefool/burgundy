@@ -18,11 +18,6 @@ export default [
           label: 'Admins',
           to: '/admin/users/admins',
         },
-        {
-          icon: faReUser,
-          label: 'Clients',
-          to: '/admin/users/clients',
-        },
       ],
     },
     {

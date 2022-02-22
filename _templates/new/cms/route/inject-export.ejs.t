@@ -1,6 +1,6 @@
 ---
 inject: true
-to: assets/src/js/admin/components/routes/index.jsx
+to: assets/src/js/admin/components/routes.jsx
 skip_if: (<%= n.singular.param %>|<%= n.plural.param %>)("|')
 after: <Routes>
 ---
