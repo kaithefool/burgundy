@@ -13,9 +13,15 @@ npm start
 
 ### Generate resources API and CMS UI
 ```shell
+npx hygen new api [resource]
+npx hygen new cms [resource]
+```
+
+```shell
 npx hygen new api [resource] --singleton
 npx hygen new cms [resource] --singleton
 ```
+
 
 ### Deploy
 pm2 deploy [env]
@@ -23,7 +29,6 @@ pm2 deploy [env]
 ### Todos
 - Field Array
     - handle _id reference
-- A showcase of all form field types?
 - File Uploads
     - sortable
     - gallery mode

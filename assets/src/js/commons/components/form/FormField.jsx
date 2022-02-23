@@ -16,7 +16,7 @@ const FormField = ({
   fieldOnly = false,
   ...props
 }) => {
-  const { name } = props;
+  const { name, value } = props;
   const [, { error, touched }] = useField(name);
   const [id] = useUniqKey();
   const valid = affirm && touched && !error;
@@ -53,7 +53,7 @@ const FormField = ({
         {
           label
           || t('field', {
-            path: name,
+            path: value || name,
             fieldCase: 'titleize',
             fieldArrayPath: false,
           })
@@ -67,6 +67,9 @@ const FormField = ({
       {l && !appendLabel && l}
       {c}
       {l && appendLabel && l}
+      {helpText && (
+        <div className="form-text">{helpText}</div>
+      )}
       {valid && typeof affirm !== 'boolean' && (
         <div className="valid-feedback">{affirm}</div>
       )}

@@ -3,34 +3,32 @@ import { array, object, string } from 'yup';
 
 import Form from '~/commons/components/form';
 import { Tabs, Tab } from '~/commons/components/layout/tabs';
-import { email, password } from '~/commons/validators';
+import { password } from '~/commons/validators';
 import { reduceLng, mapLng } from '~/commons/helpers';
+import env from '~/commons/config/env';
+
 import Doc from '../layout/doc';
 import Page from '../layout/Page';
 
 const defaults = {
-  email: '',
-  role: 'client',
+  checkbox: true,
+  switch: true,
+  radio: 'radio-1',
+  text: '',
   password: '',
-  name: reduceLng(''),
-  active: true,
-  address: '',
-  location: undefined,
-  files: [],
-  contacts: [],
+  select: env.lngs[0],
+  textarea: '',
+  editor: '',
 };
 
 const schema = (doc) => object({
-  email: email().email().required(),
-  password: doc ? password() : password().required(),
-
   // contacts: array().of(object({
   //   code: string().required(),
   // })),
 });
 
 const PageExample = () => (
-  <Doc _id="new" api={{ url: '/api/users' }}>
+  <Doc _id="new" api={{ url: '/api/example' }}>
     {(doc) => (
       <Page
         header={{
@@ -40,9 +38,6 @@ const PageExample = () => (
         <Doc.Form
           defaults={defaults}
           schema={schema(doc)}
-          beforeSubmit={({ password: p, ...values }) => ({
-            ...values, ...(p && { password: p }),
-          })}
         >
           <div className="row mb-3 align-items-center">
             <div className="col-auto">
@@ -57,15 +52,38 @@ const PageExample = () => (
           </div>
 
           <Tabs route>
-            <Tab eventKey="essentials">
-              <Form.Check name="active" type="switch" />
-              <Form.Input name="email" />
+            <Tab eventKey="general">
+              <Form.Check name="checkbox" />
+              <Form.Check name="switch" type="switch" />
+              <Form.Check name="radio" type="radio" value="radio-1" />
+              <Form.Check name="radio" type="radio" value="radio-2" />
+              <Form.Input name="text" />
               <Form.Input name="password" type="password" />
+              <Form.Password
+                name="password"
+                helpText="Password with visibility toggle"
+              />
+              <Form.Select
+                name="select"
+                helpText={`
+                  Support array of string,
+                  array of label value paired object
+                  and react components
+                `}
+              >
+                {mapLng((value, label) => ({ value, label }))}
+              </Form.Select>
+              <Form.Textarea name="textarea" />
+              <Form.Editor name="editor" />
+            </Tab>
+            <Tab eventKey="address">
               <Form.Input name="address" />
               <Form.Coordinates
                 name="location.coordinates"
                 address="address"
               />
+            </Tab>
+            <Tab eventKey="array">
               <Form.FilsList name="files" multiple />
               <Form.Array
                 name="contacts"
@@ -96,15 +114,6 @@ const PageExample = () => (
                   </>
                 )}
               </Form.Array>
-            </Tab>
-            <Tab eventKey="names">
-              <div className="row">
-                {mapLng((ln) => (
-                  <div className="col" key={ln}>
-                    <Form.Input name={`name.${ln}`} />
-                  </div>
-                ))}
-              </div>
             </Tab>
           </Tabs>
 

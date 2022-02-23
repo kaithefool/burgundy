@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import DocContext from './DocContext';
 import Fetchable from '~/commons/components/util/Fetchable';
 import useHttp from '~/commons/hooks/useHttp';
+import DocContext from './DocContext';
 
 const DocProvider = ({
   api,
