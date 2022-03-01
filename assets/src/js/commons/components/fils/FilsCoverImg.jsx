@@ -8,9 +8,7 @@ import Fil from './fil';
 import FilsListItem from './FilsListItem';
 
 const FilsCoverImg = ({
-  className = `
-    position-relative rounded border ratio ratio-21x9 max-vh-50
-  `,
+  className,
   accept = 'image/png,image/jpeg,image/svg+xml,image/gif',
   ...props
 }) => (
@@ -19,7 +17,12 @@ const FilsCoverImg = ({
     {...props}
   >
     {({ files }) => (
-      <Dir.Drop className={className}>
+      <Dir.Drop
+        className={`
+          ${className}
+          position-relative h-auto ratio ratio-21x9 max-vh-50
+        `}
+      >
         {files[0] && (
           <Fil file={files[0]}>
             <div

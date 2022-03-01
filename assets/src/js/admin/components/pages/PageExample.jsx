@@ -19,9 +19,15 @@ const defaults = {
   select: env.lngs[0],
   textarea: '',
   editor: '',
+  files: [],
+  coverImg: [],
+  address: '',
+  location: {},
+  contacts: [],
 };
 
-const schema = (doc) => object({
+const schema = () => object({
+  password: password(),
   // contacts: array().of(object({
   //   code: string().required(),
   // })),
@@ -31,9 +37,7 @@ const PageExample = () => (
   <Doc _id="new" api={{ url: '/api/example' }}>
     {(doc) => (
       <Page
-        header={{
-          title: 'Example',
-        }}
+        header={{ title: 'Example' }}
       >
         <Doc.Form
           defaults={defaults}
@@ -66,7 +70,7 @@ const PageExample = () => (
               <Form.Select
                 name="select"
                 helpText={`
-                  Support array of string,
+                  Support array of strings,
                   array of label value paired object
                   and react components
                 `}
@@ -76,15 +80,21 @@ const PageExample = () => (
               <Form.Textarea name="textarea" />
               <Form.Editor name="editor" />
             </Tab>
+            <Tab eventKey="files">
+              <Form.FilsList name="files" multiple />
+              <Form.FilsCoverImg name="coverImg" />
+            </Tab>
             <Tab eventKey="address">
-              <Form.Input name="address" />
+              <Form.Input
+                name="address"
+                helpText="Need Google API key in your .env file to work"
+              />
               <Form.Coordinates
                 name="location.coordinates"
                 address="address"
               />
             </Tab>
             <Tab eventKey="array">
-              <Form.FilsList name="files" multiple />
               <Form.Array
                 name="contacts"
                 defaults={{
