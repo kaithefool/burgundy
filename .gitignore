@@ -15,6 +15,3 @@ private/
 # Packages
 node_modules/
 package-lock.json
-
-# Misc
-sync-fwk

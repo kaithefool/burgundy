@@ -13,7 +13,8 @@
     "build-assets": "cd assets && npm run build",
     "build": "npm run postinstall && npm run build-assets",
     "setup": "if [ ! -f private/.env ]; then mkdir -p private && cp example.env private/.env; fi",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "sync-fwk": "git fetch fwk master:fwk"
   },
   "repository": {
     "type": "git",
