@@ -32,8 +32,9 @@ const Tabs = ({
       onSelect={(k) => {
         if (k !== activeKey) {
           if (route) {
-            const to = resolvePath(k === defaultKey ? '../' : k);
+            let to = k === defaultKey ? '' : k;
 
+            to = resolvePath(activeKey === defaultKey ? to : `../${to}`);
             navigate(to, { replace: true });
           } else {
             setActiveState(k);
