@@ -4,7 +4,7 @@ import { array, object, string } from 'yup';
 import Form from '~/commons/components/form';
 import { Tabs, Tab } from '~/commons/components/layout/tabs';
 import { password } from '~/commons/validators';
-import { reduceLng, mapLng } from '~/commons/helpers';
+import { mapLng } from '~/commons/helpers';
 import env from '~/commons/config/env';
 
 import Doc from '../layout/doc';
@@ -23,14 +23,18 @@ const defaults = {
   coverImg: [],
   address: '',
   location: {},
-  contacts: [],
+  contacts: [{
+    firstname: '',
+    lastname: '',
+    phones: [''],
+  }],
 };
 
 const schema = () => object({
   password: password(),
-  // contacts: array().of(object({
-  //   code: string().required(),
-  // })),
+  contacts: array().of(object({
+    firstname: string().required(),
+  })),
 });
 
 const PageExample = () => (
@@ -98,24 +102,29 @@ const PageExample = () => (
               <Form.Array
                 name="contacts"
                 defaults={{
-                  name: '',
-                  phones: [],
+                  firstname: '',
+                  lastname: '',
+                  phones: [''],
                 }}
               >
                 {(i) => (
                   <>
-                    <Form.Input name={`contacts.${i}.name`} />
+                    <div className="row">
+                      <div className="col">
+                        <Form.Input name={`contacts.${i}.firstname`} />
+                      </div>
+                      <div className="col">
+                        <Form.Input name={`contacts.${i}.lastname`} />
+                      </div>
+                    </div>
                     <Form.Array
                       name={`contacts.${i}.phones`}
                       tmpl="list"
-                      defaults={{
-                        code: '',
-                        number: '',
-                      }}
+                      defaults=""
                     >
                       {((ii) => (
                         <Form.Input
-                          name={`contacts.${i}.phones.${ii}.number`}
+                          name={`contacts.${i}.phones.${ii}`}
                           label={null}
                         />
                       ))}

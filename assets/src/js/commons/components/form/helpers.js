@@ -1,8 +1,16 @@
 import pick from 'lodash/pick';
 
 import { recursiveMap } from '../../helpers';
+import { newKey } from '../../hooks/useUniqKey';
 
-export function initValues(defaults, stored = {}) {
+function initArrayItem(item) {
+  // array need unique keys for list and sorting
+  return typeof item === 'object'
+    ? { ...item, key: newKey() }
+    : item;
+}
+
+function initValues(defaults, stored = {}) {
   // parse data into formik friendly format
   const values = recursiveMap(
     { ...defaults, ...stored },
@@ -13,6 +21,10 @@ export function initValues(defaults, stored = {}) {
       }
       // null
       if (val === null) return '';
+      // array
+      if (Array.isArray(val)) {
+        return val.map((item) => initArrayItem(item));
+      }
 
       return val;
     },
@@ -21,3 +33,8 @@ export function initValues(defaults, stored = {}) {
   // only includes props the form uses
   return pick(values, Object.keys(defaults));
 }
+
+export {
+  initArrayItem,
+  initValues,
+};

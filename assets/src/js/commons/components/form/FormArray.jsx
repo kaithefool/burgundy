@@ -10,6 +10,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import FormField from './FormField';
 import useUniqKey from '../../hooks/useUniqKey';
 import FormArrayItem from './FormArrayItem';
+import { initArrayItem } from './helpers';
 
 const FormArray = ({
   defaults,
@@ -21,39 +22,33 @@ const FormArray = ({
   ...props
 }) => {
   const [{ value }] = useField(props.name);
-  const [key, newKey] = useUniqKey();
+  const [key] = useUniqKey();
+  const isObjs = typeof defaults === 'object';
+  const isSortable = sortable && isObjs;
 
   return (
     <FormField {...props}>
       {({ invalid, valid, ...p }) => (
         <FieldArray name={p.name}>
           {(helpers) => {
-            const h = {
+            const h = isObjs ? {
               ...helpers,
-              push: (item) => helpers.push({
-                ...item, key: newKey(),
-              }),
-              insert: (i, item) => helpers.insert(i, {
-                ...item, key: newKey(),
-              }),
-              unshift: (item) => helpers.unshift({
-                ...item, key: newKey(),
-              }),
-              replace: (i, item) => helpers.replace(i, {
-                ...item, key: newKey(),
-              }),
-            };
+              push: (item) => helpers.push(initArrayItem(item)),
+              insert: (i, item) => helpers.insert(i, initArrayItem(item)),
+              unshift: (item) => helpers.unshift(initArrayItem(item)),
+              replace: (i, item) => helpers.replace(i, initArrayItem(item)),
+            } : helpers;
 
             const list = value.map((item, i) => (
               <FormArrayItem
-                key={item.key}
+                key={item.key || i}
                 helpers={h}
                 array={value}
                 index={i}
                 item={item}
                 title={title}
                 tmpl={tmpl}
-                sortable={sortable}
+                sortable={isSortable}
               >
                 {children}
               </FormArrayItem>
@@ -61,7 +56,7 @@ const FormArray = ({
 
             return (
               <div>
-                {sortable ? (
+                {isSortable ? (
                   <DragDropContext
                     onDragEnd={({ source, destination }) => {
                       h.swap(source.index, destination.index);
