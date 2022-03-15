@@ -30,7 +30,6 @@ pm2 deploy [env]
 - Field Array
     - handle _id reference
 - File Uploads
-    - sortable
     - gallery mode
     - image dimension
     - file preview file switch transition (onload event?)
