@@ -1,81 +1,102 @@
-import React from 'react';
-import {
-  DragDropContext, Droppable, Draggable,
-} from 'react-beautiful-dnd';
+import React, { useState } from 'react';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faTh } from '@fortawesome/free-solid-svg-icons/faTh';
+import { faThList } from '@fortawesome/free-solid-svg-icons/faThList';
 
 import Dir from './dir';
 import FilsListItem from './FilsListItem';
-import useUniqKey from '../../hooks/useUniqKey';
+
+const SortableItem = SortableElement((props) => (
+  <FilsListItem {...props} dragHandle />
+));
+
+const List = ({ files, sortable, mode }) => {
+  const Item = sortable ? SortableItem : FilsListItem;
+
+  return (
+    <div className="row g-2">
+      {files.map((f, i) => (
+        <Item
+          className={mode === 'grid' ? 'col-xs-6 col-2' : ''}
+          key={f.key}
+          file={f}
+          mode={mode}
+          index={i}
+        />
+      ))}
+    </div>
+  );
+};
+
+const SortableList = SortableContainer((props) => (
+  <List {...props} sortable />
+));
 
 const FilsList = ({
   sortable = true,
   ...props
 }) => {
-  const [key] = useUniqKey();
+  const [mode, setMode] = useState('grid');
 
   return (
     <Dir {...props}>
       {({ files, swap }) => (
         <Dir.Drop className="position-relative">
-          <Dir.Click className="d-grid gap-2">
-            <div className="btn btn-secondary px-3 text-start">
-              <FA icon={faPlus} fixedWidth className="me-2" />
-              Add or drag files
+          <div className="row gx-2">
+            {/* click to add files */}
+            <div className="col">
+              <Dir.Click className="d-grid">
+                <div className="btn btn-secondary px-3 text-start">
+                  <FA icon={faPlus} fixedWidth className="me-2" />
+                  Add or drag files
+                </div>
+              </Dir.Click>
             </div>
-          </Dir.Click>
-          {sortable ? (
-            <DragDropContext
-              onDragEnd={({ source, destination }) => {
-                swap(source.index, destination.index);
-              }}
-            >
-              <Droppable
-                droppableId={key}
-              >
-                {(provided) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                  >
-                    {files.map((f, i) => (
-                      <Draggable
-                        key={f.key}
-                        draggableId={f.key}
-                        index={i}
-                      >
-                        {(childProvided, childSnapshot) => (
-                          <div
-                            ref={childProvided.innerRef}
-                            {...childProvided.draggableProps}
-                            className={`
-                              py-1
-                              ${childSnapshot.isDragging ? 'opacity-50' : ''}
-                            `}
-                          >
-                            <FilsListItem
-                              key={f.key}
-                              file={f}
-                              dragHandleProps={childProvided.dragHandleProps}
-                            />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </DragDropContext>
-          ) : (
-            files.map((f) => (
-              <div className="py-1" key={f.key}>
-                <FilsListItem file={f} />
+
+            {/* mode toggle */}
+            <div className="col-auto">
+              <div className="btn-group">
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  className={
+                    `btn btn${mode === 'list' ? '' : '-outline'}-secondary`
+                  }
+                  onClick={() => setMode('list')}
+                >
+                  <FA icon={faThList} />
+                </button>
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  className={
+                    `btn btn${mode === 'grid' ? '' : '-outline'}-secondary`
+                  }
+                  onClick={() => setMode('grid')}
+                >
+                  <FA icon={faTh} />
+                </button>
               </div>
-            ))
-          )}
+            </div>
+          </div>
+
+          {/* list */}
+          <div className="py-2">
+            {sortable ? (
+              <SortableList
+                files={files}
+                mode={mode}
+                onSortEnd={({ oldIndex, newIndex }) => swap(oldIndex, newIndex)}
+                axis={mode === 'grid' ? 'xy' : 'y'}
+                useDragHandle
+              />
+            ) : (
+              <List files={files} mode={mode} />
+            )}
+          </div>
         </Dir.Drop>
       )}
     </Dir>

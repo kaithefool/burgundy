@@ -5,7 +5,6 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import Dir from './dir';
 import Fil from './fil';
-import FilsListItem from './FilsListItem';
 
 const FilsCoverImg = ({
   className,
@@ -25,14 +24,36 @@ const FilsCoverImg = ({
       >
         {files[0] && (
           <Fil file={files[0]}>
-            <div
-              className="h-auto bg-white"
-              style={{ zIndex: 1 }}
-            >
-              <Fil.Progress />
-              <FilsListItem />
+            <div>
+              <Fil.Preview />
+              <div className="position-relative" style={{ zIndex: 1 }}>
+                {/* background */}
+                <div className="bg-white position-absolute h-100 w-100 opacity-75" />
+                {/* info */}
+                <div className="position-relative">
+                  <Fil.Progress />
+                  <div className="px-3">
+                    <div className="row g-2 align-items-center">
+                      <div className="col-auto text-primary">
+                        <Fil.TypeIcon fixedWidth />
+                      </div>
+                      <div className="col">
+                        <Fil.Name />
+                      </div>
+                      <div className="col-auto">
+                        <small className="text-muted"><Fil.Size /></small>
+                      </div>
+                      <div className="col-auto">
+                        <Fil.Status />
+                      </div>
+                      <div className="col-auto">
+                        <Fil.Remove className="btn text-secondary" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <Fil.Preview />
           </Fil>
         )}
         <Dir.Click
