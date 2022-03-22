@@ -37,9 +37,10 @@ const SortableList = SortableContainer((props) => (
 
 const FilsList = ({
   sortable = true,
+  initMode = 'list',
   ...props
 }) => {
-  const [mode, setMode] = useState('grid');
+  const [mode, setMode] = useState(initMode);
 
   return (
     <Dir {...props}>

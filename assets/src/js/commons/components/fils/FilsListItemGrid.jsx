@@ -7,7 +7,9 @@ import { faGripVertical } from '@fortawesome/free-solid-svg-icons/faGripVertical
 import Fil from './fil';
 
 const DragHandle = SortableHandle(() => (
-  <span><FA icon={faGripVertical} fixedWidth /></span>
+  <span className="cursor-grab">
+    <FA icon={faGripVertical} fixedWidth />
+  </span>
 ));
 
 const FilsGridItem = ({
@@ -37,7 +39,7 @@ const FilsGridItem = ({
       {/* info */}
       <Fil.Progress />
       <div className="position-relative ps-3 pe-2">
-        <div className="row g-2 align-items-center">
+        <div className="row g-2 align-items-center justify-content-end">
           {dragHandle && (
             <div className="col text-muted">
               <DragHandle />

@@ -56,10 +56,7 @@ const FilsCoverImg = ({
             </div>
           </Fil>
         )}
-        <Dir.Click
-          alwaysEnable
-          className="position-absolute w-100 h-100"
-        >
+        <Dir.Click alwaysEnable>
           <div
             className={`
               btn btn-secondary px-3

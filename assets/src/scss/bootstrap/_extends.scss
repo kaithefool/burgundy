@@ -6,7 +6,10 @@ $utilities: map-merge(
     "cursor": (
       property: cursor,
       class: cursor,
-      values: pointer,
+      values: (
+        pointer,
+        grab,
+      ),
     ),
     "max-viewport-width": (
       property: max-width,

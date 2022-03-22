@@ -7,7 +7,9 @@ import { faGripVertical } from '@fortawesome/free-solid-svg-icons/faGripVertical
 import Fil from './fil';
 
 const DragHandle = SortableHandle(() => (
-  <span><FA icon={faGripVertical} fixedWidth /></span>
+  <span className="cursor-grab">
+    <FA icon={faGripVertical} fixedWidth />
+  </span>
 ));
 
 const FilsListItemList = ({
