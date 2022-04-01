@@ -1,16 +1,16 @@
 import React from 'react';
 import { FieldArray, useField } from 'formik';
-import {
-  DragDropContext, Droppable,
-} from 'react-beautiful-dnd';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import FormField from './FormField';
-import useUniqKey from '../../hooks/useUniqKey';
 import FormArrayItem from './FormArrayItem';
 import { initArrayItem } from './helpers';
+
+const SortableList = SortableContainer((props) => <div {...props} />);
+const SortableItem = SortableElement((props) => <div {...props} />);
 
 const FormArray = ({
   defaults,
@@ -22,7 +22,6 @@ const FormArray = ({
   ...props
 }) => {
   const [{ value }] = useField(props.name);
-  const [key] = useUniqKey();
   const isObjs = typeof defaults === 'object';
   const isSortable = sortable && isObjs;
 
@@ -39,7 +38,7 @@ const FormArray = ({
               replace: (i, item) => helpers.replace(i, initArrayItem(item)),
             } : helpers;
 
-            const list = value.map((item, i) => (
+            const child = (item, i) => (
               <FormArrayItem
                 key={item.key || i}
                 helpers={h}
@@ -52,31 +51,24 @@ const FormArray = ({
               >
                 {children}
               </FormArrayItem>
-            ));
+            );
 
             return (
               <div>
                 {isSortable ? (
-                  <DragDropContext
-                    onDragEnd={({ source, destination }) => {
-                      h.swap(source.index, destination.index);
-                    }}
+                  <SortableList
+                    onSortEnd={({ oldIndex, newIndex }) => (
+                      h.swap(oldIndex, newIndex)
+                    )}
+                    useDragHandle
                   >
-                    <Droppable
-                      droppableId={key}
-                    >
-                      {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.droppableProps}
-                        >
-                          {list}
-                          {provided.placeholder}
-                        </div>
-                      )}
-                    </Droppable>
-                  </DragDropContext>
-                ) : list}
+                    {value.map((item, i) => (
+                      <SortableItem key={item.key} index={i}>
+                        {child(item, i)}
+                      </SortableItem>
+                    ))}
+                  </SortableList>
+                ) : value.map((item, i) => child(item, i))}
                 <button
                   type="button"
                   className="btn btn-primary"

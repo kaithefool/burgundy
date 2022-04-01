@@ -1,10 +1,17 @@
 import React from 'react';
+import { SortableHandle } from 'react-sortable-hoc';
 
 import { faGripVertical } from '@fortawesome/free-solid-svg-icons/faGripVertical';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+
+const DragHandle = SortableHandle(() => (
+  <span className="cursor-grab">
+    <FA icon={faGripVertical} fixedWidth />
+  </span>
+));
 
 const FormArrayItemFormset = ({
   helpers,
@@ -13,18 +20,13 @@ const FormArrayItemFormset = ({
   title,
   sortable,
   children,
-  dragHandleProps,
-  isDragging,
 }) => (
-  <div className={`px-4 py-3 ${isDragging ? 'opacity-50' : ''}`}>
+  <div className="px-4 py-3">
     <div className="border-bottom mb-3">
       <div className="row gx-3 align-items-center">
         {sortable && (
-          <div
-            className="col-auto text-muted"
-            {...dragHandleProps}
-          >
-            <FA icon={faGripVertical} />
+          <div className="col-auto text-muted">
+            <DragHandle />
           </div>
         )}
         <div className="col font-monospace">
