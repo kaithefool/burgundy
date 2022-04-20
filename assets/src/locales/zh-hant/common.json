@@ -1,4 +1,6 @@
 {
+  "field": "{{path, field}}",
+  "arrayField": "{{parent, singularize, field}} {{index}}",
   "arrayObjField": "$t(arrayField)的{{child, field}}",
   "res": {
     "models": {
