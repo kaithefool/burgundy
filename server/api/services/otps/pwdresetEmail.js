@@ -5,7 +5,7 @@ class PwdResetEmailServ extends Otps {
   async create(attrs) {
     const { email } = attrs;
 
-    const [u] = await userServ.find({ email, active: 1 });
+    const u = await userServ.findOne({ email, active: 1 });
 
     if (!u) this.throw(400, 'res.userNotExists');
 

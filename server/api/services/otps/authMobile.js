@@ -29,7 +29,7 @@ class AuthMobileServ extends Otps {
       verifyKey,
     });
 
-    let [u] = await userServ.find({ mobile });
+    let u = await userServ.findOne({ mobile });
 
     if (!u) {
       u = await userServ.create({

@@ -5,13 +5,14 @@ class PwdResetEmailServ extends Otps {
   async create(attrs) {
     const { email } = attrs;
 
-    const [u] = await userServ.find({ email });
+    const u = await userServ.findOne({ email });
 
     if (u) this.throw(400, 'res.userAlreadyExists');
 
     return super.create({
       action: 'register-email',
       email,
+      role: 'client',
     }, (c) => ({
       template: 'register',
       locals: { ...c.toObject(), user: u },
