@@ -98,7 +98,14 @@
     "register" : {
       "title": "新帳戶註冊",
       "login": "已經成為會員? 登入",
-      "submit": "註冊"
+      "submit": "註冊",
+      "mailSuccessTitle": "驗證電郵已發出",
+      "mailSuccessSubTitle": "請按電郵中的指示驗證電郵地址",
+      "noEmail": "沒有收到電郵通知?",
+      "noEmailLink": "重新發送",
+      "successTitle": "成功",
+      "successSubTitle": "你已驗證電郵地址",
+      "successLink": "重返登入頁"
     },
     "pwdReset": {
       "mailTitle": "忘記密碼?",
