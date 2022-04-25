@@ -1,4 +1,4 @@
-import { string } from 'yup';
+import { string, ref } from 'yup';
 
 const email = () => string()
   .trim()
@@ -8,7 +8,14 @@ const email = () => string()
 const password = () => string()
   .min(8);
 
+const passwordConfirm = () => string()
+  .oneOf(
+    [ref('password')],
+    'Both passwords need to be the same',
+  );
+
 export {
   email,
   password,
+  passwordConfirm,
 };

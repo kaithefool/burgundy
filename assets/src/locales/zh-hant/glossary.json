@@ -8,6 +8,7 @@
   "mobile": "手機號碼",
   "importTmpl": "上載樣板",
   "password": "密碼",
+  "passwordConfirm": "確認密碼",
   "active": "啟用",
   "name": "姓名",
   "role": "類型",

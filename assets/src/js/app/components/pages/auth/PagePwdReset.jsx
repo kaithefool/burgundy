@@ -2,11 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
-import { object, string, ref } from 'yup';
+import { object } from 'yup';
 import Centered from '~/commons/components/layout/Centered';
 import Form from '~/commons/components/form';
 import Fetchable from '~/commons/components/util/Fetchable';
-import { password } from '~/commons/validators';
+import { password, passwordConfirm } from '~/commons/validators';
 import { resolvePath } from '~/commons/helpers';
 
 const PagePwdReset = () => {
@@ -27,11 +27,7 @@ const PagePwdReset = () => {
             alert={{ className: 'w-auto my-3' }}
             schema={object({
               password: password().required(),
-              passwordConfirm: string()
-                .oneOf(
-                  [ref('password')],
-                  'Both passwords need to be the same',
-                )
+              passwordConfirm: passwordConfirm()
                 .required(),
             })}
             defaults={{
@@ -46,8 +42,8 @@ const PagePwdReset = () => {
               window.location.href = resolvePath('../../success');
             }}
           >
-            <Form.Input name="password" type="password" affirm />
-            <Form.Input name="passwordConfirm" type="password" affirm />
+            <Form.Password name="password" affirm />
+            <Form.Password name="passwordConfirm" affirm />
             <Form.BtnSubmit>
               {t('pg.pwdReset.submit')}
             </Form.BtnSubmit>

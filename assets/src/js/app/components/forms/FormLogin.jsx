@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
 
 import Form from '~/commons/components/form';
-import { email, password } from '../../../commons/validators';
+import { email, password } from '~/commons/validators';
 
 const FormLogin = () => {
   const { t } = useTranslation();

@@ -6,7 +6,9 @@ const { Schema } = User;
 const { OTP_SMS_TTL, OTP_EMAIL_TTL } = process.env;
 
 class Otp extends User {
-  setter(v, action) {
+  async setter(value, action) {
+    const v = await super.setter(value);
+
     if (action !== 'create') return v;
 
     if (v.action.match('email')) {
@@ -39,8 +41,6 @@ module.exports = new Otp('Otp', {
     expires: 1,
     required: true,
   },
-
-  user: Schema.ref('User'),
 }, {
   timestamps: {
     created: { by: false },

@@ -16,7 +16,7 @@ class User extends Model {
       role: {
         type: String,
         enum: ['admin', 'client'],
-        required: true,
+        default: 'client',
       },
 
       // additional

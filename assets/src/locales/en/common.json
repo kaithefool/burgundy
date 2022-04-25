@@ -84,6 +84,18 @@
       "pwdRecovery": "Forgot password?",
       "submit": "Login"
     },
+    "register" : {
+      "title": "Sign up",
+      "login": "Already have an account? Login",
+      "submit": "Register",
+      "mailSuccessTitle": "Sent",
+      "mailSuccessSubTitle": "Please check your inbox and follow the instruction",
+      "noEmail": "Didn't receive the email?",
+      "noEmailLink": "Resend",
+      "successTitle": "Success",
+      "successSubTitle": "You have verified your account.",
+      "successLink": "Login now"
+    },
     "pwdReset": {
       "mailTitle": "Forgot Password?",
       "mailSubTitle": "We can help you to reset the password.",

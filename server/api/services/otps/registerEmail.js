@@ -2,6 +2,10 @@ const Otps = require('./Otps');
 const userServ = require('../users');
 
 class PwdResetEmailServ extends Otps {
+  findOne(...args) {
+    return super.findOne(...args).select('+password');
+  }
+
   async create(attrs) {
     const { email } = attrs;
 
@@ -12,11 +16,13 @@ class PwdResetEmailServ extends Otps {
     return super.create({
       action: 'register-email',
       email,
-      role: 'client',
     }, (c) => ({
       template: 'register',
       locals: { ...c.toObject(), user: u },
-    }), attrs);
+    }), {
+      ...attrs,
+      role: 'client',
+    });
   }
 
   verify({ verifyKey }) {
@@ -32,7 +38,7 @@ class PwdResetEmailServ extends Otps {
       verifyKey,
     });
 
-    const created = await userServ.create(otp);
+    const created = await userServ.create(otp.toObject());
 
     // set password (bypass password encryption)
     await userServ.model.model.updateOne(

@@ -12,7 +12,7 @@ class OtpServ extends Service {
 
   async create(cred, msg = () => {}, extraAttrs = {}) {
     // rate limit
-    const exists = await this.find(cred);
+    const exists = await this.find({ filter: cred });
 
     if (exists.length >= (
       cred.email ? OTP_EMAIL_MAX : OTP_SMS_MAX
@@ -39,7 +39,7 @@ class OtpServ extends Service {
   }
 
   async verify(cred) {
-    const [o] = await this.find(cred);
+    const o = await this.findOne(cred);
 
     if (!o) {
       this.throw(400, 'res.invalidKey');
@@ -51,7 +51,7 @@ class OtpServ extends Service {
   // verify and remove all existing keys
   async consume(cred) {
     const { mobile } = cred;
-    const otp = await this.verify(cred, true);
+    const otp = await this.verify(cred);
 
     await this.deleteBy(mobile ? { mobile } : { email: otp.email });
 

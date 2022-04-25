@@ -95,6 +95,11 @@
       "pwdRecovery": "忘記密碼?",
       "submit": "登入"
     },
+    "register" : {
+      "title": "新帳戶註冊",
+      "login": "已經成為會員? 登入",
+      "submit": "註冊"
+    },
     "pwdReset": {
       "mailTitle": "忘記密碼?",
       "mailSubTitle": "我們可以協助你重設密碼",

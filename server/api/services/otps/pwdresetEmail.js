@@ -15,7 +15,7 @@ class PwdResetEmailServ extends Otps {
     }, (c) => ({
       template: 'pwdReset',
       locals: { ...c.toObject(), user: u },
-    }), attrs);
+    }));
   }
 
   verify({ verifyKey }) {
@@ -30,12 +30,15 @@ class PwdResetEmailServ extends Otps {
       action: 'pwdreset-email',
       verifyKey,
     });
-    const { user: userId } = otp;
 
-    await userServ.patch(
-      { _id: userId, password },
-      { _id: userId },
-    );
+    const u = await userServ.findOne({ email: otp.email });
+
+    if (u) {
+      await userServ.patch(
+        { _id: u._id, password },
+        { _id: u._id },
+      );
+    }
   }
 }
 
