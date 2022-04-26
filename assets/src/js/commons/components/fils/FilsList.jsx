@@ -44,7 +44,7 @@ const FilsList = ({
 
   return (
     <Dir {...props}>
-      {({ files, swap }) => (
+      {({ files, swap, multiple }) => (
         <Dir.Drop className="position-relative">
           <div className="row gx-2">
             {/* click to add files */}
@@ -58,7 +58,7 @@ const FilsList = ({
             </div>
 
             {/* mode toggle */}
-            {modes.length > 1 && (
+            {modes.length > 1 && multiple && (
               <div className="col-auto">
                 <div className="btn-group">
                   <button
