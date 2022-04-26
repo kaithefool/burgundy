@@ -37,10 +37,10 @@ const SortableList = SortableContainer((props) => (
 
 const FilsList = ({
   sortable = true,
-  initMode = 'list',
+  modes = ['list', 'grid'],
   ...props
 }) => {
-  const [mode, setMode] = useState(initMode);
+  const [mode, setMode] = useState(modes[0]);
 
   return (
     <Dir {...props}>
@@ -58,30 +58,32 @@ const FilsList = ({
             </div>
 
             {/* mode toggle */}
-            <div className="col-auto">
-              <div className="btn-group">
-                <button
-                  type="button"
-                  tabIndex={-1}
-                  className={
+            {modes.length > 1 && (
+              <div className="col-auto">
+                <div className="btn-group">
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    className={
                     `btn btn${mode === 'list' ? '' : '-outline'}-secondary`
                   }
-                  onClick={() => setMode('list')}
-                >
-                  <FA icon={faThList} />
-                </button>
-                <button
-                  type="button"
-                  tabIndex={-1}
-                  className={
+                    onClick={() => setMode('list')}
+                  >
+                    <FA icon={faThList} />
+                  </button>
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    className={
                     `btn btn${mode === 'grid' ? '' : '-outline'}-secondary`
                   }
-                  onClick={() => setMode('grid')}
-                >
-                  <FA icon={faTh} />
-                </button>
+                    onClick={() => setMode('grid')}
+                  >
+                    <FA icon={faTh} />
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* list */}
