@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import get from 'lodash/get';
@@ -21,7 +21,7 @@ const ListTableCell = ({
   const value = get(row, key);
   let content = getter(value, row, format);
 
-  if (typeof content === 'object') {
+  if (typeof content === 'object' && !isValidElement(content)) {
     content = i18n.pickLng(content);
   }
   if (format) {
