@@ -3,7 +3,7 @@
   // table row link
   .table > :not(caption) > * > td.link {
     padding: 0;
-    a {
+    a.row-link {
       display: block;
       color: inherit;
       text-decoration: inherit;

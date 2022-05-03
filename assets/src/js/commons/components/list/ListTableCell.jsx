@@ -14,14 +14,21 @@ const ListTableCell = ({
     key,
     getter = (v) => v,
     format,
+    cell,
   },
   rowLink,
 }) => {
   const { i18n, t } = useTranslation();
   const value = get(row, key);
   let content = getter(value, row, format);
+  const isElement = isValidElement(content);
 
-  if (typeof content === 'object' && !isValidElement(content)) {
+  if (cell) {
+    return typeof cell === 'function'
+      ? cell(value, row, format) : cell;
+  }
+
+  if (typeof content === 'object' && !isElement) {
     content = i18n.pickLng(content);
   }
   if (format) {
@@ -34,14 +41,14 @@ const ListTableCell = ({
     content = t(content, content);
   }
 
-  if (rowLink) {
+  if (rowLink && !isElement) {
     const to = typeof rowLink === 'function' ? rowLink(row) : rowLink;
 
-    content = <Link to={to}>{content}</Link>;
+    content = <Link className="row-link" to={to}>{content}</Link>;
   }
 
   return (
-    <td className={rowLink ? 'link' : ''}>
+    <td className={rowLink && !isElement ? 'link' : ''}>
       {content}
     </td>
   );

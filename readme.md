@@ -46,3 +46,4 @@ pm2 deploy [env]
 - Admin panel responsive layout
 - ObjectId validator
 - Room for socket.io?
+- Switch from CommonJS to ES Modules?

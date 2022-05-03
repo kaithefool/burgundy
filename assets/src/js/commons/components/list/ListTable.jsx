@@ -14,7 +14,7 @@ import useList from './useList';
 import ListTableCell from './ListTableCell';
 
 const ListTable = ({
-  className = '',
+  className = 'align-middle',
   rowLink,
 }) => {
   const { t } = useTranslation();
