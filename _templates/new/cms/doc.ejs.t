@@ -5,9 +5,9 @@ import React from 'react';
 import { object } from 'yup';
 <% if (!singleton) { %>import { useParams } from 'react-router-dom';
 <% } %>
+import Form from '~/commons/components/form';
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
-import Form from '~/commons/components/form';
 
 const defaults = {
 };
