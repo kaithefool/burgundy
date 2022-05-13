@@ -3,7 +3,7 @@ const ms = require('ms');
 module.exports = {
   set(req, res, base = '/') {
     res.cookie(
-      'auth.redirect',
+      'redirect',
       JSON.stringify({
         base, url: req.originalUrl,
       }),
@@ -16,10 +16,10 @@ module.exports = {
   },
 
   consume(req, res, base = '/') {
-    let { 'auth.redirect': stored } = req.cookies;
+    let { redirect: stored } = req.cookies;
 
     if (stored !== undefined) {
-      res.clearCookie('auth.redirect');
+      res.clearCookie('redirect');
 
       try {
         stored = JSON.parse(stored);
