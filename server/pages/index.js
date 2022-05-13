@@ -2,6 +2,7 @@ const routes = require('express').Router();
 
 const authByCookies = require('../api/parsers/authByCookies');
 const consts = require('../api/models/consts');
+const redirectCookies = require('../api/helpers/redirectCookies');
 
 const {
   version: ver,
@@ -13,9 +14,10 @@ const { LNG, LNG_LABEL, GOOGLE_API_KEY } = process.env;
 routes.use(authByCookies);
 
 // env variables for frontend
-routes.use(({ csrfToken }, res, next) => {
+routes.use(({ csrfToken, user }, res, next) => {
   res.locals.ver = ver;
   res.locals.env = {
+    user,
     csrf: csrfToken ? csrfToken() : null,
     lngs: LNG.split(','),
     lngLabels: LNG_LABEL.split(','),
@@ -35,8 +37,12 @@ routes.get('/logout', (req, res) => (
 
 routes.use(
   ['/admin', '/admin/*'],
-  ({ user }, res) => {
-    if (!user || user.role !== 'admin') return res.redirect('/auth');
+  (req, res) => {
+    if (req.user?.role !== 'admin') {
+      redirectCookies.set(req, res, '/admin');
+
+      return res.redirect('/auth');
+    }
 
     return res.render('admin');
   },
@@ -45,9 +51,9 @@ routes.use(
 routes.get('/', (req, res) => res.redirect('/auth'));
 routes.use(
   '/auth',
-  ({ user }, res) => {
-    if (user) {
-      if (user.role === 'admin') return res.redirect('/admin');
+  (req, res) => {
+    if (req.user?.role === 'admin') {
+      return redirectCookies.consume(req, res, '/admin');
     }
 
     return res.render('app');
