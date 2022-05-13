@@ -2,7 +2,7 @@
   "perPage": "每頁{{page}}個",
   "yes": "是",
   "no": "否",
-  "presist": "保持登入",
+  "persist": "保持登入",
   "save": "儲存",
   "email": "電郵",
   "mobile": "手機號碼",

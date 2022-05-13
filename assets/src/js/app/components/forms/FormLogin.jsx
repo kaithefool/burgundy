@@ -23,7 +23,7 @@ const FormLogin = () => {
       defaults={{
         email: '',
         password: '',
-        presist: false,
+        persist: false,
       }}
       api={{ url: '/api/auth' }}
       onSubmitted={() => window.location.reload()}
@@ -46,7 +46,7 @@ const FormLogin = () => {
 
       <div className="row">
         <div className="col">
-          <Form.Check name="presist" type="switch" />
+          <Form.Check name="persist" type="switch" />
         </div>
         <div className="col-auto">
           <Link to="/auth/pwd-recovery">
