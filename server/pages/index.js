@@ -39,7 +39,7 @@ routes.use(
   ['/admin', '/admin/*'],
   (req, res) => {
     if (req.user?.role !== 'admin') {
-      redirectCookies.set(req, res, '/admin');
+      redirectCookies.set(req, res, { base: '/admin' });
 
       return res.redirect('/auth');
     }
@@ -53,7 +53,7 @@ routes.use(
   '/auth',
   (req, res) => {
     if (req.user?.role === 'admin') {
-      return redirectCookies.consume(req, res, '/admin');
+      return redirectCookies.consume(req, res, { base: '/admin' });
     }
 
     return res.render('app');

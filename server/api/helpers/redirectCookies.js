@@ -1,9 +1,12 @@
 const ms = require('ms');
 
 module.exports = {
-  set(req, res, base = '/') {
+  set(req, res, {
+    base = '/',
+    name = 'redirect',
+  } = {}) {
     res.cookie(
-      'redirect',
+      name,
       JSON.stringify({
         base, url: req.originalUrl,
       }),
@@ -15,11 +18,15 @@ module.exports = {
     );
   },
 
-  consume(req, res, base = '/') {
-    let { redirect: stored } = req.cookies;
+  consume(req, res, {
+    base = '/',
+    name = 'redirect',
+    default: d,
+  } = {}) {
+    let { [name]: stored } = req.cookies;
 
     if (stored !== undefined) {
-      res.clearCookie('redirect');
+      res.clearCookie(name);
 
       try {
         stored = JSON.parse(stored);
@@ -32,6 +39,6 @@ module.exports = {
       }
     }
 
-    return res.redirect(base);
+    return res.redirect(d || base);
   },
 };
