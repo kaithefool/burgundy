@@ -9,7 +9,7 @@ import useAlert from '../alert/useAlert';
 const ListProvider = ({
   children,
   api,
-  initQuery = { skip: 0, limit: 20 },
+  initQuery,
   filter: baseFilter = {},
   selectable = false,
   cols = [],
@@ -21,6 +21,7 @@ const ListProvider = ({
   );
   const { res, req, fetched } = useHttp();
   const [query, setQuery] = useState(() => ({
+    ...{ skip: 0, limit: 20 },
     ...initQuery,
     ...(history && {
       ...(urlQuery.skip && { skip: Number(urlQuery.skip) }),
