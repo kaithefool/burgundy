@@ -29,7 +29,7 @@ const DocBtnDel = ({
         await http.req({
           ...api,
           method: 'delete',
-          url: `/api/users/${_id}`,
+          url: `${api.url}/${_id}`,
         });
 
         if (redirect) {

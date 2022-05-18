@@ -1,5 +1,6 @@
 const Model = require('../base/Model');
 const crypto = require('../helpers/crypto');
+const consts = require('./consts');
 
 const { Schema } = Model;
 
@@ -15,7 +16,7 @@ class User extends Model {
       },
       role: {
         type: String,
-        enum: ['admin', 'client'],
+        enum: consts.users.roles,
         default: 'client',
       },
 
