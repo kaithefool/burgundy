@@ -15,8 +15,8 @@ const defaults = {
   body: reduceLng(''),
 };
 
-const schema = () => object({
-  url: string().required(),
+const schema = (doc) => object({
+  ...!doc?.key && { url: string().required() },
 });
 
 const PageView = () => {
@@ -30,7 +30,7 @@ const PageView = () => {
       {(doc) => (
         <Page
           header={{
-            title: doc?.url || 'New',
+            title: doc?.url || doc?.key || 'New',
           }}
         >
           <Doc.Form
@@ -41,9 +41,11 @@ const PageView = () => {
               <div className="col-auto">
                 <Form.BtnSubmit />
               </div>
-              <div className="col-auto">
-                <Doc.BtnPreview href={(v) => v.url} />
-              </div>
+              {!doc?.key && (
+                <div className="col-auto">
+                  <Doc.BtnPreview href={(v) => v.url} />
+                </div>
+              )}
               <div className="col-auto">
                 <Doc.UpdatedAt />
               </div>
@@ -54,7 +56,10 @@ const PageView = () => {
 
             {/* fields */}
             <Form.Check name="active" type="switch" />
-            <Form.Input name="url" />
+
+            {!doc?.key && (
+              <Form.Input name="url" />
+            )}
 
             <LngTabs>
               {(lng) => (

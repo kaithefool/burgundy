@@ -1,5 +1,6 @@
 import { DateTime as dt } from 'luxon';
 import truncate from 'lodash/truncate';
+import { convert } from 'html-to-text';
 
 export default {
   datetime: (v) => (
@@ -15,4 +16,5 @@ export default {
     v ? dt.fromISO(v).toRelative() : ''
   ),
   truncate: (v) => truncate(v, { length: 25 }),
+  htmlToText: (v) => truncate(convert(v), { length: 25 }),
 };

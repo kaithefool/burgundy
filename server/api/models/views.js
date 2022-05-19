@@ -3,6 +3,7 @@ const Model = require('../base/Model');
 const { Schema } = Model;
 
 const views = new Model('View', {
+  key: String,
   url: String,
   active: { type: Boolean, default: false },
 
@@ -13,6 +14,7 @@ const views = new Model('View', {
 });
 
 views.seeds([
+  { key: 'home' },
   { url: '/terms' },
 ]);
 

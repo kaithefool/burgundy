@@ -10,9 +10,10 @@ const PageViews = () => (
       api={{ url: '/api/views' }}
       selectable
       cols={[
-        { key: 'url', sortable: true },
-        { key: 'title', sortable: true },
+        { key: 'url', getter: (v, r) => v || r.key },
         { key: 'active' },
+        { key: 'title' },
+        { key: 'body', format: 'htmlToText' },
       ]}
     >
       <div className="row">
