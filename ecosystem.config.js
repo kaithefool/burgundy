@@ -11,7 +11,7 @@ const postSetup = () => [
 
 const postDeploy = (env) => [
   'npm run build',
-  `pm2 startOrReload ecosystem.config.js --env ${env}`,
+  `pm2 startOrReload ecosystem.config.js --env=${env}`,
 ].join(' && ');
 
 const scripts = (env) => ({
@@ -21,6 +21,7 @@ const scripts = (env) => ({
 
 module.exports = {
   apps: [{
+    name,
     script: './server/bin/www',
     max_memory_restart: '1G',
     instances: 'max',
