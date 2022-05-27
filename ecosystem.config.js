@@ -10,13 +10,13 @@ const postSetup = () => [
 ].join(' && ');
 
 const postDeploy = (env) => [
-  'npm build',
+  'npm run build',
   `pm2 startOrReload ecosystem.config.js --env ${env}`,
 ].join(' && ');
 
 const scripts = (env) => ({
   'post-deploy': postDeploy(env),
-  'pre-setup': postSetup(env),
+  'post-setup': postSetup(env),
 });
 
 module.exports = {

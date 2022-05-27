@@ -62,6 +62,14 @@ module.exports = {
       { allowAsProps: true },
     ],
 
+    // I don't see why associating labels with id is unacceptable
+    // and bootstrap don't support nested label
+    'jsx-a11y/label-has-associated-control': ['error', {
+      required: {
+        every: ['nesting', 'id'],
+      },
+    }],
+
     // resolve 'function-declaration' and 'unnamed function' conflict
     // what a joke
     'react/function-component-definition': [

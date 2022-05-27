@@ -22,9 +22,16 @@ npx hygen new api [resource] --singleton
 npx hygen new cms [resource] --singleton
 ```
 
+### Setup deploy directories
+
+```shell
+pm2 deploy [env] setup
+```
 
 ### Deploy
+```shell
 pm2 deploy [env]
+```
 
 ### Todos
 - Field Array
@@ -47,3 +54,4 @@ pm2 deploy [env]
 - ObjectId validator
 - Room for socket.io?
 - Switch from CommonJS to ES Modules?
+- Bugs with formik and ref field
