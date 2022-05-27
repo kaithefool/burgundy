@@ -45,7 +45,9 @@ const Header = ({
               {title}
             </h1>
           </div>
-          <BtnLng className="col-auto" />
+          <div className="col-auto">
+            <BtnLng />
+          </div>
         </div>
       </nav>
       {subsDir && (
