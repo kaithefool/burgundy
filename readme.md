@@ -54,4 +54,3 @@ pm2 deploy [env]
 - ObjectId validator
 - Room for socket.io?
 - Switch from CommonJS to ES Modules?
-- Bugs with formik and ref field
