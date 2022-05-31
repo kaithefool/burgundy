@@ -13,45 +13,43 @@ const PageRegister = () => {
 
   return (
     <Centered>
-      <div className="col-4 py-3">
-        <Form
-          alert={{ className: 'w-auto my-3' }}
-          schema={object({
-            email: email()
-              .required(),
-            password: password()
-              .required(),
-            passwordConfirm: passwordConfirm()
-              .required(),
-          })}
-          defaults={{
-            email: '',
-            password: '',
-            passwordConfirm: '',
-          }}
-          api={{ url: '/api/otps/register-email' }}
-          onSubmitted={() => navigate('sent')}
+      <Form
+        alert={{ className: 'w-auto my-3' }}
+        schema={object({
+          email: email()
+            .required(),
+          password: password()
+            .required(),
+          passwordConfirm: passwordConfirm()
+            .required(),
+        })}
+        defaults={{
+          email: '',
+          password: '',
+          passwordConfirm: '',
+        }}
+        api={{ url: '/api/otps/register-email' }}
+        onSubmitted={() => navigate('sent')}
+      >
+        <h3>{t('pg.register.title')}</h3>
+
+        <Form.Input name="email" affirm />
+        <Form.Password name="password" affirm />
+        <Form.Password name="passwordConfirm" affirm />
+
+        <div className="mb-3">
+          <Link to="/auth">
+            {t('pg.register.login')}
+          </Link>
+        </div>
+
+        <Form.BtnSubmit
+          icon={null}
+          className="btn-primary btn-block"
         >
-          <h3>{t('pg.register.title')}</h3>
-
-          <Form.Input name="email" affirm />
-          <Form.Password name="password" affirm />
-          <Form.Password name="passwordConfirm" affirm />
-
-          <div className="mb-3">
-            <Link to="/auth">
-              {t('pg.register.login')}
-            </Link>
-          </div>
-
-          <Form.BtnSubmit
-            icon={null}
-            className="btn-primary btn-block"
-          >
-            {t('pg.register.submit')}
-          </Form.BtnSubmit>
-        </Form>
-      </div>
+          {t('pg.register.submit')}
+        </Form.BtnSubmit>
+      </Form>
     </Centered>
   );
 };

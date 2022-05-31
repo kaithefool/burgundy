@@ -22,33 +22,31 @@ const PagePwdReset = () => {
       }}
     >
       <Centered>
-        <div className="col-4 py-3">
-          <Form
-            alert={{ className: 'w-auto my-3' }}
-            schema={object({
-              password: password().required(),
-              passwordConfirm: passwordConfirm()
-                .required(),
-            })}
-            defaults={{
-              password: '',
-              passwordConfirm: '',
-              verifyKey: key,
-            }}
-            api={{ url: '/api/otps/pwdreset-email/affirm' }}
-            onSubmitted={() => {
-              // mysterious violation of strict "same-site" cookie policy
-              // when opening this page from links in emails
-              window.location.href = resolvePath('../../success');
-            }}
-          >
-            <Form.Password name="password" affirm />
-            <Form.Password name="passwordConfirm" affirm />
-            <Form.BtnSubmit>
-              {t('pg.pwdReset.submit')}
-            </Form.BtnSubmit>
-          </Form>
-        </div>
+        <Form
+          alert={{ className: 'w-auto my-3' }}
+          schema={object({
+            password: password().required(),
+            passwordConfirm: passwordConfirm()
+              .required(),
+          })}
+          defaults={{
+            password: '',
+            passwordConfirm: '',
+            verifyKey: key,
+          }}
+          api={{ url: '/api/otps/pwdreset-email/affirm' }}
+          onSubmitted={() => {
+          // mysterious violation of strict "same-site" cookie policy
+          // when opening this page from links in emails
+            window.location.href = resolvePath('../../success');
+          }}
+        >
+          <Form.Password name="password" affirm />
+          <Form.Password name="passwordConfirm" affirm />
+          <Form.BtnSubmit>
+            {t('pg.pwdReset.submit')}
+          </Form.BtnSubmit>
+        </Form>
       </Centered>
     </Fetchable>
   );

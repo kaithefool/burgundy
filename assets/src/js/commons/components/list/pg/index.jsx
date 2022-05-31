@@ -11,14 +11,14 @@ export {
 };
 
 const Pg = () => (
-  <div className="row">
-    <div className="col-auto">
-      <ListPgCols />
-    </div>
+  <div className="row g-2">
     <div className="col-auto">
       <ListPgLimit />
     </div>
     <ListPgSkip className="col-auto" />
+    <div className="col-auto">
+      <ListPgCols />
+    </div>
   </div>
 );
 

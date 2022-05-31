@@ -15,43 +15,41 @@ const PagePwdResetMail = () => {
 
   return (
     <Centered>
-      <div className="col-4 py-3">
-        <Form
-          alert={{ className: 'w-auto my-3' }}
-          schema={object({
-            email: email().required(),
-          })}
-          defaults={{
-            email: '',
-          }}
-          api={{ url: '/api/otps/pwdreset-email' }}
-          onSubmitted={() => {
-            navigate('sent');
-          }}
+      <Form
+        alert={{ className: 'w-auto my-3' }}
+        schema={object({
+          email: email().required(),
+        })}
+        defaults={{
+          email: '',
+        }}
+        api={{ url: '/api/otps/pwdreset-email' }}
+        onSubmitted={() => {
+          navigate('sent');
+        }}
+      >
+        <h1>{t('pg.pwdReset.mailTitle')}</h1>
+        <p className="text-muted">
+          {t('pg.pwdReset.mailSubTitle')}
+        </p>
+
+        <Form.Input
+          name="email"
+          label={null}
+          placeholder={t('pg.pwdReset.mailEmail')}
+        />
+
+        <Form.BtnSubmit
+          icon={faPaperPlane}
         >
-          <h1>{t('pg.pwdReset.mailTitle')}</h1>
-          <p className="text-muted">
-            {t('pg.pwdReset.mailSubTitle')}
-          </p>
+          {t('pg.pwdReset.mailSubmit')}
+        </Form.BtnSubmit>
+      </Form>
 
-          <Form.Input
-            name="email"
-            label={null}
-            placeholder={t('pg.pwdReset.mailEmail')}
-          />
-
-          <Form.BtnSubmit
-            icon={faPaperPlane}
-          >
-            {t('pg.pwdReset.mailSubmit')}
-          </Form.BtnSubmit>
-        </Form>
-
-        <div className="mt-3">
-          <Link to={resolvePath('..')}>
-            {t('pg.pwdReset.mailBack')}
-          </Link>
-        </div>
+      <div className="mt-3">
+        <Link to={resolvePath('..')}>
+          {t('pg.pwdReset.mailBack')}
+        </Link>
       </div>
     </Centered>
   );

@@ -12,22 +12,18 @@ const PagePwdResetSuccess = () => {
 
   return (
     <Centered>
-      <div className="col-4 py-3">
-        <div>
-          <h2>
-            <FA icon={faCheckCircle} className="me-3" />
-            {t('pg.pwdReset.successTitle')}
-          </h2>
-          <p>
-            {t('pg.pwdReset.successSubTitle')}
-          </p>
-          <p>
-            <Link to={resolvePath('../..')}>
-              {t('pg.pwdReset.successLink')}
-            </Link>
-          </p>
-        </div>
-      </div>
+      <h2>
+        <FA icon={faCheckCircle} className="me-3" />
+        {t('pg.pwdReset.successTitle')}
+      </h2>
+      <p>
+        {t('pg.pwdReset.successSubTitle')}
+      </p>
+      <p>
+        <Link to={resolvePath('../..')}>
+          {t('pg.pwdReset.successLink')}
+        </Link>
+      </p>
     </Centered>
   );
 };

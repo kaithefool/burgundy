@@ -22,22 +22,18 @@ const PageRegisterVerify = () => {
       }}
     >
       <Centered>
-        <div className="col-4 py-3">
-          <div>
-            <h2>
-              <FA icon={faCheckCircle} className="me-3" />
-              {t('pg.register.successTitle')}
-            </h2>
-            <p>
-              {t('pg.register.successSubTitle')}
-            </p>
-            <p>
-              <Link to={resolvePath('../../..')}>
-                {t('pg.register.successLink')}
-              </Link>
-            </p>
-          </div>
-        </div>
+        <h2>
+          <FA icon={faCheckCircle} className="me-3" />
+          {t('pg.register.successTitle')}
+        </h2>
+        <p>
+          {t('pg.register.successSubTitle')}
+        </p>
+        <p>
+          <Link to={resolvePath('../../..')}>
+            {t('pg.register.successLink')}
+          </Link>
+        </p>
       </Centered>
     </Fetchable>
   );

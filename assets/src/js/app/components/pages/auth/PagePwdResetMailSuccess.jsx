@@ -12,24 +12,20 @@ const PagePwdResetMailSuccess = () => {
 
   return (
     <Centered>
-      <div className="col-4 py-3">
-        <div>
-          <h2>
-            <FA icon={faEnvelope} className="me-3" />
-            {t('pg.pwdReset.mailSuccessTitle')}
-          </h2>
-          <p>
-            {t('pg.pwdReset.mailSuccessSubTitle')}
-          </p>
-          <p>
-            <strong>{t('pg.pwdReset.noEmail')}</strong>
-            <br />
-            <Link to={resolvePath('..')}>
-              {t('pg.pwdReset.noEmailLink')}
-            </Link>
-          </p>
-        </div>
-      </div>
+      <h2>
+        <FA icon={faEnvelope} className="me-3" />
+        {t('pg.pwdReset.mailSuccessTitle')}
+      </h2>
+      <p>
+        {t('pg.pwdReset.mailSuccessSubTitle')}
+      </p>
+      <p>
+        <strong>{t('pg.pwdReset.noEmail')}</strong>
+        <br />
+        <Link to={resolvePath('..')}>
+          {t('pg.pwdReset.noEmailLink')}
+        </Link>
+      </p>
     </Centered>
   );
 };

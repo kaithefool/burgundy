@@ -12,24 +12,20 @@ const PageRegisterSubmitted = () => {
 
   return (
     <Centered>
-      <div className="col-4 py-3">
-        <div>
-          <h2>
-            <FA icon={faEnvelope} className="me-3" />
-            {t('pg.register.mailSuccessTitle')}
-          </h2>
-          <p>
-            {t('pg.register.mailSuccessSubTitle')}
-          </p>
-          <p>
-            <strong>{t('pg.register.noEmail')}</strong>
-            <br />
-            <Link to={resolvePath('..')}>
-              {t('pg.register.noEmailLink')}
-            </Link>
-          </p>
-        </div>
-      </div>
+      <h2>
+        <FA icon={faEnvelope} className="me-3" />
+        {t('pg.register.mailSuccessTitle')}
+      </h2>
+      <p>
+        {t('pg.register.mailSuccessSubTitle')}
+      </p>
+      <p>
+        <strong>{t('pg.register.noEmail')}</strong>
+        <br />
+        <Link to={resolvePath('..')}>
+          {t('pg.register.noEmailLink')}
+        </Link>
+      </p>
     </Centered>
   );
 };
