@@ -13,7 +13,17 @@
 
   // main navigation
   nav.main-nav {
-    border-color: darken($light, 3%) !important;
+    background-color: $body-bg;
+
+    @include media-breakpoint-down(md) {
+      border: solid 1px $border-color;
+    }
+    @include media-breakpoint-up(md) {
+      border-right: solid 1px darken($light, 3%) !important;
+      > * {
+        height: 100vh;
+      }
+    }
 
     .nav-link {
       position: relative;
@@ -28,6 +38,10 @@
           top: 0;
           right: 0;
           border-right: solid .2rem $primary;
+
+          @include media-breakpoint-down(md) {
+            display: none;
+          }
         }
       }
     }

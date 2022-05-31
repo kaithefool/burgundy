@@ -79,6 +79,7 @@
     "verify": "您的驗證碼是: {{verifyKey}}"
   },
   "nav": {
+    "Logout": "登出",
     "New": "新增",
     "All": "全部",
     "Users": "用戶",
