@@ -1,13 +1,18 @@
 #root.admin {
    
   // table row link
-  .table > :not(caption) > * > td.link {
-    padding: 0;
-    a.row-link {
-      display: block;
-      color: inherit;
-      text-decoration: inherit;
-      padding: $table-cell-padding-y $table-cell-padding-x;
+  .table {
+    > :not(caption) > * > td.link {
+      padding: 0;
+      a.row-link {
+        display: block;
+        color: inherit;
+        text-decoration: inherit;
+        padding: $table-cell-padding-y $table-cell-padding-x;
+      }
+    }
+    th {
+      word-break: keep-all;
     }
   }
 

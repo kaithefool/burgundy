@@ -7,10 +7,14 @@ const PageAccessLogs = () => (
   <Page>
     <List
       api={{ url: '/api/access-logs' }}
+      initQuery={{ sort: { createdAt: -1 } }}
       cols={[
         { key: 'createdAt', format: 'datetime', sortable: true },
         { key: 'action', sortable: true },
-        { key: 'user.email' },
+        {
+          key: 'user',
+          getter: (u) => u?.email || u?.mobile || u?.username,
+        },
         { key: 'ip', label: 'IP' },
         { key: 'userAgent', hide: true },
       ]}

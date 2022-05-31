@@ -44,12 +44,10 @@ pm2 deploy [env]
     - MaxSize and accept
 - Grid html editor
 - Table
-    - Sticky table head (not possible with pure css)
+    - Sticky table head (not possible with pure css?)
 - i18n
     - Email templates
-    - Reload server after new locale files
 - Import json & excel?
-- Admin panel responsive layout
 - ObjectId validator
 - Room for socket.io?
 - Switch from CommonJS to ES Modules?

@@ -11,8 +11,8 @@ const Nav = ({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <nav className={`main-nav sticky-top ${className}`}>
-      <div className="py-2 py-md-3 d-flex flex-column">
+    <nav className={`main-nav ${className}`}>
+      <div className="sticky-top py-2 py-md-3 d-flex flex-column">
         {/* expand/collapse button */}
         <NavItem
           onClick={() => setExpanded(!expanded)}
