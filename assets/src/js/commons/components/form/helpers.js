@@ -51,7 +51,7 @@ function initValues(
 
         return val?._id || val;
       }
-      // formik doesn't support numbers very well
+      // numbers
       if (typeof val === 'number') {
         return val.toString();
       }

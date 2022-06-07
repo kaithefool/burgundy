@@ -43,8 +43,6 @@ pm2 deploy [env]
     - Drop file handler
     - MaxSize and accept
 - Grid html editor
-- Table
-    - Sticky table head (not possible with pure css?)
 - i18n
     - Email templates
 - Import json & excel?
