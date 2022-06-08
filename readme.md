@@ -1,39 +1,50 @@
 # Burgundy
 
-### Getting Start
+## Getting Start
+##### Prerequisites
+- Nodejs >=16.0.0
+- Mongodb >= 4.2.2
+
+##### Installation
 ```shell
 npm i
+```
+##### Start the server
+```shell
 npm start
 ```
+##### ... or if you are using Visual Studio Code
+Just simply press the F5 button to start the debug mode
 
-### Generate the first admin user
+## Command line interface
+##### Generate the first admin user
 ```shell
 ./server/bin/gen-admin [username@domain.com] [password]
 ```
 
-### Generate resources API and CMS UI
+##### Generate resources API and CMS UI
 ```shell
 npx hygen new api [resource]
 npx hygen new cms [resource]
 ```
-
+##### Singletons
 ```shell
 npx hygen new api [resource] --singleton
 npx hygen new cms [resource] --singleton
 ```
-
-### Setup deploy directories
+## Deploy
+##### Setup directories in deploy environment
 
 ```shell
 pm2 deploy [env] setup
 ```
 
-### Deploy
+##### ... and deploy
 ```shell
 pm2 deploy [env]
 ```
 
-### Todos
+## Todos
 - Field Array
     - handle _id reference
 - File Uploads
