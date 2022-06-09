@@ -34,6 +34,7 @@
     "password-hash-and-salt": "^0.1.4",
     "pug": "3.0.2",
     "redis": "^4.0.0",
+    "socket.io": "^4.5.1",
     "tunnel-ssh": "^4.1.6",
     "twilio": "^3.71.2",
     "yup": "^0.32.11"

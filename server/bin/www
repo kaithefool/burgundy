@@ -1,18 +1,11 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
 const debug = require('debug')('burgundy:server');
 const http = require('http');
-require('../start');
+const { sockets: io } = require('../start');
 const app = require('../app');
 
-/**
- * Normalize a port into a number, string, or false.
- */
-
+// Normalize a port into a number, string, or false.
 function normalizePort(val) {
   const p = parseInt(val, 10);
 
@@ -28,28 +21,22 @@ function normalizePort(val) {
   return false;
 }
 
-/**
- * Get port from environment and store in Express.
- */
-
+// Get port from environment and store in Express.
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
+// Create HTTP server.
 const server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+// Socket
+if (io) {
+  io.attach(server);
+}
+
+// Listen on provided port, on all network interfaces.
 server.listen(port);
 
-/**
- * Event listener for HTTP server "error" event.
- */
-
+// Event listener for HTTP server "error" event.
 server.on('error', (error) => {
   if (error.syscall !== 'listen') {
     throw error;
@@ -74,10 +61,7 @@ server.on('error', (error) => {
   }
 });
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
+// Event listener for HTTP server "listening" event.
 server.on('listening', () => {
   const addr = server.address();
   const bind = typeof addr === 'string'

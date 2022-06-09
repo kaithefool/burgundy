@@ -2,7 +2,7 @@
 
 ## Getting Start
 ##### Prerequisites
-- Nodejs >=16.0.0
+- Nodejs >= 16.0.0
 - Mongodb >= 4.2.2
 
 ##### Installation
@@ -34,7 +34,6 @@ npx hygen new cms [resource] --singleton
 ```
 ## Deploy
 ##### Setup directories in deploy environment
-
 ```shell
 pm2 deploy [env] setup
 ```
@@ -58,5 +57,9 @@ pm2 deploy [env]
     - Email templates
 - Import json & excel?
 - ObjectId validator
-- Room for socket.io?
 - Switch from CommonJS to ES Modules?
+- Socket
+    - Auth
+    - Error handling
+    - Redis
+    - Routes?

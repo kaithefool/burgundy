@@ -36,6 +36,7 @@
     "react-router-dom": "^6.0.2",
     "react-sortable-hoc": "^2.0.0",
     "sanitize-html": "^2.6.0",
+    "socket.io-client": "^4.5.1",
     "summernote": "^0.8.20",
     "yup": "^0.32.11"
   },
