@@ -2,7 +2,7 @@
 
 const debug = require('debug')('burgundy:server');
 const http = require('http');
-const { sockets: io } = require('../start');
+const { socketIO } = require('../start');
 const app = require('../app');
 
 // Normalize a port into a number, string, or false.
@@ -29,8 +29,8 @@ app.set('port', port);
 const server = http.createServer(app);
 
 // Socket
-if (io) {
-  io.attach(server);
+if (socketIO) {
+  socketIO.attach(server);
 }
 
 // Listen on provided port, on all network interfaces.

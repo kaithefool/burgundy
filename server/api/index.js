@@ -4,6 +4,7 @@ const httpError = require('http-errors');
 const routes = require('./routes');
 const authByHeader = require('./parsers/authByHeader');
 const authByCookies = require('./parsers/authByCookies');
+const sockets = require('./sockets');
 
 const api = Router();
 

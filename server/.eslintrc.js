@@ -16,6 +16,9 @@ module.exports = {
     // leaving room to expand more exports
     'import/prefer-default-export': 'warn',
 
+    // for headers
+    'no-param-reassign': ['error', { props: false }],
+
     // mongodb
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
   },

@@ -59,7 +59,8 @@ pm2 deploy [env]
 - ObjectId validator
 - Switch from CommonJS to ES Modules?
 - Socket
-    - Auth
+    - Auth, by cookies and header
     - Error handling
     - Redis
     - Routes?
+    - Security, tokens, and csrf
