@@ -5,7 +5,7 @@ const { io, onServer } = require('../../start/socketIO');
 onServer(() => {
   io.engine.on('initial_headers', (headers, req) => {
     // parse cookies
-    req.headers.cookies = parse(req.headers.cookie);
+    req.cookies = parse(req.headers.cookie);
 
     headers['Set-Cookie'] = serialize('meh', 'abc', {
       httpOnly: true,

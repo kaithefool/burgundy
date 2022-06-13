@@ -1,4 +1,7 @@
 const { Server } = require('socket.io');
+const { createAdapter } = require('@socket.io/redis-adapter');
+
+const redis = require('./redis');
 
 const { SOCKET = '0' } = process.env;
 
@@ -7,6 +10,7 @@ const s = {
 
   attach(server) {
     if (SOCKET === '1') {
+      this.io.adapter(createAdapter(redis(), redis()));
       this.io.attach(server);
       this.callbacks.forEach((cb) => cb(this.io));
     }
