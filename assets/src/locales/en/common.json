@@ -20,6 +20,7 @@
     "invalidCredentials": "Incorrect username or password",
     "userInactivated": "Your account has been deactivated",
     "invalidToken": "Invalid token",
+    "invalidCsrf": "Invalid CSRF token",
     "loggedOut": "You've logged out",
     "notFound": "Not found",
     "duplicates": "Duplicated record: {{values}}",

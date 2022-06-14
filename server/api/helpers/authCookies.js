@@ -20,8 +20,8 @@ module.exports = {
     return { access, refresh };
   },
 
-  set(res, tokens, { persist = true } = {}) {
-    const { access, refresh } = tokens;
+  set(res, tokens) {
+    const { access, refresh, persist = false } = tokens;
 
     res.cookie('access.id', access, {
       ...cookieOpts,

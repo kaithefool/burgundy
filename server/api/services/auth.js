@@ -17,20 +17,20 @@ const userProps = [
 ];
 
 class AuthServ extends Service {
-  async login(user) {
+  async login(user, persist) {
     // record login time
     await this.patch(
       { _id: user._id, lastLogin: new Date() },
     );
 
-    return this.signTokens(user);
+    return this.signTokens(user, persist);
   }
 
-  async authenticate(cred) {
+  async authenticate({ persist, ...cred }) {
     const u = await this.basicStrag(cred);
 
     // record login time
-    return this.login(u);
+    return this.login(u, persist);
   }
 
   async basicStrag({ email, password }) {
@@ -52,18 +52,19 @@ class AuthServ extends Service {
     return u;
   }
 
-  signTokens(user) {
+  signTokens(user, persist = false) {
     const props = pick(user, userProps);
 
     return {
       user: props,
+      persist,
       access: jwt.sign(
         props,
         SECRET,
         { expiresIn: JWT_ACCESS_TTL },
       ),
       refresh: jwt.sign(
-        { _id: user._id },
+        { _id: user._id, persist: Boolean(persist) },
         SECRET,
         { expiresIn: JWT_REFRESH_TTL },
       ),
@@ -83,9 +84,11 @@ class AuthServ extends Service {
       this.throw(400, 'res.invalidToken');
     }
 
+    const { _id, persist, iat } = payload;
+
     const [u] = await this.find({
       filter: {
-        _id: payload._id,
+        _id,
         active: 1,
       },
     });
@@ -96,14 +99,37 @@ class AuthServ extends Service {
 
     // check if user has logged out
     // after the token was issued
-    if (u.lastLogout > new Date(payload.iat * 1000)) {
+    if (u.lastLogout > new Date(iat * 1000)) {
       this.throw(400, 'res.loggedOut');
     }
 
     return {
       user: pick(u, userProps),
-      ...this.signTokens(u),
+      ...this.signTokens(u, persist),
     };
+  }
+
+  async verifyOrRenew({ access, refresh }) {
+    if (access) {
+      try {
+        const user = this.verifyToken(access);
+
+        return { user };
+      } catch (e) {
+        // do nothing
+      }
+    }
+    if (refresh) {
+      try {
+        const o = this.renewTokens(refresh);
+
+        return o;
+      } catch (e) {
+        // do nothing
+      }
+    }
+
+    return null;
   }
 
   async refresh({ token }) {

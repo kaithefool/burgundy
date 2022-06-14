@@ -33,11 +33,11 @@ module.exports = new Routes({
       // log
       logAccess('login'),
       // response
-      ({ attrs, web }, res) => {
+      ({ web }, res) => {
         const { locals: { out } } = res;
 
         if (web) {
-          authCookies.set(res, out, attrs);
+          authCookies.set(res, out);
 
           return res.end();
         }
@@ -54,12 +54,12 @@ module.exports = new Routes({
 
   logout: {
     path: '/logout',
-    response({ attrs, web }, res) {
+    response({ attrs: { redirect }, web }, res) {
       if (web) {
         authCookies.clear(res);
       }
-      if (attrs.redirect) {
-        return res.redirect('/');
+      if (redirect !== undefined) {
+        return res.redirect(redirect || '/');
       }
 
       return res.end();
