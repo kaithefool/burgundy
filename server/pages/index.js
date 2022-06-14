@@ -32,7 +32,7 @@ routes.use(({ csrfToken, user }, res, next) => {
 });
 
 routes.get('/logout', (req, res) => (
-  res.redirect('/api/auth/logout?web=1&redirect=1')
+  res.redirect('/api/auth/logout?redirect')
 ));
 
 routes.use(

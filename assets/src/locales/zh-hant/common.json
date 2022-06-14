@@ -20,6 +20,7 @@
     "invalidCredentials": "帳號或密碼不正確",
     "userInactivated": "你的帳戶已停用",
     "invalidToken": "密鑰無效或已過期",
+    "invalidCsrf": "CSRF密鑰無效或已過期",
     "loggedOut": "你已登出帳戶",
     "notFound": "找不到網頁",
     "duplicates": "不能重複數據: {{values}}",
