@@ -8,6 +8,7 @@ const errHandler = require('./lib/err/errHandler');
 const i18n = require('./start/i18n');
 const api = require('./api');
 const pages = require('./pages');
+require('./sockets');
 
 const app = express();
 
