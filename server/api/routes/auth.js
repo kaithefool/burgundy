@@ -55,9 +55,7 @@ module.exports = new Routes({
   logout: {
     path: '/logout',
     response({ attrs: { redirect }, web }, res) {
-      if (web) {
-        authCookies.clear(res);
-      }
+      if (web) authCookies.clear(res);
       if (redirect !== undefined) {
         return res.redirect(redirect || '/');
       }

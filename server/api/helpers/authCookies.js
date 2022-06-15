@@ -8,6 +8,8 @@ const {
 
 const cookieOpts = {
   secure: HTTPS === '1',
+  httpOnly: true,
+  sameSite: 'strict',
 };
 
 module.exports = {
@@ -25,19 +27,11 @@ module.exports = {
 
     res.cookie('access.id', access, {
       ...cookieOpts,
-      httpOnly: true,
-      sameSite: 'strict',
-      ...(persist ? {
-        maxAge: ms(JWT_ACCESS_TTL),
-      } : {}),
+      ...persist && { maxAge: ms(JWT_ACCESS_TTL) },
     });
     res.cookie('refresh.id', refresh, {
       ...cookieOpts,
-      httpOnly: true,
-      sameSite: 'strict',
-      ...(persist ? {
-        maxAge: ms(JWT_REFRESH_TTL),
-      } : {}),
+      ...persist && { maxAge: ms(JWT_REFRESH_TTL) },
     });
   },
 
