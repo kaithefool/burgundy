@@ -110,6 +110,8 @@ class AuthServ extends Service {
   }
 
   async verifyOrRenew({ access, refresh }) {
+    if (!access && !refresh) return null;
+
     if (access) {
       try {
         const user = this.verifyToken(access);
@@ -119,17 +121,9 @@ class AuthServ extends Service {
         // do nothing
       }
     }
-    if (refresh) {
-      try {
-        const o = this.renewTokens(refresh);
+    const o = await this.renewTokens(refresh);
 
-        return o;
-      } catch (e) {
-        // do nothing
-      }
-    }
-
-    return null;
+    return o;
   }
 
   async refresh({ token }) {
