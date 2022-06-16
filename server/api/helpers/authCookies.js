@@ -1,4 +1,5 @@
 const ms = require('ms');
+const { parse, serialize } = require('cookie');
 
 const {
   HTTPS,
@@ -8,6 +9,7 @@ const {
 
 const cookieOpts = {
   secure: HTTPS === '1',
+  path: '/',
   httpOnly: true,
   sameSite: 'strict',
 };
@@ -17,7 +19,7 @@ module.exports = {
     const {
       'access.id': access,
       'refresh.id': refresh,
-    } = req.cookies;
+    } = req.cookies || parse(req.headers.cookie);
 
     return { access, refresh };
   },
@@ -25,18 +27,33 @@ module.exports = {
   set(res, tokens) {
     const { access, refresh, persist = false } = tokens;
 
-    res.cookie('access.id', access, {
-      ...cookieOpts,
-      ...persist && { maxAge: ms(JWT_ACCESS_TTL) },
-    });
-    res.cookie('refresh.id', refresh, {
-      ...cookieOpts,
-      ...persist && { maxAge: ms(JWT_REFRESH_TTL) },
-    });
+    const setCookie = (cc) => (
+      res.cookie
+        ? cc.forEach((c) => res.cookie(...c))
+        : res.setHeader('Set-Cookie', cc.map((c) => serialize(...c)))
+    );
+
+    setCookie([
+      ['access.id', access, {
+        ...cookieOpts,
+        ...persist && { maxAge: ms(JWT_ACCESS_TTL) },
+      }],
+      ['refresh.id', refresh, {
+        ...cookieOpts,
+        ...persist && { maxAge: ms(JWT_REFRESH_TTL) },
+      }],
+    ]);
   },
 
   clear(res) {
-    res.clearCookie('access.id');
-    res.clearCookie('refresh.id');
+    if (res.clearCookie) {
+      res.clearCookie('access.id');
+      res.clearCookie('refresh.id');
+    } else {
+      res.setHeader('Set-Cookie', [
+        serialize('access.id', '', { expires: new Date(0) }),
+        serialize('refresh.id', '', { expires: new Date(0) }),
+      ]);
+    }
   },
 };

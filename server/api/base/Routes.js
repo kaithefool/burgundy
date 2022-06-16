@@ -39,6 +39,7 @@ class Routes {
       this.registerRoute(name, { serve: name, ...r });
     });
 
+    // eslint-disable-next-line no-constructor-return
     return this.router;
   }
 
