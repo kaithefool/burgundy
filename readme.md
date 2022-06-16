@@ -32,6 +32,25 @@ npx hygen new cms [resource]
 npx hygen new api [resource] --singleton
 npx hygen new cms [resource] --singleton
 ```
+##API
+#### Web Sockets
+Socket.io is available with authenication built-in.
+To turn it on,  simply put these in the .env file:
+```env
+REDIS_URL=redis://localhost:6379
+SOCKET=1
+```
+... and in your assets script, connect the server with:
+```js
+import { io } from 'socket.io-client';
+import env from '~/commons/config/env';
+
+const socket = io({
+  extraHeaders: {
+    'x-csrf-token': env.csrf,
+  },
+});
+```
 ## Deploy
 ##### Setup directories in deploy environment
 ```shell
@@ -58,7 +77,3 @@ pm2 deploy [env]
 - Import json & excel?
 - ObjectId validator
 - Switch from CommonJS to ES Modules?
-- Socket
-    - Error handling
-    - Routes?
-    - Security, tokens, and csrf

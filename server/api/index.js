@@ -5,6 +5,8 @@ const routes = require('./routes');
 const authByHeader = require('./parsers/authByHeader');
 const authByCookies = require('./parsers/authByCookies');
 
+require('./sockets');
+
 const api = Router();
 
 // catch 404 and forward to error handler

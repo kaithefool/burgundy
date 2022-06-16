@@ -1,6 +1,6 @@
 const authService = require('../services/auth');
 const authCookies = require('../helpers/authCookies');
-const csrf = require('./csrf');
+const csrf = require('./csrf')();
 
 module.exports = async function authByCookies(req, res, next) {
   // set auth source

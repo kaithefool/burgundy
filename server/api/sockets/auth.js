@@ -1,8 +1,12 @@
 const httpError = require('http-errors');
+const { parse } = require('cookie');
 
-const io = require('../start/io');
-const authCookies = require('../api/helpers/authCookies');
-const authServ = require('../api/services/auth');
+const io = require('../../start/io');
+const authCookies = require('../helpers/authCookies');
+const authServ = require('../services/auth');
+const csrf = require('../parsers/csrf')({
+  ignoreMethods: ['HEAD', 'OPTIONS'],
+});
 
 const authByHeader = (req) => {
   const { authorization: header } = req.headers;
@@ -20,13 +24,24 @@ const authByHeader = (req) => {
   }
 };
 
+const checkCsrf = (req) => {
+  req.cookies = parse(req.headers.cookie);
+
+  const err = csrf(req, req.res, (e) => e);
+
+  if (err) throw err;
+};
+
 const authByCookies = async (req) => {
+  checkCsrf(req);
+
   try {
     const output = await authServ.verifyOrRenew(
       authCookies.get(req),
     );
 
     if (output.access) authCookies.set(req.res, output);
+
     return output.user;
   } catch (error) {
     authCookies.clear(req.res);
@@ -36,9 +51,15 @@ const authByCookies = async (req) => {
 };
 
 io.allowRequest(async (req, cb) => {
-  req.user = authByHeader(req) || await authByCookies(req);
+  try {
+    req.user = authByHeader(req) || await authByCookies(req);
+  } catch (e) {
+    return cb(e, false);
+  }
 
-  console.log(req.user);
+  // Only logged in users can use sockets by default
+  // comment this line out if you allow guests
+  if (!req.user) return cb(httpError(401, 'unauthorized'));
 
   return cb(null, true);
 });
