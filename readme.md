@@ -32,7 +32,7 @@ npx hygen new cms [resource]
 npx hygen new api [resource] --singleton
 npx hygen new cms [resource] --singleton
 ```
-##API
+## API
 #### Web Sockets
 Socket.io is available with authenication built-in.
 To turn it on,  simply put these in the .env file:
