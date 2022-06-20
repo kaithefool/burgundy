@@ -6,7 +6,7 @@ module.exports = () => ({
   devtool: 'source-map',
   context: __dirname,
   entry: {
-    app: './src/js/app/index.jsx',
+    home: './src/js/home/index.jsx',
     admin: './src/js/admin/index.jsx',
   },
   output: {

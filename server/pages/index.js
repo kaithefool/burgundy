@@ -41,7 +41,7 @@ routes.use(
     if (req.user?.role !== 'admin') {
       redirectCookies.set(req, res, { base: '/admin' });
 
-      return res.redirect('/auth');
+      return res.redirect(req.user ? '/logout' : '/auth');
     }
 
     return res.render('admin');
@@ -56,13 +56,13 @@ routes.use(
       return redirectCookies.consume(req, res, { base: '/admin' });
     }
 
-    return res.render('app');
+    return res.render('home');
   },
 );
 
 routes.use(
   '/',
-  (req, res) => res.render('app'),
+  (req, res) => res.render('home'),
 );
 
 module.exports = routes;
