@@ -5,11 +5,11 @@ import ReactDOM from 'react-dom';
 import '../../scss/main.scss';
 import '~/commons/config';
 
-import App from './components/App';
+import Home from './components/Home';
 
 ReactDOM.render(
   <Suspense fallback="loading...">
-    <App />
+    <Home />
   </Suspense>,
   document.getElementById('root'),
 );

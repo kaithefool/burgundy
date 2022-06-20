@@ -3,12 +3,12 @@ import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 
-import AppRoutes from './routes';
+import HomeRoutes from './routes';
 
-const App = () => (
+const Home = () => (
   <Router>
-    <AppRoutes />
+    <HomeRoutes />
   </Router>
 );
 
-export default App;
+export default Home;

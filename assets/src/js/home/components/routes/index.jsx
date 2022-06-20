@@ -4,11 +4,11 @@ import { Routes, Route } from 'react-router-dom';
 import RoutesAuth from './RoutesAuth';
 import PageView from '../pages/PageView';
 
-const AppRoutes = () => (
+const HomeRoutes = () => (
   <Routes>
     <Route path="/auth/*" element={<RoutesAuth />} />
     <Route path="/*" element={<PageView />} />
   </Routes>
 );
 
-export default AppRoutes;
+export default HomeRoutes;
