@@ -2,10 +2,21 @@ import React, { useState } from 'react';
 import startCase from 'lodash/startCase';
 import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
+import { isFragment } from 'react-is';
 
 import BTabs from 'react-bootstrap/Tabs';
 import BTab from 'react-bootstrap/Tab';
+
 import { resolvePath } from '../../../helpers';
+
+function flat(children, out = []) {
+  children.forEach((c) => {
+    if (isFragment(c)) flat(c.props.children, out);
+    else out.push(c);
+  });
+
+  return out;
+}
 
 const Tabs = ({
   children,
@@ -43,7 +54,7 @@ const Tabs = ({
       }}
       {...props}
     >
-      {children.map((child) => {
+      {flat(children).map((child) => {
         const childProps = { ...child.props };
         const { eventKey } = childProps;
 
