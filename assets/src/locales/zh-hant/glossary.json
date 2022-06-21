@@ -11,7 +11,7 @@
   "passwordConfirm": "確認密碼",
   "active": "啟用",
   "name": "名稱",
-  "role": "類型",
+  "role": "權限角色",
   "updatedAt": "最後更新",
   "lastLogin": "上次登錄",
   "title": "標題",
