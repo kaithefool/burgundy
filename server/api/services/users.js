@@ -7,7 +7,6 @@ class UserServ extends Service {
       { _id },
       { active },
       user,
-      { multi: true },
     );
   }
 }

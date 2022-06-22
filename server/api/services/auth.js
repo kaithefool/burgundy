@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { pick } = require('lodash');
+const _ = require('lodash');
 
 const Service = require('../base/Service');
 const usersModel = require('../models/users');
@@ -53,7 +53,7 @@ class AuthServ extends Service {
   }
 
   signTokens(user, persist = false) {
-    const props = pick(user, userProps);
+    const props = _.pick(user, userProps);
 
     return {
       user: props,
@@ -104,7 +104,7 @@ class AuthServ extends Service {
     }
 
     return {
-      user: pick(u, userProps),
+      user: _.pick(u, userProps),
       ...this.signTokens(u, persist),
     };
   }
