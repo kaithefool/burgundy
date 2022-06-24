@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import BtnHttp from './BtnHttp';
 import ModalConfirm from '../modals/ModalConfirm';
 
-const BtnHttpDel = ({
+const BtnHttpConfirm = ({
   req,
   confirm = true,
   typeToConfirm = false,
@@ -40,4 +40,4 @@ const BtnHttpDel = ({
   );
 };
 
-export default BtnHttpDel;
+export default BtnHttpConfirm;
