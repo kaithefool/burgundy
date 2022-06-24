@@ -8,6 +8,7 @@ const BtnApi = ({
   api,
   alertOpts = {},
   children,
+  ...props
 }) => {
   const { res, req } = useHttp();
 
@@ -19,6 +20,7 @@ const BtnApi = ({
         typeof api === 'function' ? api(req) : req(api)
       )}
       res={res}
+      {...props}
     >
       {children}
     </BtnHttpConfirm>
