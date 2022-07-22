@@ -3,7 +3,7 @@ import React from 'react';
 import { useField } from 'formik';
 
 import FormField from './FormField';
-import Summernote from '../inputs/Summernote';
+import Slate from '../inputs/slate/Slate';
 
 const FormEditor = (props) => {
   const [, { value }, { setTouched, setValue }] = useField(props);
@@ -11,7 +11,7 @@ const FormEditor = (props) => {
   return (
     <FormField {...props}>
       {() => (
-        <Summernote
+        <Slate
           initValue={value}
           onChange={(v) => setValue(v)}
           onBlur={setTouched}
