@@ -68,6 +68,7 @@ pm2 deploy [env]
 - File Uploads
     - image dimension
     - file preview file switch transition (onload event?)
+    - drag and drop sorting bug
 - Rich text editor
     - Drop file handler
     - MaxSize and accept
