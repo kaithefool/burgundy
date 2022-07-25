@@ -22,6 +22,7 @@ const Slate = ({
       editor={editor}
       value={value}
       onChange={(v) => console.log(v)}
+
     >
       <Editable
         onBlur={onBlur}
