@@ -5,12 +5,16 @@ import {
 } from 'slate-react';
 import { withHistory } from 'slate-history';
 
+import SlateLeaf from './SlateLeaf';
+import SlateElement from './SlateElement';
+import SlateToolbar from './SlateToolbar';
+
 const Slate = ({
   onBlur = () => {},
 }) => {
   const [value, setValue] = useState([{
-    type: 'paragraph',
-    children: [{ text: 'meh' }],
+    type: 'p',
+    children: [{ text: 'meh', bold: true }],
   }]);
   const editor = useMemo(
     () => withReact(withHistory(createEditor())),
@@ -21,11 +25,13 @@ const Slate = ({
     <ReactSlate
       editor={editor}
       value={value}
-      onChange={(v) => console.log(v)}
-
+      // onChange={(v) => console.log(v)}
     >
+      <SlateToolbar />
       <Editable
         onBlur={onBlur}
+        renderElement={SlateElement}
+        renderLeaf={SlateLeaf}
       />
     </ReactSlate>
   );

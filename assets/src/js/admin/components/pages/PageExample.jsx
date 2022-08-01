@@ -82,7 +82,7 @@ const PageExample = () => (
                 {mapLng((value, label) => ({ value, label }))}
               </Form.Select>
               <Form.Textarea name="textarea" />
-              <Form.Editor name="editor" />
+              <Form.Editor name="editor" slate />
             </Tab>
             <Tab eventKey="files">
               <Form.FilsList name="files" multiple />
