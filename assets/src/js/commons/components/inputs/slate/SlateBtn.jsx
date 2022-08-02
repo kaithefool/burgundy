@@ -5,11 +5,16 @@ const SlateBtn = ({
   icon,
   active = false,
   onClick = () => {},
+  className = '',
   ...props
 }) => (
   <button
     type="button"
-    className={`btn${active ? '' : ' text-muted'}`}
+    className={`
+      btn
+      ${className}
+      ${active ? '' : ' text-muted'}
+    `}
     onClick={(evt) => {
       evt.preventDefault();
       onClick(evt);

@@ -14,7 +14,7 @@ const Slate = ({
 }) => {
   const [value, setValue] = useState([{
     type: 'p',
-    children: [{ text: 'meh', bold: true }],
+    children: [{ text: 'meh' }],
   }]);
   const editor = useMemo(
     () => withReact(withHistory(createEditor())),
