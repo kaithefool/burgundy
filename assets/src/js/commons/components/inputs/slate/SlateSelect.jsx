@@ -5,7 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 const SlateSelect = ({
   children,
   isActive = () => false,
-  onClick = () => {},
+  onMouseDown = () => {},
 }) => {
   const active = children.find((c) => isActive(c.format)) ?? children[0];
 
@@ -19,9 +19,9 @@ const SlateSelect = ({
           <Dropdown.Item
             className={c.format !== active.format ? 'text-muted' : ''}
             key={i}
-            onClick={(evt) => {
+            onMouseDown={(evt) => {
               evt.preventDefault();
-              onClick(c.format);
+              onMouseDown(c.format);
             }}
           >
             <FA icon={c.icon} />

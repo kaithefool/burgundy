@@ -14,12 +14,15 @@ import { faHeading } from '@fortawesome/free-solid-svg-icons/faHeading';
 import { faQuoteRight } from '@fortawesome/free-solid-svg-icons/faQuoteRight';
 import { faListOl } from '@fortawesome/free-solid-svg-icons/faListOl';
 import { faListUl } from '@fortawesome/free-solid-svg-icons/faListUl';
+import { faFont } from '@fortawesome/free-solid-svg-icons/faFont';
+import { faHighlighter } from '@fortawesome/free-solid-svg-icons/faHighlighter';
 
 import SlateBtn from './SlateBtn';
 import {
   isBlockActive, isMarkActive, toggleBlock, toggleMark,
 } from './helpers';
 import SlateSelect from './SlateSelect';
+import SlateColorPicker from './SlateColorPicker';
 
 const SlateToolbar = () => {
   const editor = useSlate();
@@ -29,26 +32,26 @@ const SlateToolbar = () => {
       <SlateBtn
         icon={faBold}
         active={isMarkActive(editor, 'bold')}
-        onClick={() => toggleMark(editor, 'bold')}
+        onMouseDown={() => toggleMark(editor, 'bold')}
       />
       <SlateBtn
         icon={faItalic}
         active={isMarkActive(editor, 'italic')}
-        onClick={() => toggleMark(editor, 'italic')}
+        onMouseDown={() => toggleMark(editor, 'italic')}
       />
       <SlateBtn
         icon={faUnderline}
         active={isMarkActive(editor, 'underline')}
-        onClick={() => toggleMark(editor, 'underline')}
+        onMouseDown={() => toggleMark(editor, 'underline')}
       />
       <SlateBtn
         icon={faStrikethrough}
         active={isMarkActive(editor, 'strikethrough')}
-        onClick={() => toggleMark(editor, 'strikethrough')}
+        onMouseDown={() => toggleMark(editor, 'strikethrough')}
       />
       <SlateSelect
         isActive={(f) => isBlockActive(editor, f)}
-        onClick={(f) => toggleBlock(editor, f)}
+        onMouseDown={(f) => toggleBlock(editor, f)}
       >
         {[
           { format: 'left', icon: faAlignLeft },
@@ -59,7 +62,7 @@ const SlateToolbar = () => {
       </SlateSelect>
       <SlateSelect
         isActive={(f) => isBlockActive(editor, f)}
-        onClick={(f) => toggleBlock(editor, f)}
+        onMouseDown={(f) => toggleBlock(editor, f)}
       >
         {[
           { format: 'p', icon: faParagraph },
@@ -69,13 +72,16 @@ const SlateToolbar = () => {
       </SlateSelect>
       <SlateSelect
         isActive={(f) => isBlockActive(editor, f)}
-        onClick={(f) => toggleBlock(editor, f)}
+        onMouseDown={(f) => toggleBlock(editor, f)}
       >
         {[
           { format: 'ol', icon: faListOl },
           { format: 'ul', icon: faListUl },
         ]}
       </SlateSelect>
+      <SlateColorPicker
+        icon={faFont}
+      />
     </div>
   );
 };

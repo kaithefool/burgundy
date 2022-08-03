@@ -4,7 +4,7 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 const SlateBtn = ({
   icon,
   active = false,
-  onClick = () => {},
+  onMouseDown = () => {},
   className = '',
   ...props
 }) => (
@@ -15,9 +15,9 @@ const SlateBtn = ({
       ${className}
       ${active ? '' : ' text-muted'}
     `}
-    onClick={(evt) => {
+    onMouseDown={(evt) => {
       evt.preventDefault();
-      onClick(evt);
+      onMouseDown(evt);
     }}
     {...props}
   >
