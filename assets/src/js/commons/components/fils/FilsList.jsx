@@ -44,7 +44,7 @@ const FilsList = ({
 
   return (
     <Dir {...props}>
-      {({ files, swap, multiple }) => (
+      {({ files, move, multiple }) => (
         <Dir.Drop className="position-relative">
           <div className="row gx-2">
             {/* click to add files */}
@@ -92,7 +92,7 @@ const FilsList = ({
               <SortableList
                 files={files}
                 mode={mode}
-                onSortEnd={({ oldIndex, newIndex }) => swap(oldIndex, newIndex)}
+                onSortEnd={({ oldIndex, newIndex }) => move(oldIndex, newIndex)}
                 axis={mode === 'grid' ? 'xy' : 'y'}
                 useDragHandle
               />

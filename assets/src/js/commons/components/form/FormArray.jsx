@@ -58,7 +58,7 @@ const FormArray = ({
                 {isSortable ? (
                   <SortableList
                     onSortEnd={({ oldIndex, newIndex }) => (
-                      h.swap(oldIndex, newIndex)
+                      h.move(oldIndex, newIndex)
                     )}
                     useDragHandle
                   >
