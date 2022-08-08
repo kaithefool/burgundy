@@ -12,7 +12,7 @@ import { resolvePath } from '../../../helpers';
 function flat(children, out = []) {
   children.forEach((c) => {
     if (isFragment(c)) flat(c.props.children, out);
-    else out.push(c);
+    else if (c) out.push(c);
   });
 
   return out;
