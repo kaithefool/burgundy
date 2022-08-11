@@ -112,6 +112,13 @@ const DirProvider = ({
     update(draft);
   };
 
+  const move = (src, dest) => {
+    const draft = [...files];
+
+    draft.splice(dest, 0, draft.splice(src, 1)[0]);
+    update(draft);
+  };
+
   const value = {
     api,
     accept,
@@ -122,6 +129,7 @@ const DirProvider = ({
     replace,
     remove,
     swap,
+    move,
   };
 
   return (
