@@ -14,9 +14,15 @@ const io = new Server({
 io.allowRequest = (handler) => {
   allowRequest = handler;
 };
-io.init = (server) => {
+io.init = async (server) => {
   if (SOCKET === '1') {
-    io.adapter(createAdapter(redis(), redis()));
+    const pub = redis();
+    const sub = redis();
+
+    // the adapter needs the redis clients to be connected
+    await Promise.all([pub.connect(), sub.connect()]);
+
+    io.adapter(createAdapter(pub, sub));
     io.listen(server);
   }
 };
