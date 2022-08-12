@@ -1,26 +1,6 @@
-const { startCase, get, merge } = require('lodash');
+const { merge } = require('lodash');
 const excel = require('exceljs');
-
-function csvHeader(mapping) {
-  return mapping.map(
-    ({ key, label }) => label || startCase(key),
-  );
-}
-
-function csvRow(req, mapping, data, widths) {
-  return mapping.map((m, i) => {
-    const k = typeof m.key === 'function'
-      ? m.key(data, req)
-      : m.key;
-    let v = get(data, k);
-
-    if (m.getter) v = m.getter(v, data, req);
-
-    widths[i] = Math.max(widths[i], String(v).length);
-
-    return v ?? '';
-  });
-}
+const { csvRow, csvHeader } = require('./helpers');
 
 const applyStyles = (isHeader = false, mapping = []) => (c, colNo) => {
   const {
@@ -31,7 +11,7 @@ const applyStyles = (isHeader = false, mapping = []) => (c, colNo) => {
   const merges = merge({}, col, {
     ...(isHeader ? header : cell),
   });
-  // For detail styles, see: https://github.com/exceljs/exceljs#styles
+
   Object.entries(merges).forEach(([k, v]) => {
     c[k] = typeof v === 'function' ? v(c.value) : v;
   });
@@ -43,6 +23,35 @@ const addRow = (ws, mapping, widths, req, doc) => {
   return row;
 };
 
+/**
+ * @callback getter
+ * @description getter function for row
+ * @param {any} value - value to get
+ * @param {object} data - data for the row
+ * @param {import('express').Request} request - request object
+ * @returns {any} - value
+ */
+
+/**
+ * @name exportXlsx
+ * @typedef {import('exceljs').Style} CellStyle - For detail styles, see: https://github.com/exceljs/exceljs#styles
+ * @typedef {{
+ *  key: String,
+ *  label: String,
+ *  getter: getter,
+ *  cellWidth: Number,
+ *  col: CellStyle,
+ *  header: CellStyle,
+ *  cell: CellStyle,
+ * }} mapObj
+ * @param {object} options
+ * @param {string} options.filename - filename for the file
+ * @param {string} options.sheetName - name of the sheet
+ * @param {import('exceljs').AddWorksheetOptions} options.sheetMeta - meta data for the sheet, see: https://github.com/exceljs/exceljs#worksheet-properties
+ * @param {boolean} options.useSharedStrings
+ * @param {boolean} options.useStyles
+ * @param {mapObj[]} options.mapping - mapping to use for the sheet
+ */
 module.exports = (options) => async (req, res) => {
   const { out } = res.locals;
 

@@ -6,11 +6,11 @@ const { email, password } = require('../validators');
 const exportCsv = require('../responders/exportCsv');
 const exportXlsx = require('../responders/exportXlsx');
 const parseCsv = require('../parsers/parseCsv');
-const parseXlsx = require('../parsers/parseXlsx');
+const parseXLsx = require('../parsers/parseXLsx');
 
 module.exports = new Routes({
   service,
-  authorize: 'admin',
+  // authorize: 'admin',
   validate: {
     create: object({
       email: email().required(),
@@ -47,11 +47,11 @@ module.exports = new Routes({
       ],
     }),
   },
-
   importXlsx: {
     path: '/import/xlsx',
     method: 'post',
-    parse: parseXlsx({
+    serve: 'create',
+    parse: parseXLsx({
       mapping: [
         { key: 'email' },
         { key: 'englishname', to: 'name.en' },
@@ -68,39 +68,6 @@ module.exports = new Routes({
       mapping: [
         { key: 'email' },
         { key: 'name.en', label: 'English Name' },
-      ],
-    }),
-  },
-
-  exportXlsx: {
-    path: '/export/xlsx',
-    serve: 'find',
-    response: exportXlsx({
-      filename: 'users-export.xlsx',
-      mapping: [
-        { key: 'email' },
-        {
-          key: 'name.en',
-          label: 'English Name',
-          getter: (v, doc) => `${doc?.name?.en || 'Nameless'} (${v})`,
-        },
-        {
-          key: 'role',
-          cell: {
-            fill: (v) => (v !== 'client' ? {
-              type: 'pattern',
-              pattern: 'solid',
-              fgColor: { argb: 'F08080' },
-            } : undefined),
-          },
-        },
-        {
-          key: 'createdAt',
-          colWidth: 12,
-          col: { font: { name: 'Times New Roman' } },
-          header: { font: { bold: true } },
-          cell: { font: { underline: true }, numFmt: 'yyyy-mm-dd' },
-        },
       ],
     }),
   },
