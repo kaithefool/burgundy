@@ -4,6 +4,7 @@ const ms = require('ms');
 
 const { LNG, MONGO_SYNC_INDEX } = process.env;
 const { ObjectId } = m.Schema.Types;
+const pluralize = m.pluralize();
 
 module.exports = class Schema {
   static lng(field) {
@@ -56,6 +57,7 @@ module.exports = class Schema {
     uniques,
     indexes,
     hasMany,
+    manyToMany,
     toJSON = { virtuals: true },
     toObject = { virtuals: true },
     ...opts
@@ -89,7 +91,12 @@ module.exports = class Schema {
           ..._.castArray(u),
         ));
     }
-    if (hasMany) _.castArray(hasMany).forEach((h) => this.hasMany(h));
+    if (hasMany) {
+      _.castArray(hasMany).forEach((h) => this.hasMany(h));
+    }
+    if (manyToMany) {
+      _.castArray(manyToMany).forEach((h) => this.hasMany(h, true));
+    }
   }
 
   get model() {
@@ -122,15 +129,15 @@ module.exports = class Schema {
     this.schema.index(...args);
   }
 
-  hasMany(ref) {
-    const pluralized = m.pluralize()(ref);
-
-    this.schema.virtual(pluralized, {
+  hasMany(ref, manyToMany = false) {
+    this.schema.virtual(pluralize(ref), {
       ref,
       localField: '_id',
       foreignField: ref === this.name
         ? 'parent'
-        : _.camelCase(this.name),
+        : _.camelCase(
+          manyToMany ? pluralize(this.name) : this.name,
+        ),
     });
   }
 

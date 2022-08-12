@@ -7,6 +7,8 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
+    'max-len': ['warn', { code: 80 }],
+
     // enable development in windows
     'linebreak-style': 'off',
 
