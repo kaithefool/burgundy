@@ -2,30 +2,20 @@ const _ = require('lodash');
 
 const io = require('../../start/io');
 
-const findSockets = async (userId) => {
-  const uIds = _.castArray(userId);
+const toUsers = (userId) => io.to(
+  _.castArray(userId).map((_id) => `user:${_id}`),
+);
 
-  const ss = await Promise.all(
-    uIds.map((uId) => io.in(`user.${uId}`).fetchSockets()),
-  );
+const joinRoom = (userId, room) => (
+  toUsers(userId).socketsJoin(room)
+);
 
-  return ss.flat();
-};
-
-const joinRoom = async (userId, room) => {
-  const sockets = await findSockets(userId);
-
-  sockets.forEach((s) => s.join(room));
-};
-
-const leaveRoom = async (userId, room) => {
-  const sockets = await findSockets(userId);
-
-  sockets.forEach((s) => s.leave(room));
-};
+const leaveRoom = (userId, room) => (
+  toUsers(userId).socketsLeave(room)
+);
 
 module.exports = {
-  findSockets,
+  toUsers,
   joinRoom,
   leaveRoom,
 };
