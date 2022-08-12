@@ -32,6 +32,8 @@ module.exports = {
     },
   },
   rules: {
+    'max-len': ['warn', { code: 80 }],
+
     // enable development in windows
     'linebreak-style': 'off',
 
