@@ -75,40 +75,36 @@ class Service {
     return query;
   }
 
-  findOne(filter, user) {
+  async findOne(filter, user) {
     const q = this.model.findOne(
-      this.match(filter, user),
+      await this.match(filter, user),
     );
 
     return this.populate(q, user, true);
   }
 
-  find(opts, user) {
+  async find(opts, user) {
     const { filter } = opts;
 
     const q = this.model.find({
       ...opts,
-      filter: this.match(filter, user),
+      filter: await this.match(filter, user),
     });
 
     return this.populate(q, user, false);
   }
 
-  count(filter, user) {
+  async count(filter, user) {
     return this.model.count(
-      this.match(filter, user),
+      await this.match(filter, user),
     );
   }
 
   async list(opts, user) {
-    const { filter, skip, limit } = opts;
+    const { filter } = opts;
 
     const [rows, total] = await Promise.all([
-      this.find({
-        ...opts,
-        ...skip && { skip: parseInt(skip, 10) },
-        ...limit && { limit: parseInt(limit, 10) },
-      }, user),
+      this.find(opts, user),
       this.count(filter, user),
     ]);
 
@@ -123,8 +119,8 @@ class Service {
 
   async patchBy(filter, attrs, user, opts) {
     return this.try(
-      () => this.model.update(
-        this.match(filter, user),
+      async () => this.model.update(
+        await this.match(filter, user),
         attrs,
         user,
         opts,
@@ -133,22 +129,22 @@ class Service {
   }
 
   async patch({ _id, ...attrs }, user) {
-    return this.patchBy({ _id }, attrs, user);
+    await this.patchBy({ _id }, attrs, user);
   }
 
   async upsert(attrs, user, match = {}) {
-    return this.patchBy(match, attrs, user, { upsert: true });
+    await this.patchBy(match, attrs, user, { upsert: true });
   }
 
   async deleteBy(filter, user) {
     return this.model.delete(
-      this.match(filter, user),
+      await this.match(filter, user),
       user,
     );
   }
 
-  delete({ _id }, user) {
-    return this.deleteBy({ _id }, user);
+  async delete({ _id }, user) {
+    await this.deleteBy({ _id }, user);
   }
 }
 

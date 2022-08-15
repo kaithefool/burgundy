@@ -2,35 +2,7 @@ const _ = require('lodash');
 const multer = require('multer');
 const { parse } = require('csv-parse');
 const httpError = require('http-errors');
-
-const fuzzyKey = (obj, key, {
-  caseInsensitive = true,
-  trim = true,
-  singleSpace = false,
-  wordsOnly = true,
-  ignoreSpace = true,
-} = {}) => {
-  // match exact first
-  if (!(key instanceof RegExp) && obj[key] !== undefined) {
-    return key;
-  }
-
-  const match = Object.keys(obj).find((k) => {
-    let ke = k;
-
-    if (caseInsensitive) ke = ke.toLowerCase();
-    if (trim) ke = ke.trim();
-    if (singleSpace) ke = ke.replace(/ +(?= )/g, '');
-    if (wordsOnly) ke = ke.replace(/[^ \w]/g, '');
-    if (ignoreSpace) ke = ke.replace(' ', '');
-
-    if (key instanceof RegExp) return key.test(ke);
-
-    return key === ke;
-  });
-
-  return match;
-};
+const { fuzzyKey } = require('./helpers');
 
 const fuzzyMap = (rows = [], cols = []) => {
   if (!rows.length) return [];

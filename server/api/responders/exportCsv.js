@@ -1,24 +1,5 @@
-const { startCase, get } = require('lodash');
 const { stringify } = require('csv-stringify');
-
-function csvRow(req, mapping, data) {
-  return mapping.map(((m) => {
-    const k = typeof m.key === 'function'
-      ? m.key(data, req)
-      : m.key;
-    let v = get(data, k);
-
-    if (m.getter) v = m.getter(v, data, req);
-
-    return v !== undefined && v !== null ? String(v) : '';
-  }));
-}
-
-function csvHeader(mapping) {
-  return mapping.map(({ key, label }) => (
-    label || startCase(key)
-  ));
-}
+const { csvRow, csvHeader } = require('./helpers');
 
 module.exports = (options) => (req, res) => {
   const { out } = res.locals;
