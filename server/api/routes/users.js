@@ -5,7 +5,7 @@ const service = require('../services/users');
 const { email, password } = require('../validators');
 const exportCsv = require('../responders/exportCsv');
 const parseCsv = require('../parsers/parseCsv');
-const parseXLsx = require('../parsers/parseXlsx');
+const parseXlsx = require('../parsers/parseXlsx');
 
 module.exports = new Routes({
   service,
@@ -50,7 +50,7 @@ module.exports = new Routes({
     path: '/import/xlsx',
     method: 'post',
     serve: 'create',
-    parse: parseXLsx({
+    parse: parseXlsx({
       mapping: [
         { key: 'email' },
         { key: 'englishname', to: 'name.en' },
