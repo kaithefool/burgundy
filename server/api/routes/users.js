@@ -4,9 +4,8 @@ const { Routes } = require('../base');
 const service = require('../services/users');
 const { email, password } = require('../validators');
 const exportCsv = require('../responders/exportCsv');
-const exportXlsx = require('../responders/exportXlsx');
 const parseCsv = require('../parsers/parseCsv');
-const parseXLsx = require('../parsers/parseXLsx');
+const parseXLsx = require('../parsers/parseXlsx');
 
 module.exports = new Routes({
   service,
