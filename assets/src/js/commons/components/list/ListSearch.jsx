@@ -11,8 +11,8 @@ const ListSearch = ({
   debounce: deboucT = 750,
   placeholder = '',
 }) => {
-  const { fetch, filter } = useList();
-  const [search, setSearch] = useState('');
+  const { fetch, query } = useList();
+  const [search, setSearch] = useState(query.filter?.search || '');
   const [searchBy, setSearchBy] = useState(
     Array.isArray(opts)
       ? opts[0].value || opts[0]
@@ -20,7 +20,7 @@ const ListSearch = ({
   );
   const debouncedSearch = useDebounce(
     (str, by) => {
-      const { search: s, ...f } = filter;
+      const { search: s, ...f } = query.filter;
 
       if (by) f.search = { [by]: str };
       else if (str) f.search = str;
