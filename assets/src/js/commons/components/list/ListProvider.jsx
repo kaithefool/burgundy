@@ -14,6 +14,7 @@ const ListProvider = ({
   selectable = false,
   cols = [],
   history = true,
+  lazy = true,
 }) => {
   const initQuery = {
     skip: 0, limit: 20, filter: {}, ...iq,
@@ -23,6 +24,7 @@ const ListProvider = ({
     () => cols.filter((c) => !c.hide),
   );
   const { res, req, fetched } = useHttp();
+  const [selected, setSelected] = useState([]);
   const [query, setQuery] = useState(() => ({
     ...initQuery,
     ...(history && {
@@ -32,9 +34,10 @@ const ListProvider = ({
     }),
   }));
 
-  const [selected, setSelected] = useState([]);
-
-  const rows = fetched?.payload?.rows || [];
+  const lazying = lazy && !Object.keys(query.filter).length;
+  const rows = !lazying
+    ? fetched?.payload?.rows || []
+    : [];
 
   const fetch = (q = {}) => {
     const newQ = { ...query, ...q };
@@ -46,10 +49,12 @@ const ListProvider = ({
 
     setQuery(newQ); // set state
 
-    req({
-      ...api,
-      params: { ...newQ, filter: { ...newQ.filter, ...baseFilter } },
-    });
+    if (!lazy || Object.keys(newQ.filter).length) {
+      req({
+        ...api,
+        params: { ...newQ, filter: { ...newQ.filter, ...baseFilter } },
+      });
+    }
   };
 
   const refresh = () => fetch();
