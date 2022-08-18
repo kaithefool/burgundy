@@ -15,7 +15,9 @@ const ListProvider = ({
   cols = [],
   history = true,
 }) => {
-  const initQuery = { skip: 0, limit: 20, ...iq };
+  const initQuery = {
+    skip: 0, limit: 20, filter: {}, ...iq,
+  };
   const [urlQuery, setUrlQuery] = useQuery();
   const [activeCols, showCols] = useState(
     () => cols.filter((c) => !c.hide),
@@ -26,34 +28,31 @@ const ListProvider = ({
     ...(history && {
       ...(urlQuery.skip && { skip: Number(urlQuery.skip) }),
       ...(urlQuery.limit && { limit: Number(urlQuery.limit) }),
+      ...(urlQuery.filter && { filter: urlQuery.filter }),
     }),
   }));
-  const [listFilter, setFilter] = useState(() => (
-    (history && urlQuery?.filter) || {}
-  ));
-  const [selected, setSelected] = useState([]);
 
-  const filter = { ...baseFilter, ...listFilter };
+  const [selected, setSelected] = useState([]);
 
   const rows = fetched?.payload?.rows || [];
 
-  const fetch = ({ filter: newF, ...q }) => {
+  const fetch = (q = {}) => {
     const newQ = { ...query, ...q };
 
-    if (newF) {
-      setFilter(newF);
+    if (q.filter) {
       newQ.skip = 0; // reset pagination when filter changed
     }
     if (selectable) setSelected([]); // clear select
-    if (Object.keys(q).length) setQuery(newQ);
+
+    setQuery(newQ); // set state
 
     req({
       ...api,
-      params: { ...newQ, filter: { ...baseFilter, ...newF } },
+      params: { ...newQ, filter: { ...newQ.filter, ...baseFilter } },
     });
   };
 
-  const refresh = () => fetch({});
+  const refresh = () => fetch();
 
   const select = (s) => setSelected(s);
 
@@ -76,14 +75,13 @@ const ListProvider = ({
     setUrlQuery({
       ...(skip !== initQuery.skip && { skip }),
       ...(limit !== initQuery.limit && { limit }),
-      filter: listFilter,
+      filter: query.filter,
     }, true);
-  }, [history && useComparable({ listFilter, query })]);
+  }, [history && useComparable({ query })]);
 
   const value = {
     api,
     query,
-    filter,
     selectable,
     selected: selectable ? selected.map((i) => rows[i]) : [],
     selectedIndex: selected,

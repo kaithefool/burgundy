@@ -52,7 +52,9 @@ const ListTable = ({
                       if (checked) select(range(rows.length));
                       else select([]);
                     }}
-                    checked={rows.length && selectedIndex.length === rows.length}
+                    checked={
+                      rows.length && selectedIndex.length === rows.length
+                    }
                   />
                 </div>
               </th>
