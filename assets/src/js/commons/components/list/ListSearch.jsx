@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 import useList from './useList';
 import useDebounce from '../../hooks/useDebounce';
@@ -12,23 +13,21 @@ const ListSearch = ({
   placeholder = '',
 }) => {
   const { fetch, query } = useList();
-  const [search, setSearch] = useState(query.filter?.search || '');
+  const [searchStr, setSearchStr] = useState(query.filter?.search || '');
   const [searchBy, setSearchBy] = useState(
     Array.isArray(opts)
       ? opts[0].value || opts[0]
       : null,
   );
-  const debouncedSearch = useDebounce(
-    (str, by) => {
-      const { search: s, ...f } = query.filter;
+  const search = (str, by) => {
+    const { search: s, ...f } = query.filter;
 
-      if (by) f.search = { [by]: str };
-      else if (str) f.search = str;
+    if (by) f.search = { [by]: str };
+    else if (str) f.search = str;
 
-      fetch({ filter: f });
-    },
-    deboucT,
-  );
+    fetch({ filter: f });
+  };
+  const debouncedSearch = useDebounce(search, deboucT);
 
   return (
     <div className="input-group input-group-input">
@@ -44,9 +43,9 @@ const ListSearch = ({
           onChange={(e) => {
             const { value } = e.target;
 
-            setSearch('');
-            debouncedSearch('', value);
+            setSearchStr('');
             setSearchBy(value);
+            search('', value);
           }}
         >
           {opts.map((by) => (
@@ -64,14 +63,27 @@ const ListSearch = ({
         type="text"
         className="form-control"
         placeholder={placeholder}
-        value={search}
+        value={searchStr}
         onChange={(e) => {
           const { value } = e.target;
 
-          setSearch(value);
+          setSearchStr(value);
           debouncedSearch(value, searchBy);
         }}
       />
+      {/* Clear search input */}
+      {searchStr && (
+        <button
+          type="button"
+          className="btn btn-input"
+          onClick={() => {
+            setSearchStr('');
+            search('', searchBy);
+          }}
+        >
+          <FA icon={faTimes} />
+        </button>
+      )}
     </div>
   );
 };
