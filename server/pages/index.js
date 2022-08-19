@@ -1,4 +1,5 @@
 const routes = require('express').Router();
+const _ = require('lodash');
 
 const authByCookies = require('../api/parsers/authByCookies');
 const consts = require('../api/models/consts');
@@ -14,9 +15,15 @@ const { LNG, LNG_LABEL, GOOGLE_API_KEY } = process.env;
 routes.use(authByCookies);
 
 // env variables for frontend
-routes.use(({ csrfToken, user }, res, next) => {
-  res.locals.ver = ver;
-  res.locals.env = {
+routes.use(({
+  csrfToken, user, t, i18n,
+}, res, next) => {
+  const { locals } = res;
+  locals.ver = ver; // package version
+  locals.i18n = i18n; // i18n
+  locals.t = t;
+  locals._ = _; // lodash
+  locals.env = {
     user,
     csrf: csrfToken ? csrfToken() : null,
     lngs: LNG.split(','),
