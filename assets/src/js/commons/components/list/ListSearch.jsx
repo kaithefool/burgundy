@@ -31,7 +31,7 @@ const ListSearch = ({
   );
 
   return (
-    <div className="input-group">
+    <div className="input-group input-group-input">
       <span className="input-group-text">
         <FA icon={faSearch} />
       </span>

@@ -64,9 +64,14 @@ class Service {
     return { [fields]: regex };
   }
 
-  match({ search, ...filter } = {}) {
+  exclude(_ids) {
+    return { _id: { $ne: _ids } };
+  }
+
+  match({ search, excl, ...filter } = {}) {
     return {
       ...this.search(search),
+      ...this.exclude(excl),
       ...filter,
     };
   }

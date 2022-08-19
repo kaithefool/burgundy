@@ -14,7 +14,7 @@ const ListProvider = ({
   selectable = false,
   cols = [],
   history = true,
-  lazy = true,
+  lazy = false,
 }) => {
   const initQuery = {
     skip: 0, limit: 20, filter: {}, ...iq,

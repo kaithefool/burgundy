@@ -1,7 +1,9 @@
 import React from 'react';
 import { SortableHandle } from 'react-sortable-hoc';
 
-import { faGripVertical } from '@fortawesome/free-solid-svg-icons/faGripVertical';
+import {
+  faGripVertical,
+} from '@fortawesome/free-solid-svg-icons/faGripVertical';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';

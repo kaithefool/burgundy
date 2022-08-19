@@ -28,6 +28,7 @@ const defaults = {
     lastname: '',
     phones: [''],
   }],
+  ref: null,
 };
 
 const schema = () => object({
@@ -133,6 +134,14 @@ const PageExample = () => (
                   </>
                 )}
               </Form.Array>
+            </Tab>
+            <Tab eventKey="relations">
+              <Form.Ref
+                name="ref"
+                api={{ url: '/api/users' }}
+              >
+                {(r) => r.email}
+              </Form.Ref>
             </Tab>
           </Tabs>
 
