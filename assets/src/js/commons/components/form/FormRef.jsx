@@ -3,7 +3,7 @@ import { useField } from 'formik';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 import List from '../list';
 import FormField from './FormField';
@@ -49,27 +49,31 @@ const FormRef = ({
                   </button>
                 </div>
               )}
-              <List.Search />
-              {!!rows && (
-                <div className="list-group my-2">
-                  {rows.map((r) => (
-                    <button
-                      key={r._id}
-                      type="button"
-                      className="list-group-item list-group-item-action"
-                      onClick={() => set(r)}
-                    >
-                      <div className="row">
-                        <div className="col">
-                          {children(r)}
+              {!value && (
+                <>
+                  <List.Search />
+                  {!!rows && (
+                  <div className="list-group my-2">
+                    {rows.map((r) => (
+                      <button
+                        key={r._id}
+                        type="button"
+                        className="list-group-item list-group-item-action"
+                        onClick={() => set(r)}
+                      >
+                        <div className="row">
+                          <div className="col">
+                            {children(r)}
+                          </div>
+                          <div className="col-auto">
+                            <FA icon={faPlus} />
+                          </div>
                         </div>
-                        <div className="col-auto">
-                          <FA icon={faPlus} />
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
+                      </button>
+                    ))}
+                  </div>
+                  )}
+                </>
               )}
             </>
           )}
