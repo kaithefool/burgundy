@@ -29,6 +29,7 @@ const defaults = {
     phones: [''],
   }],
   ref: null,
+  refs: [],
 };
 
 const schema = () => object({
@@ -140,8 +141,28 @@ const PageExample = () => (
                 name="ref"
                 api={{ url: '/api/users' }}
               >
-                {(r) => r.email}
+                {(r) => (
+                  <>
+                    {r.name.en}
+                    <span className="small text-muted ms-2">
+                      {r.email}
+                    </span>
+                  </>
+                )}
               </Form.Ref>
+              <Form.Refs
+                name="refs"
+                api={{ url: '/api/users' }}
+              >
+                {(r) => (
+                  <>
+                    {r.name.en}
+                    <span className="small text-muted ms-2">
+                      {r.email}
+                    </span>
+                  </>
+                )}
+              </Form.Refs>
             </Tab>
           </Tabs>
 

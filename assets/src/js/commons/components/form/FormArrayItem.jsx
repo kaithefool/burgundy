@@ -16,7 +16,8 @@ const FormArrayItem = ({
   let Tag = ({ children: c }) => c;
 
   if (tmpl === 'formset') Tag = FormArrayItemFormset;
-  if (tmpl === 'list') Tag = FormArrayItemList;
+  else if (tmpl === 'list') Tag = FormArrayItemList;
+  else Tag = tmpl;
 
   return (
     <Tag
@@ -27,7 +28,7 @@ const FormArrayItem = ({
         item,
         title: typeof title === 'function' ? title(index, item) : title,
         sortable,
-        children: children(index, item, helpers),
+        children: children && children(index, item, helpers),
       }}
     />
   );

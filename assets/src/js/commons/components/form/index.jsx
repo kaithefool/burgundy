@@ -25,6 +25,7 @@ import FormCoordinates from './FormCoordinates';
 import FormMap from './FormMap';
 import FormArray from './FormArray';
 import FormRef from './FormRef';
+import FormRefs from './FormRefs';
 
 export {
   FormContext,
@@ -50,6 +51,7 @@ export {
   FormMap,
   FormArray,
   FormRef,
+  FormRefs,
 };
 
 const Form = ({
@@ -80,5 +82,6 @@ Form.Coordinates = FormCoordinates;
 Form.Map = FormMap;
 Form.Array = FormArray;
 Form.Ref = FormRef;
+Form.Refs = FormRefs;
 
 export default Form;

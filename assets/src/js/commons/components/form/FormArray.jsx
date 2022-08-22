@@ -7,7 +7,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import FormField from './FormField';
 import FormArrayItem from './FormArrayItem';
-import { initArrayItem } from './helpers';
+import { keyArrayHelpers } from './helpers';
 
 const SortableList = SortableContainer((props) => <div {...props} />);
 const SortableItem = SortableElement((props) => <div {...props} />);
@@ -19,10 +19,11 @@ const FormArray = ({
   title,
   tmpl,
   sortable = true,
+  pushBtn,
   ...props
 }) => {
   const [{ value }] = useField(props.name);
-  const isObjs = typeof defaults === 'object';
+  const isObjs = typeof defaults === 'object' || defaults === undefined;
   const isSortable = sortable && isObjs;
 
   return (
@@ -30,13 +31,8 @@ const FormArray = ({
       {({ invalid, valid, ...p }) => (
         <FieldArray name={p.name}>
           {(helpers) => {
-            const h = isObjs ? {
-              ...helpers,
-              push: (item) => helpers.push(initArrayItem(item)),
-              insert: (i, item) => helpers.insert(i, initArrayItem(item)),
-              unshift: (item) => helpers.unshift(initArrayItem(item)),
-              replace: (i, item) => helpers.replace(i, initArrayItem(item)),
-            } : helpers;
+            const h = isObjs
+              ? keyArrayHelpers(helpers) : helpers;
 
             const child = (item, i) => (
               <FormArrayItem
@@ -69,13 +65,19 @@ const FormArray = ({
                     ))}
                   </SortableList>
                 ) : value.map((item, i) => child(item, i))}
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => h.push(defaults)}
-                >
-                  <FA icon={faPlus} />
-                </button>
+                {pushBtn ? pushBtn({
+                  helpers: h,
+                  defaults,
+                  ...p,
+                }) : (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => h.push(defaults)}
+                  >
+                    <FA icon={faPlus} />
+                  </button>
+                )}
               </div>
             );
           }}

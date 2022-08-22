@@ -27,11 +27,22 @@ function mapDeep(src, fn = (v) => v) {
   return t(src);
 }
 
-function initArrayItem(item) {
+function keyArrayItem(item) {
   // array need unique keys for list and sorting
   return typeof item === 'object'
     ? { ...item, key: newKey() }
     : item;
+}
+
+function keyArrayHelpers(helpers) {
+  // array need unique keys for list and sorting
+  return {
+    ...helpers,
+    push: (item) => helpers.push(keyArrayItem(item)),
+    insert: (i, item) => helpers.insert(i, keyArrayItem(item)),
+    unshift: (item) => helpers.unshift(keyArrayItem(item)),
+    replace: (i, item) => helpers.replace(i, keyArrayItem(item)),
+  };
 }
 
 function initValues(
@@ -59,7 +70,7 @@ function initValues(
       if (val === null) return '';
       // array
       if (Array.isArray(val)) {
-        return val.map((item) => initArrayItem(item));
+        return val.map((item) => keyArrayItem(item));
       }
 
       return val;
@@ -86,7 +97,8 @@ function parseValues(values, relations = []) {
 }
 
 export {
-  initArrayItem,
+  keyArrayItem,
+  keyArrayHelpers,
   initValues,
   parseValues,
   mapDeep,

@@ -2,7 +2,9 @@ import React from 'react';
 import { SortableHandle } from 'react-sortable-hoc';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-import { faGripVertical } from '@fortawesome/free-solid-svg-icons/faGripVertical';
+import {
+  faGripVertical,
+} from '@fortawesome/free-solid-svg-icons/faGripVertical';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
 const DragHandle = SortableHandle(() => (

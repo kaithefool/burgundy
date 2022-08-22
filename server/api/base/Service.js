@@ -1,4 +1,5 @@
 const httpError = require('http-errors');
+const _ = require('lodash');
 
 class Service {
   constructor(model, opts = {}) {
@@ -65,7 +66,7 @@ class Service {
   }
 
   exclude(_ids) {
-    return { _id: { $ne: _ids } };
+    return { _id: { $nin: _.castArray(_ids) } };
   }
 
   match({ search, excl, ...filter } = {}) {
