@@ -11,6 +11,7 @@ const ListSearch = ({
   opts,
   debounce: deboucT = 750,
   placeholder = '',
+  className = '',
 }) => {
   const { fetch, query } = useList();
   const [searchStr, setSearchStr] = useState(query.filter?.search || '');
@@ -30,7 +31,7 @@ const ListSearch = ({
   const debouncedSearch = useDebounce(search, deboucT);
 
   return (
-    <div className="input-group input-group-input">
+    <div className={`input-group input-group-input ${className}`}>
       <span className="input-group-text">
         <FA icon={faSearch} />
       </span>

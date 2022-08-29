@@ -11,13 +11,13 @@ const FormRef = ({
 }) => {
   const [{ value },, { setTouched, setValue }] = useField(props.name);
   const set = (v) => {
-    setValue(v);
     setTouched();
+    setValue(v);
   };
 
   return (
     <FormField {...props}>
-      {({ invalid, valid, ...p }) => (
+      {(p) => (
         value ? (
           <FormRefItem
             value={value}
