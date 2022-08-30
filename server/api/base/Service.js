@@ -107,10 +107,10 @@ class Service {
   }
 
   async list(opts, user) {
-    const { filter } = opts;
+    const { filter, limit = 10 } = opts;
 
     const [rows, total] = await Promise.all([
-      this.find(opts, user),
+      this.find({ ...opts, limit }, user),
       this.count(filter, user),
     ]);
 

@@ -1,7 +1,7 @@
 const { get, startCase } = require('lodash');
 
 /**
- * @name csvRow
+ * @name mapRow
  * @description get row for csv
  * @param {import('express').Request} req - request object
  * @param {mapObj[]} mapping - mapping to use for the sheet
@@ -9,7 +9,7 @@ const { get, startCase } = require('lodash');
  * @param {?number[]} widths - widths of the columns
  * @returns {!*[]} - row for csv
  */
-function csvRow(req, mapping, data, widths) {
+function mapRow(req, mapping, data, widths) {
   return mapping.map((m, i) => {
     const k = typeof m.key === 'function'
       ? m.key(data, req)
@@ -24,13 +24,13 @@ function csvRow(req, mapping, data, widths) {
   });
 }
 
-function csvHeader(mapping) {
+function mapHeader(mapping) {
   return mapping.map(
     ({ key, label }) => label || startCase(key),
   );
 }
 
 module.exports = {
-  csvRow,
-  csvHeader,
+  mapRow,
+  mapHeader,
 };

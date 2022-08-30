@@ -52,8 +52,8 @@ class Model {
   find({
     filter = {},
     sort,
-    skip = 0,
-    limit = 10,
+    skip,
+    limit,
     select,
   }) {
     const q = this.model.find(this.matcher(filter));

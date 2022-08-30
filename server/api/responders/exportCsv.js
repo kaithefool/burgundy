@@ -1,5 +1,5 @@
 const { stringify } = require('csv-stringify');
-const { csvRow, csvHeader } = require('./helpers');
+const { mapRow, mapHeader } = require('./helpers');
 
 module.exports = (options) => (req, res) => {
   const { out } = res.locals;
@@ -18,17 +18,17 @@ module.exports = (options) => (req, res) => {
   res.write(BOM);
 
   // csv header
-  stringifier.write(csvHeader(mapping));
+  stringifier.write(mapHeader(mapping));
 
   if (out.pipe) {
     out
-      .map((doc) => csvRow(req, mapping, doc))
+      .map((doc) => mapRow(req, mapping, doc))
       .pipe(stringifier)
       .pipe(res);
   } else {
     stringifier.pipe(res);
     out.forEach((o) => stringifier.write(
-      csvRow(req, mapping, o),
+      mapRow(req, mapping, o),
     ));
     stringifier.end();
   }

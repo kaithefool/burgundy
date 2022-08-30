@@ -1,6 +1,6 @@
 const { merge } = require('lodash');
 const excel = require('exceljs');
-const { csvRow, csvHeader } = require('./helpers');
+const { mapRow, mapHeader } = require('./helpers');
 
 const applyStyles = (isHeader = false, mapping = []) => (c, colNo) => {
   const {
@@ -18,7 +18,7 @@ const applyStyles = (isHeader = false, mapping = []) => (c, colNo) => {
 };
 
 const addRow = (ws, mapping, widths, req, doc) => {
-  const row = ws.addRow(csvRow(req, mapping, doc, widths));
+  const row = ws.addRow(mapRow(req, mapping, doc, widths));
   row.eachCell(applyStyles(false, mapping));
   return row;
 };
@@ -73,10 +73,10 @@ module.exports = (options) => async (req, res) => {
     stream: res,
   });
 
-  const widths = csvHeader(mapping).map((h) => h.length);
+  const widths = mapHeader(mapping).map((h) => h.length);
 
   const ws = workbook.addWorksheet(sheetName, sheetMeta);
-  ws.addRow(csvHeader(mapping)).eachCell(
+  ws.addRow(mapHeader(mapping)).eachCell(
     applyStyles(true, mapping),
   );
 
