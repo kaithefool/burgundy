@@ -87,4 +87,18 @@ i18n.services.formatter.add('field', (value, lng, opts) => (
     : formatField(value, opts)
 ));
 
-module.exports = middleware.handle(i18n);
+const i18nMid = middleware.handle(i18n);
+
+module.exports = (req, res, next) => {
+  // helper function
+  req.pickLng = (obj) => {
+    if (!obj || typeof obj !== 'object') return obj;
+
+    const { language, languages } = req.i18n;
+    const lns = [language, ...languages];
+
+    return obj[lns.find((l) => obj[l])];
+  };
+
+  return i18nMid(req, req, next);
+};

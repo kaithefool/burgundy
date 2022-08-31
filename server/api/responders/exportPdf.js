@@ -87,7 +87,7 @@ module.exports = (options = {}) => async (req, res) => {
   };
 
   if (write) {
-    write(doc, out, req);
+    await write(doc, out, req);
   } else {
     doc.setFontSize(14);
     doc.text(title, 14, 18);
