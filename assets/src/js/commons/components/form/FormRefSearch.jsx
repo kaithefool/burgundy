@@ -3,6 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
+import { useField } from 'formik';
 import List from '../list';
 
 const FormRefSearch = ({
@@ -11,11 +12,12 @@ const FormRefSearch = ({
   unique = true,
   onPicked = () => {},
   children,
-  value,
   invalid,
   valid,
+  name,
   ...props
 }) => {
+  const [{ value }] = useField(name);
   let excl = null;
 
   if (Array.isArray(value)) {
