@@ -59,7 +59,7 @@ const initDoc = (doc) => {
 
 module.exports = (options = {}) => async (req, res) => {
   const { out } = res.locals;
-  const { attachment = true } = req.attrs;
+  const { attachment } = parseInt(req.attrs?.attachment, 10);
   const opts = typeof options === 'function' ? options(out) : options;
   const {
     filename = 'export.pdf',
