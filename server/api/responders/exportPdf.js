@@ -59,7 +59,7 @@ const initDoc = (doc) => {
 
 module.exports = (options = {}) => async (req, res) => {
   const { out } = res.locals;
-  const { attachment } = parseInt(req.attrs?.attachment, 10);
+  const { attachment } = req.attrs;
   const opts = typeof options === 'function' ? options(out) : options;
   const {
     filename = 'export.pdf',
@@ -71,7 +71,7 @@ module.exports = (options = {}) => async (req, res) => {
   if (typeof title === 'function') title = title(out, req);
 
   // setup http headers
-  if (attachment) {
+  if (attachment !== '0') {
     res.attachment(filename);
   } else {
     res.type('pdf');
