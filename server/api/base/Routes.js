@@ -13,6 +13,9 @@ const responseOne = (req, res, next) => (
 
 const defaultNamedRoutes = {
   list: {},
+  find: {
+    path: '/all',
+  },
   findById: {
     path: `/:_id(${idMatch})`,
     serve: 'findOne',
