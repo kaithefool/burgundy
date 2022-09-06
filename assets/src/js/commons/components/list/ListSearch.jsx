@@ -12,6 +12,7 @@ const ListSearch = ({
   debounce: deboucT = 750,
   placeholder = '',
   className = '',
+  onChange = () => {},
 }) => {
   const { fetch, query } = useList();
   const [searchStr, setSearchStr] = useState(query.filter?.search || '');
@@ -27,6 +28,7 @@ const ListSearch = ({
     else if (str) f.search = str;
 
     fetch({ filter: f });
+    onChange(f);
   };
   const debouncedSearch = useDebounce(search, deboucT);
 

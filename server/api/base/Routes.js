@@ -11,6 +11,8 @@ const responseOne = (req, res, next) => (
   res.locals.out ? next() : next(httpError(404, 'res.notFound'))
 );
 
+const isNonArrayObj = (o) => typeof o === 'object' && !Array.isArray(o);
+
 const defaultNamedRoutes = {
   list: {},
   find: {
@@ -102,7 +104,7 @@ class Routes {
   guards(name) {
     const g = [];
     const v = _.get(this, `validate.${name}`);
-    const a = this.authorize instanceof Object
+    const a = isNonArrayObj(this.authorize)
       ? this.authorize[name]
       : this.authorize;
 
@@ -113,7 +115,7 @@ class Routes {
   }
 
   log(name) {
-    const l = this.logs instanceof Object
+    const l = isNonArrayObj(this.logs)
       ? this.logs[name]
       : this.logs;
 
@@ -122,7 +124,7 @@ class Routes {
     return [
       logAccess(
         name,
-        l instanceof Object ? l : {},
+        isNonArrayObj(l) ? l : {},
       ),
     ];
   }
