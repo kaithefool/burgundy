@@ -77,7 +77,7 @@ class Service {
     };
   }
 
-  populate(query/* , user, one */) {
+  populate(query/* , user, method */) {
     return query;
   }
 
@@ -86,7 +86,7 @@ class Service {
       await this.match(filter, user),
     );
 
-    return this.populate(q, user, true);
+    return this.populate(q, user, 'findOne');
   }
 
   async find(opts, user) {
@@ -97,7 +97,7 @@ class Service {
       filter: await this.match(filter, user),
     });
 
-    return this.populate(q, user, false);
+    return this.populate(q, user, 'find');
   }
 
   async count(filter, user) {
