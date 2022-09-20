@@ -23,7 +23,7 @@ const FormLogin = () => {
       defaults={{
         email: '',
         password: '',
-        persist: false,
+        persist: true,
       }}
       api={{ url: '/api/auth' }}
       onSubmitted={() => window.location.reload()}
