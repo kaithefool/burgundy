@@ -1,31 +1,7 @@
 import pick from 'lodash/pick';
-import mapValues from 'lodash/mapValues';
-import isPlainObject from 'lodash/isPlainObject';
 
 import { newKey } from '../../hooks/useUniqKey';
-
-function getPath(parent, key) {
-  return [parent, key].filter(((p) => p || p === 0)).join('.');
-}
-
-function mapDeep(src, fn = (v) => v) {
-  const t = (value, key, path) => {
-    const p = path ?? key;
-    const val = fn(value, key, p);
-
-    if (isPlainObject(val)) {
-      return mapValues(val, (v, k) => t(v, k, getPath(p, k)));
-    }
-
-    if (Array.isArray(val)) {
-      return val.map((v, k) => t(v, k, getPath(p, k)));
-    }
-
-    return val;
-  };
-
-  return t(src);
-}
+import { mapDeep } from '../../helpers';
 
 function keyArrayItem(item) {
   // array need unique keys for list and sorting
