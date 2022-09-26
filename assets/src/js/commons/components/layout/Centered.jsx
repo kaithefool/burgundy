@@ -9,7 +9,7 @@ const Centered = ({
     md: 500,
     lg: 800,
     xl: 1140,
-  })[size];
+  })[size] || size;
 
   return (
     <div className="d-flex vh-100">
