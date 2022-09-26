@@ -13,6 +13,7 @@ import FormCheck from './FormCheck';
 import FormSelect from './FormSelect';
 import FormFilsList from './FormFilsList';
 import FormFilsCoverImg from './FormFilsCoverImg';
+import FormFilsAvatar from './FormFilsAvatar';
 import FormEditor from './FormEditor';
 import FormPassword from './FormPassword';
 import FormTextarea from './FormTextarea';
@@ -39,6 +40,7 @@ export {
   FormSelect,
   FormFilsList,
   FormFilsCoverImg,
+  FormFilsAvatar,
   FormEditor,
   FormPassword,
   FormTextarea,
@@ -70,6 +72,7 @@ Form.Check = FormCheck;
 Form.Select = FormSelect;
 Form.FilsList = FormFilsList;
 Form.FilsCoverImg = FormFilsCoverImg;
+Form.FilsAvatar = FormFilsAvatar;
 Form.Editor = FormEditor;
 Form.Password = FormPassword;
 Form.Textarea = FormTextarea;

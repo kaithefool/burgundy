@@ -17,7 +17,7 @@ const DirClick = ({
 
   return (
     <div
-      className={className}
+      className={`${className} cursor-pointer`}
       onClick={(e) => {
         if (e.target !== input.current) {
           e.preventDefault();

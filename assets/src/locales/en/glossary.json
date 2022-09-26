@@ -7,5 +7,7 @@
   "passwordConfirm": "Confirm Password",
   "importTmpl": "Import Template",
   "url": "URL",
-  "preview": "Preview"
+  "preview": "Preview",
+  "selectImage" : "Choose Photo",
+  "remove" : "Remove"
 }

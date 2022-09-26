@@ -12,7 +12,7 @@ const DocForm = (props) => {
   const navigate = useNavigate();
 
   const a = singleton
-    ? { ...api, method: 'put' }
+    ? { ...api, method: 'patch' }
     : {
       ...api,
       url: `${api.url}/${doc ? _id : ''}`,

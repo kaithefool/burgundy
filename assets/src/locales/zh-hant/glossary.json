@@ -19,5 +19,7 @@
   "lastLogin": "上次登錄",
   "title": "標題",
   "body": "內容",
-  "preview": "預覽"
+  "preview": "預覽",
+  "selectImage" : "選擇圖片",
+  "remove" : "刪除"
 }

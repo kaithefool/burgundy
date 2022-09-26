@@ -5,7 +5,10 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 import useFil from './useFil';
 
-const FilRemove = (props) => {
+const FilRemove = ({
+  children,
+  ...props
+}) => {
   const { remove } = useFil();
 
   return (
@@ -15,7 +18,7 @@ const FilRemove = (props) => {
       onClick={() => remove()}
       {...props}
     >
-      <FA icon={faTimes} />
+      {children || <FA icon={faTimes} />}
     </button>
   );
 };
