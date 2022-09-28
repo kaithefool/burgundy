@@ -42,7 +42,6 @@ class Service {
 
   search(f) {
     let { search: opts } = this.opts;
-
     if (!opts || !f) return null;
 
     if (typeof opts === 'string' || Array.isArray(opts)) {
@@ -66,18 +65,20 @@ class Service {
   }
 
   exclude(_ids) {
-    return { _id: { $nin: _.castArray(_ids) } };
+    return _ids && { _id: { $nin: _.castArray(_ids) } };
   }
 
   match({ search, excl, ...filter } = {}) {
     return {
-      ...this.search(search),
-      ...this.exclude(excl),
-      ...filter,
+      $and: [
+        this.search(search),
+        this.exclude(excl),
+        filter,
+      ].filter((f) => f),
     };
   }
 
-  populate(query/* , user, method */) {
+  populate(query/* , user, one */) {
     return query;
   }
 
@@ -85,8 +86,7 @@ class Service {
     const q = this.model.findOne(
       await this.match(filter, user),
     );
-
-    return this.populate(q, user, 'findOne');
+    return this.populate(q, user, true);
   }
 
   async find(opts, user) {
@@ -97,7 +97,7 @@ class Service {
       filter: await this.match(filter, user),
     });
 
-    return this.populate(q, user, 'find');
+    return this.populate(q, user, false);
   }
 
   async count(filter, user) {
