@@ -5,10 +5,11 @@ import { useField } from 'formik';
 import FormField from './FormField';
 
 const FormISOTimeInput = ({
-  name,
   zone,
+  datetime = false,
   ...props
 }) => {
+  const { name } = props;
   const [
     field, { value }, { setValue },
   ] = useField(name);
@@ -21,6 +22,8 @@ const FormISOTimeInput = ({
     max = max.toFormat('HH:mm');
   }
 
+  console.log(value);
+
   return (
     <FormField {...props}>
       {({ invalid, valid, ...p }) => (
@@ -31,12 +34,20 @@ const FormISOTimeInput = ({
           type="time"
           onChange={(evt) => {
             const { value: v } = evt.target;
+            const d = value ? dt.fromISO(value, { zone }) : dt.now();
+            const t = dt.fromISO(v, { zone });
 
-            if (!v) setValue('');
+            if (!v) {
+              return setValue('');
+            }
 
-            const d = dt.fromISO(v, { zone });
+            if (datetime) {
+              const { hour, minute } = t;
 
-            setValue(d.toISOTime());
+              return setValue(d.set({ hour, minute }).toISO());
+            }
+
+            return setValue(d.toISOTime());
           }}
           value={
             value

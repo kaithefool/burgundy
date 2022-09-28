@@ -49,17 +49,7 @@ const PageExample = () => (
           defaults={defaults}
           schema={schema(doc)}
         >
-          <div className="row mb-3 align-items-center">
-            <div className="col-auto">
-              <Form.BtnSubmit />
-            </div>
-            <div className="col-auto">
-              <Doc.UpdatedAt />
-            </div>
-            <div className="col text-end">
-              <Doc.BtnDel />
-            </div>
-          </div>
+          <Doc.Ctrl />
 
           <Tabs route>
             <Tab eventKey="general">

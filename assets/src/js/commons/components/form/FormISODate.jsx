@@ -7,6 +7,7 @@ import FormField from './FormField';
 const FormISODate = ({
   startOf,
   endOf,
+  datetime = false,
   zone,
   ...props
 }) => {
@@ -33,15 +34,22 @@ const FormISODate = ({
           type="date"
           onChange={(evt) => {
             const { value: v } = evt.target;
+            const t = value
+              ? dt.fromISO(value, { zone })
+              : dt.now().startOf('day');
 
-            if (!v) setValue('');
+            if (!v) {
+              return setValue('');
+            }
 
+            const { hour, minute } = t;
             let d = dt.fromISO(v, { zone });
 
+            if (datetime) d = d.set({ hour, minute });
             if (startOf) d = d.startOf(startOf);
             if (endOf) d = d.endOf(endOf);
 
-            setValue(d.toISO());
+            return setValue(d.toISO());
           }}
           value={
             value
