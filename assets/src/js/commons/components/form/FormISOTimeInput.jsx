@@ -22,8 +22,6 @@ const FormISOTimeInput = ({
     max = max.toFormat('HH:mm');
   }
 
-  console.log(value);
-
   return (
     <FormField {...props}>
       {({ invalid, valid, ...p }) => (
