@@ -37,22 +37,7 @@ const PageView = () => {
             defaults={defaults}
             schema={schema(doc)}
           >
-            <div className="row mb-3 align-items-center">
-              <div className="col-auto">
-                <Form.BtnSubmit />
-              </div>
-              {!doc?.key && (
-                <div className="col-auto">
-                  <Doc.BtnPreview href={(v) => v.url} />
-                </div>
-              )}
-              <div className="col-auto">
-                <Doc.UpdatedAt />
-              </div>
-              <div className="col text-end">
-                <Doc.BtnDel />
-              </div>
-            </div>
+            <Doc.Ctrls preview={(v) => v.url} />
 
             {/* fields */}
             <Form.Check name="active" type="switch" />

@@ -6,6 +6,8 @@ import { mapDeep } from '../../helpers';
 function keyArrayItem(item) {
   // array need unique keys for list and sorting
   return typeof item === 'object'
+    && item !== null
+    && Array.isArray(item)
     ? { ...item, key: newKey() }
     : item;
 }

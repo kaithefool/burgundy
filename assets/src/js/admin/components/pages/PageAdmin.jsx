@@ -40,17 +40,7 @@ const PageAdmin = () => {
               ...values, ...(p && { password: p }),
             })}
           >
-            <div className="row mb-3 align-items-center">
-              <div className="col-auto">
-                <Form.BtnSubmit />
-              </div>
-              <div className="col-auto">
-                <Doc.UpdatedAt />
-              </div>
-              <div className="col text-end">
-                <Doc.BtnDel />
-              </div>
-            </div>
+            <Doc.Ctrls />
 
             <Form.Check name="active" type="switch" />
             <Form.Input name="email" />

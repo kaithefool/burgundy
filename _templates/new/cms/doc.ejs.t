@@ -34,17 +34,7 @@ const Page<%= n.singular.pascal %> = () => {<% if (!singleton) { %>
             defaults={defaults}
             schema={schema(doc)}
           >
-            <div className="row mb-3 align-items-center">
-              <div className="col-auto">
-                <Form.BtnSubmit />
-              </div>
-              <div className="col-auto">
-                <Doc.UpdatedAt />
-              </div>
-  <% if (!singleton) { %>            <div className="col text-end">
-                <Doc.BtnDel />
-              </div><% } %>
-            </div>
+            <Doc.Ctrls <% if (!singleton) { %>del={false}<% } %> />
 
             {/* fields */}
 

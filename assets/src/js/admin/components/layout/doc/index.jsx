@@ -7,6 +7,7 @@ import DocForm from './DocForm';
 import DocBtnDel from './DocBtnDel';
 import DocUpdatedAt from './DocUpdatedAt';
 import DocBtnPreview from './DocBtnPreview';
+import DocCtrls from './DocCtrls';
 
 const Doc = (props) => <DocProvider {...props} />;
 
@@ -18,6 +19,7 @@ export {
   DocBtnDel,
   DocUpdatedAt,
   DocBtnPreview,
+  DocCtrls,
 };
 
 Doc.Provider = DocProvider;
@@ -25,5 +27,6 @@ Doc.Form = DocForm;
 Doc.BtnDel = DocBtnDel;
 Doc.UpdatedAt = DocUpdatedAt;
 Doc.BtnPreview = DocBtnPreview;
+Doc.Ctrls = DocCtrls;
 
 export default Doc;
