@@ -49,7 +49,7 @@ const PageExample = () => (
           defaults={defaults}
           schema={schema(doc)}
         >
-          <Doc.Ctrl />
+          <Doc.Ctrls />
 
           <Tabs route>
             <Tab eventKey="general">

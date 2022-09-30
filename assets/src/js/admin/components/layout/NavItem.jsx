@@ -17,7 +17,6 @@ const NavItem = ({
   label = '',
   subDirLabel,
   children,
-  links,
   expanded,
   subDir = false,
   navToggle = false,
