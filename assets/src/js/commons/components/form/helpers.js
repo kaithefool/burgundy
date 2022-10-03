@@ -1,4 +1,5 @@
 import pick from 'lodash/pick';
+import get from 'lodash/get';
 
 import { newKey } from '../../hooks/useUniqKey';
 import { mapDeep } from '../../helpers';
@@ -45,7 +46,9 @@ function initValues(
         return val.toString();
       }
       // null
-      if (val === null) return '';
+      if (val === null && get(defaults, path) !== null) {
+        return '';
+      }
       // array
       if (Array.isArray(val)) {
         return val.map((item) => keyArrayItem(item));
