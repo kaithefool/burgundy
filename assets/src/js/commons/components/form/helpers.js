@@ -7,7 +7,7 @@ function keyArrayItem(item) {
   // array need unique keys for list and sorting
   return typeof item === 'object'
     && item !== null
-    && Array.isArray(item)
+    && !Array.isArray(item)
     ? { ...item, key: newKey() }
     : item;
 }
