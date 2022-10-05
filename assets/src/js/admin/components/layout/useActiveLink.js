@@ -1,9 +1,12 @@
-import { matchPath, useLocation } from 'react-router-dom';
+import { matchPath, useLocation, useParams } from 'react-router-dom';
 
-import linkGroups from './links';
+import mainLinks, { headLinks } from './links';
+
+const linkGroups = [...mainLinks, headLinks];
 
 export default function useActiveLink() {
   const { pathname } = useLocation();
+  const params = useParams();
   let parent;
   let active;
   let exact;
@@ -25,7 +28,19 @@ export default function useActiveLink() {
   const residue = active && pathname
     .replace(new RegExp(`^${active.to}/`), '')
     .replace(/\/$/, '')
-    .split('/');
+    .split('/')
+    .map((s) => {
+      const match = Object.entries(params)
+        .find(([, value]) => value === s);
+
+      return match
+        ? {
+          key: match[0],
+          value: match[1],
+          toString() { return this.value; },
+        }
+        : s;
+    });
 
   return {
     parent,

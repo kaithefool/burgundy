@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import useHttp from '~/commons/hooks/useHttp';
 import BtnHttpConfirm from '~/commons/components/btns/BtnHttpConfirm';
 import useAlert from '~/commons/components/alert/useAlert';
+import { resolvePath } from '~/commons/helpers';
 
 import useDoc from './useDoc';
-import { resolvePath } from '../../../../commons/helpers';
 
 const DocBtnDel = ({
   confirm = true,
