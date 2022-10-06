@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import startCase from 'lodash/startCase';
+import castArray from 'lodash/castArray';
 import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
 import { isFragment } from 'react-is';
@@ -10,7 +11,7 @@ import BTab from 'react-bootstrap/Tab';
 import { resolvePath } from '../../../helpers';
 
 function flat(children, out = []) {
-  children.forEach((c) => {
+  castArray(children).forEach((c) => {
     if (isFragment(c)) flat(c.props.children, out);
     else if (c) out.push(c);
   });
