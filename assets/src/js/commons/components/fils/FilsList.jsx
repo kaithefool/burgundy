@@ -20,7 +20,7 @@ const List = ({ files, sortable, mode }) => {
     <div className="row g-2">
       {files.map((f, i) => (
         <Item
-          className={mode === 'grid' ? 'col-xs-6 col-2' : ''}
+          className={mode === 'grid' ? 'col-6 col-sm-4 col-md-3 col-lg-2' : ''}
           key={f.key}
           file={f}
           mode={mode}
