@@ -61,20 +61,3 @@ pm2 deploy [env] setup
 ```shell
 pm2 deploy [env]
 ```
-
-## Todos
-- Field Array
-    - handle _id reference
-- File Uploads
-    - image dimension
-    - file preview file switch transition (onload event?)
-    - drag and drop sorting bug
-- Rich text editor
-    - Drop file handler
-    - MaxSize and accept
-- Grid html editor
-- i18n
-    - Email templates
-- Import json & excel?
-- ObjectId validator
-- Switch from CommonJS to ES Modules?

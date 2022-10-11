@@ -1,0 +1,17 @@
+# Todos
+- Field Array
+    - handle _id reference
+- File Uploads
+    - image dimension
+    - file preview file switch transition (onload event?)
+    - drag and drop sorting bug
+- Rich text editor
+    - Drop file handler
+    - MaxSize and accept
+- i18n
+    - Email templates
+- Import json & excel?
+- ObjectId validator
+- Form field helper text in label
+- Inject parent doc in breadcrumb
+- Prohibit '$' in api

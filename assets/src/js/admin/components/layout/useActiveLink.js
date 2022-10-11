@@ -1,8 +1,8 @@
 import { matchPath, useLocation, useParams } from 'react-router-dom';
 
-import mainLinks, { headLinks } from './links';
+import mainLinks from './links';
 
-const linkGroups = [...mainLinks, headLinks];
+const linkGroups = mainLinks;
 
 export default function useActiveLink() {
   const { pathname } = useLocation();
