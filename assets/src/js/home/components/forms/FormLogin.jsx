@@ -58,6 +58,7 @@ const FormLogin = () => {
       <Form.BtnSubmit
         icon={faUnlock}
         className="btn-primary btn-block"
+        retry
       >
         {t('pg.auth.submit')}
       </Form.BtnSubmit>

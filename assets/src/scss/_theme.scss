@@ -23,4 +23,12 @@ html {
       border-color: $form-feedback-invalid-color;
     }
   }
+  &.is-valid {
+    .btn-input, .input-group-text {
+      color: $form-feedback-valid-color;
+    }
+    .btn-input, .input-group-text, .form-control {
+    border-color: $form-feedback-valid-color;
+    }
+  }
 }

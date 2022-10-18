@@ -21,5 +21,6 @@
   "body": "內容",
   "preview": "預覽",
   "selectImage" : "選擇圖片",
-  "remove" : "刪除"
+  "remove" : "刪除",
+  "retryAfter": "{{seconds}}秒後重試"
 }

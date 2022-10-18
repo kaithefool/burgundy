@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-export default function useTimeout(cb, delay, startOnInit = true) {
+export default function useTimeout(cb, duration, startOnInit = true) {
   const t = useRef();
   const func = useRef(cb);
   const abort = () => {
-    if (t.current) clearTimeout(t.current);
+    if (t.current) clearInterval(t.current);
   };
 
   // always update func in state changes
@@ -12,9 +12,9 @@ export default function useTimeout(cb, delay, startOnInit = true) {
   func.current = cb;
 
   const start = () => {
-    t.current = setTimeout(() => {
+    t.current = setInterval(() => {
       func.current();
-    }, delay);
+    }, duration);
   };
 
   useEffect(() => {

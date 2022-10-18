@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useParams, Link } from 'react-router-dom';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons/faCheckCircle';
+import {
+  faCheckCircle,
+} from '@fortawesome/free-regular-svg-icons/faCheckCircle';
 
 import Centered from '~/commons/components/layout/Centered';
 import Fetchable from '~/commons/components/util/Fetchable';

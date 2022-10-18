@@ -14,6 +14,7 @@ const FormField = ({
   affirm = false,
   children,
   fieldOnly = false,
+  showErr = true,
   ...props
 }) => {
   const { name, value } = props;
@@ -73,7 +74,7 @@ const FormField = ({
       {valid && typeof affirm !== 'boolean' && (
         <div className="valid-feedback">{affirm}</div>
       )}
-      {err && touched && (
+      {showErr && err && touched && (
         <div className="invalid-feedback">{t(err.rule, err)}</div>
       )}
     </div>

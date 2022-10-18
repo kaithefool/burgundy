@@ -37,7 +37,7 @@ const FormProvider = ({
       });
 
       actions.resetForm({ values });
-      onSubmitted(r);
+      onSubmitted(r, values);
     }
   );
 
