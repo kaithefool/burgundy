@@ -27,7 +27,7 @@
     "invalidCsv": "Invalid CSV format",
     "disconnected": "Cannot connect to server/network",
     "timeout": "Connection timed out",
-    "goBack": "Go Home",
+    "goBack": "Back to Home",
     "noRecord": "No record found",
     "retryAfter": "Try again after {{seconds}} s",
     "retryMaxReached": "You've tried too many times"

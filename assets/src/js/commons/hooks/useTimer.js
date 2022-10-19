@@ -39,7 +39,13 @@ export default function useTimer(cb, duration, startOnInit, {
     cb();
   }, d.toMillis(), startOnInit);
 
+  const reset = () => {
+    t.abort();
+    i.abort();
+  };
+
   const start = () => {
+    reset();
     t.start();
     i.start();
     count('start');
@@ -49,6 +55,7 @@ export default function useTimer(cb, duration, startOnInit, {
     interval: i,
     timeout: t,
     start,
+    reset,
     timeLeft,
   };
 }
