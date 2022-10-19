@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 
-import useTimer from '../../hooks/useTimer';
+import useRetry from '../../hooks/useRetry';
 
 const BtnHttp = ({
   icon,
@@ -13,24 +12,12 @@ const BtnHttp = ({
   disabled,
   className = '',
   onClick = () => {},
-  retry: retryOpts,
+  retry,
   ...props
 }) => {
   const { status } = res;
   const i = status === 'pending' ? faSpinner : icon;
-  const [paused, setPaused] = useState(false);
-  const { t } = useTranslation();
-  const retry = retryOpts && {
-    interval: { seconds: 30 },
-    max: 3,
-    ...retryOpts,
-  };
-
-  const { start, timeLeft } = useTimer(
-    () => setPaused(false),
-    retry?.interval || 0,
-    false,
-  );
+  const { paused, attempt, error } = useRetry(retry);
 
   return (
     <button
@@ -43,9 +30,7 @@ const BtnHttp = ({
         ${status === 'error' ? 'btn-danger' : ''}
       `}
       onClick={function btnHttpOnClick(...args) {
-        if (retry) {
-          setPaused(true); start();
-        }
+        if (retry) attempt();
         onClick.apply(this, args);
       }}
     >
@@ -57,11 +42,7 @@ const BtnHttp = ({
         />
       )}
       {i && children && ' '}
-      {
-        paused
-          ? t('retryAfter', { seconds: timeLeft.toFormat('s') })
-          : children
-      }
+      {error || children}
     </button>
   );
 };
