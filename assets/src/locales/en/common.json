@@ -45,7 +45,7 @@
       "length": "{{path, field}} must be exactly {{length}} characters",
       "min": "{{path, field}} must be at least {{min}} characters",
       "max": "{{path, field}} must be at most {{max}} characters",
-      "matches": "{{path, field}} must match the following: \"{{regex}}\"",
+      "matches": "{{path, field}} is incorrect",
       "email": "{{path, field}} must be a valid email",
       "url": "{{path, field}} must be a valid URL",
       "uuid": "{{path, field}} must be a valid UUID",
@@ -76,6 +76,9 @@
       "min": "{{path, field}} field must have at least {{min}} items",
       "max": "{{path, field}} field must have less than or equal to {{max}} items",
       "length": "{{path, field}} must have {{length}} items"
+    },
+    "misc": {
+      "passwordConfirm": "{{path, field}} does not match"
     }
   },
   "sms": {

@@ -45,7 +45,7 @@
       "length": "{{path, field}}必須包含{{length}}個字符",
       "min": "{{path, field}}必須至少包含{{min}}個字符",
       "max": "{{path, field}}必須最多包含{{max}}個字符",
-      "matches": "{{path, field}}必須符合: \"{{regex}}\"",
+      "matches": "{{path, field}}不正確",
       "email": "{{path, field}}必須為有效電郵地址",
       "url": "{{path, field}}必須為有效URL",
       "uuid": "{{path, field}}必須為有效UUID",
@@ -76,6 +76,9 @@
       "min": "{{path, field}}必須至少有{{min}}項",
       "max": "{{path, field}}必須最多有{{max}}項",
       "length": "{{path, field}}必須有{{length}}項"
+    },
+    "misc": {
+      "passwordConfirm": "{{path, field}}不一致"
     }
   },
   "sms": {

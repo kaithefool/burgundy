@@ -11,7 +11,7 @@ const password = () => string()
 const passwordConfirm = () => string()
   .oneOf(
     [ref('password')],
-    'Both passwords need to be the same',
+    (params) => ({ ...params, rule: 'yup.misc.passwordConfirm' }),
   );
 
 export {

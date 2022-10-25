@@ -12,7 +12,7 @@ const Centered = ({
   })[size] || size;
 
   return (
-    <div className="d-flex vh-100">
+    <div className="d-flex min-vh-100">
       <div className="my-auto w-100">
         <div className="container">
           <div className="row justify-content-center">

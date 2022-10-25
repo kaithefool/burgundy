@@ -35,13 +35,13 @@ const FormField = ({
   if (invalid) fC += ' is-invalid';
   if (valid) fC += ' is-valid';
 
-  const c = children({
+  const c = typeof children === 'function' ? children({
     ...props,
     id,
     invalid,
     valid,
     className: fC,
-  });
+  }) : children;
 
   if (fieldOnly) return c;
 
@@ -75,7 +75,7 @@ const FormField = ({
         <div className="valid-feedback">{affirm}</div>
       )}
       {showErr && err && touched && (
-        <div className="invalid-feedback">{t(err.rule, err)}</div>
+        <div className="invalid-feedback d-block">{t(err.rule, err)}</div>
       )}
     </div>
   );
