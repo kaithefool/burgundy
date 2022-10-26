@@ -15,6 +15,7 @@ const FormProvider = ({
   api,
   beforeSubmit = (v) => v,
   onSubmit,
+  resetOnSubmitted = false,
   onSubmitted = () => {},
   ...props
 }) => {
@@ -36,7 +37,7 @@ const FormProvider = ({
         ...api,
       });
 
-      actions.resetForm({ values });
+      actions.resetForm(resetOnSubmitted ? undefined : { values });
       onSubmitted(r, values);
     }
   );
