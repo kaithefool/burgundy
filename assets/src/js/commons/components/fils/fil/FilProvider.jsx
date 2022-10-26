@@ -37,6 +37,10 @@ const FilProvider = ({
         key: file.key, // keep the same key
       });
     }
+
+    return () => {
+      cancel();
+    };
   }, [http.res?.status]);
 
   const value = {

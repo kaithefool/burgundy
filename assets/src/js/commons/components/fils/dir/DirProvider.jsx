@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import mimer from 'mimer';
 
 import DirContext from './DirContext';
@@ -51,6 +51,7 @@ const insertKeys = (files) => {
 const DirProvider = ({
   api = { url: '/api/files' },
   initValue = [],
+  reset = false,
   multiple = false, // Boolean or max no. of files
   onChange = () => {},
   onDraft = () => {},
@@ -58,8 +59,14 @@ const DirProvider = ({
   maxSize,
   children,
 }) => {
-  const [files, setFiles] = useState(() => insertKeys(initValue));
+  const [files, setFiles] = useState([]);
   const { push: pushAlert } = useAlert();
+
+  useEffect(() => {
+    if (reset) {
+      setFiles(insertKeys(initValue));
+    }
+  }, [reset]);
 
   const update = (draft) => {
     const e = validateFiles(draft, { accept, maxSize });

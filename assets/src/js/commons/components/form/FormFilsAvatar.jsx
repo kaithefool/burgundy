@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  useField,
+  useField, useFormikContext,
 } from 'formik';
 
 import FormField from './FormField';
@@ -11,12 +11,14 @@ const FormFilsAvatar = ({
   ...props
 }) => {
   const [, { value }, { setTouched, setValue }] = useField(props);
+  const { submitCount } = useFormikContext();
 
   return (
     <FormField {...props}>
       {({ invalid, valid, ...p }) => (
         <FilsAvatar
           initValue={value}
+          reset={!submitCount}
           onChange={(v) => {
             setValue(v);
             setTouched();
