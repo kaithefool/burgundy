@@ -34,7 +34,7 @@ const Page<%= n.singular.pascal %> = () => {<% if (!singleton) { %>
             defaults={defaults}
             schema={schema(doc)}
           >
-            <Doc.Ctrls <% if (singleton) { %>del={false}<% } %> />
+            <Doc.Ctrls updatedAt<% if (!singleton) { %> del<% } %> />
 
             {/* fields */}
 

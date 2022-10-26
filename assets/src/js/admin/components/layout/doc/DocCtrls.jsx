@@ -2,14 +2,16 @@ import React from 'react';
 
 import Form from '~/commons/components/form';
 import DocUpdatedAt from './DocUpdatedAt';
+import DocCreatedAt from './DocCreatedAt';
 import DocBtnDel from './DocBtnDel';
 import DocBtnPreview from './DocBtnPreview';
 
 const DocCtrls = ({
   submit = true,
   preview = false,
-  updatedAt = true,
-  del = true,
+  createdAt = false,
+  updatedAt = false,
+  del = false,
 }) => (
   <div className="row mb-3 align-items-center">
     {submit && (
@@ -22,9 +24,14 @@ const DocCtrls = ({
         <DocBtnPreview href={preview} />
       </div>
     )}
-    {updatedAt && (
+    {(updatedAt || createdAt) && (
       <div className="col-auto">
-        <DocUpdatedAt />
+        {updatedAt && (
+          <div><DocUpdatedAt /></div>
+        )}
+        {createdAt && (
+          <div><DocCreatedAt /></div>
+        )}
       </div>
     )}
     {del && (

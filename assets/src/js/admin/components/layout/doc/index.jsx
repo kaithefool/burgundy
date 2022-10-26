@@ -5,6 +5,7 @@ import DocContext from './DocContext';
 import useDoc from './useDoc';
 import DocForm from './DocForm';
 import DocBtnDel from './DocBtnDel';
+import DocCreatedAt from './DocCreatedAt';
 import DocUpdatedAt from './DocUpdatedAt';
 import DocBtnPreview from './DocBtnPreview';
 import DocCtrls from './DocCtrls';
@@ -17,6 +18,7 @@ export {
   useDoc,
   DocForm,
   DocBtnDel,
+  DocCreatedAt,
   DocUpdatedAt,
   DocBtnPreview,
   DocCtrls,
@@ -25,6 +27,7 @@ export {
 Doc.Provider = DocProvider;
 Doc.Form = DocForm;
 Doc.BtnDel = DocBtnDel;
+Doc.CreatedAt = DocCreatedAt;
 Doc.UpdatedAt = DocUpdatedAt;
 Doc.BtnPreview = DocBtnPreview;
 Doc.Ctrls = DocCtrls;
