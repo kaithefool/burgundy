@@ -2,9 +2,12 @@ import React from 'react';
 import { SortableHandle } from 'react-sortable-hoc';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faGripVertical } from '@fortawesome/free-solid-svg-icons/faGripVertical';
+import {
+  faGripVertical,
+} from '@fortawesome/free-solid-svg-icons/faGripVertical';
 
 import Fil from './fil';
+import FilsThumbnail from './FilsThumbnail';
 
 const DragHandle = SortableHandle(() => (
   <span className="cursor-grab">
@@ -13,23 +16,11 @@ const DragHandle = SortableHandle(() => (
 ));
 
 const FilsGridItem = ({
+  file,
   dragHandle = false,
 }) => (
-  <div className="position-relative rounded border ratio ratio-1x1 bg-white">
-    <div className="text-primary text-center small">
-      <div className="position-absolute top-50 start-50 translate-middle mw-100">
-        <div className="display-6 pt-4 pb-1">
-          <Fil.TypeIcon fixedWidth />
-        </div>
-        <div className="mw-100 px-3">
-          <Fil.Name />
-        </div>
-        <div>
-          <small className="text-muted"><Fil.Size /></small>
-        </div>
-      </div>
-    </div>
-    <Fil.Preview />
+  <FilsThumbnail file={file}>
+    {/* toolbar */}
     <div
       className="h-auto"
       style={{ zIndex: 1 }}
@@ -41,9 +32,9 @@ const FilsGridItem = ({
       <div className="position-relative ps-3 pe-2">
         <div className="row g-2 align-items-center justify-content-end">
           {dragHandle && (
-            <div className="col text-muted">
-              <DragHandle />
-            </div>
+          <div className="col text-muted">
+            <DragHandle />
+          </div>
           )}
           <div className="col-auto">
             <Fil.Status />
@@ -54,8 +45,7 @@ const FilsGridItem = ({
         </div>
       </div>
     </div>
-
-  </div>
+  </FilsThumbnail>
 );
 
 export default FilsGridItem;

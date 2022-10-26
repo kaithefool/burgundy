@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Fil from './fil';
 import FilsListItemList from './FilsListItemList';
 import FilsListItemGrid from './FilsListItemGrid';
 
@@ -11,13 +10,11 @@ const FilsListItem = ({
   dragHandle,
 }) => (
   <div className={className}>
-    <Fil file={file}>
-      {
-        mode === 'list'
-          ? <FilsListItemList dragHandle={dragHandle} />
-          : <FilsListItemGrid dragHandle={dragHandle} />
-      }
-    </Fil>
+    {
+      mode === 'list'
+        ? <FilsListItemList file={file} dragHandle={dragHandle} />
+        : <FilsListItemGrid file={file} dragHandle={dragHandle} />
+    }
   </div>
 );
 

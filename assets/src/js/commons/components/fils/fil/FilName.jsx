@@ -4,35 +4,43 @@ import useFil from './useFil';
 
 const FilName = ({
   className = 'link-dark',
+  link,
 }) => {
   const { file: { name = '', path } } = useFil();
   const [, n, ext] = name.match(/(.*?)(\.[^.]*)$/);
+  const href = link && (
+    typeof link === 'string' ? link : `/uploads/${path}`
+  );
 
-  return (
+  const content = (
+    <div className="w-100 d-inline-flex flex-nowrap">
+      <div
+        className="text-truncate"
+        style={{ flex: '0 1 content' }}
+      >
+        {n}
+      </div>
+      <div
+        style={{
+          flex: '1 0 content',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {ext}
+      </div>
+    </div>
+  );
+
+  return href ? (
     <a
       className={className}
       target="_blank"
       href={`/uploads/${path}`}
       rel="noreferrer"
     >
-      <div className="w-100 d-inline-flex flex-nowrap">
-        <div
-          className="text-truncate"
-          style={{ flex: '0 1 content' }}
-        >
-          {n}
-        </div>
-        <div
-          style={{
-            flex: '1 0 content',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {ext}
-        </div>
-      </div>
+      {content}
     </a>
-  );
+  ) : content;
 };
 
 export default FilName;
