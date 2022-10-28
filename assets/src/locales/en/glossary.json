@@ -9,5 +9,6 @@
   "url": "URL",
   "preview": "Preview",
   "selectImage" : "Choose Photo",
-  "remove" : "Remove"
+  "remove" : "Remove",
+  "addFiles": "Add Files"
 }
