@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import { useTranslation } from 'react-i18next';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
@@ -40,6 +41,7 @@ const FilsList = ({
   modes = ['list', 'grid'],
   ...props
 }) => {
+  const { t } = useTranslation();
   const [mode, setMode] = useState(modes[0]);
 
   return (
@@ -52,7 +54,7 @@ const FilsList = ({
               <Dir.Click className="d-grid">
                 <div className="btn btn-secondary px-3 text-start">
                   <FA icon={faPlus} fixedWidth className="me-2" />
-                  Add or drag files
+                  {t('addFiles')}
                 </div>
               </Dir.Click>
             </div>
