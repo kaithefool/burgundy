@@ -12,8 +12,9 @@ const DocCtrls = ({
   createdAt = false,
   updatedAt = false,
   del = false,
+  children,
 }) => (
-  <div className="row mb-3 align-items-center">
+  <div className="row mb-3 gx-3 align-items-center">
     {submit && (
       <div className="col-auto">
         <Form.BtnSubmit />
@@ -24,6 +25,7 @@ const DocCtrls = ({
         <DocBtnPreview href={preview} />
       </div>
     )}
+    {children}
     {(updatedAt || createdAt) && (
       <div className="col-auto">
         {updatedAt && (

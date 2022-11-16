@@ -12,7 +12,7 @@ const DocForm = (props) => {
   const navigate = useNavigate();
 
   const a = singleton
-    ? { ...api, method: 'patch' }
+    ? { ...api, method: 'put' }
     : {
       ...api,
       url: `${api.url}/${doc ? _id : ''}`,
@@ -25,7 +25,7 @@ const DocForm = (props) => {
       api={a}
       stored={doc}
       onSubmitted={({ data }) => {
-        if (!doc) navigate(resolvePath('..', data._id));
+        if (!doc && !singleton) navigate(resolvePath('..', data._id));
       }}
       {...props}
     />

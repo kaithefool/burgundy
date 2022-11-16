@@ -1,8 +1,9 @@
-import { faUser as faReUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import { faUserTie } from '@fortawesome/free-solid-svg-icons/faUserTie';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faCog } from '@fortawesome/free-solid-svg-icons/faCog';
-import { faWindowRestore } from '@fortawesome/free-solid-svg-icons/faWindowRestore';
+import {
+  faWindowRestore,
+} from '@fortawesome/free-solid-svg-icons/faWindowRestore';
 import { faHistory } from '@fortawesome/free-solid-svg-icons/faHistory';
 
 export default [

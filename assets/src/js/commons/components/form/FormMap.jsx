@@ -10,7 +10,7 @@ const FormMap = ({
   const [{ value }] = useField(name);
 
   const q = Array.isArray(value)
-    ? value?.length && value.join(',')
+    ? value[0] && value[1] && [...value].reverse().join(',')
     : value;
 
   return (
