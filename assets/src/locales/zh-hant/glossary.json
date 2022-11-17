@@ -22,5 +22,6 @@
   "preview": "預覽",
   "selectImage" : "選擇圖片",
   "remove" : "刪除",
-  "addFiles": "添加文件"
+  "addFiles": "添加文件",
+  "location.coordinates": "地點座標"
 }

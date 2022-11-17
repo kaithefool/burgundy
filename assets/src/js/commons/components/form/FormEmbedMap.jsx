@@ -3,7 +3,7 @@ import { useField } from 'formik';
 
 import EmbedMap from '../inputs/EmbedMap';
 
-const FormMap = ({
+const FormEmbedMap = ({
   name,
   ...props
 }) => {
@@ -21,4 +21,4 @@ const FormMap = ({
   );
 };
 
-export default FormMap;
+export default FormEmbedMap;

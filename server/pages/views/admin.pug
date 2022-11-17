@@ -11,8 +11,4 @@ block body
     crossorigin='anonymous'
     referrerpolicy='no-referrer'
   )
-  if env.googleApiKey
-    script(
-      src=`https://maps.googleapis.com/maps/api/js?key=${env.googleApiKey}`
-    )
   script(src=`/assets/admin.js?v=${ver}`)

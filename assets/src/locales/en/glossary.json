@@ -10,5 +10,6 @@
   "preview": "Preview",
   "selectImage" : "Choose Photo",
   "remove" : "Remove",
-  "addFiles": "Add Files"
+  "addFiles": "Add Files",
+  "location.coordinates": "Location Coordinates"
 }
