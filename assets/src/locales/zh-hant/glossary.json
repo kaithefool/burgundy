@@ -23,5 +23,5 @@
   "selectImage" : "選擇圖片",
   "remove" : "刪除",
   "addFiles": "添加文件",
-  "location.coordinates": "地點座標"
+  "coordinatesHelptext": "輸入地址、地點或坐標。拖動標記以調整坐標。"
 }

@@ -11,5 +11,5 @@
   "selectImage" : "Choose Photo",
   "remove" : "Remove",
   "addFiles": "Add Files",
-  "location.coordinates": "Location Coordinates"
+  "coordinatesHelptext": "Enter addresses, places, or coordinates to search. Drag the marker to adjust the coordinates."
 }

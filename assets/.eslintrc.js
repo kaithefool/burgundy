@@ -32,7 +32,7 @@ module.exports = {
     },
   },
   rules: {
-    'max-len': ['warn', { code: 80 }],
+    'max-len': ['warn', { code: 80, ignoreRegExpLiterals: true }],
 
     // enable development in windows
     'linebreak-style': 'off',
