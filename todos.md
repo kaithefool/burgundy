@@ -15,3 +15,4 @@
 - Form field helper text in label
 - Inject parent doc in breadcrumb
 - Prohibit '$' in api
+- 2 way bindings in all fields (fil and editor)
