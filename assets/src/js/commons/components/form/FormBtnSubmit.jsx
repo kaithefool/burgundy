@@ -10,6 +10,7 @@ import useForm from './useForm';
 const FormBtnSubmit = ({
   children,
   icon = faSave,
+  successIcon = faCheck,
   onlyValid = true,
   onlyDirty = true,
   className = 'btn-primary',
@@ -19,7 +20,7 @@ const FormBtnSubmit = ({
   const { http } = useForm();
   const { dirty, isValid, isSubmitting } = useFormikContext();
   const saved = !dirty && http.res.status === 'success';
-  const i = icon && (saved ? faCheck : icon);
+  const i = icon && (saved && successIcon ? successIcon : icon);
 
   return (
     <BtnHttp
@@ -34,7 +35,7 @@ const FormBtnSubmit = ({
       )}
       {...props}
     >
-      {children || t(saved ? 'res.saved' : 'save')}
+      {children ?? t(saved ? 'res.saved' : 'save')}
     </BtnHttp>
   );
 };

@@ -7,6 +7,7 @@ import useHttp from '../../hooks/useHttp';
 import FormAlerts from './FormAlerts';
 
 const FormProvider = ({
+  alertOpts,
   stored = {},
   defaults = {},
   relations = [],
@@ -52,7 +53,7 @@ const FormProvider = ({
       >
         {(p) => (
           <Form>
-            <FormAlerts />
+            <FormAlerts opts={alertOpts} />
             {
               typeof children === 'function'
                 ? children({ ...p, http })

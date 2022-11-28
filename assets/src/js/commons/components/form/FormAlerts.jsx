@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import useForm from './useForm';
 import { useAlert } from '../alert';
 
-const FormAlerts = () => {
+const FormAlerts = ({ opts }) => {
   const { t } = useTranslation();
   const { submitCount, isValid } = useFormikContext();
   const { http } = useForm();
-  const { push } = useAlert(http.res, {
+  const { push } = useAlert(http.res, opts || {
     success: () => ({ children: t('res.saved') }),
   });
 
