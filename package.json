@@ -1,5 +1,5 @@
 {
-  "name": "burgundy",
+  "name": "healthcare2u-web",
   "version": "0.1.2",
   "description": "",
   "main": "server/bin/www",
@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaithefool/burgundy.git"
+    "url": "git@bitbucket.org:fourdirectionslimited/healthcare2u-web.git"
   },
   "author": "Kai Lam <kai.chun.lam@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kaithefool/burgundy/issues"
+    "url": "https://bitbucket.org/fourdirectionslimited/healthcare2u-web"
   },
-  "homepage": "https://github.com/kaithefool/burgundy#readme",
+  "homepage": "https://bitbucket.org/fourdirectionslimited/healthcare2u-web",
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",
     "eslint": "^8.3.0",

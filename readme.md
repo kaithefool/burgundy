@@ -1,4 +1,4 @@
-# Burgundy
+# Healthcare2u Web
 
 ## Getting Start
 ##### Prerequisites

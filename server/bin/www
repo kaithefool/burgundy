@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const debug = require('debug')('burgundy:server');
+const debug = require('debug')('healthcare2u:server');
 const http = require('http');
 const { io } = require('../start');
 const app = require('../app');

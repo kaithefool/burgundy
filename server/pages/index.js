@@ -30,7 +30,7 @@ routes.use(({
     lngLabels: LNG_LABEL.split(','),
     googleApiKey: GOOGLE_API_KEY,
     meta: {
-      title: 'Burgundy',
+      title: 'Healthcare 2U',
     },
     ...consts.public,
   };
