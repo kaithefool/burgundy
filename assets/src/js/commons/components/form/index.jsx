@@ -5,7 +5,7 @@ import FormField from './FormField';
 import FormContext from './FormContext';
 import FormProvider from './FormProvider';
 import useForm from './useForm';
-import helpers from './helpers';
+import * as helpers from './helpers';
 
 import Alert from '../alert';
 import FormInput from './FormInput';
