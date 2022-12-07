@@ -15,9 +15,9 @@ function compoundHttp(requests, cb, opts) {
       // sum the total progress
       if (!state.status && state.progress) {
         cb({
-          progress: Math.sum(
-            ...states.map((s) => s.progress || 0) / states.length,
-          ),
+          progress: (
+            states.map((s) => s.progress || 0).reduce((a, p) => a + p, 0)
+          ) / states.length,
         });
       }
       // error

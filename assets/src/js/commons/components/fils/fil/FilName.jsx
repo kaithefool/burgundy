@@ -8,9 +8,15 @@ const FilName = ({
 }) => {
   const { file: { name = '', path } } = useFil();
   const [, n, ext] = name.match(/(.*?)(\.[^.]*)$/);
-  const href = link && (
-    typeof link === 'string' ? link : `/uploads/${path}`
-  );
+  let href = null;
+
+  if (link) {
+    if (typeof link === 'string') {
+      href = link;
+    } else if (path) {
+      href = `/uploads/${path}`;
+    }
+  }
 
   const content = (
     <div className="w-100 d-inline-flex flex-nowrap">

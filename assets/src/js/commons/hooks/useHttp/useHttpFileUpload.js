@@ -1,23 +1,30 @@
 import useHttpBase from './useHttpBase';
 
+const makeReq = (api, file) => {
+  const fd = new FormData();
+
+  fd.append('file', file);
+
+  return {
+    method: 'post',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    data: fd,
+    timeout: 60 * 60 * 1000,
+    ...api,
+  };
+};
+
 function useHttpFileUpload() {
   const { res, req, fetched } = useHttpBase();
 
-  const onFile = (api, file) => {
-    const fd = new FormData();
-
-    fd.append('file', file);
-
-    return req({
-      method: 'post',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      data: fd,
-      timeout: 60 * 60 * 1000,
-      ...api,
-    }, { uploadProgress: true });
-  };
+  const onFile = (api, files) => req(
+    files instanceof FileList || Array.isArray(files)
+      ? Array.from(files).map((f) => makeReq(api, f))
+      : makeReq(api, files),
+    { uploadProgress: true },
+  );
 
   return { res, req: onFile, fetched };
 }

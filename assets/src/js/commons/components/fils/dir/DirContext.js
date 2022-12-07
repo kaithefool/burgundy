@@ -5,7 +5,12 @@ export default React.createContext({
   accept: undefined,
   maxSize: undefined,
   files: [],
+
   push: () => {},
+  replace: () => {},
+  remove: () => {},
+  swap: () => {},
+  move: () => {},
+  clear: () => {},
   update: () => {},
-  change: () => {},
 });

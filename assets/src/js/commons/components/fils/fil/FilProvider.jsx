@@ -8,6 +8,7 @@ import useAlert from '../../alert/useAlert';
 const FilProvider = ({
   file,
   children,
+  upload = true,
 }) => {
   const { api, replace, remove } = useDir();
   const http = useHttpFileUpload();
@@ -22,12 +23,13 @@ const FilProvider = ({
   };
 
   useEffect(() => {
-    if (file instanceof File) {
+    if (upload && file instanceof File) {
       http.req(api, file);
     }
   }, [
     file instanceof File,
     file.key,
+    upload,
   ]);
 
   useEffect(() => {

@@ -59,7 +59,7 @@ const DirProvider = ({
   maxSize,
   children,
 }) => {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState(() => insertKeys(initValue));
   const { push: pushAlert } = useAlert();
 
   useEffect(() => {
@@ -126,6 +126,10 @@ const DirProvider = ({
     update(draft);
   };
 
+  const clear = () => {
+    update([]);
+  };
+
   const value = {
     api,
     accept,
@@ -137,6 +141,8 @@ const DirProvider = ({
     remove,
     swap,
     move,
+    clear,
+    update,
   };
 
   return (

@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
+import {
+  faCloudUploadAlt,
+} from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
 
 import useDir from './useDir';
 
