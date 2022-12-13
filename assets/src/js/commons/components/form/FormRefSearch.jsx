@@ -15,6 +15,7 @@ const FormRefSearch = ({
   invalid,
   valid,
   name,
+  placeholder,
   ...props
 }) => {
   const [{ value }] = useField(name);
@@ -44,7 +45,7 @@ const FormRefSearch = ({
     >
       {({ rows }) => (
         <>
-          <List.Search className={className} />
+          <List.Search className={className} placeholder={placeholder} />
           {!!rows?.length && (
             <div className="list-group my-2">
               {rows.map((r) => (

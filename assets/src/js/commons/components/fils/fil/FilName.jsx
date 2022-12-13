@@ -43,6 +43,7 @@ const FilName = ({
       target="_blank"
       href={`/uploads/${path}`}
       rel="noreferrer"
+      download={name}
     >
       {content}
     </a>
