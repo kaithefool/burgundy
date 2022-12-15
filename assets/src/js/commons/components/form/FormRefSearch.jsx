@@ -24,7 +24,7 @@ const FormRefSearch = ({
   if (Array.isArray(value)) {
     if (value.length) excl = value.map((r) => r._id);
   } else if (value) {
-    excl = value._id;
+    excl = [value._id];
   }
 
   let className = '';
@@ -37,7 +37,9 @@ const FormRefSearch = ({
       initQuery={{ limit }}
       filter={{
         ...filter,
-        ...unique && excl && { excl },
+        ...unique && excl && {
+          excl: [...excl, ...filter?.excl || []],
+        },
       }}
       history={false}
       lazy
