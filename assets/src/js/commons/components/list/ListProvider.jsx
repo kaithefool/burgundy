@@ -15,15 +15,19 @@ const ListProvider = ({
   cols = [],
   history = true,
   lazy = false,
+  infinite = false,
 }) => {
   const initQuery = {
-    skip: 0, limit: 20, filter: {}, ...iq,
+    ...!infinite && { skip: 0, limit: 20 },
+    filter: {},
+    ...iq,
   };
   const [urlQuery, setUrlQuery] = useQuery();
   const [activeCols, showCols] = useState(
     () => cols.filter((c) => !c.hide),
   );
   const { res, req, fetched } = useHttp();
+  const [pile, setPile] = useState({ rows: [] });
   const [selected, setSelected] = useState([]);
   const [query, setQuery] = useState(() => ({
     ...initQuery,
@@ -35,25 +39,43 @@ const ListProvider = ({
   }));
 
   const lazying = lazy && !Object.keys(query.filter).length;
-  const rows = !lazying
-    ? fetched?.payload?.rows || []
-    : [];
+  let rows = [];
 
-  const fetch = (q = {}) => {
+  if (infinite) {
+    rows = pile.rows;
+  } else if (!lazying) {
+    rows = fetched?.payload?.rows || [];
+  }
+
+  const fetch = async (q = {}) => {
     const newQ = { ...query, ...q };
 
     if (q.filter) {
-      newQ.skip = 0; // reset pagination when filter changed
+      // reset pagination when filter changed
+      if (infinite) {
+        delete newQ.from;
+        setPile({ rows: [] });
+      } else {
+        newQ.skip = 0;
+      }
     }
     if (selectable) setSelected([]); // clear select
 
     setQuery(newQ); // set state
 
     if (!lazy || Object.keys(newQ.filter).length) {
-      req({
+      const { data } = await req({
         ...api,
         params: { ...newQ, filter: { ...newQ.filter, ...baseFilter } },
       });
+
+      if (infinite) {
+        setPile({
+          ...pile,
+          ...data,
+          rows: [...pile.rows, ...data.rows],
+        });
+      }
     }
   };
 
@@ -95,6 +117,7 @@ const ListProvider = ({
     fetched,
     rows,
     res,
+    pile,
 
     fetch,
     refresh,

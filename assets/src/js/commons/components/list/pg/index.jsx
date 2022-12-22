@@ -3,11 +3,13 @@ import React from 'react';
 import ListPgSkip from './ListPgSkip';
 import ListPgLimit from './ListPgLimit';
 import ListPgCols from './ListPgCols';
+import ListPgMore from './ListPgMore';
 
 export {
   ListPgSkip,
   ListPgLimit,
   ListPgCols,
+  ListPgMore,
 };
 
 const Pg = () => (
@@ -25,5 +27,6 @@ const Pg = () => (
 Pg.Skip = ListPgSkip;
 Pg.Limit = ListPgLimit;
 Pg.Cols = ListPgCols;
+Pg.More = ListPgMore;
 
 export default Pg;

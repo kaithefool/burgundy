@@ -17,6 +17,7 @@ export default React.createContext({
   rows: [],
   res: {},
   staged: [],
+  pile: { rows: [] },
 
   // actions
   fetch: () => {},
