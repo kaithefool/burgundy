@@ -41,13 +41,13 @@ const ListProvider = ({
   const lazying = lazy && !Object.keys(query.filter).length;
   let rows = [];
 
-  if (infinite) {
-    rows = pile.rows;
-  } else if (!lazying) {
-    rows = fetched?.payload?.rows || [];
+  if (!lazying) {
+    rows = infinite
+      ? pile.rows
+      : fetched?.payload?.rows || [];
   }
 
-  const fetch = async (q = {}) => {
+  const fetch = (q = {}) => {
     const newQ = { ...query, ...q };
 
     if (q.filter) {
@@ -64,18 +64,10 @@ const ListProvider = ({
     setQuery(newQ); // set state
 
     if (!lazy || Object.keys(newQ.filter).length) {
-      const { data } = await req({
+      req({
         ...api,
         params: { ...newQ, filter: { ...newQ.filter, ...baseFilter } },
       });
-
-      if (infinite) {
-        setPile({
-          ...pile,
-          ...data,
-          rows: [...pile.rows, ...data.rows],
-        });
-      }
     }
   };
 
@@ -88,14 +80,17 @@ const ListProvider = ({
     success: false,
   });
 
+  // toggle cols
   useEffect(() => {
     showCols(cols.filter((c) => !c.hide));
   }, [useComparable(cols)]);
 
+  // refresh when filter changed
   useEffect(() => {
     refresh();
   }, [useComparable({ baseFilter, api })]);
 
+  // update url query
   useEffect(() => {
     const { skip, limit } = query;
 
@@ -105,6 +100,19 @@ const ListProvider = ({
       filter: query.filter,
     }, true);
   }, [history && useComparable({ query })]);
+
+  // pile up payloads in infinite mode
+  useEffect(() => {
+    if (infinite && res.status === 'success') {
+      const { payload } = res;
+
+      setPile({
+        ...pile,
+        ...payload,
+        rows: [...pile.rows, ...payload.rows],
+      });
+    }
+  }, [res.status]);
 
   const value = {
     api,
