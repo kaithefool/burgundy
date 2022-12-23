@@ -87,6 +87,7 @@ const ListProvider = ({
 
   // refresh when filter changed
   useEffect(() => {
+    if (infinite) setPile({ rows: [] });
     refresh();
   }, [useComparable({ baseFilter, api })]);
 
