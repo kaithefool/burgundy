@@ -14,7 +14,7 @@ const RichText = ({
       c
         .split(/(\n)/)
         .map((s, i) => (
-          s === '\n' ? <br key={`l-${i}`} /> : s
+          s === '\n' ? <br key={`br-${i}`} /> : s
         ))
     ));
   }
@@ -32,7 +32,7 @@ const RichText = ({
         if (s.match(urlRegex)) {
           o.push(
             <a
-              key={`link-${ci}-${i}`}
+              key={`a-${ci}-${i}`}
               href={s}
               target="_blank"
               rel="noreferrer"
@@ -50,6 +50,8 @@ const RichText = ({
       return o;
     });
   }
+
+  console.log(content);
 
   return content;
 };
