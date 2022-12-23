@@ -51,8 +51,6 @@ const RichText = ({
     });
   }
 
-  console.log(content);
-
   return content;
 };
 
