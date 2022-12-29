@@ -52,6 +52,12 @@
     }
   }
 
+  // sticky doc controls
+  .doc-ctrls {
+    @extend .sticky-top;
+    background-color: $light;
+  }
+
   // minimal version of tabs
   .nav-tabs {
     @extend .nav-tabs;

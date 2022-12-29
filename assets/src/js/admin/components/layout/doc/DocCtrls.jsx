@@ -14,7 +14,7 @@ const DocCtrls = ({
   del = false,
   children,
 }) => (
-  <div className="row mb-3 gx-3 align-items-center">
+  <div className="row py-3 gx-3 mt-n3 align-items-center doc-ctrls">
     {submit && (
       <div className="col-auto">
         <Form.BtnSubmit />
