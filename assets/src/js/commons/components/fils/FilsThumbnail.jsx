@@ -3,23 +3,28 @@ import React from 'react';
 import Fil from './fil';
 
 const FilsThumbnail = ({
+  className = 'rounded ratio ratio-1x1',
+  labelClassName = 'rounded bg-white border p-3',
   file,
   children,
 }) => (
   <Fil file={file}>
-    <div className="position-relative rounded border ratio ratio-1x1 bg-white">
-      <div className="text-primary text-center small">
-        <div
-          className="position-absolute top-50 start-50 translate-middle mw-100"
-        >
-          <div className="display-6 pt-4 pb-1">
+    <div
+      className={`
+        position-relative overflow-hidden
+        ${className}
+      `}
+    >
+      <div className={`d-flex align-items-center ${labelClassName}`}>
+        <div className="mw-100 text-center m-auto small">
+          <div className="display-6">
             <Fil.TypeIcon fixedWidth />
           </div>
-          <div className="mw-100 px-3">
+          <div className="mw-100">
             <Fil.Name />
           </div>
-          <div>
-            <small className="text-muted"><Fil.Size /></small>
+          <div className="small text-muted">
+            <Fil.Size />
           </div>
         </div>
       </div>
