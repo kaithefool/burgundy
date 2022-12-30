@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import useList from '../useList';
 import ListStatus from '../ListStatus';
-import useVisible from '../../../hooks/useVisible';
+import { useVisible } from '../../../hooks/useObserver';
 
 const ListPgMore = () => {
   const { fetch, pile: { rows, end }, res } = useList();
