@@ -1,43 +1,38 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import capitalize from 'lodash/capitalize';
 
-function useObserver(Observer, ref, cb, opts) {
-  const func = useRef();
+function useObserver(...args) {
+  const observes = Array.isArray(args[0]) ? args[0] : [args];
 
+  const obs = useRef();
   // always update func in state changes
   // so func can use state variables
-  func.current = cb;
+  obs.current = observes;
 
-  useEffect(() => {
-    const el = ref.current;
-    let observer;
+  const [observers] = useState(() => (
+    observes.map(([type], i) => (
+      new window[`${capitalize(type)}Observer`](
+        ([entry]) => obs.current[i][1](entry),
+      )
+    ))
+  ));
 
+  return useCallback((el) => {
     if (el) {
-      observer = new Observer(
-        ([entry]) => func.current(entry),
-      );
-
-      observer.observe(ref.current, opts);
+      observers.forEach((obr, i) => (
+        obr.observe(el, obs.current[i][2])
+      ));
+    } else {
+      observers.forEach((obr) => (
+        obr.disconnect()
+      ));
     }
-
-    return () => observer && observer.disconnect();
-  }, [ref.current]);
+  }, []);
 }
 
-export function useResizeObserver(...args) {
-  return useObserver(ResizeObserver, ...args);
-}
-
-export function useMutationObserver(...args) {
-  return useObserver(MutationObserver, ...args);
-}
-
-export function useIntersectionObserver(...args) {
-  return useObserver(IntersectionObserver, ...args);
-}
-
-export function useVisible(ref, cb, opts) {
-  return useIntersectionObserver(
-    ref,
+export function useVisible(cb, opts) {
+  return useObserver(
+    'intersection',
     (entry) => cb(entry.isIntersecting, entry),
     opts,
   );

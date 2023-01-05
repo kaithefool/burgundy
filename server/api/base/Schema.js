@@ -174,7 +174,6 @@ module.exports = class Schema {
       s.path('deletedAt', {
         type: Date,
         default: null,
-        select: false,
       });
       this.softDelete();
     }
