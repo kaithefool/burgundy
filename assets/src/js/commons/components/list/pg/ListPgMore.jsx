@@ -7,7 +7,7 @@ import { useVisible } from '../../../hooks/useObserver';
 const ListPgMore = () => {
   const { fetch, pile: { rows, end }, res } = useList();
 
-  const elRef = useVisible((isVisible) => {
+  const { ref } = useVisible((isVisible) => {
     if (
       rows.length
       && res.status === 'success'
@@ -21,7 +21,7 @@ const ListPgMore = () => {
 
   return (
     <div
-      ref={elRef}
+      ref={ref}
       className="vh-25 position-relative"
     >
       <ListStatus empty="" />

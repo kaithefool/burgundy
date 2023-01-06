@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 import capitalize from 'lodash/capitalize';
 
 function useObserver(...args) {
+  const el = useRef();
   const observes = Array.isArray(args[0]) ? args[0] : [args];
 
   const obs = useRef();
@@ -12,15 +13,17 @@ function useObserver(...args) {
   const [observers] = useState(() => (
     observes.map(([type], i) => (
       new window[`${capitalize(type)}Observer`](
-        ([entry]) => obs.current[i][1](entry),
+        ([entry]) => obs.current[i][1](entry, el.current),
       )
     ))
   ));
 
-  return useCallback((el) => {
-    if (el) {
+  const ref = useCallback((node) => {
+    el.current = node;
+
+    if (node) {
       observers.forEach((obr, i) => (
-        obr.observe(el, obs.current[i][2])
+        obr.observe(node, obs.current[i][2])
       ));
     } else {
       observers.forEach((obr) => (
@@ -28,6 +31,8 @@ function useObserver(...args) {
       ));
     }
   }, []);
+
+  return { ref, el };
 }
 
 export function useVisible(cb, opts) {
