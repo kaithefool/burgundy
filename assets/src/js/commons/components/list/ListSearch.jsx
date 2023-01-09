@@ -13,6 +13,7 @@ const ListSearch = ({
   placeholder = '',
   className = '',
   onChange = () => {},
+  children,
 }) => {
   const { fetch, query } = useList();
   const [searchStr, setSearchStr] = useState(query.filter?.search || '');
@@ -33,7 +34,7 @@ const ListSearch = ({
   const debouncedSearch = useDebounce(search, deboucT);
 
   return (
-    <div className={`input-group input-group-input ${className}`}>
+    <div className={`input-group input-group-search ${className}`}>
       <span className="input-group-text">
         <FA icon={faSearch} />
       </span>
@@ -78,7 +79,7 @@ const ListSearch = ({
       {searchStr && (
         <button
           type="button"
-          className="btn btn-input"
+          className="btn"
           onClick={() => {
             setSearchStr('');
             search('', searchBy);
@@ -86,6 +87,11 @@ const ListSearch = ({
         >
           <FA icon={faTimes} />
         </button>
+      )}
+      {children && (
+        <div className="w-100">
+          {children}
+        </div>
       )}
     </div>
   );

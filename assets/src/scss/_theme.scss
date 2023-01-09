@@ -28,7 +28,27 @@ html {
       color: $form-feedback-valid-color;
     }
     .btn-input, .input-group-text, .form-control {
-    border-color: $form-feedback-valid-color;
+      border-color: $form-feedback-valid-color;
+    }
+  }
+}
+.input-group.input-group-search {
+  border: solid $input-border-width $input-border-color;
+  border-radius: $input-border-radius;
+  background-color: $input-bg;
+
+  .btn, .input-group-text, .form-control {
+    border: none;
+    color: $input-color;
+    background-color: transparent;
+  }
+
+  .show-on-focus {
+    display: none;
+  }
+  &:focus-within {
+    .show-on-focus {
+      display: block;
     }
   }
 }

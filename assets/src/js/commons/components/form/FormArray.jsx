@@ -19,7 +19,8 @@ const FormArray = ({
   title,
   tmpl,
   sortable = true,
-  pushBtn,
+  unshiftBtn,
+  pushBtn = true,
   ...props
 }) => {
   const [{ value }] = useField(props.name);
@@ -51,6 +52,11 @@ const FormArray = ({
 
             return (
               <div>
+                {unshiftBtn && unshiftBtn({
+                  helpers: h,
+                  defaults,
+                  ...p,
+                })}
                 {isSortable ? (
                   <SortableList
                     onSortEnd={({ oldIndex, newIndex }) => (
@@ -65,18 +71,20 @@ const FormArray = ({
                     ))}
                   </SortableList>
                 ) : value.map((item, i) => child(item, i))}
-                {pushBtn ? pushBtn({
-                  helpers: h,
-                  defaults,
-                  ...p,
-                }) : (
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={() => h.push(defaults)}
-                  >
-                    <FA icon={faPlus} />
-                  </button>
+                {pushBtn && (
+                  typeof pushBtn === 'boolean' ? (
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => h.push(defaults)}
+                    >
+                      <FA icon={faPlus} />
+                    </button>
+                  ) : pushBtn({
+                    helpers: h,
+                    defaults,
+                    ...p,
+                  })
                 )}
               </div>
             );

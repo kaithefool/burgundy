@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
 
 import { useField } from 'formik';
 import List from '../list';
@@ -42,34 +42,40 @@ const FormRefSearch = ({
         },
       }}
       history={false}
-      lazy
       {...props}
     >
       {({ rows }) => (
-        <>
-          <List.Search className={className} placeholder={placeholder} />
+        <List.Search
+          className={className}
+          placeholder={placeholder}
+        >
           {!!rows?.length && (
-            <div className="list-group my-2">
+            <div className={`
+              list-group list-group-flush
+              mx-2 border-top
+              show-on-focus
+            `}
+            >
               {rows.map((r) => (
                 <button
                   key={r._id}
                   type="button"
-                  className="list-group-item list-group-item-action"
+                  className="list-group-item list-group-item-action py-2"
                   onClick={() => onPicked(r)}
                 >
                   <div className="row">
+                    <div className="col-auto ps-0 pe-2">
+                      <FA icon={faPlusCircle} fixedWidth />
+                    </div>
                     <div className="col">
                       {children(r)}
-                    </div>
-                    <div className="col-auto">
-                      <FA icon={faPlus} />
                     </div>
                   </div>
                 </button>
               ))}
             </div>
           )}
-        </>
+        </List.Search>
       )}
     </List>
   );
