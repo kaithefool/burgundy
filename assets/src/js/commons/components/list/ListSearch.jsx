@@ -34,7 +34,7 @@ const ListSearch = ({
   const debouncedSearch = useDebounce(search, deboucT);
 
   return (
-    <div className={`input-group input-group-search ${className}`}>
+    <div className={`input-group input-group-input-rows ${className}`}>
       <span className="input-group-text">
         <FA icon={faSearch} />
       </span>

@@ -20,7 +20,7 @@ const FormRefItem = ({
   sortable = false,
   onRemoved = () => {},
 }) => (
-  <div className="input-group mb-2">
+  <div className="input-group input-group-input bg-light">
     {sortable && (
       <DragHandle />
     )}
@@ -28,7 +28,7 @@ const FormRefItem = ({
       {children(value)}
     </div>
     <button
-      className="btn btn-secondary"
+      className="btn btn-input"
       type="button"
       onClick={onRemoved}
     >

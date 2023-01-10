@@ -21,6 +21,8 @@ const FormArray = ({
   sortable = true,
   unshiftBtn,
   pushBtn = true,
+  listClassName,
+  itemClassName,
   ...props
 }) => {
   const [{ value }] = useField(props.name);
@@ -63,14 +65,27 @@ const FormArray = ({
                       h.move(oldIndex, newIndex)
                     )}
                     useDragHandle
+                    className={listClassName}
                   >
                     {value.map((item, i) => (
-                      <SortableItem key={item.key} index={i}>
+                      <SortableItem
+                        key={item.key}
+                        index={i}
+                        className={itemClassName}
+                      >
                         {child(item, i)}
                       </SortableItem>
                     ))}
                   </SortableList>
-                ) : value.map((item, i) => child(item, i))}
+                ) : (
+                  <div className={listClassName}>
+                    {value.map((item, i) => (
+                      <div key={item.key} className={itemClassName}>
+                        {child(item, i)}
+                      </div>
+                    ))}
+                  </div>
+                )}
                 {pushBtn && (
                   typeof pushBtn === 'boolean' ? (
                     <button

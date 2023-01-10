@@ -4,10 +4,13 @@ html {
 }
 
 .input-group.input-group-input {
-  .btn-input, .input-group-text {
+  background-color: $input-bg;
+  color: $input-color;
+  
+  .btn-input, .input-group-text, .form-control {
     border-color: $input-border-color;
-    color: $input-color;
-    background-color: $input-bg;
+    color: inherit;
+    background-color: transparent;
   }
   :not(:first-child) {
     border-left: none;
@@ -31,18 +34,6 @@ html {
       border-color: $form-feedback-valid-color;
     }
   }
-}
-.input-group.input-group-search {
-  border: solid $input-border-width $input-border-color;
-  border-radius: $input-border-radius;
-  background-color: $input-bg;
-
-  .btn, .input-group-text, .form-control {
-    border: none;
-    color: $input-color;
-    background-color: transparent;
-  }
-
   .show-on-focus {
     display: none;
   }
@@ -50,5 +41,25 @@ html {
     .show-on-focus {
       display: block;
     }
+  }
+}
+.input-group.input-group-input-rows {
+  @extend .input-group-input;
+
+  border: solid $input-border-width $input-border-color;
+  border-radius: $input-border-radius;
+
+  &.is-invalid {
+    color: $form-feedback-invalid-color;
+    border-color: $form-feedback-invalid-color;
+  }
+  &.is-valid {
+    color: $form-feedback-valid-color;
+    border-color: $form-feedback-valid-color;
+  }
+
+  > * {
+    border: none;
+    color: inherit;
   }
 }
