@@ -15,12 +15,13 @@ const DragHandle = SortableHandle(() => (
 ));
 
 const FormRefItem = ({
+  className = 'bg-secondary bg-opacity-10',
   value,
   children,
   sortable = false,
   onRemoved = () => {},
 }) => (
-  <div className="input-group input-group-input bg-light">
+  <div className={`input-group input-group-input ${className}`}>
     {sortable && (
       <DragHandle />
     )}
