@@ -13,7 +13,6 @@ const FormRefs = ({
   <FormArray
     listClassName={listClassName}
     itemClassName={itemClassName}
-    {...props}
     tmpl={({
       item, helpers, index, sortable,
     }) => (
@@ -33,6 +32,7 @@ const FormRefs = ({
         {children}
       </FormRefSearch>
     )}
+    {...props}
   />
 );
 

@@ -28,6 +28,7 @@ import FormEmbedMap from './FormEmbedMap';
 import FormArray from './FormArray';
 import FormRef from './FormRef';
 import FormRefs from './FormRefs';
+import FormRefCheck from './FormRefCheck';
 
 export {
   FormContext,
@@ -56,6 +57,7 @@ export {
   FormArray,
   FormRef,
   FormRefs,
+  FormRefCheck,
 };
 
 const Form = ({
@@ -89,5 +91,6 @@ Form.EmbedMap = FormEmbedMap;
 Form.Array = FormArray;
 Form.Ref = FormRef;
 Form.Refs = FormRefs;
+Form.RefCheck = FormRefCheck;
 
 export default Form;
