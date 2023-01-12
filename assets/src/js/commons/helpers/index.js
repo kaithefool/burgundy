@@ -63,12 +63,14 @@ export function searchRegex(keyword) {
   return new RegExp(str, 'i');
 }
 
-export function findDeep(src, fn) {
+export function findDeep(src, fn, excludeId = true) {
   const t = (value) => {
     if (fn(value)) return true;
 
     if (isPlainObject(value)) {
-      return Object.values(value).find((v) => fn(v));
+      return Object.keys(value).find((k) => (
+        !(excludeId && k === '_id') && fn(value[k])
+      ));
     }
     if (Array.isArray(value)) {
       return value.find((v) => fn(v));

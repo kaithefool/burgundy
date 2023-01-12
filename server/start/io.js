@@ -3,7 +3,7 @@ const { createAdapter } = require('@socket.io/redis-adapter');
 
 const redis = require('./redis');
 
-const { SOCKET = '' } = process.env;
+const { SOCKET = '', REDIS_URL } = process.env;
 
 let allowRequest = (req, cb) => cb(null, true);
 
@@ -16,13 +16,16 @@ io.allowRequest = (handler) => {
 };
 io.init = async (server) => {
   if (SOCKET === '1') {
-    const pub = redis();
-    const sub = redis();
+    if (REDIS_URL) {
+      const pub = redis();
+      const sub = redis();
 
-    // the adapter needs the redis clients to be connected
-    await Promise.all([pub.connect(), sub.connect()]);
+      // the adapter needs the redis clients to be connected
+      await Promise.all([pub.connect(), sub.connect()]);
 
-    io.adapter(createAdapter(pub, sub));
+      io.adapter(createAdapter(pub, sub));
+    }
+
     io.listen(server);
   }
 };
