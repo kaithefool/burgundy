@@ -78,18 +78,18 @@ class Service {
     };
   }
 
-  populate(query/* , user, one */) {
+  populate(query/* , user, options */) {
     return query;
   }
 
-  async findOne(filter, user) {
+  async findOne(filter, user, populate) {
     const q = this.model.findOne(
       await this.match(filter, user),
     );
-    return this.populate(q, user, true);
+    return this.populate(q, user, populate);
   }
 
-  async find(opts, user) {
+  async find(opts, user, populate) {
     const { filter } = opts;
 
     const q = this.model.find({
@@ -97,7 +97,7 @@ class Service {
       filter: await this.match(filter, user),
     });
 
-    return this.populate(q, user, false);
+    return this.populate(q, user, populate);
   }
 
   async count(filter, user) {
@@ -153,5 +153,7 @@ class Service {
     await this.deleteBy({ _id }, user);
   }
 }
+
+Service.services = {};
 
 module.exports = Service;
