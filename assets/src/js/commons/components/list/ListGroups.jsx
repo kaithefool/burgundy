@@ -1,14 +1,17 @@
 import React, { Fragment } from 'react';
 import groupBy from 'lodash/groupBy';
+import useList from './useList';
 
 const ListGroups = ({
-  rows = [],
+  rows: optRows,
   label = true,
   group = (c) => c,
   by,
   children,
 }) => {
-  const grouped = groupBy(rows, by);
+  const { rows: listRows } = useList();
+
+  const grouped = groupBy(optRows || listRows || [], by);
   const l = label && (
     typeof label === 'boolean'
       ? (key) => <h6>{key}</h6>

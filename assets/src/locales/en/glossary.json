@@ -10,6 +10,7 @@
   "preview": "Preview",
   "selectImage" : "Choose Photo",
   "remove" : "Remove",
+  "showMore": "Show More",
   "addFiles": "Add Files",
   "coordinatesHelptext": "Enter addresses, places, or coordinates to search. Drag the marker to adjust the coordinates."
 }
