@@ -26,6 +26,7 @@ const ListTruncate = ({
   if (expanded !== true && limit) {
     show = typeof expanded === 'number'
       ? Math.max(limit, expanded) : limit;
+    show = Math.min(rows.length, show);
   }
 
   const remaining = rows.length - show;
