@@ -71,7 +71,10 @@ const ListProvider = ({
     }
   };
 
-  const refresh = () => fetch();
+  const refresh = () => {
+    if (infinite) setPile({ rows: [] });
+    fetch();
+  };
 
   const select = (s) => setSelected(s);
 
@@ -87,7 +90,6 @@ const ListProvider = ({
 
   // refresh when filter changed
   useEffect(() => {
-    if (infinite) setPile({ rows: [] });
     refresh();
   }, [useComparable({ baseFilter, api })]);
 
