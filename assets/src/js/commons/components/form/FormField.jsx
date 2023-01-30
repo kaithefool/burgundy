@@ -12,6 +12,7 @@ const FormField = ({
   className = 'mb-3',
   helpText,
   affirm = false,
+  warn = true,
   children,
   fieldOnly = false,
   showErr = true,
@@ -21,7 +22,7 @@ const FormField = ({
   const [, { error, touched }] = useField(name);
   const [id] = useUniqKey();
   const valid = affirm && touched && !error;
-  const invalid = touched && error;
+  const invalid = warn && touched && error;
   const { t } = useTranslation();
   let err = error;
 
