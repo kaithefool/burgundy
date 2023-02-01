@@ -3,6 +3,7 @@ const crypto = require('../helpers/crypto');
 const consts = require('./consts');
 
 const { Schema } = Model;
+const { LNG } = process.env;
 
 class User extends Model {
   constructor(name, paths, opts) {
@@ -19,6 +20,7 @@ class User extends Model {
         enum: consts.users.roles,
         default: 'client',
       },
+      lng: { type: String, enum: LNG.split(',') },
 
       // additional
       name: {

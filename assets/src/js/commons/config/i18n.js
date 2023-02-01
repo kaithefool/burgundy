@@ -3,23 +3,34 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 import { Settings as LuxonSetting } from 'luxon';
-import Cookies from 'js-cookie';
 import inflect from 'inflect';
 
 import env from './env';
+import axios from './axios';
 
-const setCookie = (lng) => {
-  Cookies.set('i18next', lng, {
-    expires: 365,
-    sameSite: 'strict',
-    secure: window.location.protocol === 'https:',
-  });
-};
+const languageDetector = new LanguageDetector();
+
+languageDetector.addDetector({
+  name: 'env',
+  lookup() {
+    return env?.user?.lng;
+  },
+  cacheUserLanguage(lng) {
+    if (env.user && env.user.lng !== lng) {
+      axios.patch(`/api/users/${env.user._id}`, { lng });
+    }
+  },
+});
+
+const defaultDetectionOrder = [
+  'querystring', 'cookie', 'localStorage',
+  'sessionStorage', 'navigator', 'htmlTag',
+];
 
 // init
 i18n
   .use(Backend)
-  .use(LanguageDetector)
+  .use(languageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     lowerCaseLng: true,
@@ -31,11 +42,19 @@ i18n
       escapeValue: false, // react already safes from xss
       skipOnVariables: false,
     },
+    detection: {
+      order: ['env', ...defaultDetectionOrder],
+      caches: ['env', 'cookie'],
+      cookieOptions: {
+        maxAge: 365 * 24 * 60 * 60, // 1 year
+        sameSite: 'strict',
+        secure: window.location.protocol === 'https:',
+      },
+    },
   });
 
 // on language changed
 i18n.on('languageChanged', (lng) => {
-  setCookie(lng);
   LuxonSetting.defaultLocale = lng;
 });
 

@@ -14,6 +14,7 @@ const {
 const userProps = [
   '_id',
   'role',
+  'lng',
 ];
 
 class AuthServ extends Service {
