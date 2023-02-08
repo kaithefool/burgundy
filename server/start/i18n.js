@@ -89,16 +89,22 @@ i18n.services.formatter.add('field', (value, lng, opts) => (
 
 const i18nMid = middleware.handle(i18n);
 
-module.exports = (req, res, next) => {
-  // helper function
-  req.pickLng = (obj) => {
-    if (!obj || typeof obj !== 'object') return obj;
+const pickLng = (lng, obj) => {
+  if (!obj || typeof obj !== 'object') return obj;
 
-    const { language, languages } = req.i18n;
-    const lns = [language, ...languages];
+  const lns = [lng, ...lngs];
 
-    return obj[lns.find((l) => obj[l])];
-  };
+  return obj[lns.find((l) => obj[l])];
+};
 
-  return i18nMid(req, req, next);
+module.exports = {
+  i18n,
+  pickLng,
+
+  middleware: (req, res, next) => {
+    // helper function
+    req.pickLng = (obj) => pickLng(req.language, obj);
+
+    return i18nMid(req, req, next);
+  },
 };

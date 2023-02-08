@@ -6,7 +6,7 @@ const logger = require('morgan');
 const mongoSanitize = require('express-mongo-sanitize');
 
 const errHandler = require('./lib/err/errHandler');
-const i18n = require('./start/i18n');
+const { middleware: i18nMid } = require('./start/i18n');
 const api = require('./api');
 const pages = require('./pages');
 
@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(mongoSanitize({ allowDots: true }));
 
-app.use(i18n);
+app.use(i18nMid);
 app.use('/api', api);
 app.use('/', pages);
 
