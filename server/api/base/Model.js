@@ -8,6 +8,10 @@ class Model {
     this.model = this.schema.model;
   }
 
+  get Model() {
+    return this.model;
+  }
+
   setter(v) {
     return v;
   }
