@@ -1,7 +1,7 @@
 const Otps = require('./Otps');
 const userServ = require('../users');
 
-class PwdResetEmailServ extends Otps {
+class RegisterEmailServ extends Otps {
   findOne(...args) {
     return super.findOne(...args).select('+password');
   }
@@ -48,4 +48,4 @@ class PwdResetEmailServ extends Otps {
   }
 }
 
-module.exports = new PwdResetEmailServ();
+module.exports = new RegisterEmailServ();
