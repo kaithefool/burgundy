@@ -28,6 +28,7 @@ module.exports = {
     env: { NODE_ENV: 'development' },
     env_uat: { NODE_ENV: 'uat' },
     env_prd: { NODE_ENV: 'production' },
+    time: true,
   }],
 
   deploy: {
