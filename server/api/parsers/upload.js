@@ -47,6 +47,7 @@ module.exports = ({
     upload.single(field),
     async (req, res, next) => {
       req.attrs = {
+        ...req.body,
         ...req.attrs,
         ...parseUpload(req.file),
       };
