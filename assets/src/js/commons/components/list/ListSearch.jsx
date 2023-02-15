@@ -14,6 +14,7 @@ const ListSearch = ({
   className = '',
   onChange = () => {},
   children,
+  ...props
 }) => {
   const { fetch, query } = useList();
   const [searchStr, setSearchStr] = useState(query.filter?.search || '');
@@ -74,6 +75,7 @@ const ListSearch = ({
           setSearchStr(value);
           debouncedSearch(value, searchBy);
         }}
+        {...props}
       />
       {/* Clear search input */}
       {searchStr && (

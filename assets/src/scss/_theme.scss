@@ -34,14 +34,6 @@ html {
       border-color: $form-feedback-valid-color;
     }
   }
-  .show-on-focus {
-    display: none;
-  }
-  &:focus-within {
-    .show-on-focus {
-      display: block;
-    }
-  }
 }
 .input-group.input-group-input-rows {
   @extend .input-group-input;

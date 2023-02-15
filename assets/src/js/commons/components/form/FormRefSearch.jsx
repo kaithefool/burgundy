@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
 
 import { useField } from 'formik';
 import List from '../list';
+import useEventListener from '../../hooks/useEventListener';
 
 const FormRefSearch = ({
   limit = 6,
@@ -18,6 +19,7 @@ const FormRefSearch = ({
   placeholder,
   ...props
 }) => {
+  const [showOpts, setShowOpts] = useState(false);
   const [{ value }] = useField(name);
   let excl = null;
 
@@ -33,6 +35,8 @@ const FormRefSearch = ({
 
   if (valid) className = 'is-valid';
   if (invalid) className = 'is-invalid';
+
+  useEventListener(window, 'click', () => setShowOpts(false));
 
   return (
     <List
@@ -50,12 +54,14 @@ const FormRefSearch = ({
         <List.Search
           className={className}
           placeholder={placeholder}
+          onFocus={() => setShowOpts(true)}
+          onClick={(e) => e.stopPropagation()}
         >
           {!!rows?.length && (
             <div className={`
               list-group list-group-flush
               mx-2 border-top
-              show-on-focus
+              ${showOpts ? '' : 'd-none'}
             `}
             >
               {rows.map((r) => (
@@ -63,7 +69,10 @@ const FormRefSearch = ({
                   key={r._id}
                   type="button"
                   className="list-group-item list-group-item-action py-2"
-                  onClick={() => onPicked(r)}
+                  onClick={() => {
+                    onPicked(r);
+                    setShowOpts(false);
+                  }}
                 >
                   <div className="row">
                     <div className="col-auto ps-0 pe-2">
