@@ -12,7 +12,7 @@ import useAlert from '../../alert/useAlert';
 
 const ListCtrlImport = ({
   api: apiOpts,
-  className = 'btn btn-secondary px-2',
+  className = 'btn btn-neutral px-2',
   template,
   ...props
 }) => {
@@ -51,7 +51,7 @@ const ListCtrlImport = ({
         <a
           target="_blank"
           href={template}
-          className="btn btn-outline-secondary px-2"
+          className="btn btn-outline-neutral px-2"
           rel="noreferrer"
         >
           <FA icon={faFileAlt} className="me-1" fixedWidth />

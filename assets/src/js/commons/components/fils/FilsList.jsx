@@ -52,7 +52,7 @@ const FilsList = ({
             {/* click to add files */}
             <div className="col">
               <Dir.Click className="d-grid">
-                <div className="btn btn-secondary px-3 text-start">
+                <div className="btn btn-neutral px-3 text-start">
                   <FA icon={faPlus} fixedWidth className="me-2" />
                   {t('addFiles')}
                 </div>
@@ -67,7 +67,7 @@ const FilsList = ({
                     type="button"
                     tabIndex={-1}
                     className={
-                    `btn btn${mode === 'list' ? '' : '-outline'}-secondary`
+                    `btn btn${mode === 'list' ? '' : '-outline'}-neutral`
                   }
                     onClick={() => setMode('list')}
                   >
@@ -77,7 +77,7 @@ const FilsList = ({
                     type="button"
                     tabIndex={-1}
                     className={
-                    `btn btn${mode === 'grid' ? '' : '-outline'}-secondary`
+                    `btn btn${mode === 'grid' ? '' : '-outline'}-neutral`
                   }
                     onClick={() => setMode('grid')}
                   >

@@ -62,7 +62,7 @@ const Breadcrumbs = ({
           <Link
             {...b}
             to={resolvePath(to)}
-            className="link-secondary text-decoration-none"
+            className="link-neutral text-decoration-none"
           >
             {typeof label === 'object'
               ? i18n.pickLng(label)

@@ -15,7 +15,7 @@ const DragHandle = SortableHandle(() => (
 ));
 
 const FormRefItem = ({
-  className = 'bg-secondary bg-opacity-10',
+  className = 'bg-neutral bg-opacity-10',
   value,
   children,
   sortable = false,

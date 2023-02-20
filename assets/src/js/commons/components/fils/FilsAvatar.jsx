@@ -51,13 +51,13 @@ const FilsAvatar = ({
         <Dir.Click alwaysEnable>
           <button
             type="button"
-            className="btn btn-sm btn-secondary"
+            className="btn btn-sm btn-neutral"
           >
             {t('selectImage')}
           </button>
         </Dir.Click>
         {file && (
-          <Fil.Remove className="btn btn-sm mt-2 btn-outline-secondary">
+          <Fil.Remove className="btn btn-sm mt-2 btn-outline-neutral">
             {t('remove')}
           </Fil.Remove>
         )}

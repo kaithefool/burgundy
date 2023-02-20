@@ -40,7 +40,7 @@ const FilsGridItem = ({
             <Fil.Status />
           </div>
           <div className="col-auto">
-            <Fil.Remove className="btn text-secondary" />
+            <Fil.Remove className="btn text-neutral" />
           </div>
         </div>
       </div>

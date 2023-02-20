@@ -16,7 +16,7 @@ const DocBtnPreview = ({
       href={typeof href === 'function' ? href(values) : href}
       target="_blank"
       className={`
-        btn btn-secondary
+        btn btn-neutral
         ${dirty ? 'disabled' : ''}
       `}
       rel="noreferrer"

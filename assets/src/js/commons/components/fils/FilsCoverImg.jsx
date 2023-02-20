@@ -55,7 +55,7 @@ const FilsCoverImg = ({
                           <Fil.Status />
                         </div>
                         <div className="col-auto">
-                          <Fil.Remove className="btn text-secondary" />
+                          <Fil.Remove className="btn text-neutral" />
                         </div>
                       </div>
                     </div>
@@ -67,7 +67,7 @@ const FilsCoverImg = ({
           <Dir.Click alwaysEnable>
             <div
               className={`
-                btn btn-secondary px-3
+                btn btn-neutral px-3
                 position-absolute top-50 start-50 translate-middle-x
               `}
             >
