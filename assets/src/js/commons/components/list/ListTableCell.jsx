@@ -13,6 +13,7 @@ const ListTableCell = ({
   col: {
     key,
     getter = (v) => v,
+    link: colLink,
     format,
     cell,
   },
@@ -22,6 +23,16 @@ const ListTableCell = ({
   const value = get(row, key);
   let content = getter(value, row, format);
   const isElement = isValidElement(content);
+  let link = colLink && typeof colLink !== 'boolean'
+    ? colLink : rowLink;
+
+  if (
+    link
+      && !(isElement && !colLink)
+      // colLink can be true to enforce link for element content
+  ) {
+    link = typeof link === 'function' ? link(row) : link;
+  }
 
   if (cell) {
     return typeof cell === 'function'
@@ -41,14 +52,12 @@ const ListTableCell = ({
     content = t(content, content);
   }
 
-  if (rowLink && !isElement) {
-    const to = typeof rowLink === 'function' ? rowLink(row) : rowLink;
-
-    content = <Link className="row-link" to={to}>{content}</Link>;
+  if (link) {
+    content = <Link className="row-link" to={link}>{content}</Link>;
   }
 
   return (
-    <td className={rowLink && !isElement ? 'link' : ''}>
+    <td className={link ? 'link' : ''}>
       {content}
     </td>
   );
