@@ -2,8 +2,8 @@ const Otps = require('./Otps');
 const userServ = require('../users');
 
 class RegisterEmailServ extends Otps {
-  findOne(...args) {
-    return super.findOne(...args).select('+password');
+  populate(q) {
+    return q.select('+password');
   }
 
   async create(attrs) {
