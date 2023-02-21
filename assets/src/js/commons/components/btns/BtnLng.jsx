@@ -9,8 +9,7 @@ import env from '../../config/env';
 const { lngs, lngLabels } = env;
 
 const BtnLng = ({
-  className = 'input-group-sm',
-  fieldClassName = 'border-0 bg-transparent',
+  className = 'px-3',
 }) => {
   const { i18n } = useTranslation();
   const id = 'lng';
@@ -18,16 +17,16 @@ const BtnLng = ({
   if (lngs.length < 2) return '';
 
   return (
-    <div className={`input-group ${className}`}>
-      <label
-        htmlFor={id}
-        className={`input-group-text bg-white ${fieldClassName}`}
-      >
+    <div className="position-relative">
+      <div className={className}>
         <FA icon={faGlobeAmericas} />
-      </label>
+      </div>
       <select
         id={id}
-        className={`form-select ${fieldClassName}`}
+        className={`
+          position-absolute w-100 h-100 start-0 top-0
+          opacity-0 cursor-pointer
+        `}
         value={i18n.language}
         onChange={(evt) => i18n.changeLanguage(evt.target.value)}
       >

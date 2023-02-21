@@ -31,7 +31,7 @@ const Header = ({
   return (
     <header>
       <nav className="border-bottom p-4 pb-2">
-        <div className="row">
+        <div className="row align-items-center">
           <div className="col">
             <Breadcrumbs
               className="small mb-2"
@@ -41,7 +41,7 @@ const Header = ({
                   : breadcrumbs
               )}
             />
-            <h1 className="h5">
+            <h1 className="h5 mb-0">
               {title}
             </h1>
           </div>
