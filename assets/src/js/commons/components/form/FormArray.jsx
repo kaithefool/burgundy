@@ -69,7 +69,7 @@ const FormArray = ({
                   >
                     {value.map((item, i) => (
                       <SortableItem
-                        key={item.key}
+                        key={item.key || i}
                         index={i}
                         className={itemClassName}
                       >
@@ -80,7 +80,7 @@ const FormArray = ({
                 ) : (
                   <div className={listClassName}>
                     {value.map((item, i) => (
-                      <div key={item.key} className={itemClassName}>
+                      <div key={item.key || i} className={itemClassName}>
                         {child(item, i)}
                       </div>
                     ))}
