@@ -1,7 +1,7 @@
 import mapValues from 'lodash/mapValues';
 import isPlainObject from 'lodash/isPlainObject';
 
-import sanitize from 'sanitize-html';
+import sanitize, { defaults } from 'sanitize-html';
 import meta from './meta';
 import env from '../config/env';
 
@@ -9,10 +9,15 @@ export { meta };
 
 export function sanitizeHtml(html) {
   return sanitize(html, {
+    allowedTags: [
+      ...defaults.allowedTags,
+      'iframe',
+    ],
     allowedAttributes: {
       '*': ['style'],
       a: ['href', 'name', 'target'],
       img: ['src'],
+      iframe: ['src', 'width', 'height', 'frameborder', 'allowfullscreen'],
     },
     allowedStyles: {
       '*': {
