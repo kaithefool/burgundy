@@ -17,7 +17,7 @@ export default [
         {
           icon: faUserTie,
           label: 'Admins',
-          to: '/admin/users/admins',
+          to: '/admin/users/role/admins',
         },
       ],
     },

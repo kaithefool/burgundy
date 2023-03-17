@@ -6,7 +6,6 @@ import Error from '~/commons/components/util/Error';
 import PageAccessLogs from './pages/PageAccessLogs';
 import PageViews from './pages/PageViews';
 import PageView from './pages/PageView';
-import PageAdmins from './pages/PageAdmins';
 import PageUsers from './pages/PageUsers';
 import PageUser from './pages/PageUser';
 import PageExample from './pages/PageExample';
@@ -22,9 +21,9 @@ const AppRoutes = () => (
     <Route path="settings/access-logs" element={<PageAccessLogs />} />
 
     <Route path="users" element={<PageUsers />} />
+    <Route path="users/role/:role" element={<PageUsers />} />
     <Route path="users/:_id" element={<PageUser />} />
-    <Route path="users/:role/:_id" element={<PageUser />} />
-    <Route path="users/admins" element={<PageAdmins />} />
+    <Route path="users/role/:role/:_id" element={<PageUser />} />
 
     {/* showcase of all form field types */}
     <Route path="example" element={<PageExample />} />
