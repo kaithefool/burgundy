@@ -7,8 +7,8 @@ import PageAccessLogs from './pages/PageAccessLogs';
 import PageViews from './pages/PageViews';
 import PageView from './pages/PageView';
 import PageAdmins from './pages/PageAdmins';
-import PageAdmin from './pages/PageAdmin';
 import PageUsers from './pages/PageUsers';
+import PageUser from './pages/PageUser';
 import PageExample from './pages/PageExample';
 
 const AppRoutes = () => (
@@ -22,8 +22,9 @@ const AppRoutes = () => (
     <Route path="settings/access-logs" element={<PageAccessLogs />} />
 
     <Route path="users" element={<PageUsers />} />
+    <Route path="users/:_id" element={<PageUser />} />
+    <Route path="users/:role/:_id" element={<PageUser />} />
     <Route path="users/admins" element={<PageAdmins />} />
-    <Route path="users/admins/:_id" element={<PageAdmin />} />
 
     {/* showcase of all form field types */}
     <Route path="example" element={<PageExample />} />

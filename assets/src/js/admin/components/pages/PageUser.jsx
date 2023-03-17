@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { object } from 'yup';
 
+import env from '~/commons/config/env';
 import Form from '~/commons/components/form';
 import { email, password } from '~/commons/validators';
 import { reduceLng, mapLng } from '~/commons/helpers';
@@ -9,13 +10,14 @@ import { reduceLng, mapLng } from '~/commons/helpers';
 import Doc from '../layout/doc';
 import Page from '../layout/Page';
 
-const defaults = {
+const defaults = (attrs) => ({
   email: '',
-  role: 'admin',
+  role: '',
   password: '',
   name: reduceLng(''),
   active: true,
-};
+  ...attrs,
+});
 
 const schema = (doc) => object({
   email: email().required(),
@@ -23,7 +25,9 @@ const schema = (doc) => object({
 });
 
 const PageAdmin = () => {
-  const { _id } = useParams();
+  const params = useParams();
+  const { _id } = params;
+  const role = params.role?.replace(/s$/, '');
 
   return (
     <Doc _id={_id} api={{ url: '/api/users' }}>
@@ -34,7 +38,9 @@ const PageAdmin = () => {
           }}
         >
           <Doc.Form
-            defaults={defaults}
+            defaults={defaults({
+              ...role && { role },
+            })}
             schema={schema(doc)}
             beforeSubmit={({ password: p, ...values }) => ({
               ...values, ...(p && { password: p }),
@@ -43,6 +49,11 @@ const PageAdmin = () => {
             <Doc.Ctrls />
 
             <Form.Check name="active" type="switch" />
+            {(doc || !role) && (
+              <Form.Select name="role">
+                {env.users.roles}
+              </Form.Select>
+            )}
             <Form.Input name="email" />
             <Form.Input name="password" type="password" />
             <div className="row">
