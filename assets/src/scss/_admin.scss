@@ -19,15 +19,20 @@
   // main navigation
   nav.main-nav {
     background-color: $body-bg;
-
+    position: sticky;
+    top: 0;
+    
     @include media-breakpoint-down(md) {
       border: solid 1px $border-color;
+      &.show {
+        position: fixed;
+        height: 100%;
+        z-index: 1000;
+      }
     }
     @include media-breakpoint-up(md) {
       border-right: solid 1px darken($light, 3%) !important;
-      > * {
-        height: 100vh;
-      }
+      height: 100vh;
     }
 
     .nav-link {
