@@ -12,11 +12,11 @@ module.exports = new User('User', {
   uniques: [
     [
       { email: 1 },
-      { partialFilterExpression: { email: { $exists: true } } },
+      { partialFilterExpression: { email: { $exists: true, $gt: '' } } },
     ],
     [
       { mobile: 1 },
-      { partialFilterExpression: { mobile: { $exists: true } } },
+      { partialFilterExpression: { mobile: { $exists: true, $gt: '' } } },
     ],
   ],
 });

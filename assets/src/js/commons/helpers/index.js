@@ -11,7 +11,7 @@ export function sanitizeHtml(html) {
   return sanitize(html, {
     allowedTags: [
       ...defaults.allowedTags,
-      'iframe',
+      'img', 'iframe',
     ],
     allowedAttributes: {
       '*': ['style'],
