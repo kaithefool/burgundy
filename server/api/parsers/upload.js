@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
   destination,
   filename(req, file, cb) {
     const ext = path.extname(file.originalname);
-    const name = nanoid(21);
+    const name = `u-${nanoid(21)}`;
 
     cb(null, `${name}${ext}`);
   },
