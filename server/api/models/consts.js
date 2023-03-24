@@ -4,9 +4,7 @@ const consts = {
   },
   // constants that are avaliable on both client and server
   public: {
-    users: {
-      roles: ['admin', 'client'],
-    },
+    roles: ['admin', 'client'],
   },
 };
 

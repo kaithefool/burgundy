@@ -17,7 +17,7 @@ class User extends Model {
       },
       role: {
         type: String,
-        enum: consts.users.roles,
+        enum: consts.roles,
         default: 'client',
       },
       lng: { type: String, enum: LNG.split(',') },

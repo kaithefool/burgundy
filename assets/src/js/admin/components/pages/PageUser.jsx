@@ -51,7 +51,7 @@ const PageAdmin = () => {
             <Form.Check name="active" type="switch" />
             {(doc || !role) && (
               <Form.Select name="role">
-                {env.users.roles}
+                {env.roles}
               </Form.Select>
             )}
             <Form.Input name="email" />
