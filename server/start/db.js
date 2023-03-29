@@ -22,6 +22,7 @@ if (env.MONGO_SSH_PASSWORD) {
 }
 
 function connect() {
+  mongoose.set('strictQuery', true);
   db = mongoose.connect(env.MONGO_URI, {
     // auto index can be handled in Model
     autoIndex: !Number(env.MONGO_SYNC_INDEX),
