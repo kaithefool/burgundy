@@ -16,7 +16,7 @@ export function sanitizeHtml(html) {
     allowedAttributes: {
       '*': ['style'],
       a: ['href', 'name', 'target'],
-      img: ['src'],
+      img: ['src', 'width', 'height'],
       iframe: ['src', 'width', 'height', 'frameborder', 'allowfullscreen'],
     },
     allowedStyles: {
@@ -26,6 +26,8 @@ export function sanitizeHtml(html) {
           /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/,
         ],
         'text-align': [/^left$/, /^right$/, /^center$/, /^justify$/],
+        width: [/^\d+(px|%)$/],
+        height: [/^\d+(px|%)$/],
       },
     },
   });
