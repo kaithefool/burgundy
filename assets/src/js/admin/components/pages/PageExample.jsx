@@ -2,6 +2,7 @@ import React from 'react';
 import { array, object, string } from 'yup';
 
 import Form from '~/commons/components/form';
+import Cal from '~/commons/components/cal';
 import { Tabs, Tab } from '~/commons/components/layout/tabs';
 import { password } from '~/commons/validators';
 import { mapLng } from '~/commons/helpers';
@@ -139,6 +140,11 @@ const PageExample = () => (
               >
                 {(r) => r.email}
               </Form.Refs>
+            </Tab>
+            <Tab eventKey="calendar">
+              <Cal api={{ url: '/api/access-logs' }}>
+                <Cal.Month />
+              </Cal>
             </Tab>
           </Tabs>
 

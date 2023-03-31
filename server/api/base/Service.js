@@ -68,12 +68,24 @@ class Service {
     return _ids && { _id: { $nin: _.castArray(_ids) } };
   }
 
+  comparsion(f = {}) {
+    const compKeys = ['gt', 'gte', 'lt', 'lte'];
+
+    return _.mapValues(f, (v) => (
+      typeof v === 'object'
+        ? _.mapKeys(v, (val, key) => (
+          compKeys.includes(key) ? `$${key}` : key
+        ))
+        : v
+    ));
+  }
+
   match({ search, excl, ...filter } = {}) {
     return {
       $and: [
         this.search(search),
         this.exclude(excl),
-        filter,
+        this.comparsion(filter),
       ].filter((f) => f),
     };
   }
