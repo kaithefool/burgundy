@@ -19,21 +19,23 @@ const CalMonth = ({
   return (
     <div>
       {weeks.map((w, i) => (
-        <div key={i} className="row">
+        <div key={i} className="row g-0">
           {w.map((d) => (
             <div
               key={d.toString()}
-              className="col border-top border-start"
+              className="col ratio ratio-1x1"
             >
-              <h6>{d.day}</h6>
-              <div className="p-3">
-                {events
-                  .filter((e) => isDay(e, d))
-                  .map((e) => (
-                    <CalEvent key={e._id} event={e}>
-                      {children}
-                    </CalEvent>
-                  ))}
+              <div>
+                <h6>{d.day}</h6>
+                <div className="p-3">
+                  {events
+                    .filter((e) => isDay(e, d))
+                    .map((e) => (
+                      <CalEvent key={e._id} event={e}>
+                        {children}
+                      </CalEvent>
+                    ))}
+                </div>
               </div>
             </div>
           ))}

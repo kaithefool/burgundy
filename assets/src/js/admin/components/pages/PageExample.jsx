@@ -143,6 +143,14 @@ const PageExample = () => (
             </Tab>
             <Tab eventKey="calendar">
               <Cal api={{ url: '/api/access-logs' }}>
+                <div className="row">
+                  <div className="col-auto">
+                    <Cal.Title />
+                  </div>
+                  <div className="col-auto">
+                    <Cal.Arrows />
+                  </div>
+                </div>
                 <Cal.Month />
               </Cal>
             </Tab>
