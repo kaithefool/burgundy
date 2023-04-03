@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DateTime as dt } from 'luxon';
+import { Calendar } from 'calendar';
 
 import CalContext from './CalContext';
 import useHttp from '../../hooks/useHttp';
@@ -29,6 +30,36 @@ const isDay = (field, entry, d) => {
   return parseDate(entry[field]).hasSame(d, 'day');
 };
 
+const getGrid = ({ view, date }) => {
+  if (view === 'month' || view === 'week') {
+    const cal = new Calendar();
+    const weeks = cal.monthDates(date.year, date.month - 1)
+      .map((w) => w.map((d) => dt.fromJSDate(d)));
+
+    if (view === 'month') {
+      return {
+        grid: weeks,
+        bounds: [
+          weeks[0][0].startOf('day'),
+          weeks[weeks.length - 1][6].endOf('day'),
+        ],
+      };
+    }
+
+    const week = weeks.find((w) => w.some((d) => d.hasSame(date, 'day')));
+
+    return {
+      grid: week,
+      bounds: [week[0].startOf('day'), week[6].endOf('day')],
+    };
+  }
+
+  return {
+    grid: date,
+    bounds: [date.startOf('day'), date.endOf('day')],
+  };
+};
+
 const CalProvider = ({
   api,
   initQuery: iq,
@@ -45,7 +76,6 @@ const CalProvider = ({
   };
   const { res, req, fetched } = useHttp();
   const [urlQuery, setUrlQuery] = useQuery();
-
   const [query, setQuery] = useState(() => {
     const d = parseDate(urlQuery.date);
 
@@ -58,6 +88,7 @@ const CalProvider = ({
       }),
     };
   });
+  const [grid, setGrid] = useState([]);
 
   const fetch = (q = {}) => {
     const newQ = {
@@ -68,10 +99,9 @@ const CalProvider = ({
     const {
       view, date, filter, ...params
     } = newQ;
-    const bounds = [
-      date.startOf(view).toISO(), date.endOf(view).toISO(),
-    ];
+    const { grid: g, bounds } = getGrid(newQ);
 
+    setGrid(g);
     setQuery(newQ);
     req({
       ...api,
@@ -79,10 +109,13 @@ const CalProvider = ({
         ...params,
         filter: {
           ...Array.isArray(field) ? {
-            [field[0]]: { lte: bounds[1] },
-            [field[1]]: { gte: bounds[0] },
+            [field[0]]: { lte: bounds[1].toISO() },
+            [field[1]]: { gte: bounds[0].toISO() },
           } : {
-            [field]: { gte: bounds[0], lte: bounds[1] },
+            [field]: {
+              gte: bounds[0].toISO(),
+              lte: bounds[1].toISO(),
+            },
           },
           ...filter,
           ...baseFilter,
@@ -122,6 +155,7 @@ const CalProvider = ({
     field,
     fetched,
     events: fetched?.payload?.rows || [],
+    grid,
 
     fetch,
     refresh,

@@ -1,6 +1,4 @@
-import React, { useMemo } from 'react';
-import { DateTime as dt } from 'luxon';
-import { Calendar } from 'calendar';
+import React from 'react';
 
 import useCal from './useCal';
 import CalEvent from './CalEvent';
@@ -8,17 +6,11 @@ import CalEvent from './CalEvent';
 const CalMonth = ({
   children,
 }) => {
-  const { query: { date }, isDay, events } = useCal();
-  const weeks = useMemo(() => {
-    const cal = new Calendar();
-
-    return cal.monthDates(date.year, date.month - 1)
-      .map((w) => w.map((d) => dt.fromJSDate(d)));
-  }, [date.year, date.month]);
+  const { isDay, events, grid } = useCal();
 
   return (
     <div>
-      {weeks.map((w, i) => (
+      {grid.map((w, i) => (
         <div key={i} className="row g-0">
           {w.map((d) => (
             <div

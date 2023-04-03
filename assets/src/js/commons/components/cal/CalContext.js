@@ -6,6 +6,7 @@ export default React.createContext({
     view: 'month', date: '', filter: {},
   },
   fetched: [],
+  grid: [],
 
   fetch: () => {},
   refresh: () => {},
