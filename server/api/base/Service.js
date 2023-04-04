@@ -152,6 +152,10 @@ class Service {
   async delete({ _id }, user) {
     await this.deleteBy({ _id }, user);
   }
+
+  transaction(fn, onError, opts = {}) {
+    return this.try(() => this.model.transaction(fn, onError, opts));
+  }
 }
 
 Service.services = {};
