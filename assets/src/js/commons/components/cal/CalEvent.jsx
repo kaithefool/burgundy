@@ -4,10 +4,8 @@ const CalEvent = ({
   event,
   children,
 }) => (
-  <div className="card border-start-3 border-primary">
-    <div className="card-body">
-      {event.user?.email}
-    </div>
+  <div className="rounded border px-1">
+    {event.user?.email}
   </div>
 );
 

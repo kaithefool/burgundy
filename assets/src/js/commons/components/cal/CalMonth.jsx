@@ -2,6 +2,7 @@ import React from 'react';
 
 import useCal from './useCal';
 import CalEvent from './CalEvent';
+import Truncate from '../layout/Truncate';
 
 const CalMonth = ({
   children,
@@ -15,11 +16,11 @@ const CalMonth = ({
           {w.map((d) => (
             <div
               key={d.toString()}
-              className="col ratio ratio-1x1"
+              className="col"
             >
               <div>
                 <h6>{d.day}</h6>
-                <div className="p-3">
+                <Truncate style={{ height: '10vh' }}>
                   {events
                     .filter((e) => isDay(e, d))
                     .map((e) => (
@@ -27,7 +28,7 @@ const CalMonth = ({
                         {children}
                       </CalEvent>
                     ))}
-                </div>
+                </Truncate>
               </div>
             </div>
           ))}

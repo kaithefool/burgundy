@@ -6,6 +6,7 @@ import useCal from './useCal';
 import CalTitle from './CalTitle';
 import CalMonth from './CalMonth';
 import CalArrows from './CalArrows';
+import CalViewSwitch from './CalViewSwitch';
 
 const Cal = (props) => <CalProvider {...props} />;
 
@@ -16,11 +17,13 @@ export {
   CalTitle,
   CalMonth,
   CalArrows,
+  CalViewSwitch,
 };
 
 Cal.CalProvider = CalProvider;
 Cal.Title = CalTitle;
 Cal.Month = CalMonth;
 Cal.Arrows = CalArrows;
+Cal.ViewSwitch = CalViewSwitch;
 
 export default Cal;

@@ -10,6 +10,7 @@ module.exports = new Routes({
   validate: {},
 }, {
   list: true,
+  find: true,
   findById: true,
   delete: true,
 

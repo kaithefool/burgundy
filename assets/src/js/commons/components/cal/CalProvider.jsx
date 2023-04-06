@@ -154,7 +154,7 @@ const CalProvider = ({
     query,
     field,
     fetched,
-    events: fetched?.payload?.rows || [],
+    events: fetched?.payload || [],
     grid,
 
     fetch,
