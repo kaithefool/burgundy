@@ -1,16 +1,19 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, {
+  Fragment, useEffect, useState, useRef,
+} from 'react';
 
 import useObserver from '../../hooks/useObserver';
 
 const Truncate = ({
   className = '',
   children,
-  showMoreHeight = 22.8,
   ...props
 }) => {
+  const showMoreRef = useRef();
   const [limit, setLimit] = useState(-1);
   const onChange = (node) => {
     const { height } = node.getBoundingClientRect();
+    const { height: moreH } = showMoreRef.current.getBoundingClientRect();
     const cc = Array
       .from(node.children)
       .filter((c) => c.getAttribute('data-btn') !== 'more');
@@ -21,7 +24,7 @@ const Truncate = ({
       const { height: h } = cc[i].getBoundingClientRect();
 
       if (ch + h >= height) {
-        lim = ch + showMoreHeight > height ? i - 1 : i;
+        lim = ch + moreH > height ? i - 1 : i;
         break;
       }
       ch += h;
@@ -41,10 +44,11 @@ const Truncate = ({
     onChange(el.current);
   });
 
-  const showMore = (
+  const showMore = (p = {}) => (
     <div
       className="position-absolute"
       data-btn="more"
+      {...p}
     >
       Show more...
     </div>
@@ -56,7 +60,12 @@ const Truncate = ({
       {...props}
       className={`overflow-hidden position-relative ${className}`}
     >
-      {limit === 0 && showMore}
+      {showMore({
+        ref: showMoreRef,
+        ...limit !== 0 && {
+          style: { visibility: 'hidden' },
+        },
+      })}
       {children.map((c, i) => (
         <Fragment key={i}>
           <div
@@ -66,7 +75,7 @@ const Truncate = ({
           >
             {c}
           </div>
-          {limit >= 0 && i === limit - 1 && showMore}
+          {limit >= 0 && i === limit - 1 && showMore()}
         </Fragment>
       ))}
     </div>
