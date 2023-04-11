@@ -2,12 +2,16 @@ import React from 'react';
 
 import useCal from './useCal';
 import CalEvent from './CalEvent';
-import Truncate from '../layout/Truncate';
+import Truncated from '../layout/Truncated';
 
 const CalMonth = ({
   children,
 }) => {
-  const { isDay, events, grid } = useCal();
+  const {
+    query, isDay, events, grid,
+  } = useCal();
+
+  if (query.view !== 'month') return null;
 
   return (
     <div>
@@ -20,7 +24,7 @@ const CalMonth = ({
             >
               <div>
                 <h6>{d.day}</h6>
-                <Truncate style={{ height: '10vh' }}>
+                <Truncated style={{ height: '10vh' }}>
                   {events
                     .filter((e) => isDay(e, d))
                     .map((e) => (
@@ -28,7 +32,7 @@ const CalMonth = ({
                         {children}
                       </CalEvent>
                     ))}
-                </Truncate>
+                </Truncated>
               </div>
             </div>
           ))}

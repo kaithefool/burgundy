@@ -1,19 +1,24 @@
 import React, {
   Fragment, useEffect, useState, useRef,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import useObserver from '../../hooks/useObserver';
 
-const Truncate = ({
+const Truncated = ({
   className = '',
   children,
+  more = null,
   ...props
 }) => {
+  const { t } = useTranslation();
   const showMoreRef = useRef();
   const [limit, setLimit] = useState(-1);
   const onChange = (node) => {
     const { height } = node.getBoundingClientRect();
-    const { height: moreH } = showMoreRef.current.getBoundingClientRect();
+    const { height: moreH } = showMoreRef
+      .current
+      .getBoundingClientRect();
     const cc = Array
       .from(node.children)
       .filter((c) => c.getAttribute('data-btn') !== 'more');
@@ -44,13 +49,15 @@ const Truncate = ({
     onChange(el.current);
   });
 
-  const showMore = (p = {}) => (
+  const remaining = children.length - limit;
+  const showMore = (p) => (
     <div
       className="position-absolute"
       data-btn="more"
       {...p}
     >
-      Show more...
+      {typeof more === 'function' ? more(remaining) : more}
+      {!more && `${t('showMore')} (${remaining})`}
     </div>
   );
 
@@ -69,9 +76,9 @@ const Truncate = ({
       {children.map((c, i) => (
         <Fragment key={i}>
           <div
-            {...limit >= 0 && i >= limit
-              && { style: { visibility: 'hidden' } }
-            }
+            {...limit >= 0 && i >= limit && {
+              style: { visibility: 'hidden' },
+            }}
           >
             {c}
           </div>
@@ -82,4 +89,4 @@ const Truncate = ({
   );
 };
 
-export default Truncate;
+export default Truncated;

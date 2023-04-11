@@ -24,10 +24,47 @@ const isDay = (field, entry, d) => {
     const s = parseDate(entry[field[0]]);
     const e = parseDate(entry[field[1]]);
 
-    return d.startOf('day') <= e && d.endOf('day') >= s;
+    return d.startOf('day') <= e && s <= d.endOf('day');
   }
 
   return parseDate(entry[field]).hasSame(d, 'day');
+};
+
+const isOverlap = (field, evt1, evt2) => {
+  if (Array.isArray(field)) {
+    const s1 = parseDate(evt1[field[0]]);
+    const e1 = parseDate(evt1[field[1]]);
+    const s2 = parseDate(evt2[field[0]]);
+    const e2 = parseDate(evt2[field[1]]);
+
+    return s1 <= e2 && s2 <= e1;
+  }
+
+  const d1 = parseDate(evt1[field]);
+  const d2 = parseDate(evt2[field]);
+
+  return Math.abs(d1.diff(d2, 'minutes').minutes) <= 15;
+};
+
+const roundPct = (n) => `${Math.round(n * 100) / 100}%`;
+const pctInDay = (field, evt, d) => {
+  const ds = d.startOf('day');
+
+  if (Array.isArray(field)) {
+    const s = parseDate(evt[field[0]]);
+    const e = parseDate(evt[field[1]]);
+    const top = Math.max(0, s.diff(ds, 'minutes').minutes) / 14.40;
+    let height = e.diff(s, 'minutes').minutes / 14.40;
+
+    if (top + height > 100) height = 100 - top;
+
+    return { top: roundPct(top), height: roundPct(height) };
+  }
+
+  const s = parseDate(evt[field]);
+  const top = Math.max(0, s.diff(ds, 'minutes').minutes) / 14.40;
+
+  return { top: roundPct(top) };
 };
 
 const getGrid = ({ view, date }) => {
@@ -160,6 +197,8 @@ const CalProvider = ({
     fetch,
     refresh,
     isDay: (...args) => isDay(field, ...args),
+    isOverlap: (...args) => isOverlap(field, ...args),
+    pctInDay: (...args) => pctInDay(field, ...args),
   };
 
   return (

@@ -155,6 +155,7 @@ const PageExample = () => (
                   </div>
                 </div>
                 <Cal.Month />
+                <Cal.Week />
               </Cal>
             </Tab>
           </Tabs>

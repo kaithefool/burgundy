@@ -11,4 +11,6 @@ export default React.createContext({
   fetch: () => {},
   refresh: () => {},
   isDay: () => {},
+  isOverlap: () => {},
+  pctInDay: () => {},
 });
