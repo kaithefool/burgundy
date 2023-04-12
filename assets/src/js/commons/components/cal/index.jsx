@@ -6,6 +6,7 @@ import useCal from './useCal';
 import CalTitle from './CalTitle';
 import CalMonth from './CalMonth';
 import CalWeek from './CalWeek';
+import CalTimeAxis from './CalTimeAxis';
 import CalArrows from './CalArrows';
 import CalViewSwitch from './CalViewSwitch';
 
@@ -18,6 +19,7 @@ export {
   CalTitle,
   CalMonth,
   CalWeek,
+  CalTimeAxis,
   CalArrows,
   CalViewSwitch,
 };
@@ -26,6 +28,7 @@ Cal.CalProvider = CalProvider;
 Cal.Title = CalTitle;
 Cal.Month = CalMonth;
 Cal.Week = CalWeek;
+Cal.TimeAxis = CalTimeAxis;
 Cal.Arrows = CalArrows;
 Cal.ViewSwitch = CalViewSwitch;
 
