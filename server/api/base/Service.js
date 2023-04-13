@@ -72,7 +72,7 @@ class Service {
     const compKeys = ['gt', 'gte', 'lt', 'lte'];
 
     return _.mapValues(f, (v) => (
-      typeof v === 'object'
+      _.isPlainObject(v) && compKeys.some((k) => v[k])
         ? _.mapKeys(v, (val, key) => (
           compKeys.includes(key) ? `$${key}` : key
         ))
