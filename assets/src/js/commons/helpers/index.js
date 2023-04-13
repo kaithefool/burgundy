@@ -111,3 +111,8 @@ export function mapDeep(src, fn = (v) => v) {
 
   return t(src);
 }
+
+export function allow(role) {
+  return (Array.isArray(role) ? role : [role])
+    .includes(env.user.role);
+}
