@@ -125,7 +125,7 @@ const CalProvider = ({
       }),
     };
   });
-  const [grid, setGrid] = useState([]);
+  const [grid, setGrid] = useState(() => getGrid(query).grid);
 
   const fetch = (q = {}) => {
     const newQ = {

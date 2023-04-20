@@ -5,3 +5,10 @@ td textarea {
   border: none;
   resize: none;
 }
+.grid-border {
+  @extend .border;
+  >.row {
+    &:not(:first-child) { @extend .border-top; }
+    >.col:not(:first-child) { @extend .border-start; }
+  }
+}

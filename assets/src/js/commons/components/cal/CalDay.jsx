@@ -31,6 +31,15 @@ const CalDay = ({
       className={`position-relative ${className}`}
       {...props}
     >
+      <div className="position-absolute w-100 h-100">
+        {[...Array(24).keys()].map((h) => (
+          <div
+            key={h}
+            className="border-top"
+            style={{ height: '4.166%' }}
+          />
+        ))}
+      </div>
       {evtsGrid.map((r, i) => {
         const w = round(100 / r.length);
 

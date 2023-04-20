@@ -4,7 +4,7 @@ const CalEvent = ({
   event,
   children,
 }) => (
-  <div className="rounded border px-1 overflow-hidden">
+  <div className="rounded border bg-body px-1 overflow-hidden">
     {event.user?.email}
   </div>
 );

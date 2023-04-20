@@ -142,21 +142,7 @@ const PageExample = () => (
               </Form.Refs>
             </Tab>
             <Tab eventKey="calendar">
-              <Cal api={{ url: '/api/access-logs/all' }}>
-                <div className="row align-items-center">
-                  <div className="col">
-                    <Cal.Title />
-                  </div>
-                  <div className="col-auto">
-                    <Cal.Arrows />
-                  </div>
-                  <div className="col-auto">
-                    <Cal.ViewSwitch />
-                  </div>
-                </div>
-                <Cal.Month />
-                <Cal.Week />
-              </Cal>
+              <Cal api={{ url: '/api/access-logs/all' }} />
             </Tab>
           </Tabs>
 
