@@ -10,12 +10,16 @@ import CalTimeAxis from './CalTimeAxis';
 import CalArrows from './CalArrows';
 import CalViewSwitch from './CalViewSwitch';
 import CalDayOfWeek from './CalDayOfWeek';
+import CalToday from './CalToday';
 
 const Cal = (props) => (
   <CalProvider {...props}>
     <div className="row align-items-center my-3">
       <div className="col">
         <h5 className="m-0"><Cal.Title /></h5>
+      </div>
+      <div className="col-auto">
+        <Cal.Today />
       </div>
       <div className="col-auto">
         <Cal.Arrows />
@@ -40,6 +44,7 @@ export {
   CalArrows,
   CalViewSwitch,
   CalDayOfWeek,
+  CalToday,
 };
 
 Cal.CalProvider = CalProvider;
@@ -50,5 +55,6 @@ Cal.TimeAxis = CalTimeAxis;
 Cal.Arrows = CalArrows;
 Cal.ViewSwitch = CalViewSwitch;
 Cal.DayOfWeek = CalDayOfWeek;
+Cal.Today = CalToday;
 
 export default Cal;
