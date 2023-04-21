@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import inflect from 'inflect';
 
 import useCal from './useCal';
 
@@ -16,7 +17,7 @@ const CalViewSwitch = () => {
       `}
       onClick={() => fetch({ view: type })}
     >
-      {t(type).toUpperCase()}
+      {inflect.titleize(t(type))}
     </button>
   );
 

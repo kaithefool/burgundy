@@ -15,7 +15,7 @@ const CalToday = () => {
       className="btn btn-sm btn-outline-primary"
       onClick={() => fetch({ date: dt.now().startOf(view) })}
     >
-      {inflect.capitalize(t('today'))}
+      {inflect.titleize(t('today'))}
     </button>
   );
 };
