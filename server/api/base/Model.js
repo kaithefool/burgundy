@@ -113,6 +113,33 @@ class Model {
       this.update(s, s, undefined, { upsert: true })
     )));
   }
+
+  async transaction(
+    fn = (s) => s,
+    onError = (e) => { throw e; },
+    opts = {
+      caussalConsistency: true,
+      defaultTransactionOptions: {
+        readConcern: 'majority',
+        writeConcern: { w: 'majority' },
+      },
+    },
+  ) {
+    const { model } = this;
+    const session = await model.startSession(opts);
+    let output;
+    try {
+      session.startTransaction();
+      output = await fn(session);
+      await session.commitTransaction();
+    } catch (error) {
+      await session.abortTransaction();
+      output = onError(error);
+    } finally {
+      session.endSession();
+    }
+    return output;
+  }
 }
 
 Model.Schema = Schema;

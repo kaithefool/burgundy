@@ -35,7 +35,7 @@ const FormProvider = ({
       const r = await req({
         method: 'post',
         data,
-        ...api,
+        ...typeof api === 'function' ? api(data) : api,
       });
 
       actions.resetForm(resetOnSubmitted ? undefined : { values });

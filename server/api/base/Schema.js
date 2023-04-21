@@ -87,7 +87,7 @@ module.exports = class Schema {
     }
     if (indexes) {
       _.castArray(indexes)
-        .forEach((u) => this.unique(
+        .forEach((u) => this.index(
           ..._.castArray(u),
         ));
     }

@@ -29,6 +29,7 @@ import FormArray from './FormArray';
 import FormRef from './FormRef';
 import FormRefs from './FormRefs';
 import FormRefCheck from './FormRefCheck';
+import FormOtpAuth from './FormOtpAuth';
 
 export {
   FormContext,
@@ -58,6 +59,7 @@ export {
   FormRef,
   FormRefs,
   FormRefCheck,
+  FormOtpAuth,
 };
 
 const Form = ({
@@ -92,5 +94,6 @@ Form.Array = FormArray;
 Form.Ref = FormRef;
 Form.Refs = FormRefs;
 Form.RefCheck = FormRefCheck;
+Form.OtpAuth = FormOtpAuth;
 
 export default Form;

@@ -1,6 +1,17 @@
+#!/usr/bin/env node
+
+const { nanoid } = require('nanoid');
+const fs = require('fs');
+const path = require('path');
+
+const { name } = require('../../package.json');
+
+const envPath = path.resolve(__dirname, '../../private/.env');
+
+const template = () => `
 ROOT=http://localhost:3000
 PORT=3000
-SECRET=justreadtheinstructions
+SECRET=${nanoid(32)}
 HTTPS=0
 
 ACCESSLOG_TTL=180d
@@ -18,7 +29,7 @@ FILE_STORAGE_UPLOADS=public/uploads
 FILE_STORAGE_TRASH=private/trash
 FILE_STORAGE_LOCALES=public/locales
 
-MONGO_URI=mongodb://localhost:27017/burgundy
+MONGO_URI=mongodb://localhost:27017/${name}
 MONGO_SYNC_INDEX=0
 
 REDIS_URL=
@@ -39,3 +50,12 @@ LNG=en,zh-hant
 LNG_LABEL=EN,中文
 
 GOOGLE_API_KEY=
+`;
+
+if (!fs.existsSync(envPath)) {
+  fs.writeFileSync(envPath, template());
+
+  console.log('Environment file generated.');
+}
+
+process.exit(0);
