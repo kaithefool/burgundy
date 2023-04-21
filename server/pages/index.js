@@ -6,7 +6,7 @@ const consts = require('../api/models/consts');
 const redirectCookies = require('../api/helpers/redirectCookies');
 
 const {
-  version: ver,
+  name: repoName, version: ver,
 } = require('../../package.json');
 
 const { LNG, LNG_LABEL, GOOGLE_API_KEY } = process.env;
@@ -30,7 +30,7 @@ routes.use(({
     lngLabels: LNG_LABEL.split(','),
     googleApiKey: GOOGLE_API_KEY,
     meta: {
-      title: 'Burgundy',
+      title: _.capitalize(repoName),
     },
     ...consts.public,
   };

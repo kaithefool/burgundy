@@ -12,7 +12,7 @@
     "postinstall": "npm run i-server && npm run i-assets",
     "build-assets": "cd assets && npm run build",
     "build": "npm run postinstall && npm run build-assets",
-    "setup": "if [ ! -f private/.env ]; then mkdir -p private && cp example.env private/.env; fi",
+    "setup": "node server/bin/setup",
     "postversion": "git push && git push --tags",
     "sync-fwk": "git fetch fwk master:fwk"
   },
@@ -22,10 +22,6 @@
   },
   "author": "Kai Lam <kai.chun.lam@gmail.com>",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kaithefool/burgundy/issues"
-  },
-  "homepage": "https://github.com/kaithefool/burgundy#readme",
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",
     "eslint": "^8.3.0",
