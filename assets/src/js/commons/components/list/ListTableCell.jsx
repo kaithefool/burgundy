@@ -26,12 +26,10 @@ const ListTableCell = ({
   let link = colLink && typeof colLink !== 'boolean'
     ? colLink : rowLink;
 
-  if (
-    link
-      && !(isElement && !colLink)
-      // colLink can be true to enforce link for element content
-  ) {
+  if (link && !(isElement && !colLink)) {
     link = typeof link === 'function' ? link(row) : link;
+  } else {
+    link = null;
   }
 
   if (cell) {
