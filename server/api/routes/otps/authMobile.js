@@ -2,7 +2,6 @@ const { object, string } = require('yup');
 
 const { Routes } = require('../../base');
 const service = require('../../services/otps/authMobile');
-const logAccess = require('../../parsers/logAccess');
 const authCookies = require('../../helpers/authCookies');
 
 module.exports = new Routes({
@@ -20,6 +19,9 @@ module.exports = new Routes({
       verifyKey: string().required(),
     }),
   },
+  logs: {
+    affirm: { user: (req, res) => res.locals.out?.user?._id },
+  },
 }, {
   create: true,
   verify: {
@@ -30,27 +32,16 @@ module.exports = new Routes({
   affirm: {
     method: 'post',
     path: '/affirm',
-    response: [
-      // set user for access log
-      (req, res, next) => {
-        req.user = res.locals.out.user;
+    response: ({ web }, res) => {
+      const { locals: { out } } = res;
 
-        return next();
-      },
-      // log
-      logAccess('login'),
-      // response
-      ({ web }, res) => {
-        const { locals: { out } } = res;
+      if (web) {
+        authCookies.set(res, out);
 
-        if (web) {
-          authCookies.set(res, out);
+        return res.end();
+      }
 
-          return res.end();
-        }
-
-        return res.json(out);
-      },
-    ],
+      return res.json(out);
+    },
   },
 });
