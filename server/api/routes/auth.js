@@ -4,7 +4,6 @@ const { Routes } = require('../base');
 const service = require('../services/auth');
 const authCookies = require('../helpers/authCookies');
 const { email } = require('../validators');
-const logAccess = require('../parsers/logAccess');
 
 module.exports = new Routes({
   service,
@@ -18,33 +17,23 @@ module.exports = new Routes({
     }),
   },
   logs: {
+    authenticate: { user: (req, res) => res.locals.out?.user?._id },
     logout: true,
   },
 }, {
   authenticate: {
     method: 'post',
-    response: [
-      // set user for access log
-      (req, res, next) => {
-        req.user = res.locals.out.user;
+    response: ({ web }, res) => {
+      const { locals: { out } } = res;
 
-        return next();
-      },
-      // log
-      logAccess('login'),
-      // response
-      ({ web }, res) => {
-        const { locals: { out } } = res;
+      if (web) {
+        authCookies.set(res, out);
 
-        if (web) {
-          authCookies.set(res, out);
+        return res.end();
+      }
 
-          return res.end();
-        }
-
-        return res.json(out);
-      },
-    ],
+      return res.json(out);
+    },
   },
 
   refresh: {
