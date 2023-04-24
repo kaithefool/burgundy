@@ -35,7 +35,7 @@ const CalDay = ({
         {[...Array(24).keys()].map((h) => (
           <div
             key={h}
-            className="border-top"
+            className="border-top border-end"
             style={{ height: '4.166%' }}
           />
         ))}

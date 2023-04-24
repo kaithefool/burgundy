@@ -9,6 +9,7 @@ const Truncated = ({
   className = '',
   children,
   more = null,
+  onMore = () => {},
   ...props
 }) => {
   const { t } = useTranslation();
@@ -57,7 +58,17 @@ const Truncated = ({
       {...p}
     >
       {typeof more === 'function' ? more(remaining) : more}
-      {!more && `${t('showMore')} (${remaining})`}
+      {!more && (
+        <button
+          type="button"
+          className="btn btn-sm"
+          onClick={() => onMore()}
+        >
+          {t('showMore')}
+          {' '}
+          {`(${remaining})`}
+        </button>
+      )}
     </div>
   );
 

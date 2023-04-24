@@ -1,12 +1,26 @@
 import React from 'react';
 
+import useCal from './useCal';
+
 const CalEvent = ({
   event,
   children,
-}) => (
-  <div className="rounded border bg-body px-1 overflow-hidden">
-    {event.user?.email}
-  </div>
-);
+}) => {
+  const { eventDates } = useCal();
+  const d = eventDates(event);
+
+  return (
+    <div className="rounded border bg-body overflow-hidden">
+      <div className="border-primary border-start border-4 ps-2">
+        <h6 className="m-0 small">
+          {event.user?.email || event.action}
+          <div className="small">
+            {d.toFormat('HH:mm')}
+          </div>
+        </h6>
+      </div>
+    </div>
+  );
+};
 
 export default CalEvent;

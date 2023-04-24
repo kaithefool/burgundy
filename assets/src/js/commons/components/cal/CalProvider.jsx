@@ -19,40 +19,50 @@ const parseDate = (date) => {
   return d.isValid ? d : null;
 };
 
-const isDay = (field, entry, d) => {
+const eventDates = (field, entry) => {
   if (Array.isArray(field)) {
-    const s = parseDate(entry[field[0]]);
-    const e = parseDate(entry[field[1]]);
+    return [
+      parseDate(entry[field[0]]),
+      parseDate(entry[field[1]]),
+    ];
+  }
+
+  return parseDate(entry[field]);
+};
+
+const isDay = (field, entry, d) => {
+  const ed = eventDates(field, entry);
+
+  if (Array.isArray(ed)) {
+    const [s, e] = ed;
 
     return d.startOf('day') <= e && s <= d.endOf('day');
   }
 
-  return parseDate(entry[field]).hasSame(d, 'day');
+  return ed.hasSame(d, 'day');
 };
 
 const isOverlap = (field, evt1, evt2) => {
-  if (Array.isArray(field)) {
-    const s1 = parseDate(evt1[field[0]]);
-    const e1 = parseDate(evt1[field[1]]);
-    const s2 = parseDate(evt2[field[0]]);
-    const e2 = parseDate(evt2[field[1]]);
+  const ed1 = eventDates(field, evt1);
+  const ed2 = eventDates(field, evt2);
+
+  if (Array.isArray(ed1)) {
+    const [s1, e1] = ed1;
+    const [s2, e2] = ed2;
 
     return s1 <= e2 && s2 <= e1;
   }
 
-  const d1 = parseDate(evt1[field]);
-  const d2 = parseDate(evt2[field]);
-
-  return Math.abs(d1.diff(d2, 'minutes').minutes) <= 15;
+  return Math.abs(ed1.diff(ed2, 'minutes').minutes) <= 15;
 };
 
 const roundPct = (n) => `${Math.round(n * 100) / 100}%`;
 const pctInDay = (field, evt, d) => {
   const ds = d.startOf('day');
+  const ed = eventDates(field, evt);
 
   if (Array.isArray(field)) {
-    const s = parseDate(evt[field[0]]);
-    const e = parseDate(evt[field[1]]);
+    const [s, e] = ed;
     const top = Math.max(0, s.diff(ds, 'minutes').minutes) / 14.40;
     let height = e.diff(s, 'minutes').minutes / 14.40;
 
@@ -61,8 +71,7 @@ const pctInDay = (field, evt, d) => {
     return { top: roundPct(top), height: roundPct(height) };
   }
 
-  const s = parseDate(evt[field]);
-  const top = Math.max(0, s.diff(ds, 'minutes').minutes) / 14.40;
+  const top = Math.max(0, ed.diff(ds, 'minutes').minutes) / 14.40;
 
   return { top: roundPct(top) };
 };
@@ -196,6 +205,7 @@ const CalProvider = ({
 
     fetch,
     refresh,
+    eventDates: (...args) => eventDates(field, ...args),
     isDay: (...args) => isDay(field, ...args),
     isOverlap: (...args) => isOverlap(field, ...args),
     pctInDay: (...args) => pctInDay(field, ...args),

@@ -42,7 +42,10 @@ const CalMonth = ({
                 >
                   {d.day}
                 </h6>
-                <Truncated style={{ height: '10vh' }}>
+                <Truncated
+                  style={{ height: '10vh' }}
+                  onMore={() => fetch({ date: d })}
+                >
                   {events
                     .filter((e) => isDay(e, d))
                     .map((e) => (
