@@ -1,25 +1,34 @@
 import React from 'react';
 import { DateTime as dt } from 'luxon';
+import CalDayHeader from './CalDayHeader';
 
-const CalTimeAxis = () => {
+const CalTimeAxis = ({
+  header = false,
+}) => {
   const d = dt.now().startOf('day');
 
   return (
-    <div className="position-relative font-monospace h-100">
-      {[...Array(25).keys()].map((h) => (
-        <div
-          key={h}
-          className="position-absolute small pe-3 h-0"
-          style={{
-            top: `${h * 4.166}%`,
-            height: 0,
-          }}
-        >
-          <div className="top-50 translate-middle-y">
-            {d.set({ hour: h }).toFormat('hh a')}
+    <div>
+      {header && <CalDayHeader className="invisible" />}
+      <div
+        className="position-relative"
+        style={{ height: '120vh' }}
+      >
+        {[...Array(25).keys()].map((h) => (
+          <div
+            key={h}
+            hour={h}
+            className={`position-${h ? 'absolute' : 'relative'}`}
+            style={{ top: `${h * 4.166}%` }}
+          >
+            <div className="top-50 translate-middle-y small pe-3">
+              <small className="font-monospace">
+                {d.set({ hour: h }).toFormat('hha')}
+              </small>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

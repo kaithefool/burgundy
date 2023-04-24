@@ -10,22 +10,13 @@ const CalWeek = () => {
 
   return (
     <div>
-      {/* header */}
-      <div className="row">
-        <div className="col-auto" style={{ width: '60px' }} />
-        {grid.map((d) => (
-          <div key={d.toString()} className="col">
-            <h4>{d.day}</h4>
-          </div>
-        ))}
-      </div>
       <div className="row g-0">
-        <div className="col-auto" style={{ width: '60px' }}>
-          <CalTimeAxis />
+        <div className="col-auto">
+          <CalTimeAxis header />
         </div>
         {grid.map((d) => (
           <div key={d.toString()} className="col">
-            <CalDay day={d} className="vh-100" />
+            <CalDay day={d} />
           </div>
         ))}
       </div>
