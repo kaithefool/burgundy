@@ -6,7 +6,11 @@ import useCal from './useCal';
 import CalTitle from './CalTitle';
 import CalMonth from './CalMonth';
 import CalWeek from './CalWeek';
+import CalDay from './CalDay';
 import CalTimeAxis from './CalTimeAxis';
+import CalEventsAxis from './CalEventsAxis';
+import CalEventsGrid from './CalEventsGrid';
+import CalDayHeader from './CalDayHeader';
 import CalArrows from './CalArrows';
 import CalViewSwitch from './CalViewSwitch';
 import CalDayOfWeek from './CalDayOfWeek';
@@ -30,6 +34,7 @@ const Cal = (props) => (
     </div>
     <Cal.Month />
     <Cal.Week />
+    <Cal.Day />
   </CalProvider>
 );
 
@@ -40,6 +45,10 @@ export {
   CalTitle,
   CalMonth,
   CalWeek,
+  CalDay,
+  CalEventsAxis,
+  CalEventsGrid,
+  CalDayHeader,
   CalTimeAxis,
   CalArrows,
   CalViewSwitch,
@@ -51,6 +60,10 @@ Cal.CalProvider = CalProvider;
 Cal.Title = CalTitle;
 Cal.Month = CalMonth;
 Cal.Week = CalWeek;
+Cal.Day = CalDay;
+Cal.EventsAxis = CalEventsAxis;
+Cal.EventsGrid = CalEventsGrid;
+Cal.DayHeader = CalDayHeader;
 Cal.TimeAxis = CalTimeAxis;
 Cal.Arrows = CalArrows;
 Cal.ViewSwitch = CalViewSwitch;

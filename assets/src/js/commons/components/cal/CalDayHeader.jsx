@@ -8,8 +8,10 @@ const CalDayHeader = ({ day, ...props }) => {
 
   return (
     <div {...props}>
-      <small><CalDayOfWeek date={d} /></small>
-      <h5>{d.day}</h5>
+      <div className="p-2 text-center text-md-start">
+        <small><CalDayOfWeek date={d} /></small>
+        <h5 className="m-0">{d.day}</h5>
+      </div>
     </div>
   );
 };

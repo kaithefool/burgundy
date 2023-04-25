@@ -1,7 +1,8 @@
 import React from 'react';
 import useCal from './useCal';
-import CalDay from './CalDay';
-import CalTimeAxis from './CalTimeAxis';
+import CalEventsAxis from './CalEventsAxis';
+import CalDayHeader from './CalDayHeader';
+import CalEventsGrid from './CalEventsGrid';
 
 const CalWeek = () => {
   const { query, grid } = useCal();
@@ -9,18 +10,18 @@ const CalWeek = () => {
   if (query.view !== 'week') return null;
 
   return (
-    <div>
-      <div className="row g-0">
-        <div className="col-auto">
-          <CalTimeAxis header />
+    <CalEventsGrid
+      header={grid.map((d) => (
+        <div key={d.toString()} className="col">
+          <CalDayHeader day={d} />
         </div>
-        {grid.map((d) => (
-          <div key={d.toString()} className="col">
-            <CalDay day={d} />
-          </div>
-        ))}
-      </div>
-    </div>
+      ))}
+      events={grid.map((d, i) => (
+        <div key={d.toString()} className={`col ${i ? 'border-start' : ''}`}>
+          <CalEventsAxis day={d} style={{ height: '150vh' }} />
+        </div>
+      ))}
+    />
   );
 };
 

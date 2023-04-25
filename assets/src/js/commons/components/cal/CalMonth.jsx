@@ -18,7 +18,7 @@ const CalMonth = ({
     <div className="grid-border rounded-3">
       <div className="row g-0">
         {grid[0].map((d) => (
-          <div className="col p-3 py-2" key={d.weekday}>
+          <div className="col p-2" key={d.weekday}>
             <h6 className="m-0 small text-center text-md-start">
               <CalDayOfWeek date={d} />
             </h6>
@@ -31,7 +31,7 @@ const CalMonth = ({
           {w.map((d) => (
             <div
               key={d.toString()}
-              className="col p-3"
+              className="col p-2"
             >
               <div>
                 <h6
