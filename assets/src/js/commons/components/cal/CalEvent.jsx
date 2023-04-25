@@ -13,10 +13,9 @@ const CalEvent = ({
     <div className="rounded border bg-body overflow-hidden">
       <div className="border-primary border-start border-4 ps-2">
         <h6 className="m-0 small">
+          <strong>{d.toFormat('H:mm')}</strong>
+          {' '}
           {event.user?.email || event.action}
-          <div className="small">
-            {d.toFormat('HH:mm')}
-          </div>
         </h6>
       </div>
     </div>
