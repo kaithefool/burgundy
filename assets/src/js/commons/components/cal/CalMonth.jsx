@@ -9,7 +9,7 @@ const CalMonth = ({
   children,
 }) => {
   const {
-    query, isDay, events, grid,
+    query, isDay, events, grid, fetch,
   } = useCal();
 
   if (query.view !== 'month') return null;
@@ -34,17 +34,21 @@ const CalMonth = ({
               className="col p-2"
             >
               <div>
-                <h6
-                  className={`
-                    small text-center text-md-start
-                    ${d.month !== query.date.month ? 'text-muted' : ''}
-                  `}
-                >
-                  {d.day}
-                </h6>
+                <div className="text-center text-md-start">
+                  <button
+                    type="button"
+                    className={`
+                      btn btn-sm m-0 ms-md-n2 mt-md-n2
+                      ${d.month !== query.date.month ? 'text-muted' : ''}
+                    `}
+                    onClick={() => fetch({ date: d, view: 'day' })}
+                  >
+                    {d.day}
+                  </button>
+                </div>
                 <Truncated
-                  style={{ height: '10vh' }}
-                  onMore={() => fetch({ date: d })}
+                  style={{ height: '12vh' }}
+                  onMore={() => fetch({ date: d, view: 'day' })}
                 >
                   {events
                     .filter((e) => isDay(e, d))

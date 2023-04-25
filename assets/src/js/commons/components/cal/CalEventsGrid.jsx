@@ -6,7 +6,7 @@ const CalEventsGrid = ({
   header,
   events,
 }) => (
-  <div className="grid-border">
+  <div className="grid-border rounded">
     <div className="row g-0">
       <div className="col-auto invisible">
         <CalTimeAxis range={[0, 1]} />
