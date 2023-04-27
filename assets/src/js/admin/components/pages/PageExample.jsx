@@ -94,6 +94,7 @@ const PageExample = () => (
             <Tab eventKey="array">
               <Form.Array
                 name="contacts"
+                tmpl="formset"
                 defaults={{
                   firstname: '',
                   lastname: '',

@@ -2,6 +2,7 @@ import React from 'react';
 
 import FormArrayItemList from './FormArrayItemList';
 import FormArrayItemFormset from './FormArrayItemFormset';
+import FormArrayItemCard from './FormArrayItemCard';
 
 const FormArrayItem = ({
   helpers,
@@ -17,6 +18,7 @@ const FormArrayItem = ({
 
   if (tmpl === 'formset') Tag = FormArrayItemFormset;
   else if (tmpl === 'list') Tag = FormArrayItemList;
+  else if (tmpl === 'card') Tag = FormArrayItemCard;
   else Tag = tmpl;
 
   return (
