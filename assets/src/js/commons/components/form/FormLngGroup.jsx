@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import env from '../../config/env';
 import FormInputGroup from './FormInputGroup';
@@ -10,8 +9,7 @@ const FormLngGroup = ({
   children,
   ...props
 }) => {
-  const { i18n } = useTranslation();
-  const [lng, setLng] = useState(() => i18n.language);
+  const [lng, setLng] = useState(() => lngs[0]);
 
   return (
     <FormInputGroup {...props}>
