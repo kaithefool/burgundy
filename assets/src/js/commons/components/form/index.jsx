@@ -23,6 +23,7 @@ import FormISOTimeRange from './FormISOTimeRange';
 import FormISOTime from './FormISOTime';
 import FormISODateTime from './FormISODateTime';
 import FormInputGroup from './FormInputGroup';
+import FormLngGroup from './FormLngGroup';
 import FormCoordinates from './FormCoordinates';
 import FormEmbedMap from './FormEmbedMap';
 import FormArray from './FormArray';
@@ -53,6 +54,7 @@ export {
   FormISOTime,
   FormISODateTime,
   FormInputGroup,
+  FormLngGroup,
   FormCoordinates,
   FormEmbedMap,
   FormArray,
@@ -88,6 +90,7 @@ Form.ISOTimeRange = FormISOTimeRange;
 Form.ISOTime = FormISOTime;
 Form.ISODateTime = FormISODateTime;
 Form.InputGroup = FormInputGroup;
+Form.LngGroup = FormLngGroup;
 Form.Coordinates = FormCoordinates;
 Form.EmbedMap = FormEmbedMap;
 Form.Array = FormArray;

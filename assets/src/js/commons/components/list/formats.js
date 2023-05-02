@@ -15,6 +15,6 @@ export default {
   fromNow: (v) => (
     v ? dt.fromISO(v).toRelative() : ''
   ),
-  truncate: (v) => truncate(v, { length: 25 }),
-  htmlToText: (v) => truncate(convert(v), { length: 25 }),
+  truncate: (v) => (v ? truncate(v, { length: 25 }) : ''),
+  htmlToText: (v) => (v ? truncate(convert(v), { length: 25 }) : ''),
 };

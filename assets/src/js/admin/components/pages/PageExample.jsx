@@ -5,7 +5,7 @@ import Form from '~/commons/components/form';
 import Cal from '~/commons/components/cal';
 import { Tabs, Tab } from '~/commons/components/layout/tabs';
 import { password } from '~/commons/validators';
-import { mapLng } from '~/commons/helpers';
+import { mapLng, reduceLng } from '~/commons/helpers';
 import env from '~/commons/config/env';
 
 import Doc from '../layout/doc';
@@ -20,6 +20,7 @@ const defaults = {
   select: env.lngs[0],
   textarea: '',
   editor: '',
+  lngTexts: reduceLng(''),
   files: [],
   coverImg: [],
   address: '',
@@ -64,6 +65,11 @@ const PageExample = () => (
                 name="password"
                 helpText="Password with visibility toggle"
               />
+              <Form.LngGroup name="lngTexts">
+                {(lng) => (
+                  <Form.Input name={`lngTexts.${lng}`} fieldOnly />
+                )}
+              </Form.LngGroup>
               <Form.Select
                 name="select"
                 helpText={`

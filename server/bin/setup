@@ -48,6 +48,7 @@ SMS_FROM_NO=
 
 LNG=en,zh-hant
 LNG_LABEL=EN,中文
+LNG_FLAG=🇬🇧,🇭🇰
 
 GOOGLE_API_KEY=
 `;
