@@ -3,6 +3,7 @@ import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 
 import useUniqKey from '../../hooks/useUniqKey';
+import FormLabel from './FormLabel';
 
 const FormField = ({
   label,
@@ -48,19 +49,13 @@ const FormField = ({
 
   const l = label !== null
     ? (
-      <label
-        className={labelClassName}
+      <FormLabel
         htmlFor={id}
+        name={value || name}
+        className={labelClassName}
       >
-        {
-          label
-          || t('field', {
-            path: value || name,
-            fieldCase: 'titleize',
-            fieldArrayPath: false,
-          })
-        }
-      </label>
+        {label}
+      </FormLabel>
     )
     : null;
 
