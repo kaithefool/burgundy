@@ -17,6 +17,7 @@ const FormField = ({
   children,
   fieldOnly = false,
   showErr = true,
+  noWrap = false,
   ...props
 }) => {
   const { name, value } = props;
@@ -37,7 +38,7 @@ const FormField = ({
   if (invalid) fC += ' is-invalid';
   if (valid) fC += ' is-valid';
 
-  const c = typeof children === 'function' ? children({
+  let c = typeof children === 'function' ? children({
     ...props,
     id,
     invalid,
@@ -59,8 +60,8 @@ const FormField = ({
     )
     : null;
 
-  return (
-    <div className={className}>
+  c = (
+    <>
       {l && !appendLabel && l}
       {c}
       {l && appendLabel && l}
@@ -73,6 +74,14 @@ const FormField = ({
       {showErr && err && touched && (
         <div className="invalid-feedback d-block">{t(err.rule, err)}</div>
       )}
+    </>
+  );
+
+  if (noWrap) return c;
+
+  return (
+    <div className={className}>
+      {c}
     </div>
   );
 };
