@@ -2,6 +2,7 @@ import React from 'react';
 
 import FormBtnSubmit from './FormBtnSubmit';
 import FormField from './FormField';
+import FormLabel from './FormLabel';
 import FormContext from './FormContext';
 import FormProvider from './FormProvider';
 import useForm from './useForm';
@@ -39,6 +40,7 @@ export {
   helpers,
   FormBtnSubmit,
   FormField,
+  FormLabel,
   FormInput,
   FormCheck,
   FormSelect,
@@ -75,6 +77,7 @@ const Form = ({
 
 Form.BtnSubmit = FormBtnSubmit;
 Form.Field = FormField;
+Form.Label = FormLabel;
 Form.Input = FormInput;
 Form.Check = FormCheck;
 Form.Select = FormSelect;
