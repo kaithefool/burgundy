@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 import {
-  LoadScript, Autocomplete, GoogleMap, Marker, Circle,
+  useJsApiLoader, Autocomplete, GoogleMap, Marker, Circle,
 } from '@react-google-maps/api';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
@@ -27,19 +27,26 @@ const queryToLngLat = (q) => {
   return [lng, lat];
 };
 
+const libraries = ['places'];
+
 const FormCoordinates = ({
   radius: radiusField,
   mapClassName = 'rounded ratio ratio-21x9 max-vh-50 overflow-hidden mb-3',
   zoom = 18,
   ...props
 }) => {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: env.googleApiKey,
+    libraries,
+  });
   const { t } = useTranslation();
   const { name } = props;
   const ac = useRef();
   const map = useRef();
   const cir = useRef();
   const [{ value },, { setValue, setTouched }] = useField(name);
-  const [{ value: radius = 0 }] = useField(radiusField);
+  const [{ value: radius = 0 }] = useField(radiusField || name);
   const pos = value?.[0] && value?.[1] && { lat: +value[1], lng: +value[0] };
   const initCenter = useRef(pos);
 
@@ -48,11 +55,10 @@ const FormCoordinates = ({
     setValue(v);
   };
 
+  if (!isLoaded) return null;
+
   return (
-    <LoadScript
-      googleMapsApiKey={env.googleApiKey}
-      libraries={['places']}
-    >
+    <>
       <Autocomplete
         onLoad={(autocomplete) => { ac.current = autocomplete; }}
         onPlaceChanged={() => {
@@ -151,7 +157,7 @@ const FormCoordinates = ({
           </GoogleMap>
         </div>
       )}
-    </LoadScript>
+    </>
   );
 };
 
