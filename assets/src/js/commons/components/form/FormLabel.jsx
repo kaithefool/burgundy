@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 const FormLabel = ({
   name = '',
+  className = 'form-label',
   children,
   ...props
 }) => {
@@ -10,6 +11,7 @@ const FormLabel = ({
 
   return (
     <label
+      className={className}
       {...props}
     >
       {
