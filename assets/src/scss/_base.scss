@@ -72,6 +72,14 @@ input, textarea {
 .caret-none {
   caret-color: transparent;
 }
+input.no-spin[type="number"] {
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
 
 // outline
 @each $theme, $color in $theme-colors {

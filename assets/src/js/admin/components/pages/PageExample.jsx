@@ -15,6 +15,7 @@ const defaults = {
   checkbox: true,
   switch: true,
   radio: 'radio-1',
+  stepper: 0,
   text: '',
   password: '',
   select: env.lngs[0],
@@ -59,6 +60,9 @@ const PageExample = () => (
               <Form.Check name="switch" type="switch" />
               <Form.Check name="radio" type="radio" value="radio-1" />
               <Form.Check name="radio" type="radio" value="radio-2" />
+              <div style={{ width: '9rem' }}>
+                <Form.Stepper name="stepper" />
+              </div>
               <Form.Input name="text" />
               <Form.Input name="password" type="password" />
               <Form.Password

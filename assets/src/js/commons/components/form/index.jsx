@@ -32,6 +32,7 @@ import FormRef from './FormRef';
 import FormRefs from './FormRefs';
 import FormRefCheck from './FormRefCheck';
 import FormOtpAuth from './FormOtpAuth';
+import FormStepper from './FormStepper';
 
 export {
   FormContext,
@@ -64,6 +65,7 @@ export {
   FormRefs,
   FormRefCheck,
   FormOtpAuth,
+  FormStepper,
 };
 
 const Form = ({
@@ -101,5 +103,6 @@ Form.Ref = FormRef;
 Form.Refs = FormRefs;
 Form.RefCheck = FormRefCheck;
 Form.OtpAuth = FormOtpAuth;
+Form.Stepper = FormStepper;
 
 export default Form;
