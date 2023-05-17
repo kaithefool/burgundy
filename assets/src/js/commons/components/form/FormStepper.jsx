@@ -10,6 +10,7 @@ import FormInput from './FormInput';
 
 const FormStepper = ({
   fieldClassName = 'form-control',
+  btnClassName = 'btn btn-input',
   ...props
 }) => {
   const {
@@ -26,7 +27,7 @@ const FormStepper = ({
         <>
           <button
             type="button"
-            className="btn btn-input"
+            className={btnClassName}
             onClick={() => setValue(v - step)}
             disabled={v <= min}
           >
@@ -40,7 +41,7 @@ const FormStepper = ({
           />
           <button
             type="button"
-            className="btn btn-input"
+            className={btnClassName}
             onClick={() => setValue(v + step)}
             disabled={v >= max}
           >
