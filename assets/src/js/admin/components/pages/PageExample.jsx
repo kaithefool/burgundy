@@ -3,6 +3,7 @@ import { array, object, string } from 'yup';
 
 import Form from '~/commons/components/form';
 import Cal from '~/commons/components/cal';
+import Slider from '~/commons/components/slider';
 import { Tabs, Tab } from '~/commons/components/layout/tabs';
 import { password } from '~/commons/validators';
 import { mapLng, reduceLng } from '~/commons/helpers';
@@ -10,6 +11,16 @@ import env from '~/commons/config/env';
 
 import Doc from '../layout/doc';
 import Page from '../layout/Page';
+
+const demoImgs = [
+  'https://images.unsplash.com/photo-1684051489159-526760dbb8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1680790960435-e5b9670138b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
+  'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+  'https://images.unsplash.com/photo-1683177920180-0175523b0271?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80',
+  'https://images.unsplash.com/photo-1583872341575-610c859c7a57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=806&q=80',
+  'https://images.unsplash.com/photo-1683488780112-f47a64de5d15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+];
+const slides = demoImgs.map((s) => ({ path: s }));
 
 const defaults = {
   checkbox: true,
@@ -151,6 +162,26 @@ const PageExample = () => (
               >
                 {(r) => r.email}
               </Form.Refs>
+            </Tab>
+            <Tab eventKey="slider">
+              <Slider.Lightbox slides={slides}>
+                {({ turnOn }) => (
+                  <Slider slides={slides}>
+                    <div><Slider.Pg /></div>
+                    <div className="position-relative">
+                      <Slider.Body
+                        style={{ height: '50vh' }}
+                        pagination
+                        slideProps={(s, i) => ({
+                          onClick: () => turnOn(i)
+                        })}
+                      />
+                      <Slider.Nav />
+                    </div>
+                    <Slider.Thumbs />
+                  </Slider>
+                )}
+              </Slider.Lightbox>
             </Tab>
             <Tab eventKey="calendar">
               <Cal api={{ url: '/api/access-logs/all' }} />

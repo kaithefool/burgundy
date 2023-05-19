@@ -55,3 +55,19 @@ html {
     color: inherit;
   }
 }
+.swiper {
+  .swiper-pagination-bullet-active {
+    background-color: $primary;
+  }
+  &.swiper-thumbs {
+    .swiper-slide {
+      opacity: .3;
+      cursor: pointer;
+      width: 6rem;
+      height: 6rem;
+    }
+    .swiper-slide-thumb-active {
+      opacity: 1;
+    }
+  }
+}
