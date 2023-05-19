@@ -60,6 +60,8 @@ html {
     background-color: $primary;
   }
   &.swiper-thumbs {
+    max-width: 100%;
+
     .swiper-slide {
       opacity: .3;
       cursor: pointer;

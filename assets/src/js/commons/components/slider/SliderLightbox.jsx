@@ -28,7 +28,10 @@ const SliderLightbox = ({
         backdropClassName="opacity-75"
       >
         <Modal.Body>
-          <SliderProvider {...props}>
+          <SliderProvider
+            initialSlide={show || 0}
+            {...props}
+          >
             <div className="d-flex flex-column h-100">
               {/* header */}
               <div className="row g-0 align-items-center text-white">
@@ -47,10 +50,7 @@ const SliderLightbox = ({
               <div
                 className="flex-fill position-relative"
               >
-                <SliderBody
-                  className="h-100"
-                  {...show !== false && { initialSlide: show }}
-                />
+                <SliderBody className="h-100" />
                 <SliderNav />
               </div>
               {/* thumbs footer */}

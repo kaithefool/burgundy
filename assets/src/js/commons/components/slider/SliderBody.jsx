@@ -2,30 +2,25 @@ import React from 'react';
 import useSlider from './useSlider';
 import SliderSlides from './SliderSlides';
 
-const getPg = (s) => ({
-  activeIndex: s.activeIndex,
-  isBeginning: s.isBeginning,
-  isEnd: s.isEnd,
-  length: s.slides.length,
-});
-
-const SliderBody = ({
-  ...props
-}) => {
-  const { setSwiper, setPg, thumbsSwiper } = useSlider();
+const SliderBody = (props) => {
+  const {
+    initialSlide, setSwiper, pg, setPg, thumbsSwiper,
+  } = useSlider();
 
   return (
     <SliderSlides
-      spaceBetween={10}
+      initialSlide={initialSlide}
       thumbs={{
         swiper: thumbsSwiper && !thumbsSwiper.destroyed
           ? thumbsSwiper : null,
       }}
-      onSwiper={(s) => {
-        setPg(getPg(s));
-        setSwiper(s);
-      }}
-      onSlideChange={(s) => setPg(getPg(s))}
+      onSwiper={setSwiper}
+      onSlideChange={(s) => setPg({
+        ...pg,
+        activeIndex: s.activeIndex,
+        isBeginning: s.isBeginning,
+        isEnd: s.isEnd,
+      })}
       {...props}
     />
   );

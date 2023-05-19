@@ -2,6 +2,7 @@ import React from 'react';
 
 export default React.createContext({
   slides: [],
+  initialSlide: 0,
   spaceBetween: 10,
   pg: {
     activeIndex: 0,
