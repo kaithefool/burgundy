@@ -21,6 +21,8 @@ const FilPreview = ({
     if (previewable) {
       if (file instanceof File) {
         setDisplay(URL.createObjectURL(file));
+      } else if (file.path.match('/')) {
+        setDisplay(file.path);
       } else {
         setDisplay(`/uploads/${file.path}`);
       }

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import FilsLightbox from './FilsLightbox';
-import FilsThumbnail from './FilsThumbnail';
+import Fil from './fil';
+import { Slider } from '../slider';
 
 const FilsGallery = ({
   files: list,
@@ -21,18 +21,12 @@ const FilsGallery = ({
   if (!thumbs.length) return '';
 
   return (
-    <FilsLightbox files={files}>
+    <Slider.Lightbox slides={files}>
       {({ turnOn }) => (
         <div className={gridClassName}>
           {thumbs.map((f, i) => (
-            <a
-              key={f._id}
-              className="position-relative"
-              style={{ width: '152px' }}
-              href={`/uploads/${f.path}`}
-              target="_blank"
-              rel="noreferrer"
-              download={f.name}
+            <Fil.Link
+              key={f._id || f.path}
               onClick={(evt) => {
                 if (turnOn(f)) evt.preventDefault();
               }}
@@ -53,11 +47,11 @@ const FilsGallery = ({
                   </div>
                 )}
               </FilsThumbnail>
-            </a>
+            </Fil.Link>
           ))}
         </div>
       )}
-    </FilsLightbox>
+    </Slider.Lightbox>
   );
 };
 

@@ -20,7 +20,7 @@ const demoImgs = [
   'https://images.unsplash.com/photo-1583872341575-610c859c7a57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=806&q=80',
   'https://images.unsplash.com/photo-1683488780112-f47a64de5d15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
 ];
-const slides = demoImgs.map((s) => ({ path: s }));
+const slides = demoImgs.map((s) => ({ path: s, type: 'image/jpeg' }));
 
 const defaults = {
   checkbox: true,
@@ -63,131 +63,134 @@ const PageExample = () => (
           defaults={defaults}
           schema={schema(doc)}
         >
-          <Doc.Ctrls />
+          {({ values }) => (
+            <>
+              <Doc.Ctrls />
 
-          <Tabs route>
-            <Tab eventKey="general">
-              <Form.Check name="checkbox" />
-              <Form.Check name="switch" type="switch" />
-              <Form.Check name="radio" type="radio" value="radio-1" />
-              <Form.Check name="radio" type="radio" value="radio-2" />
-              <div style={{ width: '9rem' }}>
-                <Form.Stepper name="stepper" />
-              </div>
-              <Form.Input name="text" />
-              <Form.Input name="password" type="password" />
-              <Form.Password
-                name="password"
-                helpText="Password with visibility toggle"
-              />
-              <Form.LngGroup name="lngTexts">
-                {(lng) => (
-                  <Form.Input name={`lngTexts.${lng}`} fieldOnly />
-                )}
-              </Form.LngGroup>
-              <Form.Select
-                name="select"
-                helpText={`
-                  Support array of strings,
-                  array of label value paired object
-                  and react components
-                `}
-              >
-                {mapLng((value, label) => ({ value, label }))}
-              </Form.Select>
-              <Form.Textarea name="textarea" />
-              <Form.Editor name="editor" />
-            </Tab>
-            <Tab eventKey="files">
-              <Form.FilsList name="files" multiple />
-              <Form.FilsCoverImg name="coverImg" />
-            </Tab>
-            <Tab eventKey="address">
-              <Form.Input
-                name="address"
-                helpText="Need Google API key in your .env file to work"
-              />
-              <Form.Coordinates
-                name="location.coordinates"
-                address="address"
-              />
-            </Tab>
-            <Tab eventKey="array">
-              <Form.Array
-                name="contacts"
-                tmpl="formset"
-                defaults={{
-                  firstname: '',
-                  lastname: '',
-                  phones: [''],
-                }}
-              >
-                {(i) => (
-                  <>
-                    <div className="row">
-                      <div className="col">
-                        <Form.Input name={`contacts.${i}.firstname`} />
-                      </div>
-                      <div className="col">
-                        <Form.Input name={`contacts.${i}.lastname`} />
-                      </div>
-                    </div>
-                    <Form.Array
-                      name={`contacts.${i}.phones`}
-                      tmpl="list"
-                      defaults=""
-                    >
-                      {((ii) => (
-                        <Form.Input
-                          name={`contacts.${i}.phones.${ii}`}
-                          label={null}
-                        />
-                      ))}
+              <Tabs route>
+                <Tab eventKey="general">
+                  <Form.Check name="checkbox" />
+                  <Form.Check name="switch" type="switch" />
+                  <Form.Check name="radio" type="radio" value="radio-1" />
+                  <Form.Check name="radio" type="radio" value="radio-2" />
+                  <div style={{ width: '9rem' }}>
+                    <Form.Stepper name="stepper" />
+                  </div>
+                  <Form.Input name="text" />
+                  <Form.Input name="password" type="password" />
+                  <Form.Password
+                    name="password"
+                    helpText="Password with visibility toggle"
+                  />
+                  <Form.LngGroup name="lngTexts">
+                    {(lng) => (
+                      <Form.Input name={`lngTexts.${lng}`} fieldOnly />
+                    )}
+                  </Form.LngGroup>
+                  <Form.Select
+                    name="select"
+                    helpText={`
+                      Support array of strings,
+                      array of label value paired object
+                      and react components
+                    `}
+                  >
+                    {mapLng((value, label) => ({ value, label }))}
+                  </Form.Select>
+                  <Form.Textarea name="textarea" />
+                  <Form.Editor name="editor" />
+                </Tab>
+                <Tab eventKey="files">
+                  <Form.FilsCoverImg name="coverImg" />
+                  <Form.FilsList name="files" multiple />
+                </Tab>
+                <Tab eventKey="slider">
+                  <Slider.Lightbox slides={slides}>
+                    {({ turnOn }) => (
+                      <Slider slides={slides}>
+                        <div><Slider.Pg /></div>
+                        <div className="position-relative">
+                          <Slider.Body
+                            style={{ height: '50vh' }}
+                            pagination
+                            slideProps={(s, i) => ({
+                              onClick: () => turnOn(i),
+                            })}
+                          />
+                          <Slider.Nav />
+                        </div>
+                        <Slider.Thumbs />
+                      </Slider>
+                    )}
+                  </Slider.Lightbox>
+                </Tab>
+                <Tab eventKey="address">
+                  <Form.Input
+                    name="address"
+                    helpText="Need Google API key in your .env file to work"
+                  />
+                  <Form.Coordinates
+                    name="location.coordinates"
+                    address="address"
+                  />
+                </Tab>
+                <Tab eventKey="array">
+                  <Form.Array
+                    name="contacts"
+                    tmpl="formset"
+                    defaults={{
+                      firstname: '',
+                      lastname: '',
+                      phones: [''],
+                    }}
+                  >
+                    {(i) => (
+                      <>
+                        <div className="row">
+                          <div className="col">
+                            <Form.Input name={`contacts.${i}.firstname`} />
+                          </div>
+                          <div className="col">
+                            <Form.Input name={`contacts.${i}.lastname`} />
+                          </div>
+                        </div>
+                        <Form.Array
+                          name={`contacts.${i}.phones`}
+                          tmpl="list"
+                          defaults=""
+                        >
+                          {((ii) => (
+                            <Form.Input
+                              name={`contacts.${i}.phones.${ii}`}
+                              label={null}
+                            />
+                          ))}
 
-                    </Form.Array>
-                  </>
-                )}
-              </Form.Array>
-            </Tab>
-            <Tab eventKey="relations">
-              <Form.Ref
-                name="ref"
-                api={{ url: '/api/users' }}
-              >
-                {(r) => r.email}
-              </Form.Ref>
-              <Form.Refs
-                name="refs"
-                api={{ url: '/api/users' }}
-              >
-                {(r) => r.email}
-              </Form.Refs>
-            </Tab>
-            <Tab eventKey="slider">
-              <Slider.Lightbox slides={slides}>
-                {({ turnOn }) => (
-                  <Slider slides={slides}>
-                    <div><Slider.Pg /></div>
-                    <div className="position-relative">
-                      <Slider.Body
-                        style={{ height: '50vh' }}
-                        pagination
-                        slideProps={(s, i) => ({
-                          onClick: () => turnOn(i)
-                        })}
-                      />
-                      <Slider.Nav />
-                    </div>
-                    <Slider.Thumbs />
-                  </Slider>
-                )}
-              </Slider.Lightbox>
-            </Tab>
-            <Tab eventKey="calendar">
-              <Cal api={{ url: '/api/access-logs/all' }} />
-            </Tab>
-          </Tabs>
-
+                        </Form.Array>
+                      </>
+                    )}
+                  </Form.Array>
+                </Tab>
+                <Tab eventKey="relations">
+                  <Form.Ref
+                    name="ref"
+                    api={{ url: '/api/users' }}
+                  >
+                    {(r) => r.email}
+                  </Form.Ref>
+                  <Form.Refs
+                    name="refs"
+                    api={{ url: '/api/users' }}
+                  >
+                    {(r) => r.email}
+                  </Form.Refs>
+                </Tab>
+                <Tab eventKey="calendar">
+                  <Cal api={{ url: '/api/access-logs/all' }} />
+                </Tab>
+              </Tabs>
+            </>
+          )}
         </Doc.Form>
       </Page>
     )}

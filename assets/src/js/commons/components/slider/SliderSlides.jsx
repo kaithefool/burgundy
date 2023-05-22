@@ -7,6 +7,7 @@ import 'swiper/scss';
 import 'swiper/scss/thumbs';
 import 'swiper/scss/pagination';
 
+import Fil from '../fils/fil';
 import useSlider from './useSlider';
 
 const SliderSlides = ({
@@ -17,10 +18,9 @@ const SliderSlides = ({
   const { slides, spaceBetween } = useSlider();
 
   const r = children || ((s) => (
-    <div
-      className="img-bg"
-      style={{ backgroundImage: `url(${s.path})` }}
-    />
+    <Fil file={s}>
+      <Fil.Preview />
+    </Fil>
   ));
 
   return (

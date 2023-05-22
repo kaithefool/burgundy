@@ -1,5 +1,3 @@
-import React from 'react';
-
 import useFil from './useFil';
 import FilContext from './FilContext';
 import FilPreview from './FilPreview';
@@ -10,6 +8,8 @@ import FilName from './FilName';
 import FilSize from './FilSize';
 import FilRemove from './FilRemove';
 import FilProgress from './FilProgress';
+import FilLink from './FilLink';
+import FilThumbnail from './FilThumbnail';
 
 export {
   useFil,
@@ -22,9 +22,11 @@ export {
   FilSize,
   FilRemove,
   FilProgress,
+  FilLink,
+  FilThumbnail,
 };
 
-const Fil = (props) => <FilProvider {...props} />;
+const Fil = FilProvider;
 
 Fil.Context = FilContext;
 Fil.Preview = FilPreview;
@@ -35,5 +37,7 @@ Fil.Name = FilName;
 Fil.Size = FilSize;
 Fil.Remove = FilRemove;
 Fil.Progress = FilProgress;
+Fil.Link = FilLink;
+Fil.Thumbnail = FilThumbnail;
 
 export default Fil;

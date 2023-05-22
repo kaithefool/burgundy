@@ -5,7 +5,9 @@ import { faFile } from '@fortawesome/free-solid-svg-icons/faFile';
 import { faFileAlt } from '@fortawesome/free-solid-svg-icons/faFileAlt';
 import { faFileWord } from '@fortawesome/free-solid-svg-icons/faFileWord';
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons/faFileExcel';
-import { faFilePowerpoint } from '@fortawesome/free-solid-svg-icons/faFilePowerpoint';
+import {
+  faFilePowerpoint,
+} from '@fortawesome/free-solid-svg-icons/faFilePowerpoint';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons/faFilePdf';
 import { faCode } from '@fortawesome/free-solid-svg-icons/faCode';
 import { faFileCsv } from '@fortawesome/free-solid-svg-icons/faFileCsv';

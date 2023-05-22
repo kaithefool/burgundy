@@ -1,5 +1,3 @@
-import React from 'react';
-
 import DirClick from './DirClick';
 import DirContext from './DirContext';
 import DirDrop from './DirDrop';
@@ -16,7 +14,7 @@ export {
   useDir,
 };
 
-const Dir = (props) => <DirProvider {...props} />;
+const Dir = DirProvider;
 
 Dir.Click = DirClick;
 Dir.Context = DirContext;

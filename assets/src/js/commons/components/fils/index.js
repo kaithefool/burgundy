@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Fil from './fil';
 import Dir from './dir';
 import FilsList from './FilsList';
@@ -12,7 +10,7 @@ export {
   FilsInput,
 };
 
-const Fils = (props) => <FilsInput {...props} />;
+const Fils = FilsInput;
 
 Fils.Fil = Fil;
 Fils.Dir = Dir;
