@@ -10,9 +10,8 @@ const FilsGallery = ({
   gridClassName = 'd-flex flex-wrap gap-2 py-2',
   thumb: thumbProps = {},
 }) => {
-  const files = imgOnly
-    ? list.filter((f) => f.type.match(/^image\//))
-    : list;
+  const imgs = list.filter((f) => f.type.match(/^image\//));
+  const files = imgOnly ? imgs : list;
   const thumbs = thumbsLimit
     ? files.slice(0, thumbsLimit)
     : files;
@@ -21,33 +20,43 @@ const FilsGallery = ({
   if (!thumbs.length) return '';
 
   return (
-    <Slider.Lightbox slides={files}>
+    <Slider.Lightbox slides={imgs}>
       {({ turnOn }) => (
         <div className={gridClassName}>
-          {thumbs.map((f, i) => (
-            <Fil.Link
-              key={f._id || f.path}
-              onClick={(evt) => {
-                if (turnOn(f)) evt.preventDefault();
-              }}
-              {...thumbProps}
-            >
-              <FilsThumbnail file={f}>
-                {more > 0 && i >= thumbs.length - 1 && (
-                  <div
-                    className={`
-                      bg-dark bg-opacity-50
-                      d-flex align-items-center
-                      text-white display-4
-                    `}
-                  >
-                    <div className="text-center w-100">
-                      {`+${more}`}
+          {thumbs.map((t, i) => (
+            <Fil key={t._id || t.path} file={t}>
+              <Fil.Link
+                className="position-relative"
+                style={{ width: '152px' }}
+                onClick={(evt) => {
+                  const s = imgs.findIndex((f) => (
+                    (t._id && f._id === t._id) || f.path === t.path
+                  ));
+
+                  if (s !== -1) {
+                    evt.preventDefault();
+                    turnOn(s);
+                  }
+                }}
+                {...thumbProps}
+              >
+                <Fil.Thumbnail>
+                  {more > 0 && i >= thumbs.length - 1 && (
+                    <div
+                      className={`
+                        bg-dark bg-opacity-50
+                        d-flex align-items-center
+                        text-white display-4
+                      `}
+                    >
+                      <div className="text-center w-100">
+                        {`+${more}`}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </FilsThumbnail>
-            </Fil.Link>
+                  )}
+                </Fil.Thumbnail>
+              </Fil.Link>
+            </Fil>
           ))}
         </div>
       )}

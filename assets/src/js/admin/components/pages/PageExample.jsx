@@ -3,7 +3,7 @@ import { array, object, string } from 'yup';
 
 import Form from '~/commons/components/form';
 import Cal from '~/commons/components/cal';
-import Slider from '~/commons/components/slider';
+import { Slider } from '~/commons/components/slider';
 import { Tabs, Tab } from '~/commons/components/layout/tabs';
 import { password } from '~/commons/validators';
 import { mapLng, reduceLng } from '~/commons/helpers';
@@ -11,6 +11,7 @@ import env from '~/commons/config/env';
 
 import Doc from '../layout/doc';
 import Page from '../layout/Page';
+import FilsGallery from '../../../commons/components/fils/FilsGallery';
 
 const demoImgs = [
   'https://images.unsplash.com/photo-1684051489159-526760dbb8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
@@ -103,6 +104,8 @@ const PageExample = () => (
                 <Tab eventKey="files">
                   <Form.FilsCoverImg name="coverImg" />
                   <Form.FilsList name="files" multiple />
+                  <Form.Label name="gallery" />
+                  <FilsGallery files={values.files} />
                 </Tab>
                 <Tab eventKey="slider">
                   <Slider.Lightbox slides={slides}>
