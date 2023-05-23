@@ -6,10 +6,12 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 
 import useSlider from './useSlider';
 
-const posClassName = 'position-absolute top-50 translate-middle-y';
-
 const SliderNav = ({
-  className = 'btn btn-lg text-white bg-dark bg-opacity-50 rounded-0',
+  className = (dir) => `
+    position-absolute top-50 translate-middle-y
+    btn btn-lg text-white bg-dark bg-opacity-50 rounded-0
+    ${dir === 'prev' ? 'start-0' : 'end-0'}
+  `,
 }) => {
   const { pg, swiper, length } = useSlider();
 
@@ -19,7 +21,7 @@ const SliderNav = ({
     <div>
       <button
         type="button"
-        className={`${posClassName} start-0 ${className}`}
+        className={className('prev')}
         disabled={pg.isBeginning}
         style={{ zIndex: 10 }}
         onClick={() => swiper.slidePrev()}
@@ -28,7 +30,7 @@ const SliderNav = ({
       </button>
       <button
         type="button"
-        className={`${posClassName} end-0 ${className}`}
+        className={className('next')}
         disabled={pg.isEnd}
         style={{ zIndex: 10 }}
         onClick={() => swiper.slideNext()}

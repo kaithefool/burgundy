@@ -117,7 +117,7 @@ const PageExample = () => (
                           <div className="position-relative">
                             <Slider.Body
                               style={{ height: '50vh' }}
-                              pagination
+                              pagination={{ clickable: true }}
                               slideProps={(s, i) => ({
                                 onClick: () => turnOn(i),
                               })}
