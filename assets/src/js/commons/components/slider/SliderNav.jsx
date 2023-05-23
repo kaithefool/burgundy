@@ -11,9 +11,9 @@ const posClassName = 'position-absolute top-50 translate-middle-y';
 const SliderNav = ({
   className = 'btn btn-lg text-white bg-dark bg-opacity-50 rounded-0',
 }) => {
-  const { pg, swiper } = useSlider();
+  const { pg, swiper, length } = useSlider();
 
-  if (!pg.length) return '';
+  if (!length) return '';
 
   return (
     <div>

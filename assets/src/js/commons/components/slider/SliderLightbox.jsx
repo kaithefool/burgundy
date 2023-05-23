@@ -15,7 +15,9 @@ const SliderLightbox = ({
   ...props
 }) => {
   const [show, setShow] = useState(false);
-  const turnOn = (i) => setShow(i);
+  const turnOn = (i) => {
+    setShow(i);
+  };
 
   return (
     <>
@@ -29,7 +31,7 @@ const SliderLightbox = ({
       >
         <Modal.Body>
           <SliderProvider
-            initialSlide={show || 0}
+            initialSlide={show}
             {...props}
           >
             <div className="d-flex flex-column h-100">

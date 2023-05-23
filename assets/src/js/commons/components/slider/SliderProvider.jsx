@@ -12,13 +12,13 @@ const SliderProvider = ({
     activeIndex: initialSlide,
     isBeginning: initialSlide === 0,
     isEnd: initialSlide === slides.length - 1,
-    length: slides.length,
   });
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [swiper, setSwiper] = useState(null);
 
   const value = {
     slides,
+    length: slides.length,
     spaceBetween,
     initialSlide,
     pg,

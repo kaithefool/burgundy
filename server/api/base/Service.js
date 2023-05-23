@@ -4,6 +4,7 @@ const _ = require('lodash');
 class Service {
   constructor(model, opts = {}) {
     this.model = model;
+    this.Model = model.Model;
     this.opts = opts;
   }
 
