@@ -107,8 +107,8 @@ const PageExample = () => (
                   <Tab eventKey="files">
                     <Form.FilsCoverImg name="coverImg" />
                     <Form.FilsList name="files" multiple />
-                    {/* <Form.Label name="gallery" />
-                    <FilsGallery files={files} /> */}
+                    <Form.Label name="gallery" />
+                    <FilsGallery files={files} />
                     <Form.Label name="slider" />
                     <Slider.Lightbox slides={files}>
                       {({ turnOn }) => (

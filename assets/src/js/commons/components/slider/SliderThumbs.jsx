@@ -13,7 +13,10 @@ const SliderThumbs = ({
     <SliderSlides
       className="swiper-thumbs"
       style={{ marginTop: spaceBetween }}
-      onSwiper={setThumbsSwiper}
+      onSwiper={(s) => {
+        // wait for modal to show
+        setTimeout(() => setThumbsSwiper(s), 0);
+      }}
       slidesPerView="auto"
       watchSlidesProgress
       centerInsufficientSlides
