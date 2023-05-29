@@ -5,8 +5,11 @@ export default React.createContext({
   query: {
     view: 'month', date: '', filter: {},
   },
+  field: '',
   fetched: [],
+  events: [],
   grid: [],
+  views: ['month', 'week', 'day'],
 
   fetch: () => {},
   refresh: () => {},

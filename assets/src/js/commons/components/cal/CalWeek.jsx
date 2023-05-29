@@ -4,7 +4,7 @@ import CalEventsAxis from './CalEventsAxis';
 import CalDayHeader from './CalDayHeader';
 import CalEventsGrid from './CalEventsGrid';
 
-const CalWeek = () => {
+const CalWeek = ({ children }) => {
   const { query, grid } = useCal();
 
   if (query.view !== 'week') return null;
@@ -18,7 +18,9 @@ const CalWeek = () => {
       ))}
       events={grid.map((d, i) => (
         <div key={d.toString()} className={`col ${i ? 'border-start' : ''}`}>
-          <CalEventsAxis day={d} style={{ height: '150vh' }} />
+          <CalEventsAxis day={d} style={{ height: '150vh' }}>
+            {children}
+          </CalEventsAxis>
         </div>
       ))}
     />

@@ -5,27 +5,24 @@ import inflect from 'inflect';
 import useCal from './useCal';
 
 const CalViewSwitch = () => {
-  const { query: { view }, fetch } = useCal();
+  const { query: { view }, views, fetch } = useCal();
   const { t } = useTranslation();
-
-  const btn = (type) => (
-    <button
-      type="button"
-      className={`
-        btn btn-sm
-        ${view === type ? 'btn-primary' : 'btn-outline-primary'}
-      `}
-      onClick={() => fetch({ view: type })}
-    >
-      {inflect.titleize(t(type))}
-    </button>
-  );
 
   return (
     <div className="btn-group">
-      {btn('month')}
-      {btn('week')}
-      {btn('day')}
+      {views.map((v) => (
+        <button
+          key={v}
+          type="button"
+          className={`
+            btn btn-sm
+            ${view === v ? 'btn-primary' : 'btn-outline-primary'}
+          `}
+          onClick={() => fetch({ view: v })}
+        >
+          {inflect.titleize(t(v))}
+        </button>
+      ))}
     </div>
   );
 };

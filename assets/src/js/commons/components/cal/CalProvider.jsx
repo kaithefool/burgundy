@@ -107,6 +107,7 @@ const getGrid = ({ view, date }) => {
 };
 
 const CalProvider = ({
+  views = ['month', 'week', 'day'],
   api,
   initQuery: iq,
   filter: baseFilter = {},
@@ -202,6 +203,7 @@ const CalProvider = ({
     fetched,
     events: fetched?.payload || [],
     grid,
+    views,
 
     fetch,
     refresh,

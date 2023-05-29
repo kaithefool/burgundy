@@ -5,7 +5,7 @@ import CalDayHeader from './CalDayHeader';
 import CalEventsGrid from './CalEventsGrid';
 import useCal from './useCal';
 
-const CalDay = () => {
+const CalDay = ({ children }) => {
   const { query } = useCal();
 
   if (query.view !== 'day') return null;
@@ -19,7 +19,9 @@ const CalDay = () => {
         )}
       events={(
         <div className="col">
-          <CalEventsAxis style={{ height: '150vh' }} />
+          <CalEventsAxis style={{ height: '150vh' }}>
+            {children}
+          </CalEventsAxis>
         </div>
         )}
     />

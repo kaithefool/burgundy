@@ -8,6 +8,7 @@ const round = (n) => Math.round(n * 100) / 100;
 const CalEventsAxis = ({
   day,
   className = '',
+  children,
   ...props
 }) => {
   const {
@@ -49,17 +50,18 @@ const CalEventsAxis = ({
         return (
           <Fragment key={i}>
             {r.map((e, ii) => (
-              <div
+              <CalEvent
                 key={e._id}
-                className="position-absolute"
                 style={{
+                  position: 'absolute',
                   left: `${ii * w}%`,
                   width: `${w}%`,
                   ...pctInDay(e, d),
                 }}
+                event={e}
               >
-                <CalEvent event={e} />
-              </div>
+                {children}
+              </CalEvent>
             ))}
           </Fragment>
         );

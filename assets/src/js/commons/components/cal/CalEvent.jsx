@@ -1,23 +1,31 @@
 import React from 'react';
 
-import useCal from './useCal';
+import CalEventTime from './CalEventTime';
+
+const className = `
+  shadow-sm bg-body overflow-hidden
+  border-primary border-start border-4 ps-2
+`;
 
 const CalEvent = ({
   event,
   children,
+  ...props
 }) => {
-  const { eventDates } = useCal();
-  const d = eventDates(event);
+  if (children) {
+    return typeof children === 'function'
+      ? children(props, event)
+      : children;
+  }
 
   return (
-    <div className="rounded border bg-body overflow-hidden">
-      <div className="border-primary border-start border-4 ps-2">
-        <h6 className="m-0 small">
-          <strong>{d.toFormat('H:mm')}</strong>
-          {' '}
-          {event.user?.email || event.action}
-        </h6>
-      </div>
+    <div
+      className={className}
+      {...props}
+    >
+      <small className="fw-bold">
+        <CalEventTime event={event} />
+      </small>
     </div>
   );
 };
