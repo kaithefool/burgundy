@@ -13,7 +13,6 @@ const CalTimeAxis = ({
       {[...Array(25).keys()].slice(...range).map((h) => (
         <div
           key={h}
-          hour={h}
           className={`position-${h !== range[0] ? 'absolute' : 'relative'}`}
           style={{ top: `${h * 4.166}%` }}
         >
