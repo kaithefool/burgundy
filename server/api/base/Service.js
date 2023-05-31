@@ -132,7 +132,7 @@ class Service {
 
   async create(attrs, user) {
     return this.try(
-      () => this.model.create(attrs, user),
+      () => this.model.create(attrs.array || attrs, user),
     );
   }
 

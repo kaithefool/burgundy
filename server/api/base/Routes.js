@@ -75,7 +75,7 @@ class Routes {
         ..._.castArray(attrsPath).map((p) => {
           const a = req[p];
 
-          return Array.isArray(a) ? { data: a } : a;
+          return Array.isArray(a) ? { array: a } : a;
         }),
       );
 
