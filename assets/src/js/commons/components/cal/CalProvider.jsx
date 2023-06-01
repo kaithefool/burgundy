@@ -7,6 +7,7 @@ import useHttp from '../../hooks/useHttp';
 import useQuery from '../../hooks/useQuery';
 import useComparable from '../../hooks/useComparable';
 import useAlert from '../alert/useAlert';
+import useList from '../list/useList';
 
 const parseDate = (date) => {
   let d = date;
@@ -172,6 +173,8 @@ const CalProvider = ({
   };
 
   const refresh = () => fetch();
+
+  useList({ onRefresh: refresh });
 
   // http alerts
   useAlert(res, {

@@ -5,6 +5,7 @@ import useHttp from '../../hooks/useHttp';
 import useComparable from '../../hooks/useComparable';
 import useQuery from '../../hooks/useQuery';
 import useAlert from '../alert/useAlert';
+import useList from './useList';
 
 const ListProvider = ({
   children,
@@ -37,6 +38,7 @@ const ListProvider = ({
       ...(urlQuery.filter && { filter: urlQuery.filter }),
     }),
   }));
+  const [refreshCount, setRefreshCount] = useState(0);
 
   const lazying = lazy && !Object.keys(query.filter).length;
   let rows = [];
@@ -74,7 +76,10 @@ const ListProvider = ({
   const refresh = () => {
     if (infinite) setPile({ rows: [] });
     fetch();
+    setRefreshCount(refreshCount + 1);
   };
+
+  useList({ onRefresh: refresh });
 
   const select = (s) => setSelected(s);
 
@@ -129,6 +134,7 @@ const ListProvider = ({
     rows,
     res,
     pile,
+    refreshCount,
 
     fetch,
     refresh,

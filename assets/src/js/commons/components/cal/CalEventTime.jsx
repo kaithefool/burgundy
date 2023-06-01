@@ -3,7 +3,7 @@ import React from 'react';
 
 import useCal from './useCal';
 
-const CalEventTime = ({ event, format = 'H:mm a' }) => {
+const CalEventTime = ({ event, format = 'H:mm' }) => {
   const { eventDates } = useCal();
   const d = eventDates(event);
 

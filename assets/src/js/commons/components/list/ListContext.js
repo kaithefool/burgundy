@@ -18,6 +18,7 @@ export default React.createContext({
   res: {},
   staged: [],
   pile: { rows: [] },
+  refreshCount: 0,
 
   // actions
   fetch: () => {},
