@@ -90,9 +90,10 @@ class Routes {
       attrs,
       user,
       t, // i18n
+      pickLng,
     }, res, next) => {
       try {
-        res.locals.out = await service[serve](attrs, user, { t });
+        res.locals.out = await service[serve](attrs, user, { t, pickLng });
       } catch (e) {
         return next(e);
       }
