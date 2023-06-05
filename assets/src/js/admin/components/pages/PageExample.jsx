@@ -34,6 +34,7 @@ const defaults = {
   textarea: '',
   editor: '',
   lngTexts: reduceLng(''),
+  lngEditor: reduceLng(''),
   files: [],
   coverImg: [],
   address: '',
@@ -89,6 +90,15 @@ const PageExample = () => (
                     <Form.LngGroup name="lngTexts">
                       {(lng) => (
                         <Form.Input name={`lngTexts.${lng}`} fieldOnly />
+                      )}
+                    </Form.LngGroup>
+                    <Form.LngGroup name="lngEditor" block>
+                      {(lng) => (
+                        <Form.Editor
+                          key={lng}
+                          name={`lngEditor.${lng}`}
+                          fieldOnly
+                        />
                       )}
                     </Form.LngGroup>
                     <Form.Select
