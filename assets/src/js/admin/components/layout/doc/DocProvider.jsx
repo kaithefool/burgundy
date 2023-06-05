@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import Fetchable from '~/commons/components/util/Fetchable';
-import useHttp from '~/commons/hooks/useHttp';
+import Fetchable from '~/lib/components/util/Fetchable';
+import useHttp from '~/lib/hooks/useHttp';
 import DocContext from './DocContext';
 
 const DocProvider = ({

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Form from '~/commons/components/form';
-import { resolvePath } from '~/commons/helpers';
+import Form from '~/lib/components/form';
+import { resolvePath } from '~/lib/helpers';
 import useDoc from './useDoc';
 
 const DocForm = (props) => {

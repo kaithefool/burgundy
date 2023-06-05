@@ -4,10 +4,10 @@ import { object } from 'yup';
 
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane';
 import { useNavigate, Link } from 'react-router-dom';
-import Centered from '~/commons/components/layout/Centered';
-import Form from '~/commons/components/form';
-import { email } from '~/commons/validators';
-import { resolvePath } from '~/commons/helpers';
+import Centered from '~/lib/components/layout/Centered';
+import Form from '~/lib/components/form';
+import { email } from '~/lib/validators';
+import { resolvePath } from '~/lib/helpers';
 
 const PagePwdResetMail = () => {
   const { t } = useTranslation();

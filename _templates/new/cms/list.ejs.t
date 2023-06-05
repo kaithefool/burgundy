@@ -3,7 +3,7 @@ to: "<%= singleton ? null : `assets/src/js/admin/components/pages/Page${n.plural
 ---
 import React from 'react';
 
-import List from '~/commons/components/list';
+import List from '~/lib/components/list';
 import Page from '../layout/Page';
 
 const Page<%= n.plural.pascal %> = () => (

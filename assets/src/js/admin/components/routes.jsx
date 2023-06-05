@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import Error from '~/commons/components/util/Error';
+import Error from '~/lib/components/util/Error';
 
 import PageAccessLogs from './pages/PageAccessLogs';
 import PageViews from './pages/PageViews';

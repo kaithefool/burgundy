@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import BtnLng from '~/commons/components/btns/BtnLng';
-import { meta } from '~/commons/helpers';
+import BtnLng from '~/lib/components/btns/BtnLng';
+import { meta } from '~/lib/helpers';
 
 import SubDirsNav from './SubDirsNav';
 import useActiveLink from './useActiveLink';

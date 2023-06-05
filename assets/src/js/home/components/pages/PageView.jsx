@@ -2,10 +2,10 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import Fetchable from '~/commons/components/util/Fetchable';
-import Html from '~/commons/components/util/Html';
-import Centered from '~/commons/components/layout/Centered';
-import { meta } from '~/commons/helpers';
+import Fetchable from '~/lib/components/util/Fetchable';
+import Html from '~/lib/components/util/Html';
+import Centered from '~/lib/components/layout/Centered';
+import { meta } from '~/lib/helpers';
 
 const PageView = () => {
   const { '*': url } = useParams();

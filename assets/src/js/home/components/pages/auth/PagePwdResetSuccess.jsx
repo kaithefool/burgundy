@@ -6,8 +6,8 @@ import {
   faCheckCircle,
 } from '@fortawesome/free-regular-svg-icons/faCheckCircle';
 import { Link } from 'react-router-dom';
-import Centered from '~/commons/components/layout/Centered';
-import { resolvePath } from '~/commons/helpers';
+import Centered from '~/lib/components/layout/Centered';
+import { resolvePath } from '~/lib/helpers';
 
 const PagePwdResetSuccess = () => {
   const { t } = useTranslation();

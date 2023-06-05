@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import AlertContext from './AlertContext';
-import { newKey } from '~/commons/hooks/useUniqKey';
+import { newKey } from '~/lib/hooks/useUniqKey';
 
 const AlertProvider = ({
   children,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useHttp from '~/commons/hooks/useHttp';
+import useHttp from '~/lib/hooks/useHttp';
 import Pending from './Pending';
 import Error from './Error';
 

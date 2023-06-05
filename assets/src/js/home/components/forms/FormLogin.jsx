@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
 
-import Form from '~/commons/components/form';
-import { email, password } from '~/commons/validators';
+import Form from '~/lib/components/form';
+import { email, password } from '~/lib/validators';
 
 const FormLogin = () => {
   const { t } = useTranslation();

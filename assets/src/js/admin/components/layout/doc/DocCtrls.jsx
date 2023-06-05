@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Form from '~/commons/components/form';
+import Form from '~/lib/components/form';
 import DocUpdatedAt from './DocUpdatedAt';
 import DocCreatedAt from './DocCreatedAt';
 import DocBtnDel from './DocBtnDel';

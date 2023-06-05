@@ -7,7 +7,7 @@ import {
 
 import Nav from './layout/Nav';
 import AppRoutes from './routes';
-import Alert from '~/commons/components/alert';
+import Alert from '~/lib/components/alert';
 
 const Admin = () => (
   <div className="row g-0">

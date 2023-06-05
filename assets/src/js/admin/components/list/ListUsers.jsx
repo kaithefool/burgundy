@@ -1,6 +1,6 @@
 import React from 'react';
 
-import List from '~/commons/components/list';
+import List from '~/lib/components/list';
 import ListCtrlActivate from './ListCtrlActivate';
 
 const ListUsers = (props) => (

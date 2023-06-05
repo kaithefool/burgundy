@@ -3,10 +3,10 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import useHttp from '~/commons/hooks/useHttp';
-import BtnHttpConfirm from '~/commons/components/btns/BtnHttpConfirm';
-import useAlert from '~/commons/components/alert/useAlert';
-import { resolvePath } from '~/commons/helpers';
+import useHttp from '~/lib/hooks/useHttp';
+import BtnHttpConfirm from '~/lib/components/btns/BtnHttpConfirm';
+import useAlert from '~/lib/components/alert/useAlert';
+import { resolvePath } from '~/lib/helpers';
 
 import useDoc from './useDoc';
 

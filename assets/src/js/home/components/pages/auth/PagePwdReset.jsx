@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
 import { object } from 'yup';
-import Centered from '~/commons/components/layout/Centered';
-import Form from '~/commons/components/form';
-import Fetchable from '~/commons/components/util/Fetchable';
-import { password, passwordConfirm } from '~/commons/validators';
-import { resolvePath } from '~/commons/helpers';
+import Centered from '~/lib/components/layout/Centered';
+import Form from '~/lib/components/form';
+import Fetchable from '~/lib/components/util/Fetchable';
+import { password, passwordConfirm } from '~/lib/validators';
+import { resolvePath } from '~/lib/helpers';
 
 const PagePwdReset = () => {
   const { t } = useTranslation();

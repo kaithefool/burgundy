@@ -2,10 +2,10 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { object } from 'yup';
 
-import env from '~/commons/config/env';
-import Form from '~/commons/components/form';
-import { email, password } from '~/commons/validators';
-import { reduceLng, mapLng } from '~/commons/helpers';
+import env from '~/lib/config/env';
+import Form from '~/lib/components/form';
+import { email, password } from '~/lib/validators';
+import { reduceLng, mapLng } from '~/lib/helpers';
 
 import Doc from '../layout/doc';
 import Page from '../layout/Page';

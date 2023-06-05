@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { Link } from 'react-router-dom';
-import Centered from '~/commons/components/layout/Centered';
-import { resolvePath } from '~/commons/helpers';
+import Centered from '~/lib/components/layout/Centered';
+import { resolvePath } from '~/lib/helpers';
 
 const PagePwdResetMailSuccess = () => {
   const { t } = useTranslation();

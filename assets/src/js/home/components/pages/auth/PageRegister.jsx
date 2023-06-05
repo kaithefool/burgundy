@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 
-import Centered from '~/commons/components/layout/Centered';
-import Form from '~/commons/components/form';
-import { email, password, passwordConfirm } from '~/commons/validators';
+import Centered from '~/lib/components/layout/Centered';
+import Form from '~/lib/components/form';
+import { email, password, passwordConfirm } from '~/lib/validators';
 
 const PageRegister = () => {
   const { t } = useTranslation();

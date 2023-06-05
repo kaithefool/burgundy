@@ -7,9 +7,9 @@ import {
   faCheckCircle,
 } from '@fortawesome/free-regular-svg-icons/faCheckCircle';
 
-import Centered from '~/commons/components/layout/Centered';
-import Fetchable from '~/commons/components/util/Fetchable';
-import { resolvePath } from '~/commons/helpers';
+import Centered from '~/lib/components/layout/Centered';
+import Fetchable from '~/lib/components/util/Fetchable';
+import { resolvePath } from '~/lib/helpers';
 
 const PageRegisterVerify = () => {
   const { t } = useTranslation();

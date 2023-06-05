@@ -1,17 +1,17 @@
 import React from 'react';
 import { array, object, string } from 'yup';
 
-import Form from '~/commons/components/form';
-import Cal from '~/commons/components/cal';
-import { Slider } from '~/commons/components/slider';
-import { Tabs, Tab } from '~/commons/components/layout/tabs';
-import { password } from '~/commons/validators';
-import { mapLng, reduceLng } from '~/commons/helpers';
-import env from '~/commons/config/env';
+import Form from '~/lib/components/form';
+import Cal from '~/lib/components/cal';
+import { Slider } from '~/lib/components/slider';
+import FilsGallery from '~/lib/components/fils/FilsGallery';
+import { Tabs, Tab } from '~/lib/components/layout/tabs';
+import { password } from '~/lib/validators';
+import { mapLng, reduceLng } from '~/lib/helpers';
+import env from '~/lib/config/env';
 
 import Doc from '../layout/doc';
 import Page from '../layout/Page';
-import FilsGallery from '../../../commons/components/fils/FilsGallery';
 
 const demoImgs = [
   'https://images.unsplash.com/photo-1684051489159-526760dbb8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',

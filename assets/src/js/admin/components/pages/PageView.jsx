@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
-import Form from '~/commons/components/form';
+import Form from '~/lib/components/form';
 import LngTabs from '../layout/LngTabs';
-import { reduceLng } from '~/commons/helpers';
+import { reduceLng } from '~/lib/helpers';
 
 const defaults = {
   url: '',

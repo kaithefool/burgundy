@@ -3,7 +3,7 @@ import React from 'react';
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
 
-import List, { useList } from '~/commons/components/list';
+import List, { useList } from '~/lib/components/list';
 
 const ListCtrlActivate = ({ api: apiOpts }) => {
   const { selected, api: listApi } = useList();

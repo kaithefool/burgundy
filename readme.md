@@ -43,7 +43,7 @@ SOCKET=1
 ... and in your assets script, connect the server with:
 ```js
 import { io } from 'socket.io-client';
-import env from '~/commons/config/env';
+import env from '~/lib/config/env';
 
 const socket = io({
   extraHeaders: {

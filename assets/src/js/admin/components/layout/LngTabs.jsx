@@ -2,8 +2,8 @@ import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
-import env from '~/commons/config/env';
-import { mapLng } from '~/commons/helpers';
+import env from '~/lib/config/env';
+import { mapLng } from '~/lib/helpers';
 
 const LngTabs = ({
   children,

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons/faAngleRight';
 
-import { resolvePath } from '~/commons/helpers';
+import { resolvePath } from '~/lib/helpers';
 
 import useActiveLink from './useActiveLink';
 
