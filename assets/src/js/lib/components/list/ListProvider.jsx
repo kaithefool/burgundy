@@ -17,6 +17,7 @@ const ListProvider = ({
   history = true,
   lazy = false,
   infinite = false,
+  rows: nonHttpRows,
 }) => {
   const initQuery = {
     ...!infinite && { skip: 0, limit: 20 },
@@ -43,7 +44,10 @@ const ListProvider = ({
   const lazying = lazy && !Object.keys(query.filter).length;
   let rows = [];
 
-  if (!lazying) {
+  if (nonHttpRows) {
+    rows = typeof nonHttpRows === 'function'
+      ? nonHttpRows(query) : nonHttpRows;
+  } else if (!lazying) {
     rows = infinite
       ? pile.rows
       : fetched?.payload?.rows || [];
@@ -65,7 +69,10 @@ const ListProvider = ({
 
     setQuery(newQ); // set state
 
-    if (!lazy || Object.keys(newQ.filter).length) {
+    if (
+      !nonHttpRows
+      && (!lazy || Object.keys(newQ.filter).length)
+    ) {
       req({
         ...api,
         params: { ...newQ, filter: { ...newQ.filter, ...baseFilter } },

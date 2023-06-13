@@ -9,7 +9,7 @@ export default function errorParser(err) {
   } else if (code === 'ECONNABORTED') {
     payload = { message: i18n.t('res.timeout') };
   } else {
-    payload = response.data;
+    payload = response?.data;
   }
 
   return {

@@ -23,8 +23,6 @@ const FormRefSearch = ({
   const [{ value }] = useField(name);
   let excl = null;
 
-  if (!props.api) return '';
-
   if (Array.isArray(value)) {
     if (value.length) excl = value.map((r) => r._id);
   } else if (value) {
