@@ -14,7 +14,7 @@
     "build": "npm run postinstall && npm run build-assets",
     "setup": "node server/bin/setup",
     "postversion": "git push && git push --tags",
-    "sync-fwk": "git fetch fwk master:fwk"
+    "sync-fwk": "git fetch burgundy master:fwk"
   },
   "repository": {
     "type": "git",
