@@ -6,7 +6,8 @@ const path = require('path');
 
 const { name } = require('../../package.json');
 
-const envPath = path.resolve(__dirname, '../../private/.env');
+const envDirPath = path.resolve(__dirname, '../../private');
+const envPath = path.resolve(envDirPath, '.env');
 
 const template = () => `
 ROOT=http://localhost:3000
@@ -54,6 +55,7 @@ GOOGLE_API_KEY=
 `;
 
 if (!fs.existsSync(envPath)) {
+  fs.mkdirSync(envDirPath, { recursive: true });
   fs.writeFileSync(envPath, template());
 
   console.log('Environment file generated.');
