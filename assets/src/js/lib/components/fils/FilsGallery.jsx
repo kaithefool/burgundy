@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Fil from './fil';
-import { Slider } from '../slider';
+import Slider from '../slider';
 
 const FilsGallery = ({
   files: list,

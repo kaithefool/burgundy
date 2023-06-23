@@ -3,7 +3,7 @@ import { array, object, string } from 'yup';
 
 import Form from '~/lib/components/form';
 import Cal from '~/lib/components/cal';
-import { Slider } from '~/lib/components/slider';
+import Slider from '~/lib/components/slider';
 import FilsGallery from '~/lib/components/fils/FilsGallery';
 import { Tabs, Tab } from '~/lib/components/layout/tabs';
 import { password } from '~/lib/validators';

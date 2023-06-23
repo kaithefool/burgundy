@@ -1,5 +1,3 @@
-import React from 'react';
-
 import ListContext from './ListContext';
 import ListProvider from './ListProvider';
 import ListSearch from './ListSearch';
@@ -24,7 +22,7 @@ export {
   useList,
 };
 
-const List = (props) => <ListProvider {...props} />;
+const List = ListProvider;
 
 List.Provider = ListProvider;
 List.Search = ListSearch;

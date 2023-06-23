@@ -8,17 +8,7 @@ import SliderThumbs from './SliderThumbs';
 import SliderPg from './SliderPg';
 import SliderLightbox from './SliderLightbox';
 
-const Slider = SliderProvider;
-
-Slider.Body = SliderBody;
-Slider.Nav = SliderNav;
-Slider.Slides = SliderSlides;
-Slider.Thumbs = SliderThumbs;
-Slider.Pg = SliderPg;
-Slider.Lightbox = SliderLightbox;
-
 export {
-  Slider,
   SliderContext,
   useSlider,
   SliderBody,
@@ -28,5 +18,14 @@ export {
   SliderPg,
   SliderLightbox,
 };
+
+const Slider = SliderProvider;
+
+Slider.Body = SliderBody;
+Slider.Nav = SliderNav;
+Slider.Slides = SliderSlides;
+Slider.Thumbs = SliderThumbs;
+Slider.Pg = SliderPg;
+Slider.Lightbox = SliderLightbox;
 
 export default Slider;
