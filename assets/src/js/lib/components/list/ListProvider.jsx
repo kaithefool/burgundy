@@ -102,7 +102,7 @@ const ListProvider = ({
 
   // refresh when filter changed
   useEffect(() => {
-    refresh();
+    fetch(initQuery);
   }, [useComparable({ baseFilter, api })]);
 
   // update url query
