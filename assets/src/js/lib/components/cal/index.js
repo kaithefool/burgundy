@@ -17,8 +17,6 @@ import CalHeader from './CalHeader';
 import CalBody from './CalBody';
 import CalEventTime from './CalEventTime';
 
-const Cal = CalProvider;
-
 export {
   CalContext,
   CalProvider,
@@ -40,7 +38,9 @@ export {
   CalEventTime,
 };
 
-Cal.CalProvider = CalProvider;
+const Cal = CalProvider;
+
+Cal.Provider = CalProvider;
 Cal.Title = CalTitle;
 Cal.Month = CalMonth;
 Cal.Week = CalWeek;
