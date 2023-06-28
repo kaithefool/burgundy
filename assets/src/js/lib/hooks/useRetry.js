@@ -5,7 +5,7 @@ import useTimer from './useTimer';
 
 export default function useRetry({
   wait = { seconds: 30 },
-  waitAfter = 2,
+  waitAfter = 0,
   max = 6,
 } = {}) {
   const { t } = useTranslation();

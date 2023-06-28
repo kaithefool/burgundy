@@ -131,6 +131,7 @@ const ListProvider = ({
 
   const value = {
     api,
+    filter: { ...query.filter, ...baseFilter },
     query,
     selectable,
     selected: selectable ? selected.map((i) => rows[i]) : [],
