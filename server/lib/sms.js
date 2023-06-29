@@ -26,7 +26,7 @@ module.exports = ({
     });
   }
 
-  console.log('SMS message: ', body);
+  console.info('SMS message: ', body);
 
   return null;
 };

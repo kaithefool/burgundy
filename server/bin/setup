@@ -58,7 +58,7 @@ if (!fs.existsSync(envPath)) {
   fs.mkdirSync(envDirPath, { recursive: true });
   fs.writeFileSync(envPath, template());
 
-  console.log('Environment file generated.');
+  console.info('Environment file generated.');
 }
 
 process.exit(0);

@@ -13,7 +13,7 @@ const [, ,
     email, password, role: 'admin',
   });
 
-  console.log(
+  console.info(
     'Created admin user: ',
     `[email: ${email}, password: ${password}]`,
   );
