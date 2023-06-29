@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CalDayOfWeek = ({ date }) => (
+const CalDayOfWeek = ({ date, breakpoint = 'md' }) => (
   <>
-    <span className="d-none d-md-inline">
+    <span className={`d-none d-${breakpoint}-inline`}>
       {date.toFormat('ccc')}
     </span>
-    <span className="d-md-none">
+    <span className={`d-${breakpoint}-none`}>
       {date.toFormat('ccccc')}
     </span>
   </>

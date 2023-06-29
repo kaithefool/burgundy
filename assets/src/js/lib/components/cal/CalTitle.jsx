@@ -2,7 +2,7 @@ import React from 'react';
 
 import useCal from './useCal';
 
-const CalHeader = () => {
+const CalTitle = () => {
   const { query: { view, date }, grid } = useCal();
   let long = '';
   let short = '';
@@ -42,4 +42,4 @@ const CalHeader = () => {
   );
 };
 
-export default CalHeader;
+export default CalTitle;

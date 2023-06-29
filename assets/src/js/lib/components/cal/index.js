@@ -16,6 +16,9 @@ import CalToday from './CalToday';
 import CalHeader from './CalHeader';
 import CalBody from './CalBody';
 import CalEventTime from './CalEventTime';
+import CalMiniMonth from './CalMiniMonth';
+
+const Cal = CalProvider;
 
 export {
   CalContext,
@@ -36,11 +39,10 @@ export {
   CalHeader,
   CalBody,
   CalEventTime,
+  CalMiniMonth,
 };
 
-const Cal = CalProvider;
-
-Cal.Provider = CalProvider;
+Cal.CalProvider = CalProvider;
 Cal.Title = CalTitle;
 Cal.Month = CalMonth;
 Cal.Week = CalWeek;
@@ -56,5 +58,6 @@ Cal.Today = CalToday;
 Cal.Header = CalHeader;
 Cal.Body = CalBody;
 Cal.EventTime = CalEventTime;
+Cal.MiniMonth = CalMiniMonth;
 
 export default Cal;

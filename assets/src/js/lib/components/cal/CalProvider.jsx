@@ -7,6 +7,7 @@ import useHttp from '../../hooks/useHttp';
 import useQuery from '../../hooks/useQuery';
 import useComparable from '../../hooks/useComparable';
 import useAlert from '../alert/useAlert';
+import useCal from './useCal';
 import useList from '../list/useList';
 
 const parseDate = (date) => {
@@ -199,6 +200,18 @@ const CalProvider = ({
     }, true);
   }, [history && useComparable({ query })]);
 
+  // parent binding
+  const parent = useCal();
+  const { date: parentDate } = parent.query;
+
+  useEffect(() => {
+    if (parentDate) {
+      if (!parentDate.hasSame(query.date, 'month')) {
+        fetch({ date: parentDate.startOf('month') });
+      }
+    }
+  }, [parentDate && parentDate.toISODate()]);
+
   const value = {
     api,
     query,
@@ -207,6 +220,7 @@ const CalProvider = ({
     events: fetched?.payload || [],
     grid,
     views,
+    parent,
 
     fetch,
     refresh,
