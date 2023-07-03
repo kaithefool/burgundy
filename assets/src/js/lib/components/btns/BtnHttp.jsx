@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
@@ -19,6 +19,10 @@ const BtnHttp = ({
   const i = status === 'pending' ? faSpinner : icon;
   const { paused, attempt, error } = useRetry(retry);
 
+  useEffect(() => {
+    if (status === 'error' && retry) attempt();
+  }, [status]);
+
   return (
     <button
       type="button"
@@ -30,7 +34,6 @@ const BtnHttp = ({
         ${status === 'error' ? 'btn-danger' : ''}
       `}
       onClick={function btnHttpOnClick(...args) {
-        if (retry) attempt();
         onClick.apply(this, args);
       }}
     >
