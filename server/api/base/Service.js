@@ -44,7 +44,6 @@ class Service {
   search(f) {
     let { search: opts } = this.opts;
     if (!opts || !f) return null;
-
     if (typeof opts === 'string' || Array.isArray(opts)) {
       opts = { default: opts };
     }
@@ -120,8 +119,7 @@ class Service {
   }
 
   async list(opts, user) {
-    const { filter, limit = 20 } = opts;
-
+    const { filter = {}, limit = 20 } = opts;
     const [rows, total] = await Promise.all([
       this.find({ ...opts, limit }, user),
       this.count(filter, user),
