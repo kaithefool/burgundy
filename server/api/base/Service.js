@@ -103,7 +103,7 @@ class Service {
   }
 
   async find(opts, user, populate) {
-    const { filter } = opts;
+    const { filter = {} } = opts;
 
     const q = this.model.find({
       ...opts,
