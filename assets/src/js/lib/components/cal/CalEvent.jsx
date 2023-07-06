@@ -14,7 +14,7 @@ const CalEvent = ({
 }) => {
   if (children) {
     return typeof children === 'function'
-      ? children(props, event)
+      ? children(event, props)
       : children;
   }
 

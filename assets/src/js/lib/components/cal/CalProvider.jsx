@@ -118,8 +118,8 @@ const CalProvider = ({
   children,
 }) => {
   const initQuery = {
-    view: 'month',
-    date: dt.now().startOf('month'),
+    view: views[0],
+    date: dt.now().startOf(views[0]),
     filter: {},
     ...iq,
   };
@@ -189,15 +189,17 @@ const CalProvider = ({
 
   // update url query
   useEffect(() => {
-    const { view, date } = query;
+    if (history) {
+      const { view, date } = query;
 
-    setUrlQuery({
-      ...(view !== initQuery.view && { view }),
-      ...!initQuery.date.hasSame(date, 'day') && {
-        date: date.toFormat('yyyy-MM-dd'),
-      },
-      filter: query.filter,
-    }, true);
+      setUrlQuery({
+        ...(view !== initQuery.view && { view }),
+        ...!initQuery.date.hasSame(date, 'day') && {
+          date: date.toFormat('yyyy-MM-dd'),
+        },
+        filter: query.filter,
+      }, true);
+    }
   }, [history && useComparable({ query })]);
 
   // parent binding

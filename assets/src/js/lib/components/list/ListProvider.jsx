@@ -52,7 +52,6 @@ const ListProvider = ({
       ? pile.rows
       : fetched?.payload?.rows || [];
   }
-
   const fetch = (q = {}) => {
     const newQ = { ...query, ...q };
 
@@ -107,13 +106,15 @@ const ListProvider = ({
 
   // update url query
   useEffect(() => {
-    const { skip, limit } = query;
+    if (history) {
+      const { skip, limit } = query;
 
-    setUrlQuery({
-      ...(skip !== initQuery.skip && { skip }),
-      ...(limit !== initQuery.limit && { limit }),
-      filter: query.filter,
-    }, true);
+      setUrlQuery({
+        ...(skip !== initQuery.skip && { skip }),
+        ...(limit !== initQuery.limit && { limit }),
+        filter: query.filter,
+      }, true);
+    }
   }, [history && useComparable({ query })]);
 
   // pile up payloads in infinite mode
