@@ -20,7 +20,7 @@ const BtnHttp = ({
   const { paused, attempt, error } = useRetry(retry);
 
   useEffect(() => {
-    if (status === 'error' && retry) attempt();
+    if (retry && status && (status === 'error' || retry.always)) attempt();
   }, [status]);
 
   return (

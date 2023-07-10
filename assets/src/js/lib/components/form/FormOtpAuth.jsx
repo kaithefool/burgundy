@@ -14,7 +14,7 @@ const FormOtpAuth = ({
   },
   data = (v) => v.mobile,
   icon = faMobileAlt,
-  retry = true,
+  retry = { waitAfter: 0, always: true },
   children,
   ...props
 }) => {
