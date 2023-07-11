@@ -34,9 +34,7 @@ class User extends Model {
       ...opts,
       toJSON: {
         virtuals: true,
-        transform: ({
-          _doc: { password, ...v },
-        }) => v,
+        transform: (doc, { password, ...ret }) => ret,
       },
     });
   }

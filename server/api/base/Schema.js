@@ -129,15 +129,19 @@ module.exports = class Schema {
     this.schema.index(...args);
   }
 
-  hasMany(ref, manyToMany = false) {
-    this.schema.virtual(pluralize(ref), {
-      ref,
+  hasMany(opts, manyToMany = false) {
+    const op = typeof opts === 'string'
+      ? { ref: opts } : opts;
+    const { name, ...o } = op;
+
+    this.schema.virtual(name || pluralize(o.ref), {
       localField: '_id',
-      foreignField: ref === this.name
+      foreignField: o.ref === this.name
         ? 'parent'
         : _.camelCase(
           manyToMany ? pluralize(this.name) : this.name,
         ),
+      ...o,
     });
   }
 
