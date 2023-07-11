@@ -13,9 +13,9 @@ const SliderNav = ({
     ${dir === 'prev' ? 'start-0' : 'end-0'}
   `,
 }) => {
-  const { pg, swiper, length } = useSlider();
+  const { pg, swiper, length = 0 } = useSlider();
 
-  if (!length) return '';
+  if (length <= 1) return '';
 
   return (
     <div>
