@@ -10,6 +10,7 @@ const { lngs, lngLabels } = env;
 
 const BtnLng = ({
   className = 'px-3',
+  showLabel = false,
 }) => {
   const { i18n } = useTranslation();
   const id = 'lng';
@@ -19,7 +20,12 @@ const BtnLng = ({
   return (
     <div className="position-relative">
       <div className={className}>
-        <FA icon={faGlobeAmericas} />
+        <FA icon={faGlobeAmericas} fixedWidth />
+        {showLabel && (
+          <span className="ps-2">
+            {lngLabels[lngs.indexOf(i18n.language)] || 0}
+          </span>
+        )}
       </div>
       <select
         id={id}
