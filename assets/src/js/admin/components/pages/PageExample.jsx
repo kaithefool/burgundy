@@ -146,7 +146,6 @@ const PageExample = () => (
                     />
                     <Form.Coordinates
                       name="location.coordinates"
-                      address="address"
                     />
                   </Tab>
                   <Tab eventKey="array">

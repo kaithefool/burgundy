@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ListContext from './ListContext';
 import useHttp from '../../hooks/useHttp';
 import useComparable from '../../hooks/useComparable';
+import useDidUpdate from '../../hooks/useDidUpdate';
 import useQuery from '../../hooks/useQuery';
 import useAlert from '../alert/useAlert';
 import useList from './useList';
@@ -100,7 +101,7 @@ const ListProvider = ({
   }, [useComparable(cols)]);
 
   // refresh when filter changed
-  useEffect(() => {
+  useDidUpdate(() => {
     fetch(initQuery);
   }, [useComparable({ baseFilter, api })]);
 

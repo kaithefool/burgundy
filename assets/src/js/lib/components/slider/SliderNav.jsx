@@ -12,6 +12,7 @@ const SliderNav = ({
     btn btn-lg text-white bg-dark bg-opacity-50 rounded-0
     ${dir === 'prev' ? 'start-0' : 'end-0'}
   `,
+  style = () => ({ zIndex: 10 }),
 }) => {
   const { pg, swiper, length = 0 } = useSlider();
 
@@ -22,8 +23,8 @@ const SliderNav = ({
       <button
         type="button"
         className={className('prev')}
+        style={style('prev')}
         disabled={pg.isBeginning}
-        style={{ zIndex: 10 }}
         onClick={() => swiper.slidePrev()}
       >
         <FA icon={faArrowLeft} />
@@ -31,8 +32,8 @@ const SliderNav = ({
       <button
         type="button"
         className={className('next')}
+        style={style('next')}
         disabled={pg.isEnd}
-        style={{ zIndex: 10 }}
         onClick={() => swiper.slideNext()}
       >
         <FA icon={faArrowRight} />
