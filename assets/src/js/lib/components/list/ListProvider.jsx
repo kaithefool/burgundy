@@ -100,6 +100,10 @@ const ListProvider = ({
     showCols(cols.filter((c) => !c.hide));
   }, [useComparable(cols)]);
 
+  useEffect(() => {
+    if (!lazying) fetch();
+  }, []);
+
   // refresh when filter changed
   useDidUpdate(() => {
     fetch(initQuery);
