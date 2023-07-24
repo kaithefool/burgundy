@@ -7,6 +7,7 @@ import ListGroups from './ListGroups';
 import ListTruncate from './ListTruncate';
 import ctrl from './ctrl';
 import pg from './pg';
+import flt from './flt';
 import useList from './useList';
 
 export {
@@ -19,6 +20,7 @@ export {
   ListTruncate,
   ctrl,
   pg,
+  flt,
   useList,
 };
 
@@ -32,5 +34,6 @@ List.Groups = ListGroups;
 List.Truncate = ListTruncate;
 List.Ctrl = ctrl;
 List.Pg = pg;
+List.Flt = flt;
 
 export default List;

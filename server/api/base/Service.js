@@ -69,7 +69,7 @@ class Service {
   }
 
   comparsion(f = {}) {
-    const compKeys = ['gt', 'gte', 'lt', 'lte'];
+    const compKeys = ['gt', 'gte', 'lt', 'lte', 'in'];
 
     return _.mapValues(f, (v) => (
       _.isPlainObject(v) && compKeys.some((k) => v[k])
