@@ -32,7 +32,7 @@ const ListFltCheck = ({
         id={id}
         className="form-check-input"
         type="checkbox"
-        value={values.includes(value)}
+        checked={values.includes(value)}
         onChange={toggle}
         {...props}
       />
