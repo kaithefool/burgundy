@@ -9,9 +9,9 @@ const Fetch = ({ children, ...props }) => (
       <>
         <FetchPending />
         <FetchError />
-        {ctx.status === 'success' && (
+        {ctx.http?.fetched && (
           typeof children === 'function'
-            ? children(ctx.http?.res?.fetched, ctx) : children
+            ? children(ctx.http.fetched?.payload, ctx) : children
         )}
       </>
     )}
