@@ -1,6 +1,8 @@
 import React from 'react';
 import { DateTime as dt } from 'luxon';
 
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import useList from '../useList';
 
 const parseDate = (date, modifier = (e) => e) => {
@@ -63,7 +65,9 @@ const ListFltDate = ({
               update(q);
             }}
           />
-          <span className="input-group-text px-0">-</span>
+          <span className="input-group-text px-0">
+            <FA icon={faArrowRight} size="sm" />
+          </span>
           <input
             type="date"
             className="form-control"
