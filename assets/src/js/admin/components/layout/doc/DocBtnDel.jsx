@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import useHttp from '~/lib/hooks/useHttp';
-import BtnHttpConfirm from '~/lib/components/btns/BtnHttpConfirm';
+import BtnHttp from '~/lib/components/btns/BtnHttp';
 import useAlert from '~/lib/components/alert/useAlert';
 import { resolvePath } from '~/lib/helpers';
 
@@ -13,6 +13,7 @@ import useDoc from './useDoc';
 const DocBtnDel = ({
   confirm = true,
   redirect = '..',
+  typeToConfirm = 'DELETE',
   ...props
 }) => {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ const DocBtnDel = ({
   if (!doc) return '';
 
   return (
-    <BtnHttpConfirm
+    <BtnHttp
       res={http.res}
       req={async () => {
         await http.req({
@@ -44,6 +45,7 @@ const DocBtnDel = ({
           ? t('res.confirmDel')
           : confirm
       }
+      typeToConfirm={typeToConfirm}
       {...props}
     />
   );

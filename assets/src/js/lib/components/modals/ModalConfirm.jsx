@@ -13,7 +13,7 @@ const ModalConfirm = ({
   const { show, onHide } = props;
   const [input, setInput] = useState('');
   const confirmText = typeof typeToConfirm === 'string'
-    || 'DELETE';
+    ? typeToConfirm : 'OKAY';
 
   useEffect(() => {
     if (!show) setInput('');

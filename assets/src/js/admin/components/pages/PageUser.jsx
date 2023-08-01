@@ -46,7 +46,7 @@ const PageAdmin = () => {
               ...values, ...(p && { password: p }),
             })}
           >
-            <Doc.Ctrls />
+            <Doc.Ctrls del />
 
             <Form.Check name="active" type="switch" />
             {(doc || !role) && (

@@ -2,22 +2,20 @@ import React from 'react';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import { useTranslation } from 'react-i18next';
 
-import BtnHttpConfirm from '../../btns/BtnHttpConfirm';
+import BtnHttp from '../../btns/BtnHttp';
 import useList from '../useList';
-import useAlert from '../../alert/useAlert';
 import useHttp from '../../../hooks/useHttp';
 
 const ListCtrlRemove = ({
   api: apiOpts,
   confirm = true,
+  typeToConfirm = 'DELETE',
   className = 'btn px-2 me-3 btn-neutral',
   ...props
 }) => {
   const { t } = useTranslation();
   const { api, refresh, selected } = useList();
   const { req, res } = useHttp();
-
-  useAlert(res, { success: () => ({ children: t('res.deleted') }) });
 
   const remove = async () => {
     await req({
@@ -32,16 +30,18 @@ const ListCtrlRemove = ({
   if (selected.length <= 0) return '';
 
   return (
-    <BtnHttpConfirm
+    <BtnHttp
       req={remove}
       res={res}
       className={className}
       icon={faTrash}
+      alert={{ success: () => ({ children: t('res.deleted') }) }}
       confirm={
         confirm === true
           ? t('res.confirmDel')
           : confirm
       }
+      typeToConfirm={typeToConfirm}
       {...props}
     />
   );
