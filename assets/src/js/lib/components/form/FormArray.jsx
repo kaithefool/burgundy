@@ -19,9 +19,11 @@ const FormArray = ({
   title,
   tmpl,
   sortable = true,
+  removeable = true,
   unshiftBtn,
   pushBtn = true,
   listClassName,
+  listLabel = false,
   itemClassName,
   ...props
 }) => {
@@ -46,7 +48,13 @@ const FormArray = ({
                 item={item}
                 title={title}
                 tmpl={tmpl}
+                listLabel={listLabel}
                 sortable={isSortable}
+                removeable={
+                  typeof removeable === 'function'
+                    ? removeable(item, i)
+                    : removeable
+                }
               >
                 {children}
               </FormArrayItem>

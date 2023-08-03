@@ -10,7 +10,9 @@ const FormArrayItem = ({
   index,
   item,
   tmpl = 'formset',
+  listLabel,
   sortable,
+  removeable,
   children,
   title = (i) => `${i + 1}.`,
 }) => {
@@ -29,7 +31,9 @@ const FormArrayItem = ({
         index,
         item,
         title: typeof title === 'function' ? title(index, item) : title,
+        listLabel,
         sortable,
+        removeable,
         children: children && children(index, item, helpers),
       }}
     />

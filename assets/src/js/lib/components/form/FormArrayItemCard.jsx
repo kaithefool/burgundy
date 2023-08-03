@@ -21,6 +21,7 @@ const FormArrayItemCard = ({
   array,
   title,
   sortable,
+  removeable,
   children,
 }) => (
   <div className="card mb-3">
@@ -36,38 +37,40 @@ const FormArrayItemCard = ({
             <label>{title}</label>
           </div>
           {sortable && (
-          <>
-            <div className="col-auto">
-              <button
-                className="btn"
-                type="button"
-                disabled={index <= 0}
-                onClick={() => helpers.swap(index, index - 1)}
-              >
-                <FA icon={faArrowUp} />
-              </button>
-            </div>
-            <div className="col-auto">
-              <button
-                className="btn"
-                type="button"
-                disabled={index >= array.length - 1}
-                onClick={() => helpers.swap(index, index + 1)}
-              >
-                <FA icon={faArrowDown} />
-              </button>
-            </div>
-          </>
+            <>
+              <div className="col-auto">
+                <button
+                  className="btn"
+                  type="button"
+                  disabled={index <= 0}
+                  onClick={() => helpers.swap(index, index - 1)}
+                >
+                  <FA icon={faArrowUp} />
+                </button>
+              </div>
+              <div className="col-auto">
+                <button
+                  className="btn"
+                  type="button"
+                  disabled={index >= array.length - 1}
+                  onClick={() => helpers.swap(index, index + 1)}
+                >
+                  <FA icon={faArrowDown} />
+                </button>
+              </div>
+            </>
           )}
-          <div className="col-auto">
-            <button
-              className="btn text-primary"
-              type="button"
-              onClick={() => helpers.remove(index)}
-            >
-              <FA icon={faTimes} />
-            </button>
-          </div>
+          {removeable && (
+            <div className="col-auto">
+              <button
+                className="btn text-primary"
+                type="button"
+                onClick={() => helpers.remove(index)}
+              >
+                <FA icon={faTimes} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

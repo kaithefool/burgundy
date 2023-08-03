@@ -21,6 +21,7 @@ const FormArrayItemFormset = ({
   array,
   title,
   sortable,
+  removeable,
   children,
 }) => (
   <div className="px-4 py-3">
@@ -58,15 +59,17 @@ const FormArrayItemFormset = ({
             </div>
           </>
         )}
-        <div className="col-auto">
-          <button
-            className="btn"
-            type="button"
-            onClick={() => helpers.remove(index)}
-          >
-            <FA icon={faTimes} />
-          </button>
-        </div>
+        {removeable && (
+          <div className="col-auto">
+            <button
+              className="btn"
+              type="button"
+              onClick={() => helpers.remove(index)}
+            >
+              <FA icon={faTimes} />
+            </button>
+          </div>
+        )}
       </div>
     </div>
 
