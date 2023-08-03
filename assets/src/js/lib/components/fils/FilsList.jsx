@@ -89,7 +89,7 @@ const FilsList = ({
           </div>
 
           {/* list */}
-          <div className="py-2">
+          <div className={multiple ? 'py-2' : 'pb-2'}>
             {sortable ? (
               <SortableList
                 files={files}
