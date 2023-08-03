@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
+import { DateTime as dt } from 'luxon';
 
 import useCal from './useCal';
 import CalEvent from './CalEvent';
+import CalSecondHand from './CalSecondHand';
 
 const round = (n) => Math.round(n * 100) / 100;
 
@@ -66,6 +68,11 @@ const CalEventsAxis = ({
           </Fragment>
         );
       })}
+
+      {/* second hand */}
+      {dt.now().hasSame(d, 'day') && (
+        <CalSecondHand />
+      )}
     </div>
   );
 };
