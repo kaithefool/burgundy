@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { DateTime as dt } from 'luxon';
 
 import useCal from './useCal';
 import CalEvent from './CalEvent';
@@ -10,6 +9,7 @@ const round = (n) => Math.round(n * 100) / 100;
 const CalEventsAxis = ({
   day,
   className = '',
+  secondHand,
   children,
   ...props
 }) => {
@@ -70,8 +70,8 @@ const CalEventsAxis = ({
       })}
 
       {/* second hand */}
-      {dt.now().hasSame(d, 'day') && (
-        <CalSecondHand />
+      {secondHand !== null && (
+        <CalSecondHand day={d} {...secondHand} />
       )}
     </div>
   );
