@@ -1,6 +1,6 @@
 import React from 'react';
 import { object } from 'yup';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
@@ -72,9 +72,10 @@ const PageRegister = () => {
             <Form.Password name="passwordConfirm" affirm />
 
             <div className="mb-3">
-              <Link to="/auth">
-                {t('pg.register.login')}
-              </Link>
+              <Trans i18nKey="pg.register.login">
+                Already have an account?&nbsp;
+                <Link to="/auth">Login</Link>
+              </Trans>
             </div>
 
             <Form.BtnSubmit

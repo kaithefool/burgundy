@@ -105,7 +105,7 @@
     },
     "register" : {
       "title": "新帳戶註冊",
-      "login": "已經成為會員? 登入",
+      "login": "已經成為會員? <1>登入</1>",
       "submit": "註冊",
       "mailSuccessTitle": "驗證電郵已發出",
       "mailSuccessSubTitle": "請按電郵中的指示驗證電郵地址",

@@ -93,7 +93,7 @@
     },
     "register" : {
       "title": "Sign up",
-      "login": "Already have an account? Login",
+      "login": "Already have an account? <1>Login</1>",
       "submit": "Register",
       "mailSuccessTitle": "Sent",
       "mailSuccessSubTitle": "Please check your inbox and follow the instruction",
