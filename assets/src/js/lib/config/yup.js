@@ -1,4 +1,4 @@
-import { setLocale } from 'yup';
+import { setLocale, addMethod, string } from 'yup';
 
 const rules = {
   mixed: [
@@ -57,3 +57,23 @@ const locale = Object.keys(rules).reduce((l, type) => ({
 }), {});
 
 setLocale(locale);
+
+// custom methods
+addMethod(string, 'requiredLng', function requiredLng(message) {
+  return this.test('requiredLng', message, function testReqLng() {
+    const { path, createError, parent } = this;
+
+    if (!Object.values(parent).find((v) => v?.length)) {
+      return createError({
+        path,
+        message: (params) => ({
+          ...params,
+          rule: 'yup.mixed.required',
+          path: path.replace(/\.[^.]*?$/, ''),
+        }),
+      });
+    }
+
+    return true;
+  });
+});

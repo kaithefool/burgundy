@@ -12,7 +12,7 @@ const FormBtnSubmit = ({
   icon = faSave,
   successIcon = faCheck,
   onlyValid = true,
-  onlyDirty = true,
+  onlyDirty = false,
   className = 'btn-primary',
   ...props
 }) => {

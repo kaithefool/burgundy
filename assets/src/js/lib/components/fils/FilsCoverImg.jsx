@@ -10,6 +10,7 @@ import Fil from './fil';
 const FilsCoverImg = ({
   className,
   accept = 'image/png,image/jpeg,image/svg+xml,image/gif',
+  previewClassName,
   ...props
 }) => {
   const { t } = useTranslation();
@@ -29,7 +30,7 @@ const FilsCoverImg = ({
           {files[0] && (
             <Fil file={files[0]}>
               <div>
-                <Fil.Preview />
+                <Fil.Preview className={previewClassName} />
                 <div className="position-relative" style={{ zIndex: 1 }}>
                   {/* background */}
                   <div

@@ -11,6 +11,7 @@ const FormField = ({
   labelClassName = 'form-label',
   fieldClassName = 'form-control',
   className = 'mb-3',
+  explainText,
   helpText,
   affirm = false,
   warn = true,
@@ -54,6 +55,7 @@ const FormField = ({
         htmlFor={id}
         name={value || name}
         className={labelClassName}
+        explainText={explainText}
       >
         {label}
       </FormLabel>

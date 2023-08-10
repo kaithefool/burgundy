@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 const FormLabel = ({
   name = '',
   className = 'form-label',
+  explainText,
   children,
   ...props
 }) => {
@@ -22,6 +23,7 @@ const FormLabel = ({
           fieldArrayPath: false,
         })
       }
+      {explainText && ` (${explainText})`}
     </label>
   );
 };

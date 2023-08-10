@@ -7,6 +7,7 @@ import inflect from 'inflect';
 
 import env from './env';
 import axios from './axios';
+import { humanize, titleize } from '../helpers/string';
 
 const languageDetector = new LanguageDetector();
 
@@ -70,11 +71,8 @@ i18n.pickLng = (obj) => {
 
 // formats
 i18n.services.formatter.add('singularize', (v) => inflect.singularize(v));
-i18n.services.formatter.add('titleize', (v) => inflect.titleize(v));
-i18n.services.formatter.add(
-  'humanize',
-  (v) => inflect.humanize(v).toLowerCase(),
-);
+i18n.services.formatter.add('titleize', (v) => titleize(v));
+i18n.services.formatter.add('humanize', (v) => humanize(v));
 
 const formatField = (value, {
   fieldCase = 'humanize',

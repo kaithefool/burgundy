@@ -1,4 +1,9 @@
-import { string, ref } from 'yup';
+import { string, object, ref } from 'yup';
+import { reduceLng } from './helpers';
+
+const lng = (eitherReq = true, schema = string) => object(
+  reduceLng(eitherReq ? schema().requiredLng() : schema()),
+);
 
 const email = () => string()
   .trim()
@@ -15,6 +20,7 @@ const passwordConfirm = () => string()
   );
 
 export {
+  lng,
   email,
   password,
   passwordConfirm,
