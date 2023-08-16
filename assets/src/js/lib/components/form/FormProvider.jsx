@@ -1,10 +1,25 @@
-import React, { useRef } from 'react';
-import { Formik, Form } from 'formik';
+import React, { useRef, useEffect } from 'react';
+import { Formik, Form, useFormikContext } from 'formik';
 
 import FormHttpContext from './FormContext';
 import { initValues, parseValues } from './helpers';
 import useHttp from '../../hooks/useHttp';
+import useForm from './useForm';
 import FormAlerts from './FormAlerts';
+
+const FormAttemp = () => {
+  const { attempValues } = useForm();
+  const { isSubmitting } = useFormikContext();
+
+  // clear attemp values on submit
+  useEffect(() => {
+    if (!isSubmitting) {
+      attempValues.current = {};
+    }
+  }, [isSubmitting]);
+
+  return '';
+};
 
 const FormProvider = ({
   alertOpts,
@@ -20,14 +35,16 @@ const FormProvider = ({
   onSubmitted = () => {},
   ...props
 }) => {
-  const attemp = useRef({});
+  const attempValues = useRef({});
   const http = useHttp();
   const { req } = http;
+
+  const attemp = (val) => Object.assign(attempValues.current, val);
 
   const submitHandler = onSubmit || (
     async (values, actions) => {
       const data = beforeSubmit(
-        parseValues({ ...values, ...attemp.current }, relations),
+        parseValues({ ...values, ...attempValues.current }, relations),
         actions,
       );
 
@@ -45,7 +62,7 @@ const FormProvider = ({
   );
 
   return (
-    <FormHttpContext.Provider value={{ http, attemp }}>
+    <FormHttpContext.Provider value={{ http, attemp, attempValues }}>
       <Formik
         validationSchema={schema}
         initialValues={initValues(defaults, stored, relations)}
@@ -54,10 +71,13 @@ const FormProvider = ({
       >
         {(p) => (
           <Form>
+            <FormAttemp />
             <FormAlerts opts={alertOpts} />
             {
               typeof children === 'function'
-                ? children({ ...p, http, attemp })
+                ? children({
+                  ...p, http, attemp, attempValues,
+                })
                 : children
             }
           </Form>

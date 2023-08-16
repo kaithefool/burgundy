@@ -18,21 +18,24 @@ const BtnHttp = ({
   children,
   disabled,
   className = '',
-  onClick = () => {},
+  onClick,
   retry,
   confirm = false,
-  typeToConfirm = false,
-  onConfirm,
-  alert = false,
+  alert,
   ...props
 }) => {
   const { t } = useTranslation();
 
   // http
   const httpDef = useHttp();
-  const http = api ? httpDef : httpProp;
-  const res = http?.res || resProp;
-  const req = http?.req || reqProp || (() => req(api));
+  const http = httpProp || (api && httpDef);
+  const res = resProp || http?.res;
+  const req = reqProp || ((values) => http?.req({
+    ...api,
+    ...values && Object.keys(values).length && {
+      data: { ...api.data, ...values },
+    },
+  }));
   const { status } = res;
   const i = status === 'pending' ? faSpinner : icon;
 
@@ -41,24 +44,29 @@ const BtnHttp = ({
 
   // confirm modal
   const [confirmModal, setConfirmModal] = useState(false);
-  const confirmBody = typeof confirm !== 'boolean'
-    ? confirm : t('res.confirm');
 
   useEffect(() => {
     if (retry && status && (status === 'error' || retry.always)) attempt();
   }, [status]);
 
-  useAlert(alert && res, alert);
+  useAlert(
+    ((api && alert !== false) || !!alert) && res,
+    typeof alert === 'object' && alert,
+  );
 
   return (
     <>
       {confirm && (
         <ModalConfirm
+          {...confirm}
           show={confirmModal}
-          onConfirm={onConfirm || req}
           onHide={() => setConfirmModal(false)}
-          typeToConfirm={typeToConfirm}
-          body={confirmBody}
+          onConfirm={(values) => {
+            (confirm.onConfirm || req)(values);
+            setConfirmModal(false);
+          }}
+          typeToConfirm={confirm.typeToConfirm}
+          body={confirm?.body ?? t('res.confirm')}
         />
       )}
       <button
@@ -72,9 +80,12 @@ const BtnHttp = ({
         `}
         onClick={function btnHttpOnClick(...args) {
           if (confirm) {
+            args[0].preventDefault();
             setConfirmModal(true);
-          } else {
+          } else if (onClick) {
             onClick.apply(this, args);
+          } else {
+            req();
           }
         }}
       >

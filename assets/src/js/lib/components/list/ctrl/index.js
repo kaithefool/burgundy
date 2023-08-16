@@ -4,7 +4,6 @@ import ListCtrlImport from './ListCtrlImport';
 import ListCtrlPatch from './ListCtrlPatch';
 import ListCtrlRefresh from './ListCtrlRefresh';
 import ListCtrlRemove from './ListCtrlRemove';
-import ListCtrlSave from './ListCtrlSave';
 
 export {
   ListCtrlCreate,
@@ -13,7 +12,6 @@ export {
   ListCtrlPatch,
   ListCtrlRefresh,
   ListCtrlRemove,
-  ListCtrlSave,
 };
 
 export default {
@@ -23,5 +21,4 @@ export default {
   Patch: ListCtrlPatch,
   Refresh: ListCtrlRefresh,
   Remove: ListCtrlRemove,
-  Save: ListCtrlSave,
 };

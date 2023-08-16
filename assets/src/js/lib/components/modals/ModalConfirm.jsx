@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 const ModalConfirm = ({
   header,
   body,
+  footer,
+  element,
   onConfirm,
   typeToConfirm = false,
   ...props
@@ -14,18 +16,27 @@ const ModalConfirm = ({
   const [input, setInput] = useState('');
   const confirmText = typeof typeToConfirm === 'string'
     ? typeToConfirm : 'OKAY';
+  const disabled = typeToConfirm && input !== confirmText;
 
   useEffect(() => {
     if (!show) setInput('');
   }, [show]);
 
+  const render = (section) => (
+    typeof section === 'function'
+      ? section({ onHide, onConfirm, disabled })
+      : section
+  );
+
+  if (element) return element({ show, onHide, onConfirm });
+
   return (
     <Modal {...props}>
       <Modal.Header closeButton>
-        {header}
+        {render(header)}
       </Modal.Header>
       <Modal.Body>
-        {body}
+        {render(body)}
         {typeToConfirm && (
           <>
             <p>
@@ -43,21 +54,25 @@ const ModalConfirm = ({
         )}
       </Modal.Body>
       <Modal.Footer>
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={() => { onConfirm(); onHide(); }}
-          disabled={typeToConfirm && input !== confirmText}
-        >
-          {t('yes')}
-        </button>
-        <button
-          className="btn btn-outline-primary"
-          type="button"
-          onClick={onHide}
-        >
-          {t('no')}
-        </button>
+        {footer ? render(footer) : (
+          <>
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={onConfirm}
+              disabled={disabled}
+            >
+              {t('yes')}
+            </button>
+            <button
+              className="btn btn-outline-primary"
+              type="button"
+              onClick={onHide}
+            >
+              {t('no')}
+            </button>
+          </>
+        )}
       </Modal.Footer>
     </Modal>
   );

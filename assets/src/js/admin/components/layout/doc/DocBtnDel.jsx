@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 import useHttp from '~/lib/hooks/useHttp';
 import BtnHttp from '~/lib/components/btns/BtnHttp';
-import useAlert from '~/lib/components/alert/useAlert';
 import { resolvePath } from '~/lib/helpers';
 
 import useDoc from './useDoc';
@@ -13,7 +12,6 @@ import useDoc from './useDoc';
 const DocBtnDel = ({
   confirm = true,
   redirect = '..',
-  typeToConfirm = 'DELETE',
   ...props
 }) => {
   const { t } = useTranslation();
@@ -21,12 +19,11 @@ const DocBtnDel = ({
   const http = useHttp();
   const navigate = useNavigate();
 
-  useAlert(http.res, { success: () => ({ children: t('res.deleted') }) });
-
   if (!doc) return '';
 
   return (
     <BtnHttp
+      alert={{ success: () => ({ children: t('res.deleted') }) }}
       res={http.res}
       req={async () => {
         await http.req({
@@ -41,11 +38,10 @@ const DocBtnDel = ({
       }}
       icon={faTrash}
       confirm={
-        confirm === true
-          ? t('res.confirmDel')
+        confirm
+          ? { body: t('res.confirmDel'), ...confirm }
           : confirm
       }
-      typeToConfirm={typeToConfirm}
       {...props}
     />
   );
