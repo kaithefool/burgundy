@@ -11,7 +11,7 @@ function http(request, callback = () => {}, {
   let cancel;
   const opts = {
     paramsSerializer: (params) => (
-      qs.stringify(params)
+      qs.stringify(params, { strictNullHandling: true })
     ),
     timeout: 30 * 1000,
     cancelToken: new axios.CancelToken((c) => {

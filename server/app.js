@@ -1,6 +1,7 @@
 const httpError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const qs = require('qs');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -15,6 +16,10 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'pages/views'));
 app.set('view engine', 'pug');
+app.set(
+  'query parser',
+  (str) => qs.parse(str, { strictNullHandling: true }),
+);
 
 app.use(logger('dev'));
 app.use(express.json({
