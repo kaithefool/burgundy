@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import useUniqKey from '../../hooks/useUniqKey';
 import FormLabel from './FormLabel';
+import useForm from './useForm';
 
 const FormField = ({
   label,
@@ -23,6 +24,7 @@ const FormField = ({
 }) => {
   const { name, value } = props;
   const [, { error, touched }] = useField(name);
+  const { disabled } = useForm();
   const [id] = useUniqKey();
   const valid = affirm && touched && !error;
   const invalid = warn && touched && error;
@@ -45,6 +47,7 @@ const FormField = ({
     invalid,
     valid,
     className: fC,
+    ...disabled && { disabled },
   }) : children;
 
   if (fieldOnly) return c;

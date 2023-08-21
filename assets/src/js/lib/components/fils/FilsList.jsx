@@ -14,7 +14,9 @@ const SortableItem = SortableElement((props) => (
   <FilsListItem {...props} dragHandle />
 ));
 
-const List = ({ files, sortable, mode }) => {
+const List = ({
+  files, sortable, removeable, mode,
+}) => {
   const Item = sortable ? SortableItem : FilsListItem;
 
   return (
@@ -26,6 +28,7 @@ const List = ({ files, sortable, mode }) => {
           file={f}
           mode={mode}
           index={i}
+          removeable={removeable}
         />
       ))}
     </div>
@@ -46,10 +49,13 @@ const FilsList = ({
 
   return (
     <Dir {...props}>
-      {({ files, move, multiple }) => (
+      {({
+        files, move, multiple, disabled,
+      }) => (
         <Dir.Drop className="position-relative">
           <div className="row gx-2">
             {/* click to add files */}
+            {!disabled && (
             <div className="col">
               <Dir.Click className="d-grid">
                 <div className="btn btn-neutral px-3 text-start">
@@ -58,39 +64,40 @@ const FilsList = ({
                 </div>
               </Dir.Click>
             </div>
+            )}
 
             {/* mode toggle */}
             {modes.length > 1 && multiple && (
-              <div className="col-auto">
-                <div className="btn-group">
-                  <button
-                    type="button"
-                    tabIndex={-1}
-                    className={
+            <div className="col-auto">
+              <div className="btn-group">
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  className={
                     `btn btn${mode === 'list' ? '' : '-outline'}-neutral`
                   }
-                    onClick={() => setMode('list')}
-                  >
-                    <FA icon={faThList} />
-                  </button>
-                  <button
-                    type="button"
-                    tabIndex={-1}
-                    className={
+                  onClick={() => setMode('list')}
+                >
+                  <FA icon={faThList} />
+                </button>
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  className={
                     `btn btn${mode === 'grid' ? '' : '-outline'}-neutral`
                   }
-                    onClick={() => setMode('grid')}
-                  >
-                    <FA icon={faTh} />
-                  </button>
-                </div>
+                  onClick={() => setMode('grid')}
+                >
+                  <FA icon={faTh} />
+                </button>
               </div>
+            </div>
             )}
           </div>
 
           {/* list */}
           <div className={multiple ? 'py-2' : 'pb-2'}>
-            {sortable ? (
+            {!disabled && sortable ? (
               <SortableList
                 files={files}
                 mode={mode}
@@ -99,7 +106,7 @@ const FilsList = ({
                 useDragHandle
               />
             ) : (
-              <List files={files} mode={mode} />
+              <List files={files} mode={mode} removeable={!disabled} />
             )}
           </div>
         </Dir.Drop>

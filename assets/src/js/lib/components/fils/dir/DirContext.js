@@ -5,6 +5,7 @@ export default React.createContext({
   accept: undefined,
   maxSize: undefined,
   multiple: false,
+  disabled: false,
   files: [],
 
   push: () => {},

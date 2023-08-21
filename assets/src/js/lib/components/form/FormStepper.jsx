@@ -23,13 +23,15 @@ const FormStepper = ({
 
   return (
     <FormInputGroup {...props}>
-      {({ valid, invalid, ...p }) => (
+      {({
+        valid, invalid, disabled, ...p
+      }) => (
         <>
           <button
             type="button"
             className={btnClassName}
             onClick={() => setValue(v - step)}
-            disabled={v <= min}
+            disabled={disabled || v <= min}
           >
             <FA icon={faMinus} fixedWidth />
           </button>
@@ -43,7 +45,7 @@ const FormStepper = ({
             type="button"
             className={btnClassName}
             onClick={() => setValue(v + step)}
-            disabled={v >= max}
+            disabled={disabled || v >= max}
           >
             <FA icon={faPlus} fixedWidth />
           </button>

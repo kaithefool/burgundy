@@ -14,12 +14,13 @@ const FormRefs = ({
     listClassName={listClassName}
     itemClassName={itemClassName}
     tmpl={({
-      item, helpers, index, sortable,
+      item, helpers, index, sortable, removeable,
     }) => (
       <FormRefItem
         value={item}
         onRemoved={() => helpers.remove(index)}
         sortable={sortable}
+        removeable={removeable}
       >
         {children}
       </FormRefItem>

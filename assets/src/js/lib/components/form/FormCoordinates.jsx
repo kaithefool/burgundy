@@ -10,6 +10,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { faCrosshairs } from '@fortawesome/free-solid-svg-icons/faCrosshairs';
 
 import env from '../../config/env';
+import useForm from './useForm';
 import FormInputGroup from './FormInputGroup';
 
 const primaryColor = getComputedStyle(document.body)
@@ -33,8 +34,11 @@ const FormCoordinates = ({
   radius: radiusField,
   mapClassName = 'rounded ratio ratio-21x9 max-vh-50 overflow-hidden mb-3',
   zoom = 18,
+  disabled: disabledProp,
   ...props
 }) => {
+  const { disabled: disabledForm } = useForm();
+  const disabled = disabledProp || disabledForm;
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: env.googleApiKey,
@@ -100,6 +104,7 @@ const FormCoordinates = ({
                 type="text"
                 className={className}
                 placeholder={placeholder}
+                disabled={disabled}
               />
               {navigator.geolocation && (
                 <button
@@ -145,7 +150,7 @@ const FormCoordinates = ({
             )}
             <Marker
               position={pos}
-              draggable
+              draggable={!disabled}
               onDragStart={() => {
                 if (cir.current) cir.current.setVisible(false);
               }}

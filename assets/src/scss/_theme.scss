@@ -11,6 +11,10 @@ html {
     border-color: $input-border-color;
     color: inherit;
     background-color: transparent;
+
+    &:disabled {
+      background-color: $input-disabled-bg;
+    }
   }
   :not(:first-child) {
     border-left: none;

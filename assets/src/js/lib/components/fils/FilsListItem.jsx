@@ -8,14 +8,19 @@ const FilsListItem = ({
   mode = 'list',
   className = '',
   dragHandle,
-}) => (
-  <div className={className}>
-    {
-      mode === 'list'
-        ? <FilsListItemList file={file} dragHandle={dragHandle} />
-        : <FilsListItemGrid file={file} dragHandle={dragHandle} />
-    }
-  </div>
-);
+  removeable = true,
+}) => {
+  const p = { file, dragHandle, removeable };
+
+  return (
+    <div className={className}>
+      {
+        mode === 'list'
+          ? <FilsListItemList {...p} />
+          : <FilsListItemGrid {...p} />
+      }
+    </div>
+  );
+};
 
 export default FilsListItem;

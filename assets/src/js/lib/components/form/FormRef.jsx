@@ -17,21 +17,24 @@ const FormRef = ({
 
   return (
     <FormField {...props}>
-      {(p) => (
+      {({ disabled, ...p }) => (
         value ? (
           <FormRefItem
             value={value}
             onRemoved={() => set(null)}
+            removeable={!disabled}
           >
             {children}
           </FormRefItem>
         ) : (
-          <FormRefSearch
-            {...p}
-            onPicked={set}
-          >
-            {children}
-          </FormRefSearch>
+          !disabled && (
+            <FormRefSearch
+              {...p}
+              onPicked={set}
+            >
+              {children}
+            </FormRefSearch>
+          )
         )
       )}
     </FormField>

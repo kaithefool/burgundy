@@ -33,7 +33,9 @@ const FormArray = ({
 
   return (
     <FormField {...props}>
-      {({ invalid, valid, ...p }) => (
+      {({
+        invalid, valid, disabled, ...p
+      }) => (
         <FieldArray name={p.name}>
           {(helpers) => {
             const h = isObjs
@@ -49,11 +51,13 @@ const FormArray = ({
                 title={title}
                 tmpl={tmpl}
                 listLabel={listLabel}
-                sortable={isSortable}
+                sortable={!disabled && isSortable}
                 removeable={
-                  typeof removeable === 'function'
-                    ? removeable(item, i)
-                    : removeable
+                  !disabled && (
+                    typeof removeable === 'function'
+                      ? removeable(item, i)
+                      : removeable
+                  )
                 }
               >
                 {children}
@@ -94,7 +98,7 @@ const FormArray = ({
                     ))}
                   </div>
                 )}
-                {pushBtn && (
+                {pushBtn && !disabled && (
                   typeof pushBtn === 'boolean' ? (
                     <button
                       type="button"

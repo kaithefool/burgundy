@@ -33,6 +33,7 @@ const FormProvider = ({
   onSubmit,
   resetOnSubmitted = false,
   onSubmitted = () => {},
+  disabled = false,
   ...props
 }) => {
   const attempValues = useRef({});
@@ -62,7 +63,11 @@ const FormProvider = ({
   );
 
   return (
-    <FormHttpContext.Provider value={{ http, attemp, attempValues }}>
+    <FormHttpContext.Provider
+      value={{
+        http, attemp, attempValues, disabled,
+      }}
+    >
       <Formik
         validationSchema={schema}
         initialValues={initValues(defaults, stored, relations)}

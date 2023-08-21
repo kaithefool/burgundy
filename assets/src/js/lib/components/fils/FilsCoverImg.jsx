@@ -20,7 +20,7 @@ const FilsCoverImg = ({
       accept={accept}
       {...props}
     >
-      {({ files }) => (
+      {({ files, disabled }) => (
         <Dir.Drop
           className={`
             ${className}
@@ -43,7 +43,7 @@ const FilsCoverImg = ({
                     <Fil.Progress />
                     <div className="px-3">
                       <div className="row g-2 align-items-center">
-                        <div className="col-auto text-primary">
+                        <div className="col-auto text-primary py-2">
                           <Fil.TypeIcon fixedWidth />
                         </div>
                         <div className="col">
@@ -55,9 +55,11 @@ const FilsCoverImg = ({
                         <div className="col-auto">
                           <Fil.Status />
                         </div>
-                        <div className="col-auto">
-                          <Fil.Remove className="btn text-neutral" />
-                        </div>
+                        {!disabled && (
+                          <div className="col-auto">
+                            <Fil.Remove className="btn text-neutral" />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -66,15 +68,17 @@ const FilsCoverImg = ({
             </Fil>
           )}
           <Dir.Click alwaysEnable>
-            <div
-              className={`
-                btn btn-neutral px-3
-                position-absolute top-50 start-50 translate-middle-x
-              `}
-            >
-              <FA icon={faPlus} fixedWidth className="me-2" />
-              {t('selectImage')}
-            </div>
+            {!disabled && (
+              <div
+                className={`
+                  btn btn-neutral px-3
+                  position-absolute top-50 start-50 translate-middle-x
+                `}
+              >
+                <FA icon={faPlus} fixedWidth className="me-2" />
+                {t('selectImage')}
+              </div>
+            )}
           </Dir.Click>
         </Dir.Drop>
       )}

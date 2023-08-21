@@ -17,6 +17,7 @@ const DragHandle = SortableHandle(() => (
 const FilsListItemList = ({
   file,
   dragHandle = false,
+  removeable = true,
 }) => (
   <Fil file={file}>
     <div className="position-relative rounded border bg-white">
@@ -28,7 +29,7 @@ const FilsListItemList = ({
               <DragHandle />
             </div>
           )}
-          <div className="col-auto text-primary">
+          <div className="col-auto text-primary py-2">
             <Fil.TypeIcon fixedWidth />
           </div>
           <div className="col">
@@ -40,9 +41,11 @@ const FilsListItemList = ({
           <div className="col-auto">
             <Fil.Status />
           </div>
-          <div className="col-auto">
-            <Fil.Remove className="btn text-neutral" />
-          </div>
+          {removeable && (
+            <div className="col-auto">
+              <Fil.Remove className="btn text-neutral" />
+            </div>
+          )}
         </div>
       </div>
     </div>

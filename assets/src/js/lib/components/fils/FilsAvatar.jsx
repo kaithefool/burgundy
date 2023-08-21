@@ -17,14 +17,14 @@ const FilsAvatar = ({
     overflow-hidden
   `;
 
-  const field = (file, status) => (
+  const field = (disabled, file, status) => (
     <div className="row align-items-center">
       <div className="col-auto" style={{ width: `${width}px` }}>
         <Dir.Click className={avatarClassName} alwaysEnable>
           {file && (
             <>
               <Fil.Preview />
-              {status && (
+              {!disabled && status && (
                 <div
                   className={`
                     h-auto start-50 top-50 translate-middle
@@ -47,21 +47,23 @@ const FilsAvatar = ({
           )}
         </Dir.Click>
       </div>
-      <div className="col-auto">
-        <Dir.Click alwaysEnable>
-          <button
-            type="button"
-            className="btn btn-sm btn-neutral"
-          >
-            {t('selectImage')}
-          </button>
-        </Dir.Click>
-        {file && (
-          <Fil.Remove className="btn btn-sm mt-2 btn-outline-neutral">
-            {t('remove')}
-          </Fil.Remove>
-        )}
-      </div>
+      {!disabled && (
+        <div className="col-auto">
+          <Dir.Click alwaysEnable>
+            <button
+              type="button"
+              className="btn btn-sm btn-neutral"
+            >
+              {t('selectImage')}
+            </button>
+          </Dir.Click>
+          {file && (
+            <Fil.Remove className="btn btn-sm mt-2 btn-outline-neutral">
+              {t('remove')}
+            </Fil.Remove>
+          )}
+        </div>
+      )}
     </div>
   );
 
@@ -70,15 +72,15 @@ const FilsAvatar = ({
       accept={accept}
       {...props}
     >
-      {({ files }) => (
+      {({ files, disabled }) => (
         <Dir.Drop className={className}>
           {files[0] ? (
             <Fil file={files[0]}>
               {({ file, http }) => (
-                field(file, http.res.status)
+                field(disabled, file, http.res.status)
               )}
             </Fil>
-          ) : field()}
+          ) : field(disabled)}
         </Dir.Drop>
       )}
     </Dir>

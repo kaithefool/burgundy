@@ -17,6 +17,7 @@ const DragHandle = SortableHandle(() => (
 const FilsGridItem = ({
   file,
   dragHandle = false,
+  removeable = true,
 }) => (
   <Fil file={file}>
     <Fil.Thumbnail file={file}>
@@ -32,16 +33,18 @@ const FilsGridItem = ({
         <div className="position-relative ps-3 pe-2">
           <div className="row g-2 align-items-center justify-content-end">
             {dragHandle && (
-            <div className="col text-muted">
-              <DragHandle />
-            </div>
+              <div className="col text-muted">
+                <DragHandle />
+              </div>
             )}
             <div className="col-auto">
               <Fil.Status />
             </div>
-            <div className="col-auto">
-              <Fil.Remove className="btn text-neutral" />
-            </div>
+            {removeable && (
+              <div className="col-auto">
+                <Fil.Remove className="btn text-neutral" />
+              </div>
+            )}
           </div>
         </div>
       </div>

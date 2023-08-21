@@ -19,6 +19,7 @@ const FormRefItem = ({
   value,
   children,
   sortable = false,
+  removeable = true,
   onRemoved = () => {},
 }) => (
   <div className={`input-group input-group-input ${className}`}>
@@ -28,13 +29,15 @@ const FormRefItem = ({
     <div className="input-group-text flex-fill">
       {children(value)}
     </div>
-    <button
-      className="btn btn-input"
-      type="button"
-      onClick={onRemoved}
-    >
-      <FA icon={faTimes} />
-    </button>
+    {removeable && (
+      <button
+        className="btn btn-input"
+        type="button"
+        onClick={onRemoved}
+      >
+        <FA icon={faTimes} />
+      </button>
+    )}
   </div>
 );
 

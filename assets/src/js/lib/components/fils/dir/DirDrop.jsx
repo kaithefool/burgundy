@@ -11,14 +11,17 @@ const DirDrop = ({
   children,
   className = 'position-relative',
 }) => {
-  const { push } = useDir();
+  const { push, disabled } = useDir();
   const [backdrop, setBackdrop] = useState(false);
   // account for dragging between parent and children
   const dragIn = useRef(0);
+  const cc = `${className} overflow-hidden`;
+
+  if (disabled) return <div className={cc}>{children}</div>;
 
   return (
     <div
-      className={`${className} overflow-hidden`}
+      className={cc}
       onDragEnter={() => {
         dragIn.current += 1;
         if (!backdrop) setBackdrop(true);

@@ -53,6 +53,7 @@ const DirProvider = ({
   initValue = [],
   reset = false,
   multiple = false, // Boolean or max no. of files
+  disabled = false,
   onChange = () => {},
   onDraft = () => {},
   accept,
@@ -135,6 +136,7 @@ const DirProvider = ({
     accept,
     maxSize,
     multiple,
+    disabled,
     files,
     push,
     replace,

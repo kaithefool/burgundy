@@ -10,10 +10,11 @@ const DirClick = ({
 }) => {
   const input = useRef();
   const {
-    push, accept, multiple, files,
+    push, accept, multiple, files, disabled,
   } = useDir();
 
   if (!alwaysEnable && !multiple && files.length) return '';
+  if (disabled) return <div className={className}>{children}</div>;
 
   return (
     <div
