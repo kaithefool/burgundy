@@ -54,7 +54,7 @@ routes.use(
       return res.redirect(req.user ? '/logout' : '/auth');
     }
 
-    return res.render('admin');
+    return res.render('layout', { entry: 'admin' });
   },
 );
 
@@ -66,13 +66,13 @@ routes.use(
       return redirectCookies.consume(req, res, { base: '/admin' });
     }
 
-    return res.render('home');
+    return res.render('layout', { entry: 'home' });
   },
 );
 
 routes.use(
   '/',
-  (req, res) => res.render('home'),
+  (req, res) => res.render('layout', { entry: 'home' }),
 );
 
 module.exports = routes;
