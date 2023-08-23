@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import isEqual from 'lodash/isEqual';
+import qs from 'qs';
 
 import ListContext from './ListContext';
 import useHttp from '../../hooks/useHttp';
@@ -7,6 +9,20 @@ import useDidUpdate from '../../hooks/useDidUpdate';
 import useQuery from '../../hooks/useQuery';
 import useAlert from '../alert/useAlert';
 import useList from './useList';
+
+const parseUrlQuery = (q = {}) => {
+  const d = { ...q };
+
+  if (d.skip) d.skip = Number(d.skip);
+  if (d.limit) d.limit = Number(d.limit);
+
+  return d;
+};
+
+const isEqualQuery = (q, urlQ) => isEqual(
+  qs.parse(qs.stringify(q), { ignoreQueryPrefix: true }),
+  qs.parse(qs.stringify(urlQ), { ignoreQueryPrefix: true }),
+);
 
 const ListProvider = ({
   children,
@@ -25,7 +41,8 @@ const ListProvider = ({
     filter: {},
     ...iq,
   };
-  const [urlQuery, setUrlQuery] = useQuery();
+  const [rawUrlQuery, setUrlQuery] = useQuery();
+  const urlQuery = parseUrlQuery(rawUrlQuery);
   const [activeCols, showCols] = useState(
     () => cols.filter((c) => !c.hide),
   );
@@ -34,13 +51,13 @@ const ListProvider = ({
   const [selected, setSelected] = useState([]);
   const [query, setQuery] = useState(() => ({
     ...initQuery,
-    ...(history && {
-      ...(urlQuery.skip && { skip: Number(urlQuery.skip) }),
-      ...(urlQuery.limit && { limit: Number(urlQuery.limit) }),
-      ...(urlQuery.filter && { filter: urlQuery.filter }),
-    }),
+    ...(history && urlQuery),
   }));
   const [refreshCount, setRefreshCount] = useState(0);
+  const isOutOfSync = history && !isEqualQuery(
+    query,
+    { ...initQuery, ...urlQuery },
+  );
 
   const lazying = lazy && !Object.keys(query.filter).length;
   let rows = [];
@@ -67,7 +84,19 @@ const ListProvider = ({
     }
     if (selectable) setSelected([]); // clear select
 
-    setQuery(newQ); // set state
+    // set state
+    setQuery(newQ);
+
+    // update url query
+    if (history) {
+      const { skip, limit, filter } = newQ;
+
+      setUrlQuery({
+        ...(skip !== initQuery.skip && { skip }),
+        ...(limit !== initQuery.limit && { limit }),
+        filter,
+      }, true);
+    }
 
     if (
       !nonHttpRows
@@ -91,36 +120,27 @@ const ListProvider = ({
   const select = (s) => setSelected(s);
 
   // http alerts
-  useAlert(res, {
-    success: false,
-  });
+  useAlert(res, { success: false });
 
   // toggle cols
   useEffect(() => {
     showCols(cols.filter((c) => !c.hide));
   }, [useComparable(cols)]);
 
+  // init fetch
   useEffect(() => {
     if (!lazying) fetch();
   }, []);
 
-  // refresh when filter changed
+  // refresh when api or base filter changed
   useDidUpdate(() => {
     fetch(initQuery);
   }, [useComparable({ baseFilter, api })]);
 
-  // update url query
+  // when url query changed
   useEffect(() => {
-    if (history) {
-      const { skip, limit } = query;
-
-      setUrlQuery({
-        ...(skip !== initQuery.skip && { skip }),
-        ...(limit !== initQuery.limit && { limit }),
-        filter: query.filter,
-      }, true);
-    }
-  }, [history && useComparable({ query })]);
+    if (isOutOfSync) { fetch(urlQuery); }
+  }, [isOutOfSync]);
 
   // pile up payloads in infinite mode
   useEffect(() => {
