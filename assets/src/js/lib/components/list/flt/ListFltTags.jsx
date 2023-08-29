@@ -1,5 +1,6 @@
 import React from 'react';
 import omit from 'lodash/omit';
+import inflect from 'inflect';
 import { useTranslation } from 'react-i18next';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
@@ -9,32 +10,88 @@ import { mapDeep } from '../../../helpers';
 import useList from '../useList';
 
 const compKeys = ['gt', 'gte', 'lt', 'lte', 'in'];
+const compSymbols = {
+  gt: '>',
+  gte: '>=',
+  lt: '<',
+  lte: '<=',
+};
+
+const Label = ({
+  value, field, comparsion,
+  paths = true, // custom path label,
+  values = () => false, // custom value label
+}) => {
+  const { t } = useTranslation();
+  let f;
+
+  if (
+    paths
+    && (
+      typeof paths !== 'function'
+      || paths({ value, path: field, comparsion })
+    )
+  ) {
+    f = t('field', {
+      path: field,
+      fieldCase: 'titleize',
+      fieldArrayPath: false,
+    });
+  }
+
+  const vv = (v) => {
+    const d = values({ value: v, path: field, comparsion });
+
+    if (d) return d;
+
+    return t([
+      `${field}.${v}`,
+      `${inflect.pluralize(field)}.${v}`,
+      v,
+    ]);
+  };
+  const val = [
+    ...[compSymbols[comparsion]].filter((s) => s),
+    Array.isArray(value) ? value.map(vv).join(', ') : vv(value),
+  ].join(' ');
+
+  return f ? `${f}: ${val}` : val;
+};
 
 const ListFltTags = ({
   className = 'bg-primary text-white rounded-1',
-  label,
+  children = (tag) => <Label {...tag} />,
+  lists,
+  ...props
 }) => {
-  const { t } = useTranslation();
   const { query: { filter = {} }, fetch } = useList();
   const tags = [];
 
-  mapDeep(filter, (val, key, path) => {
-    if (typeof key === 'number') {
-      const p = path.replace(/\.\d+$/, '');
+  mapDeep(filter, (value, key, path) => {
+    if (
+      Array.isArray(value)
+      && lists
+      && (
+        typeof lists !== 'function'
+        || lists({ value, key, path })
+      )
+    ) {
+      tags.push({ path, value, field: path });
 
-      tags.push({
-        path, label: `${p}: ${val}`,
-      });
+      return null;
+    }
+    if (typeof key === 'number') {
+      tags.push({ path, value, field: path.replace(/\.\d+$/, '') });
     }
     if (compKeys.includes(key)) {
-      const p = path.replace(new RegExp(`\\.${key}$`), '');
+      const field = path.replace(new RegExp(`\\.${key}$`), '');
 
       tags.push({
-        path, label: `${p}: ${t(key)} ${val}`,
+        path, value, field, comparsion: key,
       });
     }
 
-    return val;
+    return value;
   });
 
   return (
@@ -47,13 +104,15 @@ const ListFltTags = ({
           `}
           >
             <div className="ps-2">
-              {ta.label}
+              {children({ ...ta, ...props })}
             </div>
             <button
               type="button"
               className="btn btn-sm text-reset"
               onClick={() => {
-                fetch(omit(filter, ta.path));
+                fetch({
+                  filter: omit(filter, ta.path),
+                });
               }}
             >
               <FA icon={faTimes} />
