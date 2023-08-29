@@ -5,7 +5,7 @@ import useList from '../useList';
 
 const ListPagination = ({
   className = 'form-select',
-  limits = [20, 40, 60],
+  limits = ['20', '40', '60'],
 }) => {
   const { t } = useTranslation();
   const {
@@ -20,7 +20,7 @@ const ListPagination = ({
       onChange={(e) => {
         const { value } = e.target;
 
-        fetch({ limit: Number(value), skip: 0 });
+        fetch({ limit: value, skip: 0 });
       }}
     >
       {limits.map((l) => (

@@ -8,10 +8,12 @@ const ListPagination = ({
 }) => {
   const [input, setInput] = useState('');
   const {
-    query: { skip, limit },
+    query,
     fetched,
     fetch,
   } = useList();
+  const skip = parseInt(query.skip, 10) || 0;
+  const limit = parseInt(query.limit, 10) || 20;
   const total = fetched?.payload?.total || 0;
   const pg = {
     total: Math.ceil(total / limit) || 0,

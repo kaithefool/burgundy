@@ -1,42 +1,54 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import isEqual from 'lodash/isEqual';
 
 import useUniqKey from '../../../hooks/useUniqKey';
 import useList from '../useList';
 
 const ListFltCheck = ({
   label, value, name,
-
+  labelClassName = 'form-check-label',
+  inputClassName = 'form-check-input',
+  className = 'form-check form-check-inline',
+  multiple,
   ...props
 }) => {
   const [id] = useUniqKey();
   const { t } = useTranslation();
-  const { fetch, query } = useList();
-  const values = query?.filter?.[name] ?? [];
+  const { fetch, query: { sort, filter } } = useList();
+  const state = name === 'sort' ? sort : filter[name];
+  const checked = multiple
+    ? state?.includes(value)
+    : isEqual(state, value);
 
   const toggle = () => {
-    const i = values.findIndex((v) => v === value);
-    const draft = [...values];
+    if (multiple) {
+      const draft = (state || []).filter((v) => v !== value);
 
-    if (i === -1) draft.push(value);
-    else draft.splice(i, 1);
+      if (!checked) draft.push(value);
+      fetch({ filter: { ...filter, [name]: draft } });
+    } else {
+      const draft = checked ? undefined : value;
 
-    fetch({
-      filter: { ...query.filter, [name]: draft },
-    });
+      fetch(
+        name === 'sort'
+          ? { sort: draft }
+          : { filter: { ...filter, [name]: draft } },
+      );
+    }
   };
 
   return (
-    <div className="form-check form-check-inline">
+    <div className={className}>
       <input
         id={id}
-        className="form-check-input"
+        className={inputClassName}
         type="checkbox"
-        checked={values.includes(value)}
+        checked={checked}
         onChange={toggle}
         {...props}
       />
-      <label className="form-check-label" htmlFor={id}>
+      <label className={labelClassName} htmlFor={id}>
         {t(label || value)}
       </label>
     </div>
