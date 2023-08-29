@@ -54,18 +54,8 @@ const ListProvider = (props) => {
     }
     if (selectable) setSelected([]); // clear select
 
-    // set state
+    // set state to trigger request
     setQuery(newQ);
-
-    if (
-      !nonHttpRows
-      && (!lazy || Object.keys(newQ.filter).length)
-    ) {
-      req({
-        ...api,
-        params: { ...newQ, filter: { ...newQ.filter, ...baseFilter } },
-      });
-    }
   };
 
   const refresh = () => {
@@ -85,10 +75,15 @@ const ListProvider = (props) => {
     showCols(cols.filter((c) => !c.hide));
   }, [useComparable(cols)]);
 
-  // init fetch
+  // make request when query changed
   useEffect(() => {
-    if (!lazying) fetch();
-  }, []);
+    if (!nonHttpRows && !lazying) {
+      req({
+        ...api,
+        params: { ...query, filter: { ...query.filter, ...baseFilter } },
+      });
+    }
+  }, [useComparable({ query })]);
 
   // refresh when api or base filter changed
   useDidUpdate(() => {

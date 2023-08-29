@@ -59,9 +59,9 @@ const Label = ({
 };
 
 const ListFltTags = ({
-  className = 'bg-primary text-white rounded-1',
+  className = 'bg-secondary text-white rounded-1',
   children = (tag) => <Label {...tag} />,
-  lists,
+  lists, // list array values inside tag
   ...props
 }) => {
   const { query: { filter = {} }, fetch } = useList();
@@ -89,6 +89,9 @@ const ListFltTags = ({
       tags.push({
         path, value, field, comparsion: key,
       });
+    }
+    if (typeof value === 'string') {
+      tags.push({ path, value, field: path });
     }
 
     return value;
