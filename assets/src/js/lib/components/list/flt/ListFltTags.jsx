@@ -79,18 +79,15 @@ const ListFltTags = ({
       tags.push({ path, value, field: path });
 
       return null;
-    }
-    if (typeof key === 'number') {
+    } if (typeof key === 'number') {
       tags.push({ path, value, field: path.replace(/\.\d+$/, '') });
-    }
-    if (compKeys.includes(key)) {
+    } else if (compKeys.includes(key)) {
       const field = path.replace(new RegExp(`\\.${key}$`), '');
 
       tags.push({
         path, value, field, comparsion: key,
       });
-    }
-    if (typeof value === 'string') {
+    } else if (typeof value === 'string') {
       tags.push({ path, value, field: path });
     }
 
