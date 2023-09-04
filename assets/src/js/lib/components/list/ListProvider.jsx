@@ -28,6 +28,10 @@ const ListProvider = (props) => {
   const [selected, setSelected] = useState([]);
   const [refreshCount, setRefreshCount] = useState(0);
   const { query, setQuery, initQuery } = useListQuery(props);
+  const reqOpts = {
+    ...api,
+    params: { ...query, filter: { ...query.filter, ...baseFilter } },
+  };
 
   const lazying = lazy && !Object.keys(query.filter).length;
   let rows = [];
@@ -60,7 +64,6 @@ const ListProvider = (props) => {
 
   const refresh = () => {
     if (infinite) setPile({ rows: [] });
-    fetch();
     setRefreshCount(refreshCount + 1);
   };
 
@@ -78,12 +81,9 @@ const ListProvider = (props) => {
   // make request when query changed
   useEffect(() => {
     if (!nonHttpRows && !lazying) {
-      req({
-        ...api,
-        params: { ...query, filter: { ...query.filter, ...baseFilter } },
-      });
+      req(reqOpts);
     }
-  }, [useComparable({ query })]);
+  }, [useComparable(reqOpts), refreshCount]);
 
   // refresh when api or base filter changed
   useDidUpdate(() => {
