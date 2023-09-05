@@ -21,6 +21,7 @@ const SliderBody = (props) => {
         isBeginning: s.isBeginning,
         isEnd: s.isEnd,
       })}
+      video={{ playOnActiveSlide: true }}
       {...props}
     />
   );

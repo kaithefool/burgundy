@@ -13,13 +13,20 @@ import useSlider from './useSlider';
 const SliderSlides = ({
   children,
   slideProps,
+  video: {
+    playOnActiveSlide = false,
+  } = {},
   ...props
 }) => {
   const { slides, spaceBetween } = useSlider();
 
-  const r = children || ((s) => (
+  const r = children || ((s, i, p) => (
     <Fil file={s}>
-      <Fil.Preview />
+      <Fil.Preview
+        {...playOnActiveSlide && {
+          video: { playing: p.isActive },
+        }}
+      />
     </Fil>
   ));
 

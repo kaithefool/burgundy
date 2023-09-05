@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Fil from './fil';
+import Fil, { previewables } from './fil';
 import Slider from '../slider';
 
 const FilsGallery = ({
@@ -10,7 +10,7 @@ const FilsGallery = ({
   gridClassName = 'd-flex flex-wrap gap-2 py-2',
   thumb: thumbProps = {},
 }) => {
-  const imgs = list.filter((f) => f.type.match(/^image\//));
+  const imgs = list.filter((f) => previewables.includes(f.type));
   const files = imgOnly ? imgs : list;
   const thumbs = thumbsLimit
     ? files.slice(0, thumbsLimit)
