@@ -1,6 +1,6 @@
 import useFil from './useFil';
 import FilContext from './FilContext';
-import FilPreview, { previewables } from './FilPreview';
+import FilPreview, { isPreviewable } from './FilPreview';
 import FilProvider from './FilProvider';
 import FilStatus from './FilStatus';
 import FilTypeIcon from './FilTypeIcon';
@@ -15,7 +15,7 @@ export {
   useFil,
   FilContext,
   FilPreview,
-  previewables,
+  isPreviewable,
   FilProvider,
   FilStatus,
   FilTypeIcon,

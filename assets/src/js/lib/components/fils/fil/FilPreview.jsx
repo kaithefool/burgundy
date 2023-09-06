@@ -12,6 +12,10 @@ export const previewables = [
   'video/webm',
 ];
 
+export const isPreviewable = (fileType) => (
+  previewables.find((p) => p === fileType)
+);
+
 const FilPreview = ({
   className = 'img-bg',
   video: {
@@ -22,7 +26,6 @@ const FilPreview = ({
   const { file } = useFil();
   const [display, setDisplay] = useState(null);
   const previewable = previewables.includes(file?.type);
-
   const videoRef = useCallback((node) => {
     if (node && node.paused === playing) {
       node.currentTime = 0;
@@ -56,7 +59,7 @@ const FilPreview = ({
       }}
     >
       {file.type.match(/^video/) && (
-        <video ref={videoRef} loop {...video}>
+        <video ref={videoRef} {...video}>
           <source src={display} type={file.type} />
         </video>
       )}

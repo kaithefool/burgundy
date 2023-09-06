@@ -156,6 +156,7 @@ const PageExample = () => {
                                 slideProps={(s, i) => ({
                                   onClick: () => turnOn(i),
                                 })}
+                                autoplay={{ delay: 2000 }}
                               />
                               <Slider.Nav />
                             </div>
