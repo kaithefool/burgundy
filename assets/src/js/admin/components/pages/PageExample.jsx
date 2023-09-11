@@ -141,7 +141,7 @@ const PageExample = () => {
                     <Tab eventKey="files">
                       <Form.FilsAvatar name="avatar" />
                       <Form.FilsCoverImg name="coverImg" />
-                      <Form.FilsList name="files" multiple />
+                      <Form.FilsList name="files" cloud multiple />
                       <Form.Label name="gallery" />
                       <FilsGallery files={files} />
                       <Form.Label name="slider" />

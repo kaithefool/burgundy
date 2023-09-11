@@ -16,6 +16,9 @@ import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
 import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
 
+import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube';
+import { faVimeo } from '@fortawesome/free-brands-svg-icons/faVimeo';
+
 import useFil from './useFil';
 
 const mimes = [
@@ -61,6 +64,14 @@ const mimes = [
       'application/zip',
       'application/gzip',
     ],
+  },
+  {
+    icon: faYoutube,
+    mimes: ['cloud/youtube'],
+  },
+  {
+    icon: faVimeo,
+    mimes: ['cloud/vimeo'],
   },
 ];
 

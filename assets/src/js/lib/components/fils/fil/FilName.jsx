@@ -7,8 +7,13 @@ const FilName = ({
   className = 'link-dark',
   link,
 }) => {
-  const { file: { name = '', path } } = useFil();
-  const [, n, ext] = (name || path).match(/(.*?)(\.[^.]*)$/);
+  const { file: { name = '', path, type } } = useFil();
+  let n = name || path;
+  let ext = '';
+
+  if (!type.match(/^cloud\//)) {
+    ([, n, ext] = n.match(/(.*?)(\.[^.]*)$/));
+  }
 
   const content = (
     <div className="w-100 d-inline-flex flex-nowrap">

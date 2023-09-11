@@ -42,6 +42,7 @@ const SortableList = SortableContainer((props) => (
 const FilsList = ({
   sortable = true,
   modes = ['list', 'grid'],
+  cloud = false,
   ...props
 }) => {
   const { t } = useTranslation();
@@ -56,14 +57,21 @@ const FilsList = ({
           <div className="row gx-2">
             {/* click to add files */}
             {!disabled && (
-            <div className="col">
-              <Dir.Click className="d-grid">
-                <div className="btn btn-neutral px-3 text-start">
-                  <FA icon={faPlus} fixedWidth className="me-2" />
-                  {t('addFiles')}
-                </div>
-              </Dir.Click>
-            </div>
+              <div className="col">
+                <Dir.Click className="d-grid">
+                  <div className="btn btn-neutral px-3 text-start">
+                    <FA icon={faPlus} fixedWidth className="me-2" />
+                    {t('addFiles')}
+                  </div>
+                </Dir.Click>
+              </div>
+            )}
+            {cloud && (
+              <div className="col-auto">
+                <Dir.Cloud
+                  {...typeof cloud !== 'boolean' && { accept: cloud }}
+                />
+              </div>
             )}
 
             {/* mode toggle */}

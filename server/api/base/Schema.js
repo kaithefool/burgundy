@@ -25,7 +25,7 @@ module.exports = class Schema {
       path: { type: String, required: true },
       name: { type: String, required: true },
       type: { type: String, required: true },
-      size: Number,
+      size: { type: Number, default: 0 },
     }];
   }
 

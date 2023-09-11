@@ -41,6 +41,8 @@ const MediaSlide = ({
                 swiper.autoplay.start();
               }
             },
+            // controls: true,
+            muted: true,
             loop: !autoplay,
           },
         }}
@@ -76,7 +78,7 @@ const SliderSlides = ({
         },
         onBeforeTransitionStart: (s, speed, internal) => {
           if (!internal) {
-            // non internal slide change are user initiated
+            // non internal slide changes are user initiated
             s.autoplay.stop();
             setAutoplaying(false);
           }

@@ -61,6 +61,7 @@ body.admin {
   // sticky doc controls
   .doc-ctrls {
     @extend .sticky-top;
+    z-index: 9; // overwrite sticky-top z-index
     background-color: $light;
   }
 
