@@ -24,6 +24,8 @@
   "remove" : "刪除",
   "showMore": "展示更多",
   "addFiles": "添加文件",
+  "addCloudFile": "添加雲端文件",
+  "acceptCloudTypes": "接受{{types, list}}的網址",
   "coordinatesHelptext": "輸入地址、地點或坐標。拖動標記以調整坐標。",
   "month": "月",
   "week": "週",

@@ -12,5 +12,7 @@
   "remove" : "Remove",
   "showMore": "Show More",
   "addFiles": "Add Files",
+  "addCloudFile": "Add External File",
+  "acceptCloudTypes": "Accepts {{types, list}} links",
   "coordinatesHelptext": "Enter addresses, places, or coordinates to search. Drag the marker to adjust the coordinates."
 }

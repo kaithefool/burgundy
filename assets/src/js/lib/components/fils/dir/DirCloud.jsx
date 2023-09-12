@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { object, string } from 'yup';
+import inflect from 'inflect';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
@@ -12,6 +13,7 @@ import {
 import Modal from 'react-bootstrap/Modal';
 import { Formik, Form, Field } from 'formik';
 import useDir from './useDir';
+import useUniqKey from '~/lib/hooks/useUniqKey';
 
 const regex = {
   youtube: /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w-]+\?v=|embed\/|live\/|v\/)?)([\w-]+)(\S+)?$/,
@@ -25,6 +27,7 @@ const DirCloud = ({
   className = 'btn btn-primary px-3',
   accept = ['youtube', 'vimeo'],
 }) => {
+  const [id] = useUniqKey();
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const { push } = useDir();
@@ -41,11 +44,8 @@ const DirCloud = ({
       <Modal
         show={show}
         onHide={() => setShow(false)}
-        centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title>{t('external file')}</Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton />
         <Modal.Body>
           <Formik
             initialValues={{ url: '' }}
@@ -62,32 +62,43 @@ const DirCloud = ({
               setShow(false);
             }}
           >
-            {({ isValid, dirty }) => (
+            {({
+              isValid, dirty, values, setValues,
+            }) => (
               <Form>
-                <div className="row g-2">
-                  <div className="col">
-                    <div className="input-group input-group-input">
-                      <span className="input-group-text text-neutral">
-                        <FA icon={faLink} />
-                      </span>
-                      <Field className="form-control" name="url" type="url" />
-                      <button
-                        type="button"
-                        className="btn btn-input"
-                      >
-                        <FA icon={faTimes} fixedWidth />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-auto">
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      disabled={!dirty || !isValid}
-                    >
-                      {t('add')}
-                    </button>
-                  </div>
+                <label htmlFor={id} className="form-label">
+                  {t('acceptCloudTypes', {
+                    types: accept.map((ty) => inflect.capitalize(ty)),
+                  })}
+                </label>
+                <div className="input-group input-group-input">
+                  <span className="input-group-text text-neutral">
+                    <FA icon={faLink} />
+                  </span>
+                  <Field
+                    id={id}
+                    className="form-control"
+                    name="url"
+                    type="url"
+                  />
+                  {values.url && (
+                  <button
+                    type="button"
+                    className="btn btn-input"
+                    onClick={() => setValues({ url: '' })}
+                  >
+                    <FA icon={faTimes} fixedWidth />
+                  </button>
+                  )}
+                </div>
+                <div className="text-end mt-3">
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    disabled={!dirty || !isValid}
+                  >
+                    {t('addCloudFile')}
+                  </button>
                 </div>
               </Form>
             )}
