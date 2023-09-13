@@ -11,6 +11,7 @@ const ListFltCheck = ({
   inputClassName = 'form-check-input',
   className = 'form-check form-check-inline',
   multiple,
+  sort: sortFn = true,
   ...props
 }) => {
   const [id] = useUniqKey();
@@ -18,7 +19,7 @@ const ListFltCheck = ({
   const { fetch, query: { sort, filter } } = useList();
   const state = name === 'sort' ? sort : filter[name];
   const checked = multiple
-    ? state?.includes(value)
+    ? state?.includes(value) || false
     : isEqual(state, value);
 
   const toggle = () => {
@@ -26,6 +27,11 @@ const ListFltCheck = ({
       const draft = (state || []).filter((v) => v !== value);
 
       if (!checked) draft.push(value);
+      if (sortFn) {
+        draft.sort(
+          typeof sortFn === 'function' ? sortFn : undefined,
+        );
+      }
       fetch({ filter: { ...filter, [name]: draft } });
     } else {
       const draft = checked ? undefined : value;
