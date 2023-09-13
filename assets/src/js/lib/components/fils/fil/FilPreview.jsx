@@ -42,7 +42,7 @@ const FilPreview = ({
     );
   }, [
     file instanceof File,
-    previewable,
+    !!previewable,
     file?.key,
   ]);
 
