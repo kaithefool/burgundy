@@ -1,6 +1,6 @@
 import useFil from './useFil';
 import FilContext from './FilContext';
-import FilPreview, { isPreviewable } from './FilPreview';
+import FilPreview, { isPreviewable, isPlayable } from './FilPreview';
 import FilProvider from './FilProvider';
 import FilStatus from './FilStatus';
 import FilTypeIcon from './FilTypeIcon';
@@ -16,6 +16,7 @@ export {
   FilContext,
   FilPreview,
   isPreviewable,
+  isPlayable,
   FilProvider,
   FilStatus,
   FilTypeIcon,

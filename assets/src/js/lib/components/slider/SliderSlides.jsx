@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {
-  Swiper, SwiperSlide, useSwiper, useSwiperSlide,
+  Swiper, SwiperSlide, useSwiper,
 } from 'swiper/react';
 import { Thumbs, Pagination, Autoplay } from 'swiper/modules';
 
@@ -9,42 +9,40 @@ import 'swiper/scss';
 import 'swiper/scss/thumbs';
 import 'swiper/scss/pagination';
 
-import Fil, { isPreviewable } from '../fils/fil';
+import Fil, { isPlayable } from '../fils/fil';
 import useSlider from './useSlider';
 
 const MediaSlide = ({
-  playOnActiveSlide = false,
-  autoplay = false,
+  playMediaOnActive = false,
+  autoplaying = false,
   file,
+  isActive,
 }) => {
   const swiper = useSwiper();
-  const { isActive } = useSwiperSlide();
-  const isVideo = isPreviewable(file.type)?.match(/^video\//);
+  const playable = isPlayable(file.type);
 
   useEffect(() => {
-    if (autoplay && isVideo && isActive) {
+    if (autoplaying && playMediaOnActive && playable && isActive) {
       swiper.autoplay.stop();
     }
-  }, [!!autoplay, isVideo, isActive]);
+  }, [autoplaying, playMediaOnActive, playable, isActive]);
 
   return (
     <Fil file={file}>
       <Fil.Preview
-        {...playOnActiveSlide && {
-          video: {
+        player={{
+          ...playMediaOnActive && {
             playing: isActive,
-            style: { pointerEvents: 'none' },
-            onEnded: () => {
-              if (autoplay) {
-                // restart autoplay
-                swiper.slideNext(undefined, undefined, true); // internal
-                swiper.autoplay.start();
-              }
-            },
-            // controls: true,
             muted: true,
-            loop: !autoplay,
           },
+          ...autoplaying && {
+            onEnded: () => {
+              // restart autoplay when media finishes
+              swiper.slideNext(undefined, undefined, true); // internal
+              swiper.autoplay.start();
+            },
+          },
+          loop: !autoplaying,
         }}
       />
     </Fil>
@@ -54,15 +52,21 @@ const MediaSlide = ({
 const SliderSlides = ({
   children,
   slideProps,
-  video,
   autoplay,
+  playMediaOnActive,
   ...props
 }) => {
-  const { slides, spaceBetween } = useSlider();
+  const { slides, spaceBetween, pg } = useSlider();
   const [autoplaying, setAutoplaying] = useState(!!autoplay);
 
-  const r = children || ((s) => (
-    <MediaSlide file={s} {...video} autoplay={autoplaying} />
+  const r = children || ((s, i) => (
+    <MediaSlide
+      file={s}
+      autoplaying={autoplaying}
+      playMediaOnActive={playMediaOnActive}
+      isActive={pg.activeIndex === i}
+      index={i}
+    />
   ));
 
   return (
@@ -73,7 +77,7 @@ const SliderSlides = ({
         autoplay: {
           ...autoplay,
           // this option only works when user touch/swipe the slider
-          // we have to handle other slide changes from nav and pagination
+          // we have to handle other slide changes by nav and pagination
           disableOnInteraction: false,
         },
         onBeforeTransitionStart: (s, speed, internal) => {

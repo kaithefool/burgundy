@@ -62,7 +62,7 @@ input, textarea {
   background-position: center;
   background-size: cover;
 
-  & > video {
+  video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -73,7 +73,7 @@ input, textarea {
   background-size: contain;
   background-repeat: no-repeat;
 
-  & > video {
+  video {
     object-fit: contain;
   }
 }

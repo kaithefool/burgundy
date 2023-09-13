@@ -15,13 +15,13 @@ const SliderBody = (props) => {
           ? thumbsSwiper : null,
       }}
       onSwiper={setSwiper}
-      onSlideChange={(s) => setPg({
+      onSlideChangeTransitionEnd={(s) => setPg({
         ...pg,
         activeIndex: s.activeIndex,
         isBeginning: s.isBeginning,
         isEnd: s.isEnd,
       })}
-      video={{ playOnActiveSlide: true }}
+      playMediaOnActive
       {...props}
     />
   );
