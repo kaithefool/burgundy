@@ -21,7 +21,7 @@ const SliderBody = (props) => {
         isBeginning: s.isBeginning,
         isEnd: s.isEnd,
       })}
-      playMediaOnActive
+      player={{ autoStart: true }}
       {...props}
     />
   );

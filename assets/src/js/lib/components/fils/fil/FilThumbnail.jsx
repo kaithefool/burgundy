@@ -8,7 +8,6 @@ import FilPreview from './FilPreview';
 const FilThumbnail = ({
   className = 'rounded ratio ratio-1x1',
   labelClassName = 'rounded bg-white border p-3',
-  preview,
   children,
 }) => (
   <div
@@ -30,7 +29,7 @@ const FilThumbnail = ({
         </div>
       </div>
     </div>
-    <FilPreview {...preview} />
+    <FilPreview player={{ controls: true }} />
     {children}
   </div>
 );

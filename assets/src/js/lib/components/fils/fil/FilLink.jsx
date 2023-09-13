@@ -6,12 +6,14 @@ export const fileLink = (file, blob = false) => {
   if (blob && file instanceof File) {
     // blob
     return URL.createObjectURL(file);
-  } if (file.path.match('/')) {
-    // url
-    return file.path;
   }
-  // uploads
-  return `/uploads/${file.path}`;
+  if (file.path) {
+    return file.path.match('/')
+      ? file.path // url
+      : `/uploads/${file.path}`; // uploads
+  }
+
+  return null;
 };
 
 const FilLink = ({
@@ -20,6 +22,9 @@ const FilLink = ({
 }) => {
   const { file } = useFil();
   const { name = '', type } = file;
+  const link = fileLink(file);
+
+  if (!link) return children;
 
   return (
     <a

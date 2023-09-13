@@ -52,7 +52,10 @@ const SliderLightbox = ({
               <div
                 className="flex-fill position-relative"
               >
-                <SliderBody className="h-100" />
+                <SliderBody
+                  className="h-100"
+                  player={{ autoStart: true, controls: true }}
+                />
                 <SliderNav />
               </div>
               {/* thumbs footer */}

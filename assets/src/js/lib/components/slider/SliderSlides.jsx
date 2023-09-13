@@ -13,8 +13,11 @@ import Fil, { isPlayable } from '../fils/fil';
 import useSlider from './useSlider';
 
 const MediaSlide = ({
-  playMediaOnActive = false,
   autoplaying = false,
+  player: {
+    autoStart = false,
+    ...player
+  },
   file,
   isActive,
 }) => {
@@ -22,20 +25,20 @@ const MediaSlide = ({
   const playable = isPlayable(file.type);
 
   useEffect(() => {
-    if (autoplaying && playMediaOnActive && playable && isActive) {
+    if (autoplaying && autoStart && playable && isActive) {
       swiper.autoplay.stop();
     }
-  }, [autoplaying, playMediaOnActive, playable, isActive]);
+  }, [autoplaying, autoStart, playable, isActive]);
 
   return (
     <Fil file={file}>
       <Fil.Preview
         player={{
-          ...playMediaOnActive && {
+          ...autoStart && {
             playing: isActive,
             muted: true,
           },
-          ...autoplaying && {
+          ...autoplaying && autoStart && {
             onEnded: () => {
               // restart autoplay when media finishes
               swiper.slideNext(undefined, undefined, true); // internal
@@ -43,6 +46,7 @@ const MediaSlide = ({
             },
           },
           loop: !autoplaying,
+          ...player,
         }}
       />
     </Fil>
@@ -53,7 +57,7 @@ const SliderSlides = ({
   children,
   slideProps,
   autoplay,
-  playMediaOnActive,
+  player = {},
   ...props
 }) => {
   const { slides, spaceBetween, pg } = useSlider();
@@ -63,9 +67,8 @@ const SliderSlides = ({
     <MediaSlide
       file={s}
       autoplaying={autoplaying}
-      playMediaOnActive={playMediaOnActive}
+      player={player}
       isActive={pg.activeIndex === i}
-      index={i}
     />
   ));
 

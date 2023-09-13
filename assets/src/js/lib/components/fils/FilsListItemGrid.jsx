@@ -20,10 +20,7 @@ const FilsGridItem = ({
   removeable = true,
 }) => (
   <Fil file={file}>
-    <Fil.Thumbnail
-      file={file}
-      preview={{ video: { controls: true } }}
-    >
+    <Fil.Thumbnail file={file}>
       {/* toolbar */}
       <div
         className="h-auto"

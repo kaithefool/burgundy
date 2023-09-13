@@ -26,7 +26,7 @@ export const isPlayable = (fileType) => (
 
 const FilPreview = ({
   className = 'img-bg',
-  player = {},
+  player: { controls = false, ...player } = {},
 }) => {
   const { file } = useFil();
   const [display, setDisplay] = useState(null);
@@ -59,11 +59,14 @@ const FilPreview = ({
           url={display}
           width="100%"
           height="100%"
-          controls={false}
+          controls={controls}
+          config={{ youtube: { playerVars: { rel: 0 } } }}
           {...player}
         />
       )}
-      <div className="position-absolute w-100 h-100 start-0 top-0" />
+      {!controls && (
+        <div className="position-absolute w-100 h-100 start-0 top-0" />
+      )}
     </div>
   );
 };
