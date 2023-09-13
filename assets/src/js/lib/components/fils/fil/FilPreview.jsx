@@ -4,6 +4,7 @@ import React, {
 import ReactPlayer from 'react-player';
 
 import useFil from './useFil';
+import { fileLink } from './FilLink';
 
 export const previewables = [
   'image/gif',
@@ -36,20 +37,9 @@ const FilPreview = ({
   }, [player.playing]);
 
   useEffect(() => {
-    if (previewable) {
-      if (file instanceof File) {
-        // blob
-        setDisplay(URL.createObjectURL(file));
-      } else if (file.path.match('/')) {
-        // url
-        setDisplay(file.path);
-      } else {
-        // uploads
-        setDisplay(`/uploads/${file.path}`);
-      }
-    } else {
-      setDisplay(null);
-    }
+    setDisplay(
+      previewable ? fileLink(file, true) : null,
+    );
   }, [
     file instanceof File,
     previewable,
