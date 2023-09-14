@@ -4,6 +4,7 @@ const { Routes } = require('../base');
 const service = require('../services/auth');
 const authCookies = require('../helpers/authCookies');
 const { email } = require('../validators');
+const recaptcha = require('../parsers/recaptcha');
 
 module.exports = new Routes({
   service,
@@ -23,6 +24,7 @@ module.exports = new Routes({
 }, {
   authenticate: {
     method: 'post',
+    parse: recaptcha(),
     response: ({ web }, res) => {
       const { locals: { out } } = res;
 

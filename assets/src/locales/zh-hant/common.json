@@ -17,6 +17,7 @@
     "userNotExists": "用戶不存在",
     "maxOtpsReached": "你嘗試了太多次",
     "invalidKey": "密鑰無效或已過期",
+    "invalidReCaptcha": "reCAPTCHA無效。請再試一次",
     "invalidCredentials": "帳號或密碼不正確",
     "userInactivated": "你的帳戶已停用",
     "invalidToken": "密鑰無效或已過期",

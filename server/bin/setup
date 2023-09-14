@@ -52,6 +52,8 @@ LNG_LABEL=EN,中文
 LNG_FLAG=🇬🇧,🇭🇰
 
 GOOGLE_API_KEY=
+GOOGLE_RECAPTCHA_PUBIC_KEY=
+GOOGLE_RECAPTCHA_SECRET_KEY=
 `;
 
 if (!fs.existsSync(envPath)) {

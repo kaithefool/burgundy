@@ -17,6 +17,7 @@
     "userNotExists": "User doesn't exist",
     "maxOtpsReached": "You've tried too many times",
     "invalidKey": "Invalid or expired key",
+    "invalidReCaptcha": "Invalid reCAPTCHA. Please try again",
     "invalidCredentials": "Incorrect username or password",
     "userInactivated": "Your account has been deactivated",
     "invalidToken": "Invalid token",

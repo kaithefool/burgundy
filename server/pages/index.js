@@ -10,7 +10,9 @@ const {
 } = require('../../package.json');
 
 const {
-  LNG, LNG_LABEL, LNG_FLAG, GOOGLE_API_KEY,
+  LNG, LNG_LABEL, LNG_FLAG,
+  GOOGLE_API_KEY,
+  GOOGLE_RECAPTCHA_PUBIC_KEY,
 } = process.env;
 
 // authentication middleware
@@ -32,6 +34,7 @@ routes.use(({
     lngLabels: LNG_LABEL.split(','),
     lngFlags: LNG_FLAG.split(','),
     googleApiKey: GOOGLE_API_KEY,
+    googleReCaptchaKey: GOOGLE_RECAPTCHA_PUBIC_KEY,
     meta: {
       title: _.capitalize(repoName),
     },

@@ -7,6 +7,7 @@
 - Rich text editor
     - Drop file handler
     - MaxSize and accept
+    - Migrate to Slatejs
 - i18n
     - Email templates
 - ObjectId validator

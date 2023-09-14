@@ -33,6 +33,7 @@ import FormRefs from './FormRefs';
 import FormRefCheck from './FormRefCheck';
 import FormOtpAuth from './FormOtpAuth';
 import FormStepper from './FormStepper';
+import FormReCaptcha from './FormReCaptcha';
 
 export {
   FormContext,
@@ -66,6 +67,7 @@ export {
   FormRefCheck,
   FormOtpAuth,
   FormStepper,
+  FormReCaptcha,
 };
 
 const Form = ({
@@ -104,5 +106,6 @@ Form.Refs = FormRefs;
 Form.RefCheck = FormRefCheck;
 Form.OtpAuth = FormOtpAuth;
 Form.Stepper = FormStepper;
+Form.ReCaptcha = FormReCaptcha;
 
 export default Form;

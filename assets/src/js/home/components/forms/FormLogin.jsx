@@ -55,6 +55,8 @@ const FormLogin = () => {
         </div>
       </div>
 
+      <Form.ReCaptcha />
+
       <Form.BtnSubmit
         icon={faUnlock}
         className="btn-primary btn-block"
