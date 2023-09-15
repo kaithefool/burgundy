@@ -1,5 +1,5 @@
 import React, {
-  useState, useRef, useCallback, useEffect,
+  useState, useRef, useCallback,
 } from 'react';
 import { useField, useFormikContext } from 'formik';
 import {
@@ -14,7 +14,7 @@ const publicKey = env.googleReCaptchaKey;
 
 const FormReCaptcha = ({
   name = 'reCaptchaToken',
-  action,
+  ...props
 }) => {
   const { submitCount } = useFormikContext();
   const [, , { setValue }] = useField(name);
@@ -26,14 +26,13 @@ const FormReCaptcha = ({
 
   // refresh
   useInterval(() => setRefresh((c) => c + 1), 30 * 1000, true);
-  useEffect(() => setRefresh((c) => c + 1), [submitCount]);
 
   return (
     <GoogleReCaptchaProvider reCaptchaKey={publicKey}>
       <GoogleReCaptcha
-        action={action}
         onVerify={stableSetValue}
-        refreshReCaptcha={refresh}
+        refreshReCaptcha={refresh + submitCount}
+        {...props}
       />
     </GoogleReCaptchaProvider>
   );
