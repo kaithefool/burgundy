@@ -7,6 +7,7 @@ import errorParser from './errorParser';
 function http(request, callback = () => {}, {
   uploadProgress = false,
   downloadProgress = false,
+  parser,
 } = {}) {
   let cancel;
   const opts = {
@@ -36,7 +37,7 @@ function http(request, callback = () => {}, {
     try {
       const r = await axios(opts);
 
-      callback(successParser(r));
+      callback(successParser(r, parser));
 
       return r;
     } catch (e) {

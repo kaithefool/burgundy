@@ -3,7 +3,6 @@
     - handle _id reference
 - File Uploads
     - image dimension
-    - file preview file switch transition (onload event?)
 - Rich text editor
     - Drop file handler
     - MaxSize and accept
@@ -11,6 +10,9 @@
 - i18n
     - Email templates
 - ObjectId validator
-- Form field helper text in label
 - Inject parent doc in breadcrumb
 - 2 way bindings in all fields (fil and editor)
+- Calendar
+    - Stringify query and bind url query
+    - Parent list refresh binding
+    - Listen to basefilter changes 
