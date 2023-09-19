@@ -4,10 +4,9 @@ import qs from 'qs';
 import successParser from './successParser';
 import errorParser from './errorParser';
 
-function http(request, callback = () => {}, {
+function http({ parser, ...request }, callback = () => {}, {
   uploadProgress = false,
   downloadProgress = false,
-  parser,
 } = {}) {
   let cancel;
   const opts = {
