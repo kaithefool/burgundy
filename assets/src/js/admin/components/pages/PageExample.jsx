@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { array, object, string } from 'yup';
+import {
+  array, boolean, object, string,
+} from 'yup';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
@@ -59,6 +61,7 @@ const defaults = {
 };
 
 const schema = () => object({
+  checkbox: boolean().oneOf([true]),
   password: password(),
   contacts: array().of(object({
     firstname: string().required(),

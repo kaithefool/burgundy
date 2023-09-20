@@ -37,8 +37,8 @@
     "mixed": {
       "default": "{{path, field}}不是有效的值",
       "required": "{{path, field}}為必填",
-      "oneOf": "{{path, field}}必須為以下之一: {{values}}",
-      "notOneOf": "{{path, field}}不得是以下之一: {{values}}",
+      "oneOf": "{{path, field}}必須是{{resolved, list(type:disjunction)}}",
+      "notOneOf": "{{path, field}}不得是{{resolved, list(type:disjunction)}}",
       "notType": "{{path, field}}必須為\"{{type}}\"類",
       "defined": "{{path, field}}不得是undefined"
     },

@@ -51,6 +51,9 @@ const locale = Object.keys(rules).reduce((l, type) => ({
     ...typeRules,
     [rule]: (params) => ({
       ...params,
+      ...params.resolved && {
+        resolved: params.resolved.map((v) => `${v}`),
+      },
       rule: `yup.${type}.${rule}`,
     }),
   }), {}),

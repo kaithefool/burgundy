@@ -37,8 +37,8 @@
     "mixed": {
       "default": "{{path, field}} is invalid",
       "required": "{{path, field}} is a required field",
-      "oneOf": "{{path, field}} must be one of the following values: {{values}}",
-      "notOneOf": "{{path, field}} must not be one of the following values: {{values}}",
+      "oneOf": "{{path, field}} must be {{resolved, list(type:disjunction)}}",
+      "notOneOf": "{{path, field}} must not be {{resolved, list(type:disjunction}}",
       "notType": "{{path, field}} must be a \"{{type}}\" type",
       "defined": "{{path, field}} must be defined"
     },
@@ -74,9 +74,9 @@
       "noUnknown": "{{path, field}} field has unspecified keys: {{unknown}}"
     },
     "array": {
-      "min": "{{path, field}} field must have at least {{min}} items",
-      "max": "{{path, field}} field must have less than or equal to {{max}} items",
-      "length": "{{path, field}} must have {{length}} items"
+      "min": "{{path, field}} field must have at least {{min}} item(s)",
+      "max": "{{path, field}} field must have less than or equal to {{max}} item(s)",
+      "length": "{{path, field}} must have {{length}} item(s)"
     },
     "misc": {
       "passwordConfirm": "{{path, field}} does not match"
