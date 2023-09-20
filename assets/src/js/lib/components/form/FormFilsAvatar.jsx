@@ -20,8 +20,8 @@ const FormFilsAvatar = ({
           initValue={value}
           reset={!submitCount}
           onChange={(v) => {
-            setValue(v);
             setTouched();
+            setValue(v);
           }}
           {...p}
           className={className}

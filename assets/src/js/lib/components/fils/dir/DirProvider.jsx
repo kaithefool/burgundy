@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import mimer from 'mimer';
+import isEqual from 'lodash/isEqual';
 
 import DirContext from './DirContext';
 import { newKey } from '../../../hooks/useUniqKey';
@@ -48,13 +49,20 @@ const insertKeys = (files) => {
   return files;
 };
 
+const getChanges = (stored, draft) => {
+  const s = stored.filter((f) => !(f instanceof File));
+  const d = draft.filter((f) => !(f instanceof File));
+
+  return !isEqual(s, d) ? d : null;
+};
+
 const DirProvider = ({
   api = { url: '/api/files' },
   initValue = [],
   reset = false,
   multiple = false, // Boolean or max no. of files
   disabled = false,
-  onChange = () => {},
+  onChange = () => {}, // only consider uploaded files
   onDraft = () => {},
   accept,
   maxSize,
@@ -71,13 +79,14 @@ const DirProvider = ({
 
   const update = (draft) => {
     const e = validateFiles(draft, { accept, maxSize });
+    const changes = getChanges(files, draft);
 
     if (e) {
       pushAlert({ dirty: true, theme: 'danger', children: e });
     } else {
       insertKeys(draft);
       setFiles(draft);
-      onChange(draft.filter((f) => !(f instanceof File)));
+      if (changes) onChange(changes);
       onDraft(draft);
     }
   };

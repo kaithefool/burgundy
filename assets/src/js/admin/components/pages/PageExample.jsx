@@ -63,6 +63,7 @@ const schema = () => object({
   contacts: array().of(object({
     firstname: string().required(),
   })),
+  avatar: array().min(1),
 });
 
 const PageExample = () => {
@@ -139,6 +140,7 @@ const PageExample = () => {
                       <Form.Editor name="editor" />
                     </Tab>
                     <Tab eventKey="files">
+                      <Form.Input name="text" />
                       <Form.FilsAvatar name="avatar" />
                       <Form.FilsCoverImg name="coverImg" />
                       <Form.FilsList name="files" cloud multiple />
