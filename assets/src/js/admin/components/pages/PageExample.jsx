@@ -140,7 +140,6 @@ const PageExample = () => {
                       <Form.Editor name="editor" />
                     </Tab>
                     <Tab eventKey="files">
-                      <Form.Input name="text" />
                       <Form.FilsAvatar name="avatar" />
                       <Form.FilsCoverImg name="coverImg" />
                       <Form.FilsList name="files" cloud multiple />
