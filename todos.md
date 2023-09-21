@@ -15,4 +15,5 @@
 - Calendar
     - Stringify query and bind url query
     - Parent list refresh binding
-    - Listen to basefilter changes 
+    - Listen to basefilter changes
+    - Update date object in query when lang changed

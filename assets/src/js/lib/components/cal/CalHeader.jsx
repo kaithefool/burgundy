@@ -11,19 +11,19 @@ const CalHeader = ({
   arrows = true,
   viewSwitch = true,
 }) => (
-  <div className="row align-items-center my-3">
+  <div className="row gy-3 my-3 align-items-center">
     {title && (
-      <div className="col">
+      <div className="col-12 col-sm">
         <h5 className="m-0"><CalTitle /></h5>
       </div>
     )}
     {today && (
-      <div className="col-auto">
+      <div className="col col-sm-auto">
         <CalToday />
       </div>
     )}
     {arrows && (
-      <div className="col-auto">
+      <div className="col-auto px-0">
         <CalArrows />
       </div>
     )}

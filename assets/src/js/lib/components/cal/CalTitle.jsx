@@ -2,7 +2,9 @@ import React from 'react';
 
 import useCal from './useCal';
 
-const CalTitle = () => {
+const CalTitle = ({
+  breakpoint,
+}) => {
   const { query: { view, date }, grid } = useCal();
   let long = '';
   let short = '';
@@ -30,12 +32,14 @@ const CalTitle = () => {
     short = date.toFormat('DD');
   }
 
+  if (!breakpoint) return long;
+
   return (
     <>
-      <span className="d-none d-md-inline">
+      <span className={`d-none d-${breakpoint}-inline`}>
         {long}
       </span>
-      <span className="d-inline d-md-none">
+      <span className={`d-inline d-${breakpoint}-none`}>
         {short}
       </span>
     </>
