@@ -5,9 +5,9 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Nav from './layout/Nav';
-import AppRoutes from './routes';
 import Alert from '~/lib/components/alert';
+import AppRoutes from './routes';
+import Nav from './layout/Nav';
 
 const Admin = () => (
   <div className="row g-0">

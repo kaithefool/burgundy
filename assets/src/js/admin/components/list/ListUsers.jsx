@@ -2,6 +2,7 @@ import React from 'react';
 
 import List from '~/lib/components/list';
 import ListCtrlActivate from './ListCtrlActivate';
+import ListItem from '~/shared/components/ListItem';
 
 const ListUsers = (props) => (
   <List
@@ -9,7 +10,11 @@ const ListUsers = (props) => (
     selectable
     cols={[
       { key: 'email', sortable: true },
-      { key: 'name', sortable: true },
+      {
+        key: 'name',
+        sortable: true,
+        getter: (v, r) => <ListItem entry={r} type="user" />,
+      },
       { key: 'active' },
       { key: 'role' },
       { key: 'updatedAt', format: 'fromNow' },

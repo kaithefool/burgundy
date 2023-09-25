@@ -22,7 +22,14 @@ export const getName = (i18n, {
   entry,
   type,
   initial = false,
-  ...opts
 }) => {
+  let n = typeof entry === 'string' ? entry : '';
 
+  if (type === 'user') {
+    n = i18n.pickLng(entry.name) || entry.email;
+  }
+
+  if (initial) n = getInitial(n);
+
+  return n;
 };
