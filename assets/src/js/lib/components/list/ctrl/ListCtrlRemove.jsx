@@ -9,7 +9,6 @@ import useHttp from '../../../hooks/useHttp';
 const ListCtrlRemove = ({
   api: apiOpts,
   confirm = true,
-  typeToConfirm = 'DELETE',
   className = 'btn px-2 me-3 btn-neutral',
   ...props
 }) => {
@@ -41,7 +40,6 @@ const ListCtrlRemove = ({
           ? t('res.confirmDel')
           : confirm
       }
-      typeToConfirm={typeToConfirm}
       {...props}
     />
   );
