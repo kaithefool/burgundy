@@ -11,6 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons/faChevronCircleRight';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons/faPowerOff';
 
+import useStorage from '~/lib/hooks/useStorage';
 import NavItem from './NavItem';
 import links from './links';
 
@@ -19,7 +20,7 @@ const Nav = ({
 }) => {
   const location = useLocation();
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useStorage('admin/nav-expand', false);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
