@@ -21,14 +21,14 @@ const NavItem = ({
   return (
     <>
       <Link
-        className="nav-link py-0 my-2 px-4"
+        className="nav-link"
         {...props}
       >
         <FA icon={icon} fixedWidth />
         <span
           className={`
-            ms-3 me-1 d-inline
-            ${short ? '' : 'd-md-none'}
+            ms-3 me-1
+            d-inline ${short ? 'd-md-none' : ''}
           `}
         >
           {t(`nav.${label}`, label)}

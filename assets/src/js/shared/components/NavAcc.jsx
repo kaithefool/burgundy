@@ -8,10 +8,12 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
 
 import Avatar from './Avatar';
 import ListItem from './ListItem';
+import Nav from './Nav';
 import { useMine } from './mine';
 
 const NavAcc = ({
   toggleClassName = 'btn',
+  links = [],
 }) => {
   const { t } = useTranslation();
   const { mine } = useMine();
@@ -42,11 +44,14 @@ const NavAcc = ({
       >
         <Modal.Header closeButton />
         <Modal.Body>
-          <ListItem type="user" entry={mine} avatar={{ size: 2.4 }}>
-            <div className="text-muted small">
-              {t(mine.role, capitalize(mine.role))}
-            </div>
-          </ListItem>
+          <div className="p-2">
+            <ListItem type="user" entry={mine} avatar={{ size: 2.4 }}>
+              <div className="text-muted small">
+                {t(mine.role, capitalize(mine.role))}
+              </div>
+            </ListItem>
+          </div>
+          <Nav links={links} />
         </Modal.Body>
       </Modal>
     </>
