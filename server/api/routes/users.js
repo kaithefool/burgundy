@@ -26,6 +26,14 @@ module.exports = new Routes({
 }, {
   list: true,
   findById: true,
+  findSelf: {
+    path: '/self',
+    serve: 'findOne',
+    parse: (req, res, next) => {
+      req.attrs._id = req.user._id;
+      return next();
+    },
+  },
   create: true,
   patch: true,
   patchActive: {

@@ -6,7 +6,7 @@ import Name from './Name';
 import { getColor } from '../palette';
 
 const Avatar = ({
-  size = 3,
+  size = 1.8,
   children,
   className = '',
   icon,

@@ -6,22 +6,27 @@ import {
 } from 'react-router-dom';
 
 import Alert from '~/lib/components/alert';
+import Mine from '~/shared/components/mine';
 import AppRoutes from './routes';
 import Nav from './layout/Nav';
+import Head from './layout/Head';
 
 const Admin = () => (
-  <div className="row g-0">
-    <Router>
-      <Nav className="col-12 col-md-auto" />
-      <div className="col-12 col-md">
-        <Alert className="m-3 position-fixed top-0 end-0">
-          <Routes>
-            <Route path="/admin/*" element={<AppRoutes />} />
-          </Routes>
-        </Alert>
-      </div>
-    </Router>
-  </div>
+  <Mine>
+    <div className="row g-0">
+      <Router>
+        <Nav className="col-12 col-md-auto" />
+        <div className="col-12 col-md">
+          <Alert className="m-3 position-fixed top-0 end-0">
+            <Head />
+            <Routes>
+              <Route path="/admin/*" element={<AppRoutes />} />
+            </Routes>
+          </Alert>
+        </div>
+      </Router>
+    </div>
+  </Mine>
 );
 
 export default Admin;

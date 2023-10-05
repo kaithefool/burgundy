@@ -29,7 +29,8 @@ export const getName = (i18n, {
     n = i18n.pickLng(entry.name) || entry.email;
   }
 
-  if (initial) n = getInitial(n);
+  if (!n && n !== 0) n = '';
+  if (n && initial) n = getInitial(n);
 
   return n;
 };

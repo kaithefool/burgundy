@@ -11,7 +11,7 @@ const MineProvider = ({
   const { req, fetched } = useHttp(env.user && api);
 
   const value = {
-    mine: fetched ?? env.user,
+    mine: fetched?.payload ?? env.user,
     refresh: () => req(api),
   };
 
