@@ -1,57 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import {
-  Swiper, SwiperSlide, useSwiper,
-} from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Thumbs, Pagination, Autoplay } from 'swiper/modules';
 
 import 'swiper/scss';
 import 'swiper/scss/thumbs';
 import 'swiper/scss/pagination';
 
-import Fil, { isPlayable } from '../fils/fil';
 import useSlider from './useSlider';
-
-const MediaSlide = ({
-  autoplaying = false,
-  player: {
-    autoStart = false,
-    ...player
-  },
-  file,
-  isActive,
-}) => {
-  const swiper = useSwiper();
-  const playable = isPlayable(file.type);
-
-  useEffect(() => {
-    if (autoplaying && autoStart && playable && isActive) {
-      swiper.autoplay.stop();
-    }
-  }, [autoplaying, autoStart, playable, isActive]);
-
-  return (
-    <Fil file={file}>
-      <Fil.Preview
-        player={{
-          ...autoStart && {
-            playing: isActive,
-            muted: true,
-          },
-          ...autoplaying && autoStart && {
-            onEnded: () => {
-              // restart autoplay when media finishes
-              swiper.slideNext(undefined, undefined, true); // internal
-              swiper.autoplay.start();
-            },
-          },
-          loop: !autoplaying,
-          ...player,
-        }}
-      />
-    </Fil>
-  );
-};
+import SliderMediaSlide from './SliderMediaSlide';
 
 const SliderSlides = ({
   children,
@@ -64,7 +21,7 @@ const SliderSlides = ({
   const [autoplaying, setAutoplaying] = useState(!!autoplay);
 
   const r = children || ((s, i) => (
-    <MediaSlide
+    <SliderMediaSlide
       file={s}
       autoplaying={autoplaying}
       player={player}
