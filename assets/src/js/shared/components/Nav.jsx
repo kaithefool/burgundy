@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 
 import { NavLink, useMatch } from 'react-router-dom';
-import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
 const NavItem = ({
   short = false,
@@ -24,7 +24,9 @@ const NavItem = ({
         className="nav-link"
         {...props}
       >
-        <FA icon={icon} fixedWidth />
+        {icon && (
+          <FA icon={icon} fixedWidth />
+        )}
         <span
           className={`
             ms-3 me-1
@@ -56,13 +58,10 @@ const Nav = ({
         {/* link groups */}
         {g.map((l) => (
           <NavItem key={l.label} short={short} {...l}>
+            {/* sub dir */}
             {l.links && (
               l.links.map((ll, ii) => (
-                <NavItem
-                  key={ii}
-                  short={short}
-                  {...ll}
-                />
+                <NavItem key={ii} short={short} {...ll} />
               ))
             )}
           </NavItem>
