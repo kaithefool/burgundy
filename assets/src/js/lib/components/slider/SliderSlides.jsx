@@ -8,7 +8,7 @@ import 'swiper/scss/thumbs';
 import 'swiper/scss/pagination';
 
 import useSlider from './useSlider';
-import SliderMediaSlide from './SliderMediaSlide';
+import Slide from './slide';
 
 const SliderSlides = ({
   children,
@@ -19,15 +19,6 @@ const SliderSlides = ({
 }) => {
   const { slides, spaceBetween, pg } = useSlider();
   const [autoplaying, setAutoplaying] = useState(!!autoplay);
-
-  const r = children || ((s, i) => (
-    <SliderMediaSlide
-      file={s}
-      autoplaying={autoplaying}
-      player={player}
-      isActive={pg.activeIndex === i}
-    />
-  ));
 
   return (
     <Swiper
@@ -55,7 +46,16 @@ const SliderSlides = ({
           key={s._id || s.key || s.path}
           {...typeof slideProps === 'function' ? slideProps(s, i) : slideProps}
         >
-          {(p) => r(s, i, p)}
+          {/* {(p) => r(s, i, p)} */}
+          <Slide
+            slide={s}
+            index={i}
+            autoplaying={autoplaying}
+            player={player}
+            isCurrent={pg.activeIndex === i}
+          >
+            {children}
+          </Slide>
         </SwiperSlide>
       ))}
     </Swiper>
