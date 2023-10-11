@@ -156,7 +156,7 @@ const FieldsFiles = ({ files }) => (
           style={{ height: '50vh' }}
           autoplay={{ delay: 2000 }}
         >
-          {({ slide }, i) => (
+          {(slide, i) => (
             <div className="d-flex h-100 flex-column">
               <Slider.Slide.Media file={slide} />
               <div

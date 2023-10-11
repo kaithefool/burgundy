@@ -8,11 +8,12 @@ const SlideProvider = ({
   ...props
 }) => {
   const value = props;
+  const { slide, index } = value;
   const render = children ?? (() => <SlideMedia />);
 
   return (
     <SlideContext.Provider value={value}>
-      {typeof render === 'function' ? render(value, props.index) : render}
+      {typeof render === 'function' ? render(slide, index, value) : render}
     </SlideContext.Provider>
   );
 };
