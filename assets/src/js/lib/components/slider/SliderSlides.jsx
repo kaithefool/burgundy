@@ -13,11 +13,12 @@ import Slide from './slide';
 const SliderSlides = ({
   children,
   slideProps,
-  autoplay,
+  autoplay: autoplayProp,
   player = {},
   ...props
 }) => {
   const { slides, spaceBetween, pg } = useSlider();
+  const autoplay = slides.length > 1 && autoplayProp;
   const [autoplaying, setAutoplaying] = useState(!!autoplay);
 
   return (
