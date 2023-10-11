@@ -18,6 +18,7 @@ const SliderSlides = ({
   ...props
 }) => {
   const { slides, spaceBetween, pg } = useSlider();
+  // disable autoplay when there is only one slide
   const autoplay = slides.length > 1 && autoplayProp;
   const [autoplaying, setAutoplaying] = useState(!!autoplay);
 
