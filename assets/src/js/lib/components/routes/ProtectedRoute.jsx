@@ -9,7 +9,7 @@ const ProtectedRoute = ({
   children,
 }) => {
   if (!env.user) {
-    // should set redirect cookie
+    // should set redirect cookie and explain why to user?
     return <Navigate to="/auth" replace />;
   }
   if (roles && !castArray(roles).includes(env.user.role)) {

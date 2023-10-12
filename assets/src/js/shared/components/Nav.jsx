@@ -8,6 +8,8 @@ const NavItem = ({
   short = false,
   icon,
   label = '',
+  subDirLabel,
+  links,
   children,
   ...props
 }) => {
@@ -37,7 +39,7 @@ const NavItem = ({
         </span>
       </Link>
       {children && (
-        <div className={`ms-3 nav flex-column ${match ? '' : 'd-none'}`}>
+        <div className={`ms-2 nav flex-column ${match ? '' : 'd-none'}`}>
           {children}
         </div>
       )}

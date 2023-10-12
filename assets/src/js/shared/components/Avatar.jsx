@@ -4,6 +4,7 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
 import Name from './Name';
 import { getColor } from '../palette';
+import Circle from '~/lib/components/layout/Circle';
 
 const Avatar = ({
   size = 1.8,
@@ -21,40 +22,32 @@ const Avatar = ({
   }
 
   return (
-    <div
-      className={`
-        rounded-circle overflow-hidden
-        ratio ratio-1x1 text-white
-        ${className}
-      `}
+    <Circle
+      className={`text-white ${className}`}
       style={{
         width: `${size}rem`,
         ...!avatar && entry?._id && {
           backgroundColor: getColor(entry),
         },
       }}
+      text={!avatar && (
+        <span style={{ fontSize }}>
+          {icon ? (
+            <FA icon={icon} />
+          ) : (
+            <Name {...props} initial />
+          )}
+          {children}
+        </span>
+      )}
     >
-      {avatar ? (
+      {avatar && (
         <div
           className="img-bg"
           style={{ backgroundImage: `url('/uploads/${avatar.path}')` }}
         />
-      ) : (
-        <div className="w-auto h-auto top-50 start-50 translate-middle">
-          <div
-            className="lh-1"
-            style={{ fontSize }}
-          >
-            {icon ? (
-              <FA icon={icon} />
-            ) : (
-              <Name {...props} initial />
-            )}
-            {children}
-          </div>
-        </div>
       )}
-    </div>
+    </Circle>
   );
 };
 

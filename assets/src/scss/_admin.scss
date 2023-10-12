@@ -18,27 +18,16 @@ body.admin {
   }
 
   // main navigation
-  nav.main-nav {
+  .main-nav {
     background-color: $body-bg;
-    position: sticky;
-    top: 0;
-    
-    @include media-breakpoint-down(md) {
-      border: solid 1px $border-color;
-      &.show {
-        position: fixed;
-        height: 100%;
-        z-index: 1000;
-      }
-    }
-    @include media-breakpoint-up(md) {
-      border-right: solid 1px darken($light, 3%) !important;
-      height: 100vh;
-    }
+    border-right: solid 1px darken($light, 3%) !important;
+    min-height: 100vh;
 
     .nav-link {
       position: relative;
       color: $text-muted;
+      padding: 0 map-get($spacers, 4);
+      margin: map-get($spacers, 2) 0;
 
       &.active {
         color: $primary;

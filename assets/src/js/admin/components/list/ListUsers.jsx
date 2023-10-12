@@ -14,6 +14,7 @@ const ListUsers = (props) => (
         key: 'name',
         sortable: true,
         getter: (v, r) => <ListItem entry={r} type="user" />,
+        link: true,
       },
       { key: 'active' },
       { key: 'role' },
