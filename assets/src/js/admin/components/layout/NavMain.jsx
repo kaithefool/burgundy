@@ -10,8 +10,9 @@ import {
 
 import useStorage from '~/lib/hooks/useStorage';
 import Nav from '~/shared/components/Nav';
-import links from './links';
+import Logo from '~/shared/components/Logo';
 import Circle from '~/lib/components/layout/Circle';
+import links from './links';
 
 const NavMain = ({ className = '' }) => {
   const [short, setShort] = useStorage('admin/nav-short', true);
@@ -19,7 +20,7 @@ const NavMain = ({ className = '' }) => {
   return (
     <div className={`main-nav ${className}`}>
       <div className="position-sticky" style={{ top: 0 }}>
-        <h4 className="mx-4 my-3 text-primary">B</h4>
+        <Logo short={short} />
         <button
           type="button"
           className="btn p-1 position-absolute"
