@@ -6,8 +6,8 @@ const { title = '' } = env?.meta ?? {};
 
 const Logo = ({ short = false }) => (
   <h5
-    className="mx-4 my-3 text-primary text-uppercase"
-    style={{ letterSpacing: '.12rem' }}
+    className="mx-4 my-3 text-primary"
+    style={{ letterSpacing: '.24rem' }}
   >
     {short ? title[0] : title}
   </h5>
