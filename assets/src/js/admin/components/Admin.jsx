@@ -15,7 +15,7 @@ const Admin = () => (
   <Mine>
     <div className="row g-0">
       <Router>
-        <NavMain className="col-12 col-md-auto" />
+        <NavMain className="col-auto d-none d-md-block" />
         <div className="col-12 col-md">
           <Alert className="m-3 position-fixed top-0 end-0">
             <Head />

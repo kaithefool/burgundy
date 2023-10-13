@@ -34,7 +34,7 @@ const NavAcc = ({
         className={toggleClassName}
         onClick={() => setShow(!show)}
       >
-        <Avatar type="user" entry={mine} size={1.8} />
+        <Avatar type="user" entry={mine} size={2} />
       </button>
       <Modal
         show={show}

@@ -20,22 +20,21 @@ const NavMain = ({ className = '' }) => {
   return (
     <div className={`main-nav ${className}`}>
       <div className="position-sticky" style={{ top: 0 }}>
-        <Logo short={short} />
+        <div className="mx-4 my-3">
+          <Logo short={short} />
+        </div>
         <button
           type="button"
           className="btn p-1 position-absolute"
-          style={{ top: '1rem', right: '-1rem', zIndex: 1 }}
+          style={{ top: '.8rem', right: '-1.1rem', zIndex: 1 }}
           onClick={() => setShort(!short)}
         >
           <Circle
-            className="bg-white shadow-sm border"
-            style={{ width: '1.4rem', fontSize: '.7rem' }}
+            className="bg-white shadow-sm"
+            style={{ width: '1.6rem', fontSize: '.8rem' }}
             text={(
-              <FA
-                icon={short ? faChevronRight : faChevronLeft}
-                fixedWidth
-              />
-          )}
+              <FA icon={short ? faChevronRight : faChevronLeft} />
+            )}
           />
         </button>
         <Nav links={links} short={short} />
