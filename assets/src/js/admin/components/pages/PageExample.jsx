@@ -42,6 +42,7 @@ const defaults = {
   switch: true,
   radio: 'radio-1',
   stepper: 0,
+  stars: 4,
   text: '',
   password: '',
   select: env.lngs[0],
@@ -86,6 +87,7 @@ const FieldsGeneral = () => (
     <div style={{ width: '9rem' }}>
       <Form.Stepper name="stepper" />
     </div>
+    <Form.Stars name="stars" />
     <Form.Input name="text" />
     <Form.Input name="password" type="password" />
     <Form.Password
