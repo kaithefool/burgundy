@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { useTranslation } from 'react-i18next';
+import castArray from 'lodash/castArray';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
@@ -41,11 +42,12 @@ const SortableList = SortableContainer((props) => (
 
 const FilsList = ({
   sortable = true,
-  modes = ['list', 'grid'],
+  modesProp = ['list', 'grid'],
   cloud = false,
   ...props
 }) => {
   const { t } = useTranslation();
+  const modes = castArray(modesProp);
   const [mode, setMode] = useState(modes[0]);
 
   return (
