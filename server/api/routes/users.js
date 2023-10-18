@@ -40,6 +40,15 @@ module.exports = new Routes({
     path: '/active/:_id?',
     method: 'patch',
   },
+  patchSelf: {
+    path: '/self',
+    method: 'patch',
+    serve: 'patch',
+    parse: (req, res, next) => {
+      req.attrs._id = req.user._id;
+      return next();
+    },
+  },
   delete: true,
 
   import: {

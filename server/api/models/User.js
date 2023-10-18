@@ -27,6 +27,7 @@ class User extends Model {
         type: Schema.lng(String),
         default: undefined,
       },
+      avatar: Schema.files(),
 
       // extends
       ...paths,

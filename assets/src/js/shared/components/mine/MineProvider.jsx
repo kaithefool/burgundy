@@ -8,11 +8,21 @@ const MineProvider = ({
   api = { url: '/api/users/self' },
   children,
 }) => {
-  const { req, fetched } = useHttp(env.user && api);
+  const { req: fetchReq, fetched } = useHttp(env.user && api);
+  const { req: patchReq } = useHttp();
+
+  const refresh = () => fetchReq(api);
 
   const value = {
     mine: fetched?.payload ?? env.user,
-    refresh: () => req(api),
+    fetched: fetched?.payload,
+    update: async (attrs) => {
+      await patchReq({
+        ...api, method: 'patch', data: attrs,
+      });
+      refresh();
+    },
+    refresh,
   };
 
   return (

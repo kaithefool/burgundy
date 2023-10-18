@@ -5,7 +5,7 @@ import { object } from 'yup';
 import env from '~/lib/config/env';
 import Form from '~/lib/components/form';
 import { email, password } from '~/lib/validators';
-import { reduceLng, mapLng } from '~/lib/helpers';
+import { reduceLng } from '~/lib/helpers';
 
 import Doc from '../layout/doc';
 import Page from '../layout/Page';
@@ -56,13 +56,11 @@ const PageAdmin = () => {
             )}
             <Form.Input name="email" />
             <Form.Input name="password" type="password" />
-            <div className="row">
-              {mapLng((ln) => (
-                <div className="col" key={ln}>
-                  <Form.Input name={`name.${ln}`} />
-                </div>
-              ))}
-            </div>
+            <Form.LngGroup name="name">
+              {(lng) => (
+                <Form.Input name={`name.${lng}`} fieldOnly />
+              )}
+            </Form.LngGroup>
 
           </Doc.Form>
         </Page>

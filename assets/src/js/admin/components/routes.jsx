@@ -8,6 +8,7 @@ import PageViews from './pages/PageViews';
 import PageView from './pages/PageView';
 import PageUsers from './pages/PageUsers';
 import PageUser from './pages/PageUser';
+import PageAccount from './pages/PageAccount';
 import PageExample from './pages/PageExample';
 
 const AppRoutes = () => (
@@ -24,6 +25,8 @@ const AppRoutes = () => (
     <Route path="users/role/:role" element={<PageUsers />} />
     <Route path="users/:_id" element={<PageUser />} />
     <Route path="users/role/:role/:_id" element={<PageUser />} />
+
+    <Route path="account" element={<PageAccount />} />
 
     {/* showcase of all form field types */}
     <Route path="example" element={<PageExample />} />
