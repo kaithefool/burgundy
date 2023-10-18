@@ -5,10 +5,6 @@
   &.fade .modal-dialog {
     transform: translate(-50px, 0);
   }
-  .modal-content {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
 }
 .modal-right {
   .modal-dialog {
@@ -17,12 +13,10 @@
   &.fade .modal-dialog {
     transform: translate(50px, 0);
   }
-  .modal-content {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
 }
 .modal-left, .modal-right {
+  padding: 0 !important;
+
   &.show .modal-dialog {
     transform: none;
   }
@@ -30,6 +24,8 @@
     height: 100%;
   }
   .modal-content {
+    border-radius: 0;
+    border: 0;
     min-height: 100%;
   }
 }

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import { useTranslation } from 'react-i18next';
 import capitalize from 'lodash/capitalize';
@@ -16,8 +16,13 @@ const NavAcc = ({
   links = [],
 }) => {
   const { t } = useTranslation();
+  const location = useLocation();
   const { mine } = useMine();
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (show) setShow(false);
+  }, [location]);
 
   if (!mine) {
     return (
@@ -45,7 +50,7 @@ const NavAcc = ({
         <Modal.Header closeButton />
         <Modal.Body>
           <div className="p-2">
-            <ListItem type="user" entry={mine} avatar={{ size: 2.4 }}>
+            <ListItem type="user" entry={mine} avatar={{ size: 2.3 }}>
               <div className="text-muted small">
                 {t(mine.role, capitalize(mine.role))}
               </div>

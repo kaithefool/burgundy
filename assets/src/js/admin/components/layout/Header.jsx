@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import BtnLng from '~/lib/components/btns/BtnLng';
 import { meta } from '~/lib/helpers';
 
 import SubDirsNav from './SubDirsNav';
@@ -31,24 +30,17 @@ const Header = ({
   return (
     <header>
       <nav className="border-bottom p-4 pb-2">
-        <div className="row align-items-center">
-          <div className="col">
-            <Breadcrumbs
-              className="small mb-2"
-              {...(
-                Array.isArray(breadcrumbs)
-                  ? { paths: breadcrumbs }
-                  : breadcrumbs
-              )}
-            />
-            <h1 className="h5 mb-0">
-              {title}
-            </h1>
-          </div>
-          <div className="col-auto">
-            <BtnLng />
-          </div>
-        </div>
+        <Breadcrumbs
+          className="small mb-2"
+          {...(
+            Array.isArray(breadcrumbs)
+              ? { paths: breadcrumbs }
+              : breadcrumbs
+          )}
+        />
+        <h1 className="h5 mb-0">
+          {title}
+        </h1>
       </nav>
       {subsDir && (
         <SubDirsNav {...subsDir} />
