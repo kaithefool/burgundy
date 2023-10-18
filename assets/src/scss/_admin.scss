@@ -46,7 +46,8 @@ body.admin {
     background-color: $body-bg;
     border-right: solid 1px darken($light, 3%) !important;
     min-height: 100vh;
-    .nav-link {
+
+    .nav .nav-link {
       padding: 0 map-get($spacers, 4);
     }
   }
