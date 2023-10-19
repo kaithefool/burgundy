@@ -11,20 +11,20 @@ import { humanize, titleize } from '../helpers/string';
 
 const languageDetector = new LanguageDetector();
 
-languageDetector.addDetector({
-  name: 'env',
-  lookup() {
-    return env?.user?.lng;
-  },
-  cacheUserLanguage(lng) {
-    if (env.user && env.user.lng !== lng) {
-      axios.patch(`/api/users/${env.user._id}`, { lng });
-    }
-  },
-});
+if (env.user) {
+  languageDetector.addDetector({
+    name: 'env',
+    lookup() {
+      return env.user?.lng;
+    },
+    cacheUserLanguage(lng) {
+      axios.patch('/api/users/self', { lng });
+    },
+  });
+}
 
 const defaultDetectionOrder = [
-  'querystring', 'cookie', 'localStorage',
+  'querystring', 'cookie', 'env', 'localStorage',
   'sessionStorage', 'navigator', 'htmlTag',
 ];
 
@@ -44,8 +44,8 @@ i18n
       skipOnVariables: false,
     },
     detection: {
-      order: ['env', ...defaultDetectionOrder],
-      caches: ['env', 'cookie'],
+      order: defaultDetectionOrder,
+      caches: ['cookie', 'env'],
       cookieOptions: {
         maxAge: 365 * 24 * 60 * 60, // 1 year
         sameSite: 'strict',
