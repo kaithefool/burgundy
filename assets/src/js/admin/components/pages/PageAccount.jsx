@@ -4,6 +4,7 @@ import Form from '~/lib/components/form';
 import { reduceLng } from '~/lib/helpers';
 import { useMine } from '~/shared/components/mine';
 import Page from '../layout/Page';
+import ModalAccPwd from '~/shared/components/ModalAccPwd';
 
 const defaults = {
   avatar: [],
@@ -35,6 +36,7 @@ const PageAccount = () => {
               <Form.Input name={`name.${lng}`} fieldOnly />
             )}
           </Form.LngGroup>
+          <ModalAccPwd />
         </Form>
       )}
     </Page>
