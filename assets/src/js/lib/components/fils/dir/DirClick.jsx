@@ -31,7 +31,11 @@ const DirClick = ({
         <input
           ref={input}
           type="file"
-          onChange={(e) => push(e.target.files)}
+          onChange={(e) => {
+            push(e.target.files);
+            // clear input to allow re-upload of the same file
+            e.target.value = '';
+          }}
           className="position-absolute"
           autoComplete="off"
           {...multiple && { multiple: true }}
