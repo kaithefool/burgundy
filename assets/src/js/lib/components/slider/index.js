@@ -1,3 +1,4 @@
+import Slide from './slide';
 import SliderProvider from './SliderProvider';
 import SliderContext from './SliderContext';
 import useSlider from './useSlider';
@@ -9,6 +10,7 @@ import SliderPg from './SliderPg';
 import SliderLightbox from './SliderLightbox';
 
 export {
+  Slide,
   SliderContext,
   useSlider,
   SliderBody,
@@ -21,6 +23,7 @@ export {
 
 const Slider = SliderProvider;
 
+Slider.Slide = Slide;
 Slider.Body = SliderBody;
 Slider.Nav = SliderNav;
 Slider.Slides = SliderSlides;

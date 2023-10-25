@@ -12,15 +12,25 @@ export {
   ListPgMore,
 };
 
-const Pg = () => (
+const Pg = ({
+  limit = true,
+  skip = true,
+  cols = true,
+}) => (
   <div className="row g-2">
-    <div className="col-auto">
-      <ListPgLimit />
-    </div>
-    <ListPgSkip className="col-auto" />
-    <div className="col-auto">
-      <ListPgCols />
-    </div>
+    {limit && (
+      <div className="col-auto">
+        <ListPgLimit {...limit} />
+      </div>
+    )}
+    {skip && (
+      <ListPgSkip className="col-auto" {...skip} />
+    )}
+    {cols && (
+      <div className="col-auto">
+        <ListPgCols />
+      </div>
+    )}
   </div>
 );
 

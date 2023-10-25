@@ -26,11 +26,14 @@ const urlType = (url = '') => Object.keys(regex)
 const DirCloud = ({
   className = 'btn btn-primary px-3',
   accept = ['youtube', 'vimeo'],
+  alwaysEnable = false,
 }) => {
   const [id] = useUniqKey();
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
-  const { push } = useDir();
+  const { push, multiple, files } = useDir();
+
+  if (!alwaysEnable && !multiple && files.length) return '';
 
   return (
     <>

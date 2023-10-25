@@ -28,12 +28,21 @@ const demoImgs = [
   'https://images.unsplash.com/photo-1683488780112-f47a64de5d15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
 ];
 const demoSlides = demoImgs.map((s) => ({ path: s, type: 'image/jpeg' }));
+const demoTexts = [
+  { title: 'Lorem ipsum dolor sit amet', text: 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' },
+  { title: 'Ut enim ad minim veniam', text: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat' },
+  { title: 'Duis aute irure dolor in reprehenderit', text: 'In voluptate velit esse cillum dolore eu fugiat nulla pariatur' },
+  { title: 'Excepteur sint occaecat cupidatat', text: 'Sunt in culpa qui officia deserunt mollit anim id est laborum' },
+  { title: 'Sed ut perspiciatis unde omnis', text: 'Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae' },
+  { title: 'Nemo enim ipsam voluptatem', text: 'Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt' },
+];
 
 const defaults = {
   checkbox: true,
   switch: true,
   radio: 'radio-1',
   stepper: 0,
+  stars: 4,
   text: '',
   password: '',
   select: env.lngs[0],
@@ -69,6 +78,197 @@ const schema = () => object({
   avatar: array().min(1),
 });
 
+const FieldsGeneral = () => (
+  <>
+    <Form.Check name="checkbox" />
+    <Form.Check name="switch" type="switch" />
+    <Form.Check name="radio" type="radio" value="radio-1" />
+    <Form.Check name="radio" type="radio" value="radio-2" />
+    <div style={{ width: '9rem' }}>
+      <Form.Stepper name="stepper" />
+    </div>
+    <Form.Stars name="stars" />
+    <Form.Input name="text" />
+    <Form.Input name="password" type="password" />
+    <Form.Password
+      name="password"
+      helpText="Password with visibility toggle"
+    />
+    <Form.LngGroup name="lngTexts">
+      {(lng) => (
+        <Form.Input name={`lngTexts.${lng}`} fieldOnly />
+      )}
+    </Form.LngGroup>
+    <Form.LngGroup name="lngEditor" block>
+      {(lng) => (
+        <Form.Editor
+          key={lng}
+          name={`lngEditor.${lng}`}
+          fieldOnly
+        />
+      )}
+    </Form.LngGroup>
+    <Form.Select
+      name="select"
+      helpText={`
+        Support array of strings,
+        array of label value paired object
+        and react components
+      `}
+    >
+      {mapLng((value, label) => ({ value, label }))}
+    </Form.Select>
+    <Form.Textarea name="textarea" />
+    <Form.Editor name="editor" />
+  </>
+);
+
+const FieldsFiles = ({ files }) => (
+  <>
+    <Form.FilsAvatar name="avatar" />
+    <Form.FilsCoverImg name="coverImg" />
+    <Form.FilsList name="files" cloud multiple />
+    <Form.Label name="gallery" />
+    <FilsGallery files={files} />
+    <Form.Label name="slider" />
+    <Slider.Lightbox slides={files}>
+      {({ turnOn }) => (
+        <Slider slides={files}>
+          <div><Slider.Pg /></div>
+          <div className="position-relative">
+            <Slider.Body
+              style={{ height: '50vh' }}
+              pagination={{ clickable: true }}
+              slideProps={(s, i) => ({
+                onClick: () => turnOn(i),
+              })}
+              autoplay={{ delay: 2000 }}
+            />
+            <Slider.Nav />
+          </div>
+          <Slider.Thumbs />
+        </Slider>
+      )}
+    </Slider.Lightbox>
+    <Form.Label name="customSlider" />
+    <Slider slides={files}>
+      <div><Slider.Pg /></div>
+      <div className="position-relative">
+        <Slider.Body
+          style={{ height: '50vh' }}
+          autoplay={{ delay: 2000 }}
+        >
+          {(slide, i) => (
+            <div className="d-flex h-100 flex-column">
+              <Slider.Slide.Media file={slide} />
+              <div
+                className="position-relative my-auto w-100 text-white"
+                style={{ padding: '0 5rem' }}
+              >
+                <h1 className="display-2 lh-1">
+                  {demoTexts[i].title}
+                </h1>
+                <p>{demoTexts[i].text}</p>
+                <a href="/" className="btn btn-secondary">
+                  Read More
+                </a>
+              </div>
+            </div>
+          )}
+        </Slider.Body>
+        <Slider.Nav />
+      </div>
+      <Slider.Thumbs />
+    </Slider>
+  </>
+);
+
+const FieldsTime = () => (
+  <>
+    <Form.ISODate name="date" />
+    <Form.ISOTime name="time" />
+    <Form.ISODateTime name="datetime" />
+    <Form.ISODateRange name="dateRange" />
+    <Form.ISOTimeRange name="timeRange" />
+  </>
+);
+
+const FieldsAddress = () => (
+  <>
+    <Form.Input
+      name="address"
+      helpText="Need Google API key in your .env file to work"
+    />
+    <Form.Coordinates
+      name="location.coordinates"
+    />
+  </>
+);
+
+const FieldsArray = () => (
+  <Form.Array
+    name="contacts"
+    tmpl="formset"
+    defaults={{
+      firstname: '',
+      lastname: '',
+      phones: [''],
+    }}
+  >
+    {(i) => (
+      <>
+        <div className="row">
+          <div className="col">
+            <Form.Input name={`contacts.${i}.firstname`} />
+          </div>
+          <div className="col">
+            <Form.Input name={`contacts.${i}.lastname`} />
+          </div>
+        </div>
+        <Form.Array
+          name={`contacts.${i}.phones`}
+          tmpl="list"
+          defaults=""
+        >
+          {((ii) => (
+            <Form.Input
+              name={`contacts.${i}.phones.${ii}`}
+              label={null}
+            />
+          ))}
+        </Form.Array>
+      </>
+    )}
+  </Form.Array>
+);
+
+const FieldsRelations = () => (
+  <>
+    <Form.Ref
+      name="ref"
+      api={{ url: '/api/users' }}
+    >
+      {(r) => r.email}
+    </Form.Ref>
+    <Form.Refs
+      name="refs"
+      api={{ url: '/api/users' }}
+    >
+      {(r) => r.email}
+    </Form.Refs>
+  </>
+);
+
+const FieldsCalendar = () => (
+  <Cal
+    api={{ url: '/api/access-logs/all' }}
+    field="createdAt"
+  >
+    <Cal.Header />
+    <Cal.Body />
+  </Cal>
+);
+
 const PageExample = () => {
   const [disabled, setDisabled] = useState(false);
 
@@ -101,150 +301,13 @@ const PageExample = () => {
                   </Doc.Ctrls>
 
                   <Tabs route>
-                    <Tab eventKey="general">
-                      <Form.Check name="checkbox" />
-                      <Form.Check name="switch" type="switch" />
-                      <Form.Check name="radio" type="radio" value="radio-1" />
-                      <Form.Check name="radio" type="radio" value="radio-2" />
-                      <div style={{ width: '9rem' }}>
-                        <Form.Stepper name="stepper" />
-                      </div>
-                      <Form.Input name="text" />
-                      <Form.Input name="password" type="password" />
-                      <Form.Password
-                        name="password"
-                        helpText="Password with visibility toggle"
-                      />
-                      <Form.LngGroup name="lngTexts">
-                        {(lng) => (
-                          <Form.Input name={`lngTexts.${lng}`} fieldOnly />
-                        )}
-                      </Form.LngGroup>
-                      <Form.LngGroup name="lngEditor" block>
-                        {(lng) => (
-                          <Form.Editor
-                            key={lng}
-                            name={`lngEditor.${lng}`}
-                            fieldOnly
-                          />
-                        )}
-                      </Form.LngGroup>
-                      <Form.Select
-                        name="select"
-                        helpText={`
-                          Support array of strings,
-                          array of label value paired object
-                          and react components
-                        `}
-                      >
-                        {mapLng((value, label) => ({ value, label }))}
-                      </Form.Select>
-                      <Form.Textarea name="textarea" />
-                      <Form.Editor name="editor" />
-                    </Tab>
-                    <Tab eventKey="files">
-                      <Form.FilsAvatar name="avatar" />
-                      <Form.FilsCoverImg name="coverImg" />
-                      <Form.FilsList name="files" cloud multiple />
-                      <Form.Label name="gallery" />
-                      <FilsGallery files={files} />
-                      <Form.Label name="slider" />
-                      <Slider.Lightbox slides={files}>
-                        {({ turnOn }) => (
-                          <Slider slides={files}>
-                            <div><Slider.Pg /></div>
-                            <div className="position-relative">
-                              <Slider.Body
-                                style={{ height: '50vh' }}
-                                pagination={{ clickable: true }}
-                                slideProps={(s, i) => ({
-                                  onClick: () => turnOn(i),
-                                })}
-                                autoplay={{ delay: 2000 }}
-                              />
-                              <Slider.Nav />
-                            </div>
-                            <Slider.Thumbs />
-                          </Slider>
-                        )}
-                      </Slider.Lightbox>
-                    </Tab>
-                    <Tab eventKey="time">
-                      <Form.ISODate name="date" />
-                      <Form.ISOTime name="time" />
-                      <Form.ISODateTime name="datetime" />
-                      <Form.ISODateRange name="dateRange" />
-                      <Form.ISOTimeRange name="timeRange" />
-                    </Tab>
-                    <Tab eventKey="address">
-                      <Form.Input
-                        name="address"
-                        helpText="Need Google API key in your .env file to work"
-                      />
-                      <Form.Coordinates
-                        name="location.coordinates"
-                      />
-                    </Tab>
-                    <Tab eventKey="array">
-                      <Form.Array
-                        name="contacts"
-                        tmpl="formset"
-                        defaults={{
-                          firstname: '',
-                          lastname: '',
-                          phones: [''],
-                        }}
-                      >
-                        {(i) => (
-                          <>
-                            <div className="row">
-                              <div className="col">
-                                <Form.Input name={`contacts.${i}.firstname`} />
-                              </div>
-                              <div className="col">
-                                <Form.Input name={`contacts.${i}.lastname`} />
-                              </div>
-                            </div>
-                            <Form.Array
-                              name={`contacts.${i}.phones`}
-                              tmpl="list"
-                              defaults=""
-                            >
-                              {((ii) => (
-                                <Form.Input
-                                  name={`contacts.${i}.phones.${ii}`}
-                                  label={null}
-                                />
-                              ))}
-
-                            </Form.Array>
-                          </>
-                        )}
-                      </Form.Array>
-                    </Tab>
-                    <Tab eventKey="relations">
-                      <Form.Ref
-                        name="ref"
-                        api={{ url: '/api/users' }}
-                      >
-                        {(r) => r.email}
-                      </Form.Ref>
-                      <Form.Refs
-                        name="refs"
-                        api={{ url: '/api/users' }}
-                      >
-                        {(r) => r.email}
-                      </Form.Refs>
-                    </Tab>
-                    <Tab eventKey="calendar">
-                      <Cal
-                        api={{ url: '/api/access-logs/all' }}
-                        field="createdAt"
-                      >
-                        <Cal.Header />
-                        <Cal.Body />
-                      </Cal>
-                    </Tab>
+                    <Tab eventKey="general"><FieldsGeneral /></Tab>
+                    <Tab eventKey="files"><FieldsFiles files={files} /></Tab>
+                    <Tab eventKey="time"><FieldsTime /></Tab>
+                    <Tab eventKey="address"><FieldsAddress /></Tab>
+                    <Tab eventKey="array"><FieldsArray /></Tab>
+                    <Tab eventKey="relations"><FieldsRelations /></Tab>
+                    <Tab eventKey="calendar"><FieldsCalendar /></Tab>
                   </Tabs>
                 </>
               );

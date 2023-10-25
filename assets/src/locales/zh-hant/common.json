@@ -31,7 +31,8 @@
     "goBack": "回到主頁",
     "noRecord": "沒有找到記錄",
     "retryAfter": "{{seconds}}秒後重試",
-    "retryMaxReached": "你嘗試了太多次"
+    "retryMaxReached": "你嘗試了太多次",
+    "userAlreadyExists": "該帳戶已被註冊"
   },
   "yup": {
     "mixed": {
