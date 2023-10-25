@@ -1,6 +1,6 @@
 import React from 'react';
 import { object } from 'yup';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 import { Link } from 'react-router-dom';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons/faUnlock';
@@ -28,19 +28,6 @@ const FormLogin = () => {
       api={{ url: '/api/auth' }}
       onSubmitted={() => window.location.reload()}
     >
-      <div className="row align-items-end">
-        <div className="col">
-          <h3>{t('pg.auth.title')}</h3>
-        </div>
-        <div className="col-auto">
-          <h6>
-            <Link to="/auth/register">
-              {t('pg.auth.register')}
-            </Link>
-          </h6>
-        </div>
-      </div>
-
       <Form.Input name="email" />
       <Form.Password name="password" />
 
@@ -55,13 +42,22 @@ const FormLogin = () => {
         </div>
       </div>
 
-      <Form.BtnSubmit
-        icon={faUnlock}
-        className="btn-primary btn-block"
-        retry
-      >
-        {t('pg.auth.submit')}
-      </Form.BtnSubmit>
+      <div className="d-grid">
+        <Form.BtnSubmit
+          icon={faUnlock}
+          className="btn-primary btn-block"
+          retry
+        >
+          {t('pg.auth.submit')}
+        </Form.BtnSubmit>
+      </div>
+
+      <div className="mt-4">
+        <Trans i18nKey="pg.auth.register">
+          Don&apos;t have an account?&nbsp;
+          <Link to="/auth/register">Sign up</Link>
+        </Trans>
+      </div>
     </Form>
   );
 };

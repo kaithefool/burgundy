@@ -89,7 +89,7 @@
   "pg": {
     "auth": {
       "title" : "Login",
-      "register": "Sign up",
+      "register": "Don't have an account? <1>Sign up</1>",
       "pwdRecovery": "Forgot password?",
       "submit": "Login"
     },

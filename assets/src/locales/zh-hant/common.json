@@ -101,7 +101,7 @@
   "pg": {
     "auth": {
       "title" : "登入",
-      "register": "新帳戶註冊",
+      "register": "沒有帳戶? <1>註冊</1>",
       "pwdRecovery": "忘記密碼?",
       "submit": "登入"
     },

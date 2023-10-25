@@ -4,13 +4,19 @@ import env from '~/lib/config/env';
 
 const { title = '' } = env?.meta ?? {};
 
-const Logo = ({ short = false }) => (
-  <h5
-    className="my-0 text-primary d-inline-block"
-    style={{ letterSpacing: '.24rem' }}
-  >
-    {short ? title[0] : title}
-  </h5>
+const Logo = ({
+  short = false,
+  className = 'fs-5',
+  ...props
+}) => (
+  <div className={className} {...props}>
+    <span
+      className="text-primary font-monospace"
+      style={{ letterSpacing: '.12rem' }}
+    >
+      {short ? title[0] : title}
+    </span>
+  </div>
 );
 
 export default Logo;

@@ -65,7 +65,9 @@ const PageRegister = () => {
           </>
         ) : (
           <>
-            <h3>{t('pg.register.title')}</h3>
+            <div className="mb-4">
+              <h3>{t('pg.register.title')}</h3>
+            </div>
 
             <Form.Input name="email" affirm />
             <Form.Password name="password" affirm />

@@ -20,8 +20,10 @@ const NavMain = ({ className = '' }) => {
   return (
     <div className={`main-nav ${className}`}>
       <div className="position-sticky" style={{ top: 0 }}>
-        <div className="mx-4 my-3">
-          <Logo short={short} />
+        <div className="px-4 py-3">
+          <div className="px-1">
+            <Logo short={short} />
+          </div>
         </div>
         <button
           type="button"
