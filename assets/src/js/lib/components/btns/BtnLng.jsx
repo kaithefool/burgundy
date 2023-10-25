@@ -22,7 +22,7 @@ const BtnLng = ({
       <div className={className}>
         <FA icon={faGlobeAmericas} fixedWidth />
         {showLabel && (
-          <span className="ps-2">
+          <span className="ps-2 small">
             {lngLabels[lngs.indexOf(i18n.language)] || 0}
           </span>
         )}

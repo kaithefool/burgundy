@@ -7,7 +7,7 @@ import {
   faCheckCircle,
 } from '@fortawesome/free-regular-svg-icons/faCheckCircle';
 
-import Centered from '~/lib/components/layout/Centered';
+import PageCentered from '../../layout/PageCentered';
 import Fetchable from '~/lib/components/util/Fetchable';
 import { resolvePath } from '~/lib/helpers';
 
@@ -23,7 +23,7 @@ const PageRegisterVerify = () => {
         data: { verifyKey: key },
       }}
     >
-      <Centered>
+      <PageCentered>
         <h2>
           <FA icon={faCheckCircle} className="me-3" />
           {t('pg.register.successTitle')}
@@ -36,7 +36,7 @@ const PageRegisterVerify = () => {
             {t('pg.register.successLink')}
           </Link>
         </p>
-      </Centered>
+      </PageCentered>
     </Fetchable>
   );
 };

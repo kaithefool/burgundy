@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
 import { object } from 'yup';
-import Centered from '~/lib/components/layout/Centered';
+import PageCentered from '../../layout/PageCentered';
 import Form from '~/lib/components/form';
 import Fetchable from '~/lib/components/util/Fetchable';
 import { password, passwordConfirm } from '~/lib/validators';
@@ -21,7 +21,7 @@ const PagePwdReset = () => {
         data: { verifyKey: key },
       }}
     >
-      <Centered>
+      <PageCentered>
         <Form
           alert={{ className: 'w-auto my-3' }}
           schema={object({
@@ -47,7 +47,7 @@ const PagePwdReset = () => {
             {t('pg.pwdReset.submit')}
           </Form.BtnSubmit>
         </Form>
-      </Centered>
+      </PageCentered>
     </Fetchable>
   );
 };

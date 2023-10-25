@@ -17,7 +17,7 @@ const Head = () => (
       </div>
       <div className="col" />
       <div className="col-auto">
-        <BtnLng />
+        <BtnLng showLabel />
       </div>
       <div className="col-auto">
         <NavAcc links={accLinks} />

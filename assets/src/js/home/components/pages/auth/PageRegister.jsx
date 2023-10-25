@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 
-import Centered from '~/lib/components/layout/Centered';
+import PageCentered from '../../layout/PageCentered';
 import Form from '~/lib/components/form';
 import { email, password, passwordConfirm } from '~/lib/validators';
 
@@ -14,7 +14,7 @@ const PageRegister = () => {
   const { t } = useTranslation();
 
   return (
-    <Centered>
+    <PageCentered>
       <Form
         alert={{ className: 'w-auto my-3' }}
         schema={object({
@@ -89,7 +89,7 @@ const PageRegister = () => {
           </>
         ))}
       </Form>
-    </Centered>
+    </PageCentered>
   );
 };
 

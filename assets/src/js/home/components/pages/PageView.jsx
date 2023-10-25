@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import Fetchable from '~/lib/components/util/Fetchable';
 import Html from '~/lib/components/util/Html';
-import Centered from '~/lib/components/layout/Centered';
+import PageCentered from '../layout/PageCentered';
 import { meta } from '~/lib/helpers';
 
 const PageView = () => {
@@ -17,14 +17,14 @@ const PageView = () => {
         meta({ title: i18n.pickLng(view.title) });
 
         return (
-          <Centered>
-            <div className="col-md-8 col-sm-10 py-4">
-              <h1>{i18n.pickLng(view.title)}</h1>
+          <PageCentered size="lg">
+            <div className="py-4">
+              <h1 className="mb-4">{i18n.pickLng(view.title)}</h1>
               <div>
                 <Html>{i18n.pickLng(view.body)}</Html>
               </div>
             </div>
-          </Centered>
+          </PageCentered>
         );
       }}
     </Fetchable>

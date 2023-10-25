@@ -1,16 +1,16 @@
 import React from 'react';
 
-import Centered from '~/lib/components/layout/Centered';
 import Logo from '~/shared/components/Logo';
+import PageCentered from '../../layout/PageCentered';
 import FormLogin from '../../forms/FormLogin';
 
 const PageLogin = () => (
-  <Centered>
+  <PageCentered>
     <div className="text-center py-3">
       <Logo className="fs-3" />
     </div>
     <FormLogin />
-  </Centered>
+  </PageCentered>
 );
 
 export default PageLogin;

@@ -4,7 +4,7 @@ import { object } from 'yup';
 
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane';
 import { useNavigate, Link } from 'react-router-dom';
-import Centered from '~/lib/components/layout/Centered';
+import PageCentered from '../../layout/PageCentered';
 import Form from '~/lib/components/form';
 import { email } from '~/lib/validators';
 import { resolvePath } from '~/lib/helpers';
@@ -14,7 +14,7 @@ const PagePwdResetMail = () => {
   const navigate = useNavigate();
 
   return (
-    <Centered>
+    <PageCentered>
       <Form
         alert={{ className: 'w-auto my-3' }}
         schema={object({
@@ -51,7 +51,7 @@ const PagePwdResetMail = () => {
           {t('pg.pwdReset.mailBack')}
         </Link>
       </div>
-    </Centered>
+    </PageCentered>
   );
 };
 

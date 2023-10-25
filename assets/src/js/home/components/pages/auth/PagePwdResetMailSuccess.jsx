@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { Link } from 'react-router-dom';
-import Centered from '~/lib/components/layout/Centered';
+import PageCentered from '../../layout/PageCentered';
 import { resolvePath } from '~/lib/helpers';
 
 const PagePwdResetMailSuccess = () => {
   const { t } = useTranslation();
 
   return (
-    <Centered>
+    <PageCentered>
       <h2>
         <FA icon={faEnvelope} className="me-3" />
         {t('pg.pwdReset.mailSuccessTitle')}
@@ -26,7 +26,7 @@ const PagePwdResetMailSuccess = () => {
           {t('pg.pwdReset.noEmailLink')}
         </Link>
       </p>
-    </Centered>
+    </PageCentered>
   );
 };
 

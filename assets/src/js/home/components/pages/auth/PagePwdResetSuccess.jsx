@@ -6,14 +6,14 @@ import {
   faCheckCircle,
 } from '@fortawesome/free-regular-svg-icons/faCheckCircle';
 import { Link } from 'react-router-dom';
-import Centered from '~/lib/components/layout/Centered';
+import PageCentered from '../../layout/PageCentered';
 import { resolvePath } from '~/lib/helpers';
 
 const PagePwdResetSuccess = () => {
   const { t } = useTranslation();
 
   return (
-    <Centered>
+    <PageCentered>
       <h2>
         <FA icon={faCheckCircle} className="me-3" />
         {t('pg.pwdReset.successTitle')}
@@ -26,7 +26,7 @@ const PagePwdResetSuccess = () => {
           {t('pg.pwdReset.successLink')}
         </Link>
       </p>
-    </Centered>
+    </PageCentered>
   );
 };
 

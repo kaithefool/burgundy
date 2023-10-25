@@ -12,18 +12,12 @@ const Centered = ({
   })[size] || size;
 
   return (
-    <div className="d-flex min-vh-100">
-      <div className="my-auto w-100">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div
-              className="col"
-              style={s && { maxWidth: `${s}px` }}
-            >
-              {children}
-            </div>
-          </div>
-        </div>
+    <div className="d-flex h-100">
+      <div
+        className="m-auto mw-100"
+        style={s && { width: `${s}px` }}
+      >
+        {children}
       </div>
     </div>
   );
