@@ -1,20 +1,32 @@
 import React from 'react';
-import BtnLng from '~/lib/components/btns/BtnLng';
 
+import BtnLng from '~/lib/components/btns/BtnLng';
+import { Fil } from '~/lib/components/fils';
 import Centered from '~/lib/components/layout/Centered';
 
-const bg = 'https://images.unsplash.com/photo-1583872341575-610c859c7a57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=806&q=80';
+const defaultCover = {
+  path: '/assets/img/default-cover.mp4',
+  type: 'video/mp4',
+};
 
 const PageCentered = ({
-  cover = bg,
+  cover = true,
   children,
   ...props
 }) => {
+  let file;
+
+  if (cover) {
+    if (typeof cover === 'string') {
+      file = { type: 'image/jpeg', path: cover };
+    } else if (typeof cover === 'object') {
+      file = cover;
+    } else {
+      file = defaultCover;
+    }
+  }
   const body = (
-    <div
-      className="d-flex flex-column"
-      style={{ minHeight: '100vh' }}
-    >
+    <div className="d-flex flex-column vh-100">
       <div className="p-3 text-end">
         <div className="d-inline-block">
           <BtnLng showLabel />
@@ -28,13 +40,16 @@ const PageCentered = ({
     </div>
   );
 
-  return cover ? (
-    <div className="d-flex">
-      <div className="flex-fill vh-100 sticky-top">
-        <div
-          className="img-bg"
-          style={{ backgroundImage: `url("${cover}")` }}
-        />
+  return file ? (
+    <div className="d-flex overflow-y-auto">
+      <div className="flex-fill vh-100 sticky-top bg-light">
+        <Fil file={file}>
+          <Fil.Preview
+            player={{
+              playing: true, muted: true, loop: true,
+            }}
+          />
+        </Fil>
       </div>
       <div style={{ maxWidth: '100vw', minWidth: '50vw' }}>
         {body}

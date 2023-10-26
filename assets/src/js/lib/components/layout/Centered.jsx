@@ -12,9 +12,9 @@ const Centered = ({
   })[size] || size;
 
   return (
-    <div className="d-flex h-100">
+    <div className="d-flex align-items-center h-100">
       <div
-        className="m-auto mw-100"
+        className="mx-auto mw-100"
         style={s && { width: `${s}px` }}
       >
         {children}
