@@ -58,7 +58,7 @@ module.exports = () => ({
           {
             loader: 'css-loader',
             options: {
-              url: false,
+              // url: false,
               sourceMap: true,
             },
           },
