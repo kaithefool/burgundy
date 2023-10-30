@@ -18,15 +18,16 @@ export const getInitial = (name) => {
   return n;
 };
 
-export const getName = (i18n, {
+export const createNameGetter = (nameTypes = {}) => (i18n, {
   entry,
   type,
   initial = false,
+  ...opts
 }) => {
   let n = typeof entry === 'string' ? entry : '';
 
-  if (type === 'user') {
-    n = i18n.pickLng(entry.name) || entry.email;
+  if (nameTypes[type]) {
+    n = nameTypes[type](i18n, entry, opts);
   }
 
   if (!n && n !== 0) n = '';

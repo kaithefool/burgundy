@@ -5,3 +5,5 @@ export { default as resolvePath } from './resolvePath';
 export * from './utils';
 export * from './lng';
 export * from './string';
+export * from './name';
+export * from './palette';
