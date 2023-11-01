@@ -12,7 +12,7 @@ const FilName = ({
   let ext = '';
 
   if (!type.match(/^cloud\//)) {
-    ([, n, ext] = n.match(/(.*?)(\.[^.]*)$/));
+    ([, n, ext = ''] = n.match(/(.*?)(\.[^.]*)?$/));
   }
 
   const content = (
