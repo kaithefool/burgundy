@@ -2,9 +2,9 @@ import React from 'react';
 
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 
+import Circle from '~/lib/components/layout/Circle';
 import Name from './Name';
 import { getColor } from '../palette';
-import Circle from '~/lib/components/layout/Circle';
 
 const Avatar = ({
   size = 1.8,
