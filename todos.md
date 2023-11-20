@@ -9,6 +9,7 @@
     - Migrate to Slatejs
 - i18n
     - Email templates
+    - Separate i18n files
 - ObjectId validator
 - Inject parent doc in breadcrumb
 - 2 way bindings in all fields (fil and editor)
