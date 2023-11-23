@@ -63,8 +63,8 @@ i18n.on('languageChanged', (lng) => {
 i18n.pickLng = (obj) => {
   if (!obj || typeof obj !== 'object') return obj;
 
-  const { language, languages } = i18n;
-  const lngs = [language, ...languages];
+  const { language } = i18n;
+  const lngs = [language, ...env.lngs];
 
   return obj[lngs.find((l) => obj[l])];
 };
