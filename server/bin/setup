@@ -9,6 +9,10 @@ const { name } = require('../../package.json');
 const envDirPath = path.resolve(__dirname, '../../private');
 const envPath = path.resolve(envDirPath, '.env');
 
+if (fs.existsSync(envPath)) {
+  process.exit(0);
+}
+
 const template = () => `
 ROOT=http://localhost:3000
 PORT=3000
@@ -56,11 +60,9 @@ GOOGLE_RECAPTCHA_PUBIC_KEY=
 GOOGLE_RECAPTCHA_SECRET_KEY=
 `;
 
-if (!fs.existsSync(envPath)) {
-  fs.mkdirSync(envDirPath, { recursive: true });
-  fs.writeFileSync(envPath, template());
+fs.mkdirSync(envDirPath, { recursive: true });
+fs.writeFileSync(envPath, template());
 
-  console.info('Environment file generated.');
-}
+console.info('Environment file generated.');
 
 process.exit(0);
