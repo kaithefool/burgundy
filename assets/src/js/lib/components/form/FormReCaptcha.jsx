@@ -2,10 +2,7 @@ import React, {
   useState, useRef, useCallback,
 } from 'react';
 import { useField, useFormikContext } from 'formik';
-import {
-  GoogleReCaptchaProvider,
-  GoogleReCaptcha,
-} from 'react-google-recaptcha-v3';
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import env from '../../config/env';
 import useInterval from '../../hooks/useInterval';
@@ -21,6 +18,8 @@ const FormReCaptcha = ({
   const [refresh, setRefresh] = useState(0);
   const ref = useRef(setValue);
 
+  if (!publicKey) return null;
+
   ref.current = setValue;
   const stableSetValue = useCallback((token) => ref.current(token), []);
 
@@ -28,13 +27,11 @@ const FormReCaptcha = ({
   useInterval(() => setRefresh((c) => c + 1), 30 * 1000, true);
 
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={publicKey}>
-      <GoogleReCaptcha
-        onVerify={stableSetValue}
-        refreshReCaptcha={refresh + submitCount}
-        {...props}
-      />
-    </GoogleReCaptchaProvider>
+    <GoogleReCaptcha
+      onVerify={stableSetValue}
+      refreshReCaptcha={refresh + submitCount}
+      {...props}
+    />
   );
 };
 

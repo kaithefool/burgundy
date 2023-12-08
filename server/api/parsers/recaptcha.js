@@ -9,6 +9,8 @@ module.exports = (opts) => async (req, res, next) => {
   const { key = 'reCaptchaToken' } = opts || {};
   const { attrs: { [key]: token } } = req;
 
+  if (!secretKey) return next();
+
   if (typeof token !== 'string' || !token) {
     return next(httpError(400, 'res.invalidReCaptcha'));
   }
