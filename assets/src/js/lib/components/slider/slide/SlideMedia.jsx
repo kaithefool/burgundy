@@ -12,6 +12,7 @@ const SlideMedia = ({ file: fileProp }) => {
       autoStart = false,
       ...player
     } = {},
+    filClassName,
     isCurrent,
   } = useSlide();
   const file = fileProp ?? slide;
@@ -26,6 +27,7 @@ const SlideMedia = ({ file: fileProp }) => {
   return (
     <Fil file={file}>
       <Fil.Preview
+        className={filClassName}
         player={{
           ...autoStart && {
             playing: isCurrent,

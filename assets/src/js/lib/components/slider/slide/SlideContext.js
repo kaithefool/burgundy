@@ -6,4 +6,5 @@ export default React.createContext({
   player: {},
   autoplaying: false,
   isCurrent: false,
+  filClassName: undefined,
 });

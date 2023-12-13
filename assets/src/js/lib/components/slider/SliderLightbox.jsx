@@ -55,6 +55,7 @@ const SliderLightbox = ({
                 <SliderBody
                   className="h-100"
                   player={{ autoStart: true, controls: true }}
+                  filClassName="img-bg-contain"
                 />
                 <SliderNav />
               </div>

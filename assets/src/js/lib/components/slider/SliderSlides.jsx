@@ -15,6 +15,7 @@ const SliderSlides = ({
   slideProps,
   autoplay: autoplayProp,
   player = {},
+  filClassName,
   ...props
 }) => {
   const { slides, spaceBetween, pg } = useSlider();
@@ -54,6 +55,7 @@ const SliderSlides = ({
             index={i}
             autoplaying={autoplaying}
             player={player}
+            filClassName={filClassName}
             isCurrent={pg.activeIndex === i}
           >
             {children}
