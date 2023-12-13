@@ -35,7 +35,7 @@ npx hygen new cms [resource] --singleton
 ## API
 #### Web Sockets
 Socket.io is available with authenication built-in.
-To turn it on,  simply put these in the .env file:
+To turn it on, simply put these in the .env file:
 ```env
 REDIS_URL=redis://localhost:6379
 SOCKET=1
