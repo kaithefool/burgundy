@@ -1,4 +1,29 @@
 {
+  "version": "2.0.0",
   "tasks": [
+    {
+      "type": "docker-compose",
+      "label": "docker: up",
+      "dockerCompose": {
+        "up": {
+          "detached": true,
+        },
+        "files": [
+          "${workspaceFolder}/docker/docker-compose.yml"
+        ]
+      }
+    },
+    {
+      "type": "docker-compose",
+      "label": "docker: down",
+      "dockerCompose": {
+        "down": {
+          "removeOrphans": true,
+        },
+        "files": [
+          "${workspaceFolder}/docker/docker-compose.yml"
+        ]
+      }
+    },
   ]
 }

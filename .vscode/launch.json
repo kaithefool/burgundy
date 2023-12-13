@@ -11,6 +11,8 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["start"],
       "outputCapture": "std",
+      "preLaunchTask": "docker: up",
+      "postDebugTask": "docker: down",
     }
   ]
 }
