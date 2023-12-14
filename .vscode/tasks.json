@@ -11,7 +11,10 @@
         "files": [
           "${workspaceFolder}/docker/docker-compose.yml"
         ]
-      }
+      },
+      "presentation": {
+        "reveal": "silent",
+      },
     },
     {
       "type": "docker-compose",
@@ -23,7 +26,10 @@
         "files": [
           "${workspaceFolder}/docker/docker-compose.yml"
         ]
-      }
+      },
+      "presentation": {
+        "reveal": "silent",
+      },
     },
   ]
 }
