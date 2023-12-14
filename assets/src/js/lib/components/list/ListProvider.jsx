@@ -56,7 +56,6 @@ const ListProvider = (props) => {
         newQ.skip = 0;
       }
     }
-    if (selectable) setSelected([]); // clear select
 
     // set state to trigger request
     setQuery(newQ);
@@ -81,6 +80,7 @@ const ListProvider = (props) => {
   // make request when query changed
   useEffect(() => {
     if (!nonHttpRows && !lazying) {
+      if (selectable) setSelected([]); // clear select
       req(reqOpts);
     }
   }, [useComparable(reqOpts), refreshCount]);

@@ -58,7 +58,7 @@ const BtnHttp = ({
     <>
       {confirm && (
         <ModalConfirm
-          {...confirm}
+          {...typeof confirm === 'object' && confirm}
           show={confirmModal}
           onHide={() => setConfirmModal(false)}
           onConfirm={(values) => {
@@ -66,7 +66,11 @@ const BtnHttp = ({
             setConfirmModal(false);
           }}
           typeToConfirm={confirm.typeToConfirm}
-          body={confirm?.body ?? t('res.confirm')}
+          body={
+            confirm?.body
+            ?? (typeof confirm === 'string' && confirm)
+            ?? t('res.confirm')
+          }
         />
       )}
       <button
