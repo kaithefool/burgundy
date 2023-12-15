@@ -1,4 +1,11 @@
 # Todos
+- Fetch Pending and Error States
+    - use Suspense?
+    - Placeholders for loading
+    - Dark spinner may draw too much attention
+    - Error messages and icon
+    - Centered but take up minimum space
+    - Absolute position breaks layout
 - Field Array
     - handle _id reference
 - File Uploads
@@ -11,7 +18,6 @@
     - Email templates
 - ObjectId validator
 - Inject parent doc in breadcrumb
-- 2 way bindings in all fields (fil and editor)
 - Calendar
     - Stringify query and bind url query
     - Parent list refresh binding
