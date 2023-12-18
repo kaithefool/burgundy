@@ -2,12 +2,14 @@ module.exports = {
   env: {
     node: true,
   },
+  plugins: ['jsdoc'],
   extends: 'airbnb-base',
   parserOptions: {
     ecmaVersion: 2020,
   },
   rules: {
     'max-len': ['warn', { code: 80, ignoreRegExpLiterals: true }],
+    'jsdoc/no-undefined-types': 1,
 
     // enable development in windows
     'linebreak-style': 'off',

@@ -1,11 +1,8 @@
-export default function successParser(
-  r,
-  parserFn = (payload) => payload,
-) {
+export default function successParser(response) {
   return {
     status: 'success',
-    payload: parserFn(r.data, r),
-    code: r.status,
+    payload: response.data,
+    code: response.status,
     progress: 1,
   };
 }

@@ -2,6 +2,22 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * Confirmation modal.
+ *
+ * @component
+ * @param {Object} props
+ * @param {(string|Function)} props.header - The header of the modal.
+ * @param {(string|Function)} props.body - The body of the modal.
+ * @param {(string|Function)} props.footer - The footer of the modal.
+ * @param {Function} props.element - A function to override the default
+ * rendering function.
+ * @param {Function} props.onConfirm - A callback function that is called when
+ * the user confirms.
+ * @param {(string|boolean)} props.typeToConfirm - Whether the user must type
+ * a given string to confirm. If set to true, the string is 'OKAY'.
+ */
+
 const ModalConfirm = ({
   header,
   body,

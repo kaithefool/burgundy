@@ -5,7 +5,7 @@ module.exports = {
   env: {
     browser: true,
   },
-  plugins: ['react', 'react-hooks'],
+  plugins: ['react', 'react-hooks', 'jsdoc'],
   extends: [
     'airbnb',
     'plugin:react/recommended',
@@ -33,6 +33,7 @@ module.exports = {
   },
   rules: {
     'max-len': ['warn', { code: 80, ignoreRegExpLiterals: true }],
+    'jsdoc/no-undefined-types': 1,
 
     // enable development in windows
     'linebreak-style': 'off',

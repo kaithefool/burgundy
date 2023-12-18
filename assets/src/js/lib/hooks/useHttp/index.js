@@ -1,10 +1,7 @@
-import useHttpBase from './useHttpBase';
+import useHttp from './useHttp';
 import useHttpFileUpload from './useHttpFileUpload';
 
-const useHttp = useHttpBase;
-
 export {
-  useHttpBase,
   useHttpFileUpload,
 };
 

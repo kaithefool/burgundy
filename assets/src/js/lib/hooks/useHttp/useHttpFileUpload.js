@@ -1,4 +1,4 @@
-import useHttpBase from './useHttpBase';
+import useHttp from './useHttp';
 
 const makeReq = (api, file) => {
   const fd = new FormData();
@@ -17,7 +17,7 @@ const makeReq = (api, file) => {
 };
 
 function useHttpFileUpload() {
-  const { res, req, fetched } = useHttpBase();
+  const { res, req, fetched } = useHttp();
 
   const onFile = (api, files) => req(
     files instanceof FileList || Array.isArray(files)

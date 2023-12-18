@@ -4,7 +4,7 @@ import http from './http';
 import compoundHttp from './compoundHttp';
 import useComparable from '../useComparable';
 
-function useHttpBase(requests, opts) {
+function useHttp(requests, opts) {
   const xhr = useRef(undefined);
   const fetched = useRef(undefined);
   const [res, setRes] = useState({
@@ -75,4 +75,4 @@ function useHttpBase(requests, opts) {
   };
 }
 
-export default useHttpBase;
+export default useHttp;
