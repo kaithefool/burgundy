@@ -14,12 +14,12 @@ import errorParser from './errorParser';
  * - The status of the request.
  * @property {any} payload - The response payload.
  * @property {number} code - The response code.
- * @property {number} progress - The progress of the request.
+ * @property {number} progress - The progress of the request (0-1).
  */
 
 /**
  * @callback httpCallback
- * @returns {HttpResponse}
+ * @param {HttpResponse} response
  */
 
 /**
@@ -32,7 +32,7 @@ import errorParser from './errorParser';
  * Makes an HTTP request using axios.
  *
  * @param {HttpRequest} request - The request options.
- * @param {httpCallback} callback - A Callback function to be called on
+ * @param {httpCallback} callback - A Callback to be called on
  * status and progress changes.
  * @param {HttpProgressOptions} progressOptions - The options for tracking
  * upload/download progress.

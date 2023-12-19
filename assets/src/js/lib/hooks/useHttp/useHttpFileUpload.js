@@ -16,17 +16,37 @@ const makeReq = (api, file) => {
   };
 };
 
+/**
+ * @typedef {import("./useHttp").HttpRequest} HttpRequest
+ * @typedef {import("./useHttp").HttpState} HttpState
+ */
+
+/**
+ * @callback httpFileStateRequest
+ * @param {HttpRequest} api
+ * @param {FileList|Array<File>} FileList
+ *
+ * @typedef {Object} HttpFileState
+ * @property {httpFileStateRequest} req
+ */
+
+/**
+ * Same as useHttp, but with config for file upload
+ *
+ * @returns {HttpFileState & HttpState}
+ */
 function useHttpFileUpload() {
-  const { res, req, fetched } = useHttp();
+  const http = useHttp();
 
-  const onFile = (api, files) => req(
-    files instanceof FileList || Array.isArray(files)
-      ? Array.from(files).map((f) => makeReq(api, f))
-      : makeReq(api, files),
-    { uploadProgress: true },
-  );
-
-  return { res, req: onFile, fetched };
+  return {
+    ...http,
+    req: (api, files) => http.req(
+      files instanceof FileList || Array.isArray(files)
+        ? Array.from(files).map((f) => makeReq(api, f))
+        : makeReq(api, files),
+      { uploadProgress: true },
+    ),
+  };
 }
 
 export default useHttpFileUpload;

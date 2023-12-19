@@ -4,6 +4,44 @@ import http from './http';
 import compoundHttp from './compoundHttp';
 import useComparable from '../useComparable';
 
+/**
+ * @typedef {import("./http").HttpRequest} HttpRequest
+ * @typedef {import("./http").HttpResponse} HttpResponse
+ * @typedef {import("./http").HttpProgressOptions} HttpProgressOptions
+ */
+
+/**
+ * @callback httpStateRequest
+ * @param {Array<HttpRequest>|HttpRequest} r - A single or multiple
+ * request configs.
+ * @param {HttpProgressOptions} o - The options for tracking
+ * upload/download progress.
+ *
+ * @returns {Promise<HttpResponse>}
+ */
+
+/**
+ * @typedef {Object} HttpState
+ * @property {HttpResponse} res - The http state.
+ * @property {httpStateRequest} req - Makes a new HTTP request manually.
+ * Previous unfinished requests will be aborted.
+ * @property {HttpResponse} fetched - The last successful
+ * response.
+ * @property {Function} cancel - Cancels the current request.
+ */
+
+/**
+ * A React hook for making HTTP requests and tracking their state.
+ *
+ * @param {Array<HttpRequest>|HttpRequest} [requests] - A single or multiple
+ * request configs. Configs are monitored for changes and will trigger a new
+ * request.
+ * @param {HttpProgressOptions} [opts] - The options
+ * for tracking upload/download progress.
+ *
+ * @returns {HttpState}
+ */
+
 function useHttp(requests, opts) {
   const xhr = useRef(undefined);
   const fetched = useRef(undefined);
