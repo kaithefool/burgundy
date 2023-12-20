@@ -17,14 +17,17 @@ const makeReq = (api, file) => {
 };
 
 /**
- * @typedef {import("./useHttp").HttpRequest} HttpRequest
- * @typedef {import("./useHttp").HttpState} HttpState
+ * @typedef {import('./useHttp').HttpRequest} HttpRequest
+ * @typedef {import('./useHttp').HttpResponse} HttpResponse
+ * @typedef {import('./useHttp').HttpState} HttpState
  */
 
 /**
  * @callback httpFileStateRequest
  * @param {HttpRequest} api
  * @param {FileList|Array<File>} FileList
+ *
+ * @returns {Promise<HttpResponse>}
  *
  * @typedef {Object} HttpFileState
  * @property {httpFileStateRequest} req

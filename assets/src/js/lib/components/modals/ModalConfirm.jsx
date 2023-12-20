@@ -3,19 +3,32 @@ import Modal from 'react-bootstrap/Modal';
 import { useTranslation } from 'react-i18next';
 
 /**
+ * @typedef {import('react-bootstrap/Modal').ModalProps} ModalProps
+ */
+
+/**
+ * @typedef {Object} ConfirmProps
+ * @property {(React.ReactNode|string|Function)} header
+ * - The header of the modal.
+ * @property {(React.ReactNode|string|Function)} body
+ * - The body of the modal.
+ * @property {(React.ReactNode|string|Function)} footer
+ * - The footer of the modal.
+ * @property {Function} element
+ * - A function to override the default rendering function.
+ * @property {Function} onConfirm - A callback that is called when
+ * the user confirms.
+ * @property {(string|boolean)} typeToConfirm - Whether the user must type
+ * a given string to confirm. If set to true, the string is 'OKAY'.
+ *
+ * @typedef {ModalProps & ConfirmProps} ModalConfirmProps
+ */
+
+/**
  * Confirmation modal.
  *
  * @component
- * @param {Object} props
- * @param {(string|Function)} props.header - The header of the modal.
- * @param {(string|Function)} props.body - The body of the modal.
- * @param {(string|Function)} props.footer - The footer of the modal.
- * @param {Function} props.element - A function to override the default
- * rendering function.
- * @param {Function} props.onConfirm - A callback function that is called when
- * the user confirms.
- * @param {(string|boolean)} props.typeToConfirm - Whether the user must type
- * a given string to confirm. If set to true, the string is 'OKAY'.
+ * @param {ModalConfirmProps} props
  */
 
 const ModalConfirm = ({

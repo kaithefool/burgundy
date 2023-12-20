@@ -1,6 +1,22 @@
 import { useEffect, useRef } from 'react';
 
-export default function useTimeout(cb, duration, startOnInit = true) {
+/**
+ * @typedef {Object} IntervalState
+ * @property {Function} start - A function to start the interval.
+ * @property {Function} abort - A function to abort the interval.
+ */
+
+/**
+ * A React hook for setting up an interval.
+ *
+ * @param {Function} cb - The callback to be executed at each interval.
+ * @param {number} duration - The duration of the interval in milliseconds.
+ * @param {boolean} [startOnInit=true] - Whether to start the interval
+ * immediately.
+ *
+ * @returns {IntervalState}
+ */
+export default function useInterval(cb, duration, startOnInit = true) {
   const t = useRef();
   const func = useRef(cb);
   const abort = () => {

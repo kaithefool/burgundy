@@ -5,9 +5,9 @@ import compoundHttp from './compoundHttp';
 import useComparable from '../useComparable';
 
 /**
- * @typedef {import("./http").HttpRequest} HttpRequest
- * @typedef {import("./http").HttpResponse} HttpResponse
- * @typedef {import("./http").HttpProgressOptions} HttpProgressOptions
+ * @typedef {import('./http').HttpRequest} HttpRequest
+ * @typedef {import('./http').HttpResponse} HttpResponse
+ * @typedef {import('./http').HttpProgressOptions} HttpProgressOptions
  */
 
 /**

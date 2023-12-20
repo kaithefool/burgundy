@@ -5,7 +5,7 @@ import successParser from './successParser';
 import errorParser from './errorParser';
 
 /**
- * @typedef {import("axios").AxiosRequestConfig} HttpRequest
+ * @typedef {import('axios').AxiosRequestConfig} HttpRequest
  */
 
 /**
@@ -18,11 +18,6 @@ import errorParser from './errorParser';
  */
 
 /**
- * @callback httpCallback
- * @param {HttpResponse} response
- */
-
-/**
  * @typedef {Object} HttpProgressOptions
  * @property {boolean} uploadProgress - Whether to track upload progress.
  * @property {boolean} downloadProgress - Whether to track download progress.
@@ -32,7 +27,7 @@ import errorParser from './errorParser';
  * Makes an HTTP request using axios.
  *
  * @param {HttpRequest} request - The request options.
- * @param {httpCallback} callback - A Callback to be called on
+ * @param {(res: HttpResponse) => void} callback - A Callback to be called on
  * status and progress changes.
  * @param {HttpProgressOptions} progressOptions - The options for tracking
  * upload/download progress.

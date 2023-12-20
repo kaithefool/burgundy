@@ -4,14 +4,14 @@ import http from './http';
  * Makes multiple HTTP requests concurrently
  * and provides a unified progress update.
  *
- * @param {Array<import("./http").HttpRequest>} requests
+ * @param {Array<import('./http').HttpRequest>} requests
  * - An array of request configs for each HTTP request.
- * @param {import("./http").httpCallback} cb - A Callback to be called on
+ * @param {import('./http').httpCallback} cb - A Callback to be called on
  * all status and progress changes.
- * @param {import("./http").HttpProgressOptions} opts - The options for
+ * @param {import('./http').HttpProgressOptions} opts - The options for
  * tracking upload/download progress.
  *
- * @returns {Promise<import("./http").HttpResponse>} - A promise that resolves
+ * @returns {Promise<import('./http').HttpResponse>} - A promise that resolves
  * to the responses of the HTTP requests.
  */
 function compoundHttp(requests, cb, opts) {

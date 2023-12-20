@@ -9,6 +9,43 @@ import useHttp from '../../hooks/useHttp';
 import useRetry from '../../hooks/useRetry';
 import useAlert from '../alert/useAlert';
 
+/**
+ * @typedef {Object} BtnHttpProps
+ * @property {import('../../hooks/useHttp/useHttp').HttpRequest} [api]
+ * - The config for making the HTTP request when clicked.
+ * @property {import('../../hooks/useHttp/useHttp').HttpState} [http]
+ * - The HTTP state from useHttp. Use this to override the default HTTP state.
+ * @property {import('../../hooks/useHttp/useHttp').HttpResponse} [res]
+ * - The HTTP response state from useHttp.
+ * Use this to override the default HTTP response state.
+ * @property {import('../../hooks/useHttp/useHttp').httpStateRequest} [req]
+ * - The HTTP request function from useHttp.
+ * Use this to override the default HTTP request function.
+ * @property {import('@fortawesome/fontawesome-svg-core')
+ * .IconDefinition} [icon] - The icon to display.
+ * @property {React.ReactNode} [children]
+ * - Content to display inside the button.
+ * @property {boolean} [disabled] - Disables the button.
+ * @property {string} [className] - Additional class names.
+ * @property {function} [onClick] - Custom click handler.
+ * @property {import('../../hooks/useRetry').RetryOptions} [retry]
+ * - Retry options for the HTTP request.
+ * @property {import('../modals/ModalConfirm')
+ * .ModalConfirmProps
+ * |boolean} [confirm]
+ * - Whether to need the user to confirm within a confirmation modal
+ * before making the HTTP request. If set to true, default confirmation
+ * config will be used.
+ * @property {boolean} alert
+ */
+
+/**
+ * A button component that makes HTTP requests.
+ *
+ * @component
+ * @param {BtnHttpProps} props
+ */
+
 const BtnHttp = ({
   api,
   http: httpProp,
