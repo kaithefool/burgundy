@@ -3,9 +3,27 @@ import qs from 'qs';
 
 import successParser from './successParser';
 import errorParser from './errorParser';
+import fileUploadConfig from './fileUploadConfig';
 
 /**
- * @typedef {import('axios').AxiosRequestConfig} HttpRequest
+ * @typedef {import('axios').AxiosRequestConfig} AxiosRequestConfig
+ */
+
+/**
+ * @typedef {Object} AddtlRequestConfig
+ * @property {File} [file] - A file to be uploaded. If provided, additional
+ * default config will be applied. See {@link fileUploadConfig}.
+ * @property {boolean} [uploadProgress] - Whether to track upload progress.
+ * @property {boolean} [downloadProgress] - Whether to track download progress.
+ */
+
+/**
+ * @typedef {AddtlRequestConfig & AxiosRequestConfig} HttpRequest
+ */
+
+/**
+ * @callback httpCallback
+ * @param {HttpResponse} response
  */
 
 /**
@@ -18,27 +36,17 @@ import errorParser from './errorParser';
  */
 
 /**
- * @typedef {Object} HttpProgressOptions
- * @property {boolean} uploadProgress - Whether to track upload progress.
- * @property {boolean} downloadProgress - Whether to track download progress.
- */
-
-/**
  * Makes an HTTP request using axios.
  *
  * @param {HttpRequest} request - The request options.
- * @param {(res: HttpResponse) => void} callback - A Callback to be called on
+ * @param {httpCallback} callback - A Callback to be called on
  * status and progress changes.
- * @param {HttpProgressOptions} progressOptions - The options for tracking
- * upload/download progress.
  *
  * @returns {Promise<HttpResponse>}
  */
-function http(request, callback = () => {}, {
-  uploadProgress = false,
-  downloadProgress = false,
-} = {}) {
+function http(request, callback = () => {}) {
   let cancel;
+  const { file, uploadProgress, downloadProgress } = request;
   const opts = {
     paramsSerializer: (params) => (
       qs.stringify(params, { strictNullHandling: true })
@@ -47,17 +55,20 @@ function http(request, callback = () => {}, {
     cancelToken: new axios.CancelToken((c) => {
       cancel = c;
     }),
+    ...file && fileUploadConfig(file),
     ...request,
   };
 
   // progress
   if (uploadProgress) {
     opts.onUploadProgress = (e) => {
+      if (request.onUploadProgress) request.onUploadProgress(e);
       callback({ progress: e.loaded / e.total });
     };
   }
   if (downloadProgress) {
     opts.onDownloadProgress = (e) => {
+      if (request.onDownloadProgress) request.onDownloadProgress(e);
       callback({ progress: e.loaded / e.total });
     };
   }

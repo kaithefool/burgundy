@@ -7,10 +7,19 @@
     - Centered but take up minimum space
     - Absolute position breaks layout
     - No result? Not found?
+- Images
+    - inline and background
+    - placeholder when loading
+    - error handler
+    - onload transition effect
+    - lazy load option
+    - higher load priority for visible images
+    - predefined folder paths (eg. 'assets', 'uploads', etc)
 - Field Array
     - handle _id reference
 - File Uploads
-    - image dimension
+    - image dimension validation
+    - divide files into folders
 - Rich text editor
     - Drop file handler
     - MaxSize and accept

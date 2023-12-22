@@ -8,8 +8,6 @@ import http from './http';
  * - An array of request configs for each HTTP request.
  * @param {import('./http').httpCallback} cb - A Callback to be called on
  * all status and progress changes.
- * @param {import('./http').HttpProgressOptions} opts - The options for
- * tracking upload/download progress.
  *
  * @returns {Promise<import('./http').HttpResponse>} - A promise that resolves
  * to the responses of the HTTP requests.

@@ -11,14 +11,14 @@ import useAlert from '../alert/useAlert';
 
 /**
  * @typedef {Object} BtnHttpProps
- * @property {import('../../hooks/useHttp/useHttp').HttpRequest} [api]
+ * @property {import('../../hooks/useHttp').HttpRequest} [api]
  * - The config for making the HTTP request when clicked.
- * @property {import('../../hooks/useHttp/useHttp').HttpState} [http]
+ * @property {import('../../hooks/useHttp').HttpState} [http]
  * - The HTTP state from useHttp. Use this to override the default HTTP state.
- * @property {import('../../hooks/useHttp/useHttp').HttpResponse} [res]
+ * @property {import('../../hooks/useHttp').HttpResponse} [res]
  * - The HTTP response state from useHttp.
  * Use this to override the default HTTP response state.
- * @property {import('../../hooks/useHttp/useHttp').httpStateRequest} [req]
+ * @property {import('../../hooks/useHttp').httpStateRequest} [req]
  * - The HTTP request function from useHttp.
  * Use this to override the default HTTP request function.
  * @property {import('@fortawesome/fontawesome-svg-core')

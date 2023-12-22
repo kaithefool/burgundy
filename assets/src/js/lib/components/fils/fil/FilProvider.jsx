@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useHttpFileUpload } from '../../../hooks/useHttp';
+import useHttp from '../../../hooks/useHttp';
 import FilContext from './FilContext';
 import useDir from '../dir/useDir';
 import useAlert from '../../alert/useAlert';
@@ -11,7 +11,7 @@ const FilProvider = ({
   upload = true,
 }) => {
   const { api, replace, remove } = useDir();
-  const http = useHttpFileUpload();
+  const http = useHttp();
 
   useAlert(http.res, { success: false });
 
@@ -24,7 +24,7 @@ const FilProvider = ({
 
   useEffect(() => {
     if (upload && file instanceof File) {
-      http.req(api, file);
+      http.req({ ...api, file });
     }
   }, [
     file instanceof File,

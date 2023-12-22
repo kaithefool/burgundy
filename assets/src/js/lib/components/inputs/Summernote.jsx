@@ -6,7 +6,7 @@ import 'summernote/dist/summernote-lite';
 
 import { sanitizeHtml } from '../../helpers';
 import useUniqKey from '../../hooks/useUniqKey';
-import { useHttpFileUpload } from '../../hooks/useHttp';
+import useHttp from '../../hooks/useHttp';
 import useAlert from '../alert/useAlert';
 
 const FormEditor = ({
@@ -19,9 +19,9 @@ const FormEditor = ({
   const [id] = useUniqKey();
   const editor = useRef();
   const el = useRef();
-  const fileHttp = useHttpFileUpload();
+  const fileHttp = useHttp();
 
-  useAlert(fileHttp);
+  useAlert(fileHttp?.res);
 
   const toolbar = [
     !essentials && ['style', ['style']],
@@ -57,7 +57,7 @@ const FormEditor = ({
         async onImageUpload(files) {
           const {
             data: { path, name },
-          } = await fileHttp.req(fileApi, files[0]);
+          } = await fileHttp.req({ ...fileApi, file: files[0] });
 
           editor.current.summernote(
             'insertImage',

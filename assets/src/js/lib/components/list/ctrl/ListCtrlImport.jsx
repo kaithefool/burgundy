@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons/faFileAlt';
 
-import { useHttpFileUpload } from '../../../hooks/useHttp';
+import useHttp from '../../../hooks/useHttp';
 import BtnHttp from '../../btns/BtnHttp';
 import Fils from '../../fils';
 import useList from '../useList';
@@ -16,7 +16,7 @@ const ListCtrlImport = ({
   template,
   ...props
 }) => {
-  const { res, req } = useHttpFileUpload();
+  const { res, req } = useHttp();
   const { api: listApi, refresh } = useList();
   const { t } = useTranslation();
 
@@ -28,8 +28,9 @@ const ListCtrlImport = ({
     await req({
       ...listApi,
       url: `${listApi.url}/import`,
+      file: files[0],
       ...apiOpts,
-    }, files[0]);
+    });
 
     refresh();
   };

@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect } from 'react';
 
-import { useHttpFileUpload } from '../../../hooks/useHttp';
+import useHttp from '../../../hooks/useHttp';
 import useComparable from '../../../hooks/useComparable';
 import useDir from './useDir';
 import useAlert from '../../alert/useAlert';
@@ -10,7 +10,7 @@ const DirBatchUpload = ({
   children,
   onStatus = () => {},
 }) => {
-  const http = useHttpFileUpload();
+  const http = useHttp();
   const { api, files, update } = useDir();
 
   useAlert(http.res, { success: false });
@@ -24,7 +24,9 @@ const DirBatchUpload = ({
 
   useEffect(() => {
     if (files.length) {
-      http.req(api, files);
+      http.req(Array.from(files).map((file) => ({
+        ...api, file,
+      })));
     }
   }, [useComparable(files.map((f) => f.key))]);
 
