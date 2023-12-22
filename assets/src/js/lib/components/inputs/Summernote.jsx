@@ -21,7 +21,7 @@ const FormEditor = ({
   const el = useRef();
   const fileHttp = useHttp();
 
-  useAlert(fileHttp?.res);
+  useAlert(fileHttp?.res, { success: false });
 
   const toolbar = [
     !essentials && ['style', ['style']],
