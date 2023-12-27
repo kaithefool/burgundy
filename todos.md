@@ -1,12 +1,16 @@
 # Todos
-- Fetch Pending and Error States
-    - use Suspense?
+- Fetch and Alert
+    - use Suspense? ErrorBoundary? Or just use their concept of throw and catch?
+    - merge with alert? with routes? with btns? with anything that use http?
+    - catch all useHttp errors?
     - Placeholders for loading
     - Dark spinner may draw too much attention
     - Error messages and icon
     - Centered but take up minimum space
     - Absolute position breaks layout
     - No result? Not found?
+    - Dev mode? Or ways to show detailed error messages
+    - Retry request
 - Images
     - inline and background
     - placeholder when loading
