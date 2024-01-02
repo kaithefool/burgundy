@@ -4,9 +4,10 @@ import DeferContext from './DeferContext';
 
 /**
  * @param {import('../../hooks/useHttp').HttpState} [http]
+ * @param {import('./DeferContext').DeferConfig} [config]
  * @returns {import('./DeferContext').default}
  */
-function useDefer(http) {
+function useDefer(http, config = {}) {
   const ctx = useContext(DeferContext);
 
   useEffect(() => {

@@ -1,13 +1,18 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import DeferContext from './DeferContext';
 
 const DeferProvider = ({
   children,
   limit = 3,
 }) => {
+  const [logs, setLogs] = useState([]);
+
+  const add = () => {
+
+  };
+
   const value = {
-    logs: [],
+    logs,
   };
 
   return (

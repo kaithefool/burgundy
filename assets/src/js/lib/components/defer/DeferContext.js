@@ -7,12 +7,32 @@ import React, { createContext } from 'react';
  */
 
 /**
+ * @typedef {Object} DeferRenderConfig
+ * @property {IconDefinition} [icon] - FontAwesome icon
+ * @property {string} [theme] - bootstrap theme
+ * @property {Number} [expires] - alert auto dismiss in milliseconds
+ * @property {boolean} [dismissable=true] - show dismiss button
+ * @property {(http: HttpState) => React.ReactNode} [render]
+ */
+
+/**
+ * @typedef {Object} DeferStatusConfig
+ * @property {DeferRenderConfig|boolean} [pending]
+ * @property {DeferRenderConfig|boolean} [success=false]
+ * @property {DeferRenderConfig|boolean} [error]
+ * @property {DeferRenderConfig|boolean} [canceled=false]
+ */
+
+/**
+ * @typedef {Object} DeferConfig
+ * @property {DeferStatusConfig} [alert]
+ * @property {DeferStatusConfig} [status]
+ */
+
+/**
  * @typedef {Object} Log
  * @property {HttpState} http
- * @property {string} theme - bootstrap theme
- * @property {IconDefinition} icon
- * @property {Number} expires - in milliseconds
- * @property {(http: HttpState) => React.ReactNode} children
+ * @property {DeferConfig} config
  */
 
 export default createContext({

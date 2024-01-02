@@ -7,6 +7,8 @@ import useComparable from '../useComparable';
 /**
  * @typedef {import('./http').HttpRequest} HttpRequest
  * @typedef {import('./http').HttpResponse} HttpResponse
+ * @typedef {import('../../components/defer/DeferContext')
+ * .DeferConfig} DeferConfig
  */
 
 /**
@@ -33,10 +35,11 @@ import useComparable from '../useComparable';
  * @param {Array<HttpRequest>|HttpRequest} [requests] - A single or multiple
  * request configs. Configs are monitored for changes and will trigger a new
  * request.
+ * @param {DeferConfig} [deferConfig]
  *
  * @returns {HttpState}
  */
-function useHttp(requests) {
+function useHttp(requests, deferConfig) {
   const xhr = useRef(undefined);
   const fetched = useRef(undefined);
   const [res, setRes] = useState({
