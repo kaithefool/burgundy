@@ -1,8 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 
-import successParser from './successParser';
-import errorParser from './errorParser';
+import * as parsers from './parsers';
 import fileUploadConfig from './fileUploadConfig';
 
 /**
@@ -44,9 +43,8 @@ import fileUploadConfig from './fileUploadConfig';
  *
  * @returns {Promise<HttpResponse>}
  */
-function http(request, callback = () => {}) {
+function http({ file, ...request }, callback = () => {}) {
   let cancel;
-  const { file, uploadProgress, downloadProgress } = request;
   const opts = {
     paramsSerializer: (params) => (
       qs.stringify(params, { strictNullHandling: true })
@@ -58,31 +56,34 @@ function http(request, callback = () => {}) {
     ...file && fileUploadConfig(file),
     ...request,
   };
+  const { uploadProgress, downloadProgress, ...config } = opts;
 
-  // progress
+  // track progress
   if (uploadProgress) {
-    opts.onUploadProgress = (e) => {
+    config.onUploadProgress = (e) => {
       if (request.onUploadProgress) request.onUploadProgress(e);
-      callback({ progress: e.loaded / e.total });
+      callback(parsers.pending(e.loaded / e.total));
     };
   }
   if (downloadProgress) {
-    opts.onDownloadProgress = (e) => {
+    config.onDownloadProgress = (e) => {
       if (request.onDownloadProgress) request.onDownloadProgress(e);
-      callback({ progress: e.loaded / e.total });
+      callback(parsers.pending(e.loaded / e.total));
     };
   }
 
   const promise = (async () => {
-    try {
-      const r = await axios(opts);
+    callback(parsers.pending(0));
 
-      callback(successParser(r));
+    try {
+      const r = await axios(config);
+
+      callback(parsers.success(r));
 
       return r;
     } catch (e) {
       if (!axios.isCancel(e)) {
-        callback(errorParser(e));
+        callback(parsers.error(e));
         throw e;
       }
     }

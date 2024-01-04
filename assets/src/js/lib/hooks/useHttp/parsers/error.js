@@ -1,4 +1,4 @@
-import i18n from '../../config/i18n';
+import i18n from '../../../config/i18n';
 
 export default function errorParser(err) {
   const { response, message, code } = err;

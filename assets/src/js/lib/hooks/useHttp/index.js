@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
+import useDefer from '~/lib/components/defer/useDefer';
 import http from './http';
 import compoundHttp from './compoundHttp';
 import useComparable from '../useComparable';
@@ -63,17 +64,9 @@ function useHttp(requests, deferConfig) {
     setRes(draft); // state for components
   };
 
-  const req = (r, o) => {
+  const req = (r) => {
     // detach all callback from previous request
     cancel();
-
-    // pending
-    response({
-      status: 'pending',
-      payload: null,
-      code: null,
-      progress: 0,
-    });
 
     const x = (
       Array.isArray(r) ? compoundHttp : http
@@ -83,7 +76,7 @@ function useHttp(requests, deferConfig) {
       }
 
       response(state);
-    }, o);
+    });
 
     xhr.current = x;
 
@@ -100,12 +93,16 @@ function useHttp(requests, deferConfig) {
     };
   }, [useComparable(requests)]);
 
-  return {
+  const state = {
     res: resRef.current,
     req,
     fetched: fetched.current,
     cancel,
   };
+
+  useDefer(state, deferConfig);
+
+  return state;
 }
 
 export default useHttp;

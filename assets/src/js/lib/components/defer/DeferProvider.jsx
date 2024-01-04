@@ -5,14 +5,14 @@ const DeferProvider = ({
   children,
   limit = 3,
 }) => {
-  const [logs, setLogs] = useState([]);
+  const [alerts, setAlerts] = useState([]);
 
-  const add = () => {
+  const add = (http, config) => {
 
   };
 
   const value = {
-    logs,
+    alerts,
   };
 
   return (

@@ -11,7 +11,7 @@ function useDefer(http, config = {}) {
   const ctx = useContext(DeferContext);
 
   useEffect(() => {
-    if (http) ctx.add(http);
+    if (http) ctx.add(http, config);
   }, [http?.res?.status]);
 
   return ctx;

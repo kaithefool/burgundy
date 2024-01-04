@@ -12,7 +12,7 @@ import http from './http';
  * @returns {Promise<import('./http').HttpResponse>} - A promise that resolves
  * to the responses of the HTTP requests.
  */
-function compoundHttp(requests, cb, opts) {
+function compoundHttp(requests, cb) {
   const states = [];
   const xhrs = [];
 
@@ -45,7 +45,7 @@ function compoundHttp(requests, cb, opts) {
           { payload: states.map((s) => s.payload) },
         ));
       }
-    }, opts);
+    });
 
     xhrs.push(x);
   });
