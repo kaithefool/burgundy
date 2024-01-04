@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 
-import * as parsers from './parsers';
+import * as responses from './responses';
 import fileUploadConfig from './fileUploadConfig';
 
 /**
@@ -32,6 +32,7 @@ import fileUploadConfig from './fileUploadConfig';
  * @property {any} payload - The response payload.
  * @property {number} code - The response code.
  * @property {number} progress - The progress of the request (0-1).
+ * @property {HttpRequest} request - The request config.
  */
 
 /**
@@ -57,33 +58,34 @@ function http({ file, ...request }, callback = () => {}) {
     ...request,
   };
   const { uploadProgress, downloadProgress, ...config } = opts;
+  const cb = (r) => callback({ ...r, request: opts });
 
   // track progress
   if (uploadProgress) {
     config.onUploadProgress = (e) => {
       if (request.onUploadProgress) request.onUploadProgress(e);
-      callback(parsers.pending(e.loaded / e.total));
+      cb(responses.pending(e.loaded / e.total));
     };
   }
   if (downloadProgress) {
     config.onDownloadProgress = (e) => {
       if (request.onDownloadProgress) request.onDownloadProgress(e);
-      callback(parsers.pending(e.loaded / e.total));
+      cb(responses.pending(e.loaded / e.total));
     };
   }
 
   const promise = (async () => {
-    callback(parsers.pending(0));
+    cb(responses.pending(0));
 
     try {
       const r = await axios(config);
 
-      callback(parsers.success(r));
+      cb(responses.success(r));
 
       return r;
     } catch (e) {
       if (!axios.isCancel(e)) {
-        callback(parsers.error(e));
+        cb(responses.error(e));
         throw e;
       }
     }

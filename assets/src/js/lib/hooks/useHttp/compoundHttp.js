@@ -1,4 +1,5 @@
 import http from './http';
+import * as responses from './responses';
 
 /**
  * Makes multiple HTTP requests concurrently
@@ -13,44 +14,43 @@ import http from './http';
  * to the responses of the HTTP requests.
  */
 function compoundHttp(requests, cb) {
-  const states = [];
-  const xhrs = [];
-
-  const cancel = () => xhrs.forEach((x) => x.cancel());
+  const reses = [];
+  const https = [];
+  const cancel = () => https.forEach((x) => x.cancel());
 
   requests.forEach((r, i) => {
-    states.push({});
+    reses.push({});
 
-    const x = http(r, (state) => {
-      states[i] = state;
+    const x = http(r, (res) => {
+      reses[i] = res;
 
       // sum the total progress
-      if (!state.status && state.progress) {
-        cb({
-          progress: (
-            states.map((s) => s.progress || 0).reduce((a, p) => a + p, 0)
-          ) / states.length,
-        });
+      if (res.status === 'pending') {
+        const progress = (
+          reses.map((re) => re.progress || 0).reduce((a, p) => a + p, 0)
+        ) / reses.length;
+
+        cb(responses.pending(progress));
       }
       // error
-      if (state.status === 'error') {
-        cb(state);
+      if (res.status === 'error') {
+        cb(res);
         cancel();
       }
       // when all requests succeed
-      if (states.every((s) => s.status === 'success')) {
+      if (reses.every((s) => s.status === 'success')) {
         cb(Object.assign(
           {},
-          ...states,
-          { payload: states.map((s) => s.payload) },
+          ...reses,
+          { payload: reses.map((s) => s.payload) },
         ));
       }
     });
 
-    xhrs.push(x);
+    https.push(x);
   });
 
-  const promise = Promise.all(xhrs);
+  const promise = Promise.all(https);
 
   // expose cancel fn
   promise.cancel = cancel;
