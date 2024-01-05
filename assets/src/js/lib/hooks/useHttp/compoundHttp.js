@@ -42,7 +42,10 @@ function compoundHttp(requests, cb) {
         cb(Object.assign(
           {},
           ...reses,
-          { payload: reses.map((s) => s.payload) },
+          {
+            payload: reses.map((s) => s.payload),
+            request: reses.map((s) => s.request),
+          },
         ));
       }
     });

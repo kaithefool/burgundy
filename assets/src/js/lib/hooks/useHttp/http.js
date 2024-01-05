@@ -29,10 +29,10 @@ import fileUploadConfig from './fileUploadConfig';
  * @typedef {Object} HttpResponse
  * @property {('pending'|'success'|'error'|'canceled')} status
  * - The status of the request.
+ * @property {HttpRequest|HttpRequest[]} request - The request config.
  * @property {any} payload - The response payload.
  * @property {number} code - The response code.
  * @property {number} progress - The progress of the request (0-1).
- * @property {HttpRequest} request - The request config.
  */
 
 /**
