@@ -47,9 +47,7 @@ const defaults = {
   password: '',
   select: env.lngs[0],
   textarea: '',
-  editor: '',
   lngTexts: reduceLng(''),
-  lngEditor: reduceLng(''),
   date: '',
   time: '',
   datetime: '',
@@ -99,15 +97,6 @@ const FieldsGeneral = () => (
         <Form.Input name={`lngTexts.${lng}`} fieldOnly />
       )}
     </Form.LngGroup>
-    <Form.LngGroup name="lngEditor" block>
-      {(lng) => (
-        <Form.Editor
-          key={lng}
-          name={`lngEditor.${lng}`}
-          fieldOnly
-        />
-      )}
-    </Form.LngGroup>
     <Form.Select
       name="select"
       helpText={`
@@ -119,7 +108,6 @@ const FieldsGeneral = () => (
       {mapLng((value, label) => ({ value, label }))}
     </Form.Select>
     <Form.Textarea name="textarea" />
-    <Form.Editor name="editor" />
   </>
 );
 

@@ -2,11 +2,11 @@ import React from 'react';
 import { object, string } from 'yup';
 import { useParams } from 'react-router-dom';
 
+import Form from '~/lib/components/form';
+import { reduceLng } from '~/lib/helpers';
 import Page from '../layout/Page';
 import Doc from '../layout/doc';
-import Form from '~/lib/components/form';
 import LngTabs from '../layout/LngTabs';
-import { reduceLng } from '~/lib/helpers';
 
 const defaults = {
   url: '',
@@ -50,7 +50,7 @@ const PageView = () => {
               {(lng) => (
                 <>
                   <Form.Input name={`title.${lng}`} />
-                  <Form.Editor name={`body.${lng}`} />
+                  <Form.Textarea name={`body.${lng}`} />
                 </>
               )}
             </LngTabs>

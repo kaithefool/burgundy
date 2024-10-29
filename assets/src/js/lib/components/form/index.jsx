@@ -15,7 +15,6 @@ import FormSelect from './FormSelect';
 import FormFilsList from './FormFilsList';
 import FormFilsCoverImg from './FormFilsCoverImg';
 import FormFilsAvatar from './FormFilsAvatar';
-import FormEditor from './FormEditor';
 import FormPassword from './FormPassword';
 import FormTextarea from './FormTextarea';
 import FormISODateRange from './FormISODateRange';
@@ -50,7 +49,6 @@ export {
   FormFilsList,
   FormFilsCoverImg,
   FormFilsAvatar,
-  FormEditor,
   FormPassword,
   FormTextarea,
   FormISODateRange,
@@ -90,7 +88,6 @@ Form.Select = FormSelect;
 Form.FilsList = FormFilsList;
 Form.FilsCoverImg = FormFilsCoverImg;
 Form.FilsAvatar = FormFilsAvatar;
-Form.Editor = FormEditor;
 Form.Password = FormPassword;
 Form.Textarea = FormTextarea;
 Form.ISODateRange = FormISODateRange;
