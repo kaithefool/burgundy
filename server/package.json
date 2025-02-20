@@ -2,7 +2,7 @@
   "name": "server",
   "private": true,
   "scripts": {
-    "dev": "nodemon bin/www"
+    "dev": "tsx bin/www"
   },
   "author": "Kai Lam <kai.chun.lam@gmail.com>",
   "license": "ISC",
@@ -42,6 +42,7 @@
     "qs": "^6.11.2",
     "redis": "^4.0.0",
     "socket.io": "^4.5.1",
+    "tsx": "^4.19.2",
     "tunnel-ssh": "^4.1.6",
     "twilio": "^3.71.2",
     "yup": "^0.32.11"

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S npx tsx
 
 // eslint-disable-next-line import/order
 const { name } = require('../../assets/package.json');
