@@ -90,7 +90,7 @@ const ListTable = ({
         <tbody>
           {rows.map((row, r) => (
             <tr
-              key={r}
+              key={row?._id || row?.key || r}
             >
               {selectable && (
               <td>
