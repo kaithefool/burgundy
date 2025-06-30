@@ -34,6 +34,9 @@ i18n
   .use(languageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
+    backend: {
+      loadPath: '/dist/locales/{{lng}}/{{ns}}.json',
+    },
     lowerCaseLng: true,
     supportedLngs: env.lngs,
     fallbackLng: env.lngs[0],

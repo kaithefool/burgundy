@@ -14,7 +14,6 @@
     "i-server": "cd server && npm i",
     "i-assets": "cd assets && npm i",
     "build-assets": "cd assets && npm run build",
-    "build": "npm run postinstall && npm run build-assets",
     "setup": "node server/bin/setup",
     "postversion": "git push && git push --tags",
     "sync-fwk": "git fetch burgundy master:fwk"

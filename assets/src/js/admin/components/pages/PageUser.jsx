@@ -12,7 +12,7 @@ import Page from '../layout/Page';
 
 const defaults = (attrs) => ({
   email: '',
-  role: '',
+  role: env.roles[0],
   password: '',
   name: reduceLng(''),
   active: true,
