@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = ({
-  out = 'public',
+  out = 'public/dist',
 }) => ({
   devtool: 'source-map',
   context: __dirname,
