@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import isEqual from 'lodash/isEqual';
 
@@ -55,7 +55,7 @@ const ListFltCheck = ({
         {...props}
       />
       <label className={labelClassName} htmlFor={id}>
-        {t(label || value)}
+        {isValidElement ? label : t(label || value)}
       </label>
     </div>
   );
