@@ -12,6 +12,7 @@ module.exports = () => ({
   output: {
     filename: '[name].js',
     path: resolve(__dirname, '../dist/assets'),
+    clean: true,
   },
   resolve: {
     extensions: ['.js', '.jsx'],
