@@ -5,7 +5,7 @@ import { Fil } from '~/lib/components/fils';
 import Centered from '~/lib/components/layout/Centered';
 
 const defaultCover = {
-  path: '/assets/img/default-cover.mp4',
+  path: '/dist/assets/img/default-cover.mp4',
   type: 'video/mp4',
 };
 
