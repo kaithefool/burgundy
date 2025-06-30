@@ -2,7 +2,9 @@ const { resolve } = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-module.exports = () => ({
+module.exports = ({
+  out = 'public',
+}) => ({
   devtool: 'source-map',
   context: __dirname,
   entry: {
@@ -11,7 +13,7 @@ module.exports = () => ({
   },
   output: {
     filename: '[name].js',
-    path: resolve(__dirname, '../dist/assets'),
+    path: resolve(__dirname, `../${out}`, 'assets'),
     clean: true,
   },
   resolve: {
