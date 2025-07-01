@@ -9,6 +9,7 @@ import ctrl from './ctrl';
 import pg from './pg';
 import flt from './flt';
 import useList from './useList';
+import ListRows from './ListRows';
 
 export {
   ListContext,
@@ -16,6 +17,7 @@ export {
   ListSearch,
   ListStatus,
   ListTable,
+  ListRows,
   ListGroups,
   ListTruncate,
   ctrl,
@@ -30,6 +32,7 @@ List.Provider = ListProvider;
 List.Search = ListSearch;
 List.Status = ListStatus;
 List.Table = ListTable;
+List.Rows = ListRows;
 List.Groups = ListGroups;
 List.Truncate = ListTruncate;
 List.Ctrl = ctrl;
