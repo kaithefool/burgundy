@@ -1,8 +1,8 @@
 import React from 'react';
 
 import List from '~/lib/components/list';
-import ListCtrlActivate from './ListCtrlActivate';
 import ListItem from '~/shared/components/ListItem';
+import ListCtrlActivate from './ListCtrlActivate';
 
 const ListUsers = (props) => (
   <List
@@ -31,7 +31,7 @@ const ListUsers = (props) => (
         <List.Pg />
       </div>
     </div>
-    <div className="mb-3">
+    <div className="mb-3 d-flex flex-wrap gap-2">
       <List.Ctrl.Create />
       <List.Ctrl.Refresh />
       <ListCtrlActivate />

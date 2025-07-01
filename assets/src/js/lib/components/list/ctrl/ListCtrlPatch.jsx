@@ -7,7 +7,7 @@ import useList from '../useList';
 const ListCtrlPatch = ({
   api: apiOpts,
   updates,
-  className = 'btn px-2 me-3 btn-neutral',
+  className = 'btn px-2 btn-neutral',
   ...props
 }) => {
   const http = useHttp();

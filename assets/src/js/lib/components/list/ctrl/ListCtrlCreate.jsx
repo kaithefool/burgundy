@@ -5,7 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 const ListCtrlCreate = ({
   to = 'new',
-  className = 'btn px-2 me-3 btn-primary',
+  className = 'btn px-2 btn-primary',
   icon = faPlus,
   children,
 }) => (

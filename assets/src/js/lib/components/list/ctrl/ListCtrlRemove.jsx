@@ -9,7 +9,7 @@ import useHttp from '../../../hooks/useHttp';
 const ListCtrlRemove = ({
   api: apiOpts,
   confirm = true,
-  className = 'btn px-2 me-3 btn-neutral',
+  className = 'btn px-2 btn-neutral',
   ...props
 }) => {
   const { t } = useTranslation();

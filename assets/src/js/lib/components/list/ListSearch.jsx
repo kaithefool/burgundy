@@ -65,7 +65,7 @@ const ListSearch = ({
       )}
       {/* Search input */}
       <input
-        type="text"
+        type="search"
         className="form-control"
         placeholder={placeholder}
         value={searchStr}
@@ -80,6 +80,7 @@ const ListSearch = ({
       {/* Clear search input */}
       {searchStr && (
         <button
+          aria-label="Clear Search"
           type="button"
           className="btn"
           onClick={() => {

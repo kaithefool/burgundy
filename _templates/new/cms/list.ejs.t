@@ -22,7 +22,7 @@ const Page<%= n.plural.pascal %> = () => (
           <List.Pg />
         </div>
       </div>
-      <div className="mb-3">
+      <div className="mb-3 d-flex flex-wrap gap-2">
         <List.Ctrl.Create />
         <List.Ctrl.Refresh />
         <List.Ctrl.Remove />
