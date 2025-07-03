@@ -27,7 +27,7 @@ const PageAccessLogs = () => (
           <List.Pg />
         </div>
       </div>
-      <div className="mb-3">
+      <div className="mb-3 d-flex flex-wrap gap-2">
         <List.Ctrl.Refresh />
         <List.Ctrl.Export />
       </div>
