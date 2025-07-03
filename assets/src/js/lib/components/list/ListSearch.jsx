@@ -66,9 +66,17 @@ const ListSearch = ({
       {/* Search input */}
       <input
         type="search"
+        enterKeyHint="search"
         className="form-control"
         placeholder={placeholder}
         value={searchStr}
+        onKeyDown={({
+          key, shiftKey, metaKey, ctrlKey, target,
+        }) => {
+          if (!shiftKey && !metaKey && !ctrlKey && key === 'Enter') {
+            target?.blur();
+          }
+        }}
         onChange={(e) => {
           const { value } = e.target;
 

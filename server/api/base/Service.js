@@ -41,6 +41,15 @@ class Service {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
+  searchQueryRegExp(str = '') {
+    const sanitized = this.escapeRegExp(str.trim());
+
+    // dashes, underscores and spcaes are treated equally
+    const query = sanitized.replace(/[ -_]/g, '[ -_]');
+
+    return new RegExp(query, 'i');
+  }
+
   search(f) {
     let { search: opts } = this.opts;
     if (!opts || !f) return null;
@@ -50,7 +59,7 @@ class Service {
 
     const by = Object.keys(typeof f === 'object' ? f : opts)[0];
     const query = typeof f === 'object' ? Object.values(f)[0] : f;
-    const regex = new RegExp(this.escapeRegExp(query.trim()), 'i');
+    const regex = this.searchQueryRegExp(query);
     const fields = opts[by];
 
     if (!fields) return null;
