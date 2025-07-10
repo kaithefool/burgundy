@@ -34,17 +34,18 @@ const checkCsrf = (req) => {
 
 const authByCookies = async (req) => {
   checkCsrf(req);
+  const tokens = authCookies.get(req);
 
-  try {
-    const output = await authServ.verifyOrRenew(
-      authCookies.get(req),
-    );
+  if (tokens.access || tokens.refresh) {
+    try {
+      const output = await authServ.verifyOrRenew(tokens);
 
-    if (output.access) authCookies.set(req.res, output);
+      if (output.access) authCookies.set(req.res, output);
 
-    return output.user;
-  } catch (error) {
-    authCookies.clear(req.res);
+      return output.user;
+    } catch (error) {
+      authCookies.clear(req.res);
+    }
   }
 
   return null;

@@ -111,8 +111,6 @@ class AuthServ extends Service {
   }
 
   async verifyOrRenew({ access, refresh }) {
-    if (!access && !refresh) return null;
-
     if (access) {
       try {
         const user = this.verifyToken(access);
@@ -122,9 +120,16 @@ class AuthServ extends Service {
         // do nothing
       }
     }
-    const o = await this.renewTokens(refresh);
+    if (refresh) {
+      const o = await this.renewTokens(refresh);
 
-    return o;
+      return o;
+    }
+
+    this.throw(400, 'res.invalidToken');
+
+    // todo: unreachable return
+    return null;
   }
 
   async refresh({ token }) {

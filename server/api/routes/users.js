@@ -10,7 +10,7 @@ const comparePwd = require('../parsers/comparePwd');
 
 module.exports = new Routes({
   service,
-  // authorize: 'admin',
+  authorize: 'admin',
   validate: {
     create: object({
       email: email().required(),
