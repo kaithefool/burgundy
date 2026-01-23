@@ -12,7 +12,6 @@ routes.use((req, res, next) => next(httpError(404, 'res.notFound')));
 
 api.use((req, res, next) => {
   res.isApi = true;
-  console.log(req.query);
   return next();
 });
 api.use('/a', authByHeader, routes);
