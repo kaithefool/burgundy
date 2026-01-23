@@ -24,6 +24,7 @@ services:
       - dev
     environment:
       - MONGO_URI=mongodb://mongo:27017/burgundy
+      - JWT_SECRET=rl9GEGxgo0K_MUmtDDmNShHcwmenM9EM
     develop:
       watch:
         - action: sync+restart

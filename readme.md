@@ -73,6 +73,8 @@ pm2 deploy [env]
 `ACCESSLOG_TTL=180d`
   Access log time to live.  
 
+`JWT_SECRET`
+  Access token secret
 `JWT_ACCESS_TTL=5m`
   Access token time to live.  
 `JWT_REFRESH_TTL=15d`
