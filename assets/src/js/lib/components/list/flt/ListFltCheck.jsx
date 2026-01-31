@@ -18,13 +18,14 @@ const ListFltCheck = ({
   const { t } = useTranslation();
   const { fetch, query: { sort, filter } } = useList();
   const state = name === 'sort' ? sort : filter[name];
-  const checked = multiple
+  const checked = multiple && Array.isArray(state)
     ? state?.includes(value) || false
     : isEqual(state, value);
 
   const toggle = () => {
     if (multiple) {
-      const draft = (state || []).filter((v) => v !== value);
+      let draft = Array.isArray(state) ? state : [];
+      draft = draft.filter((v) => v !== value);
 
       if (!checked) draft.push(value);
       if (sortFn) {
