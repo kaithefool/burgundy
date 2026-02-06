@@ -1,9 +1,9 @@
 const Model = require('../base/Model');
 const crypto = require('../helpers/crypto');
 const consts = require('./consts');
+const { lngs } = require('../../start/i18n');
 
 const { Schema } = Model;
-const { LNG } = process.env;
 
 class User extends Model {
   constructor(name, paths, opts) {
@@ -20,7 +20,7 @@ class User extends Model {
         enum: consts.roles,
         default: 'client',
       },
-      lng: { type: String, enum: LNG.split(',') },
+      lng: { type: String, enum: lngs },
 
       // additional
       name: {

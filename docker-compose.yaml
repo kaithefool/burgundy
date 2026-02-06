@@ -17,6 +17,7 @@ services:
     build: ./server
     volumes:
       - ./server/uploads:/app/uploads
+      - ./server/assets:/app/assets
     ports:
       - 3000:3000
       - 9229:9229
@@ -33,6 +34,7 @@ services:
           ignore:
             - node_modules/
             - uploads/
+            - assets/
   assets:
     build: ./assets
     volumes:

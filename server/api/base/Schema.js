@@ -1,14 +1,15 @@
 const m = require('mongoose');
 const _ = require('lodash');
 const ms = require('ms');
+const { lngs } = require('../../start/i18n');
 
-const { LNG, MONGO_SYNC_INDEX } = process.env;
+const { MONGO_SYNC_INDEX } = process.env;
 const { ObjectId } = m.Schema.Types;
 const pluralize = m.pluralize();
 
 module.exports = class Schema {
   static lng(field) {
-    return LNG.split(',').reduce(
+    return lngs.reduce(
       (s, ln) => ({ ...s, [ln]: field }),
       {},
     );

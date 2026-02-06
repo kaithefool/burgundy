@@ -8,9 +8,9 @@ const redirectCookies = require('../api/helpers/redirectCookies');
 const {
   name: repoName, version: ver,
 } = require('../package.json');
+const { lngs, lngLabels, lngFlags } = require('../start/i18n');
 
 const {
-  LNG, LNG_LABEL, LNG_FLAG,
   GOOGLE_API_KEY,
   GOOGLE_RECAPTCHA_PUBIC_KEY,
 } = process.env;
@@ -31,9 +31,9 @@ routes.use(({
   locals.env = {
     user,
     csrf: csrfToken?.(),
-    lngs: LNG.split(','),
-    lngLabels: LNG_LABEL.split(','),
-    lngFlags: LNG_FLAG.split(','),
+    lngs,
+    lngLabels,
+    lngFlags,
     googleApiKey: GOOGLE_API_KEY,
     googleReCaptchaKey: GOOGLE_RECAPTCHA_PUBIC_KEY,
     meta: {

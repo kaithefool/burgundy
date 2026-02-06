@@ -1,7 +1,6 @@
+const { lngs } = require('../../start/i18n');
 const Service = require('../base/Service');
 const model = require('../models/views');
-
-const { LNG } = process.env;
 
 class ViewServ extends Service {
   match(attrs, user) {
@@ -26,6 +25,6 @@ class ViewServ extends Service {
 module.exports = new ViewServ(model, {
   search: [
     'url',
-    ...(LNG.split(',').map((lng) => `title.${lng}`)),
+    ...(lngs.map((lng) => `title.${lng}`)),
   ],
 });

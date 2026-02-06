@@ -4,11 +4,16 @@ const middleware = require('i18next-http-middleware');
 const FilesystemBackend = require('i18next-fs-backend');
 const inflect = require('inflect');
 
-const { LNG, LNG_LABEL } = process.env;
+const {
+  LNG = 'en,zh-hant',
+  LNG_LABEL = 'EN,中文',
+  LNG_FLAGS = '🇬🇧,🇭🇰',
+} = process.env;
 const storage = path.resolve(__dirname, '../locales');
 
 const lngs = LNG.split(',');
 const lngLabels = LNG_LABEL.split(',');
+const lngFlags = LNG_FLAGS.split(',');
 
 i18n
   .use(middleware.LanguageDetector)
@@ -98,6 +103,10 @@ const pickLng = (lng, obj) => {
 };
 
 module.exports = {
+  lngs,
+  lngLabels,
+  lngFlags,
+
   i18n,
   pickLng,
 
