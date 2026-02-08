@@ -2,7 +2,7 @@
   "name": "assets",
   "main": "webpack.config.js",
   "scripts": {
-    "dev": "node build.mjs --watch",
+    "start": "node build.mjs --watch",
     "build": "node build.mjs"
   },
   "author": "Kai Lam <kai.chun.lam@gmail.com>",
