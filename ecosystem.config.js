@@ -15,13 +15,6 @@ const postDeploy = (env) => [
   `pm2 startOrReload ecosystem.config.js --env=${env}`,
 ].join(' && ');
 
-const cmd = () => [
-  'set -a',
-  '. ../shared/secrets/.env',
-  'set +a',
-  './server/bin/www',
-].join(' && ');
-
 const scripts = (env) => ({
   'post-deploy': postDeploy(env),
   'post-setup': postSetup(env),
@@ -30,9 +23,10 @@ const scripts = (env) => ({
 module.exports = {
   apps: [{
     name,
-    script: cmd,
+    script: './server/bin/www',
     max_memory_restart: '1G',
     instances: 'max',
+    node_args: '--env-file ../shared/secrets/.env',
     env: { NODE_ENV: 'development' },
     env_uat: { NODE_ENV: 'uat' },
     env_prd: { NODE_ENV: 'production' },
