@@ -16,6 +16,7 @@ const postDeploy = (env) => [
 ].join(' && ');
 
 const scripts = (env) => ({
+  node_args: '--env-file ../shared/secrets/.env',
   'post-deploy': postDeploy(env),
   'post-setup': postSetup(env),
 });
@@ -26,7 +27,6 @@ module.exports = {
     script: './server/bin/www',
     max_memory_restart: '1G',
     instances: 'max',
-    node_args: '--env-file ../shared/secrets/.env',
     env: { NODE_ENV: 'development' },
     env_uat: { NODE_ENV: 'uat' },
     env_prd: { NODE_ENV: 'production' },
