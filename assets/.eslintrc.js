@@ -6,10 +6,7 @@ module.exports = {
     browser: true,
   },
   plugins: ['react', 'react-hooks', 'jsdoc'],
-  extends: [
-    'airbnb',
-    'plugin:react/recommended',
-  ],
+  extends: ['plugin:react/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -26,8 +23,14 @@ module.exports = {
           ['~', path.resolve(__dirname, './src/js')],
         ],
         extensions: [
-          '.js', '.jsx',
-          '.scss', '.mp4', '.jpg', 'jpeg', '.png', '.svg',
+          '.js',
+          '.jsx',
+          '.scss',
+          '.mp4',
+          '.jpg',
+          'jpeg',
+          '.png',
+          '.svg',
         ],
       },
     },
@@ -64,18 +67,18 @@ module.exports = {
     'react/no-array-index-key': 'off',
 
     // component slots
-    'react/no-unstable-nested-components': [
-      'error',
-      { allowAsProps: true },
-    ],
+    'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
 
     // I don't see why associating labels with id is unacceptable
     // and bootstrap don't support nested label
-    'jsx-a11y/label-has-associated-control': ['error', {
-      required: {
-        every: ['nesting', 'id'],
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        required: {
+          every: ['nesting', 'id'],
+        },
       },
-    }],
+    ],
 
     // resolve 'function-declaration' and 'unnamed function' conflict
     'react/function-component-definition': [

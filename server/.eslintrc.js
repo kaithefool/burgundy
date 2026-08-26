@@ -3,7 +3,6 @@ module.exports = {
     node: true,
   },
   plugins: ['jsdoc'],
-  extends: 'airbnb-base',
   parserOptions: {
     ecmaVersion: 2020,
   },
