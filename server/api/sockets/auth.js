@@ -4,9 +4,6 @@ const { parse } = require('cookie');
 const io = require('../../start/io');
 const authCookies = require('../helpers/authCookies');
 const authServ = require('../services/auth');
-const csrf = require('../parsers/csrf')({
-  ignoreMethods: ['HEAD', 'OPTIONS'],
-});
 
 const authByHeader = (req) => {
   const { authorization: header } = req.headers;
@@ -24,16 +21,7 @@ const authByHeader = (req) => {
   }
 };
 
-const checkCsrf = (req) => {
-  req.cookies = parse(req.headers.cookie);
-
-  const err = csrf(req, req.res, (e) => e);
-
-  if (err) throw err;
-};
-
 const authByCookies = async (req) => {
-  checkCsrf(req);
   const tokens = authCookies.get(req);
 
   if (tokens.access || tokens.refresh) {
@@ -53,7 +41,7 @@ const authByCookies = async (req) => {
 
 io.allowRequest(async (req, cb) => {
   try {
-    req.user = authByHeader(req) || await authByCookies(req);
+    req.user = authByHeader(req) || (await authByCookies(req));
   } catch (e) {
     return cb(e, false);
   }

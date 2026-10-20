@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server/bin/www",
+  "type": "commonjs",
   "scripts": {
     "cmd": "node server/bin/www",
     "up": "docker-compose up --watch",

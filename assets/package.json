@@ -1,6 +1,7 @@
 {
   "name": "assets",
   "main": "webpack.config.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node build.mjs --watch",
     "build": "node build.mjs"

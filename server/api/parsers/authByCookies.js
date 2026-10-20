@@ -1,6 +1,5 @@
 const authService = require('../services/auth');
 const authCookies = require('../helpers/authCookies');
-const csrf = require('./csrf')();
 
 module.exports = async function authByCookies(req, res, next) {
   const tokens = authCookies.get(req);
@@ -19,5 +18,5 @@ module.exports = async function authByCookies(req, res, next) {
     }
   }
 
-  return csrf(req, res, next);
+  return next();
 };

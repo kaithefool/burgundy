@@ -5,23 +5,16 @@ const authByCookies = require('../api/parsers/authByCookies');
 const consts = require('../api/models/consts');
 const redirectCookies = require('../api/helpers/redirectCookies');
 
-const {
-  name: repoName, version: ver,
-} = require('../package.json');
+const { name: repoName, version: ver } = require('../package.json');
 const { lngs, lngLabels, lngFlags } = require('../start/i18n');
 
-const {
-  GOOGLE_API_KEY,
-  GOOGLE_RECAPTCHA_PUBIC_KEY,
-} = process.env;
+const { GOOGLE_API_KEY, GOOGLE_RECAPTCHA_PUBIC_KEY } = process.env;
 
 // authentication middleware
 routes.use(authByCookies);
 
 // env variables for frontend
-routes.use(({
-  csrfToken, user, t, i18n,
-}, res, next) => {
+routes.use(({ user, t, i18n }, res, next) => {
   const { locals } = res;
 
   locals.ver = ver; // package version
@@ -30,9 +23,8 @@ routes.use(({
   locals._ = _; // lodash
   locals.env = {
     user,
-    csrf: csrfToken?.(),
-    lngs,
     lngLabels,
+    lngs,
     lngFlags,
     googleApiKey: GOOGLE_API_KEY,
     googleReCaptchaKey: GOOGLE_RECAPTCHA_PUBIC_KEY,
@@ -45,38 +37,27 @@ routes.use(({
   return next();
 });
 
-routes.get('/logout', (req, res) => (
-  res.redirect('/api/auth/logout?redirect')
-));
+routes.get('/logout', (req, res) => res.redirect('/api/auth/logout?redirect'));
 
-routes.use(
-  ['/admin', '/admin/{*splat}'],
-  (req, res) => {
-    if (req.user?.role !== 'admin') {
-      redirectCookies.set(req, res, { base: '/admin' });
+routes.use(['/admin', '/admin/{*splat}'], (req, res) => {
+  if (req.user?.role !== 'admin') {
+    redirectCookies.set(req, res, { base: '/admin' });
 
-      return res.redirect(req.user ? '/logout' : '/auth');
-    }
+    return res.redirect(req.user ? '/logout' : '/auth');
+  }
 
-    return res.render('layout', { entry: 'admin' });
-  },
-);
+  return res.render('layout', { entry: 'admin' });
+});
 
 routes.get('/', (req, res) => res.redirect('/auth'));
-routes.use(
-  '/auth',
-  (req, res) => {
-    if (req.user?.role === 'admin') {
-      return redirectCookies.consume(req, res, { base: '/admin' });
-    }
+routes.use('/auth', (req, res) => {
+  if (req.user?.role === 'admin') {
+    return redirectCookies.consume(req, res, { base: '/admin' });
+  }
 
-    return res.render('layout', { entry: 'home' });
-  },
-);
+  return res.render('layout', { entry: 'home' });
+});
 
-routes.use(
-  '/',
-  (req, res) => res.render('layout', { entry: 'home' }),
-);
+routes.use('/', (req, res) => res.render('layout', { entry: 'home' }));
 
 module.exports = routes;

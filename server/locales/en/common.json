@@ -21,8 +21,6 @@
     "invalidCredentials": "Incorrect username or password",
     "userInactivated": "Your account has been deactivated",
     "invalidToken": "Invalid token",
-    "invalidCsrf": "Invalid CSRF token",
-    "loggedOut": "You've logged out",
     "notFound": "Not found",
     "duplicates": "Duplicated record: {{values}}",
     "invalidCsv": "Invalid CSV format",
@@ -88,12 +86,12 @@
   },
   "pg": {
     "auth": {
-      "title" : "Login",
+      "title": "Login",
       "register": "Don't have an account? <1>Sign up</1>",
       "pwdRecovery": "Forgot password?",
       "submit": "Login"
     },
-    "register" : {
+    "register": {
       "title": "Sign up",
       "login": "Already have an account? <1>Login</1>",
       "submit": "Register",
